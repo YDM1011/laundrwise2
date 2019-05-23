@@ -37,6 +37,12 @@ import {
   ManagerAllOrdersComponent,
   ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent, AdminNewPostComponent
 } from './pages';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor, OrderService, PaymentService, ProfileService} from './services';
+import {FormsModule} from '@angular/forms';
+import {AuthentificationService} from './services';
+import {HeaderComponent} from './components';
+import {DynamicChangeStepOrderService} from "./subjects";
 
 @NgModule({
   declarations: [
@@ -76,13 +82,27 @@ import {
     ManagerPaymentSystemComponent,
     AdminComponent,
     AdminLoginComponent,
-    AdminNewPostComponent
+    AdminNewPostComponent,
+    HeaderComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+      HttpClientModule,
+    ],
+  providers: [
+    AuthentificationService,
+    OrderService,
+    ProfileService,
+    DynamicChangeStepOrderService,
+    PaymentService,
+      {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

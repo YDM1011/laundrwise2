@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {OrderModel} from '../../../models';
+import {DynamicChangeStepOrderService} from '../../../subjects';
 
 @Component({
   selector: 'app-new-orders-step-two',
@@ -6,11 +8,19 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./new-orders-step-two.component.css']
 })
 export class NewOrdersStepTwoComponent implements OnInit {
-  constructor() {
+  order: OrderModel = new OrderModel();
+  constructor(private  changeStepservice: DynamicChangeStepOrderService) {
   }
 
   ngOnInit() {
+    this.changeStepservice.objectForChangedStep.subscribe((data: any) => {
+      if (data) {
+        this.order = data;
+      }
+    });
   }
-
+  changeStep(order) {
+    this.changeStepservice.changeStep(order);
+  }
 
 }
