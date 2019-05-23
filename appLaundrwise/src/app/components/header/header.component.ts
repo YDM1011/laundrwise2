@@ -9,6 +9,7 @@ import {UserModel} from '../../models';
 })
 export class HeaderComponent implements OnInit {
     user: UserModel = new UserModel();
+
     constructor(private authServices: AuthentificationService) {
     }
 
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
     register(user) {
         this.authServices.registration(user).subscribe((data: any) => {
-                console.log (data);
+                console.log(data);
             },
             (error) => {
                 console.log(error);
@@ -26,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
     login(user) {
         this.authServices.login(user).subscribe((data: any) => {
-                console.log (data);
+                console.log(data);
             },
             (error) => {
                 console.log(error);
