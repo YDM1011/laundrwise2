@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 import 'rxjs-compat/add/operator/do';
 import 'rxjs-compat/add/observable/of';
 import {environment} from '../../environments/environment';
+import {ApiService} from './api';
 
 @Injectable()
 export class OrderService implements OnInit {
@@ -20,7 +21,8 @@ export class OrderService implements OnInit {
 
     constructor(
         public http: HttpClient,
-        public router: Router
+        public router: Router,
+        private api: ApiService
     ) {
     }
 
@@ -33,24 +35,12 @@ export class OrderService implements OnInit {
 
 
     public createOrder(order) {
-        return this.http.post('assets/user.json', order,
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+        return this.api.post('./assets/user.json', order);
     }
     public getAllUserOrders() {
-        return this.http.get('assets/user.json',
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+        return this.api.get('./assets/user.json');
     }
     public getOrder() {
-        return this.http.get('assets/user.json',
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+        return this.api.get('./assets/user.json');
     }
 }

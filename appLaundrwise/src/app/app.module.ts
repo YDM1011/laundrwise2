@@ -38,11 +38,11 @@ import {
   ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent, AdminNewPostComponent
 } from './pages';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AuthInterceptor, OrderService, PaymentService, ProfileService} from './services';
+import {ApiService, AuthInterceptor, OrderService, PaymentService, ProfileService} from './services';
 import {FormsModule} from '@angular/forms';
 import {AuthentificationService} from './services';
 import {HeaderComponent} from './components';
-import {DynamicChangeStepOrderService} from "./subjects";
+import {DynamicChangeStepOrderService} from './subjects';
 
 @NgModule({
   declarations: [
@@ -97,6 +97,7 @@ import {DynamicChangeStepOrderService} from "./subjects";
     ProfileService,
     DynamicChangeStepOrderService,
     PaymentService,
+    ApiService,
       {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

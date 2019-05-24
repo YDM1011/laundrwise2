@@ -13,11 +13,10 @@ export class HeaderComponent implements OnInit {
     constructor(private authServices: AuthentificationService) {
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
-    register(user) {
-        this.authServices.registration(user).subscribe((data: any) => {
+    signUp(user) {
+        this.authServices.signUp(user).subscribe((data: any) => {
                 console.log(data);
             },
             (error) => {
@@ -26,8 +25,8 @@ export class HeaderComponent implements OnInit {
     }
 
 
-    login(user) {
-        this.authServices.login(user).subscribe((data: any) => {
+    signIn(user) {
+        this.authServices.signIn(user).subscribe((data: any) => {
                 console.log(data);
             },
             (error) => {

@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 import 'rxjs-compat/add/operator/do';
 import 'rxjs-compat/add/observable/of';
 import {environment} from '../../environments/environment';
+import {ApiService} from './api';
 
 @Injectable()
 export class AuthentificationService implements OnInit {
@@ -20,7 +21,8 @@ export class AuthentificationService implements OnInit {
 
     constructor(
         public http: HttpClient,
-        public router: Router
+        public router: Router,
+        private api: ApiService
     ) {
     }
 
@@ -32,20 +34,12 @@ export class AuthentificationService implements OnInit {
     }
 
 
-    public registration(registerUser) {
-        return this.http.post('assets/user.json', registerUser,
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+    public signUp(registerUser) {
+        return this.api.post(`/reg`, registerUser);
     }
 
-    public login(registerUser) {
-        return this.http.post('assets/user.json', registerUser,
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+    public signIn(user) {
+        return this.api.post(`/log`, user);
     }
 
     public refreshToken() {

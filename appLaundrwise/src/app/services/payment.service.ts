@@ -1,6 +1,3 @@
-import {throwError as observableThrowError} from 'rxjs';
-
-import {catchError} from 'rxjs/operators';
 import {Injectable, OnInit} from '@angular/core';
 import {
     HttpClient,
@@ -11,6 +8,7 @@ import {Router} from '@angular/router';
 import 'rxjs-compat/add/operator/do';
 import 'rxjs-compat/add/observable/of';
 import {environment} from '../../environments/environment';
+import {ApiService} from './api';
 
 @Injectable()
 export class PaymentService implements OnInit {
@@ -20,7 +18,8 @@ export class PaymentService implements OnInit {
 
     constructor(
         public http: HttpClient,
-        public router: Router
+        public router: Router,
+        private api: ApiService
     ) {
     }
 
@@ -33,10 +32,6 @@ export class PaymentService implements OnInit {
 
 
     public setPayment(payment) {
-        return this.http.post('assets/user.json', payment,
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+        return this.api.post('./assets/user.json', payment);
     }
 }

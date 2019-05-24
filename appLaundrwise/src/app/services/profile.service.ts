@@ -1,6 +1,3 @@
-import {of as observableOf, throwError as observableThrowError} from 'rxjs';
-
-import {tap, catchError} from 'rxjs/operators';
 import {Injectable, OnInit} from '@angular/core';
 import {
     HttpClient,
@@ -11,18 +8,18 @@ import {Router} from '@angular/router';
 import 'rxjs-compat/add/operator/do';
 import 'rxjs-compat/add/observable/of';
 import {environment} from '../../environments/environment';
+import {ApiService} from './api';
 
 @Injectable()
 export class ProfileService implements OnInit {
     public config = environment;
-    public URL = environment;
     public headers: HttpHeaders = new HttpHeaders();
 
     constructor(
         public http: HttpClient,
-        public router: Router
-    ) {
-    }
+        public router: Router,
+        private api: ApiService
+    ) {}
 
     public ngOnInit() {
         this.headers = new HttpHeaders({
@@ -33,24 +30,12 @@ export class ProfileService implements OnInit {
 
 
     public getProfile() {
-        return this.http.get('assets/user.json',
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+        return this.api.get('./assets/user.json');
     }
     public editProfile(user) {
-        return this.http.post('assets/user.json', user ,
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+        return this.api.post('./assets/user.json', user );
     }
     public messageToAdmin(objectUser) {
-        return this.http.post('assets/user.json', objectUser ,
-            {headers: this.headers, withCredentials: false}).pipe(
-            catchError((error: any) => {
-                return observableThrowError(error);
-            }));
+        return this.api.post('./assets/user.json', objectUser );
     }
 }
