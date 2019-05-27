@@ -1,16 +1,31 @@
-First name:<input [(ngModel)]="userForRegister.firstName" type="text"><br>
-Last name:<input [(ngModel)]="userForRegister.lastName" type="text"><br>
-Address1:<input [(ngModel)]="userForRegister.adress1" type="text"><br>
-Address2:<input  [(ngModel)]="userForRegister.adress2" type="text"><br>
-City:<input [(ngModel)]="userForRegister.city" type="text"><br>
-County:<input [(ngModel)]="userForRegister.country" type="text"><br>
-Email:<input [(ngModel)]="userForRegister.email" type="text"><br>
-Phone:<input [(ngModel)]="userForRegister.phone" type="text"><br>
-Pass:<input [(ngModel)]="userForRegister.password" type="text"><br>
-
-
-
-Email: <input [(ngModel)]="userForLogin.email" type="text"><br>
-Password: <input [(ngModel)]="userForLogin.password" type="text"><br>
-<button  (click)="signIn(userForLogin)"> login</button><br>
-<button  (click)="signUp(userForRegister)">register</button><br>
+<header>
+    <div class="navigation">
+        <div class="navigation__logo">
+            <img [routerLink]="['/']"  src="assets/static/images/logo.svg" alt="logo">
+        </div>
+        <div class="navigation__buttons">
+            <nav>
+                <a [routerLink]="['/about-us']" href="" class="nav-item">About Us</a>
+                <a [routerLink]="['/how-it-works']" href="" class="nav-item">How it Works</a>
+                <a [routerLink]="['/blogs']" href="" class="nav-item">Blog</a>
+                <a [routerLink]="['/faq']" href="" class="nav-item">FAQ</a>
+                <a [routerLink]="['/contacts']" href="" class="nav-item">Contacts</a>
+            </nav>
+            <a href="#" (click)="openDialog()" class="nav-btn">Log in</a>
+            <a href="#" class="color nav-btn">Book Now</a>
+        </div>
+        <div class="navigation__burger">
+        </div>
+    </div>
+    <div *ngIf="router.url === '/'" class="headerbox">
+        <div class="headerbox-container">
+            <h1>Make your life easier with us</h1>
+            <div class="description">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </div>
+            <a href="#" class="header-sign">
+                Sing up free
+            </a>
+        </div>
+    </div>
+</header>

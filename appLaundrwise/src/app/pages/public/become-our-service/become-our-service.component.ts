@@ -6,10 +6,12 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./become-our-service.component.css']
 })
 export class BecomeOurServiceComponent implements OnInit {
+  activeTab;
   constructor() {
   }
 
   ngOnInit() {
+    this.activeTab = 'delivery';
   }
 
 

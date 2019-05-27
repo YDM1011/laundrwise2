@@ -1,1 +1,72 @@
-it become our ..... page
+<app-header></app-header>
+<div class="headline headline-howitworks">
+    <div class="headline-title">
+        <h3>Become our partner</h3>
+    </div>
+</div>
+<div class="content">
+    <div class="tabs">
+        <button [ngClass]="{'active': activeTab === 'delivery' }" (click)="activeTab = 'delivery'" class="tabs-btn " data-tab="delivery">For delivery</button>
+        <button [ngClass]="{'active': activeTab === 'laundry' }" (click)="activeTab = 'laundry'" class="tabs-btn" data-tab="laundry">For Laundry service</button>
+    </div>
+</div>
+<div class="content tabcontent" id="delivery" style="display:block;">
+    <p>
+        Delivery ipsum dolor sit amet, consectetur adipisicing elit. Iste laborum laudantium nulla, repellendus rerum sunt tempore totam unde! Ab aperiam et exercitationem maxime mollitia nostrum, pariatur praesentium rem repellendus suscipit! At aut commodi eius maxime modi quas quisquam quod voluptas?
+    </p>
+    <div class="content__element content__element-reverse">
+        <img src="assets/static/images/content.jpg" alt="">
+        <div class="content__element-box">
+            <div class="title">
+                Aliquam erat volutpat
+            </div>
+            <div class="paragraph">
+                Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                Phasellus ultrices nulla quis nibh. Quisque a lectus.
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste laborum laudantium nulla, repellendus rerum sunt tempore totam unde! Ab aperiam et exercitationem maxime mollitia nostrum, pariatur praesentium rem repellendus suscipit! At aut commodi eius maxime modi quas quisquam quod voluptas?
+    </p>
+
+    <div class="getintouch">
+        <div class="getintouch__title">
+            Become our delivery service
+        </div>
+        <app-form-on-public-pages></app-form-on-public-pages>
+    </div>
+</div>
+<div class="content tabcontent" id="laundry">
+    <p>
+        Laundry ipsum dolor sit amet, consectetur adipisicing elit. Iste laborum laudantium nulla, repellendus rerum sunt tempore totam unde! Ab aperiam et exercitationem maxime mollitia nostrum, pariatur praesentium rem repellendus suscipit! At aut commodi eius maxime modi quas quisquam quod voluptas?
+    </p>
+    <div class="content__element content__element-reverse">
+        <img src="assets/static/images/content.jpg" alt="">
+        <div class="content__element-box">
+            <div class="title">
+                Aliquam erat volutpat
+            </div>
+            <div class="paragraph">
+                Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                Phasellus ultrices nulla quis nibh. Quisque a lectus.
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste laborum laudantium nulla, repellendus rerum sunt tempore totam unde! Ab aperiam et exercitationem maxime mollitia nostrum, pariatur praesentium rem repellendus suscipit! At aut commodi eius maxime modi quas quisquam quod voluptas?
+    </p>
+
+    <div class="getintouch">
+        <div class="getintouch__title">
+            Become our laundry service
+        </div>
+        <app-form-on-public-pages></app-form-on-public-pages>
+    </div>
+</div>
+<!-- endbuild -->
+<app-footer></app-footer>

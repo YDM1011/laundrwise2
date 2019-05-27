@@ -9,6 +9,7 @@ export class UserModel {
     city?: string;
     phone?: string;
     monthCard?: string;
+    confirmPassord?: string;
     yearCard?: string;
     ccv?: string;
 }

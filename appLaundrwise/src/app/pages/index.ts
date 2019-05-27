@@ -1,3 +1,6 @@
+export {SignupComponent} from './public/signUp/signup.component';
+
+export {ArticleComponent} from './public/article/article.component';
 export {AdminNewPostComponent} from './admin/admin-new-post/admin-new-post.component';
 export {AdminLoginComponent} from './admin/admin-login/admin-login.component';
 export {AdminComponent} from './admin/admin.component';

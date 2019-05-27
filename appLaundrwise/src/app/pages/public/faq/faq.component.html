@@ -1,1 +1,57 @@
-it faq page
+
+<app-header></app-header>
+<div class="headline headline-contacts">
+    <div class="headline-title">
+        <h3>FAQ</h3>
+    </div>
+</div>
+
+
+<div class="content">
+    <div class="accordion-box">
+        <div class="accordion__item">
+            <div class="question " (click)="toggle[1] = !toggle[1]; showInfo($event)"  [ngClass]="{'active': toggle[1]}">
+                <div class="arrow">
+                    <svg width="20" class="arrow-icon" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.3987 10.4018L19.8334 0.96715C20.0555 0.74501 20.0555 0.388746 19.8334 0.166606C19.6113 -0.0555352 19.255 -0.0555352 19.0328 0.166605L10.0005 9.19893L0.968197 0.166605C0.746056 -0.055536 0.389793 -0.055536 0.167654 0.166605C0.0586777 0.275579 -1.84583e-08 0.422276 -2.46874e-08 0.564781C-3.09165e-08 0.707287 0.0544872 0.853984 0.167654 0.962958L9.60235 10.3977C9.8203 10.6198 10.1808 10.6198 10.3987 10.4018Z"/>
+                    </svg>
+                </div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos magni necessitatibus neque officia, repellat sequi.
+            </div>
+            <p class="ansver">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta fugit laboriosam omnis quibusdam quos? Ab blanditiis commodi est eveniet excepturi facere magni modi molestiae nam nostrum pariatur quas quibusdam quidem quo, quod sequi vero. Culpa impedit quibusdam quidem recusandae! Autem eaque et incidunt laborum mollitia natus pariatur, perspiciatis porro voluptate!</p>
+        </div>
+        <div class="accordion__item">
+            <div class="question" (click)="toggle[2] = !toggle[2]; showInfo($event)"  [ngClass]="{'active': toggle[2]}">
+                <div class="arrow">
+                    <svg width="20" class="arrow-icon" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.3987 10.4018L19.8334 0.96715C20.0555 0.74501 20.0555 0.388746 19.8334 0.166606C19.6113 -0.0555352 19.255 -0.0555352 19.0328 0.166605L10.0005 9.19893L0.968197 0.166605C0.746056 -0.055536 0.389793 -0.055536 0.167654 0.166605C0.0586777 0.275579 -1.84583e-08 0.422276 -2.46874e-08 0.564781C-3.09165e-08 0.707287 0.0544872 0.853984 0.167654 0.962958L9.60235 10.3977C9.8203 10.6198 10.1808 10.6198 10.3987 10.4018Z"/>
+                    </svg>
+                </div>
+                Question 2
+            </div>
+            <p class="ansver">Ansver 2</p>
+        </div>
+        <div class="accordion__item">
+            <div class="question" (click)="toggle[3] = !toggle[3]; showInfo($event)"  [ngClass]="{'active': toggle[3]}">
+                <div class="arrow">
+                    <svg width="20" class="arrow-icon" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.3987 10.4018L19.8334 0.96715C20.0555 0.74501 20.0555 0.388746 19.8334 0.166606C19.6113 -0.0555352 19.255 -0.0555352 19.0328 0.166605L10.0005 9.19893L0.968197 0.166605C0.746056 -0.055536 0.389793 -0.055536 0.167654 0.166605C0.0586777 0.275579 -1.84583e-08 0.422276 -2.46874e-08 0.564781C-3.09165e-08 0.707287 0.0544872 0.853984 0.167654 0.962958L9.60235 10.3977C9.8203 10.6198 10.1808 10.6198 10.3987 10.4018Z"/>
+                    </svg>
+                </div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus distinctio omnis quod tenetur? Aspernatur consectetur culpa facilis soluta voluptatum.
+            </div>
+            <p class="ansver">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolore earum eius, exercitationem fuga, illum ipsum minima nam nesciunt nisi officia quia quisquam quo tempore voluptate. Dolore eveniet expedita hic, minus nesciunt nulla odio quasi reiciendis totam! A ea error fuga hic, id iste, laborum magni molestiae tempore ullam veritatis?</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="getintouch">
+    <div class="getintouch__title">
+        Ask a question
+    </div>
+    <app-form-on-public-pages></app-form-on-public-pages>
+</div>
+
+<app-footer></app-footer>

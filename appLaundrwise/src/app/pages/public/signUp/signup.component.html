@@ -1,0 +1,49 @@
+<div class="login-registration">
+    <h2>Registration</h2>
+    <p class="description">
+        Hi there! Please enter your username or e-mail to managing your Store items
+    </p>
+    <form action="">
+        <label for="firstname">
+            First name
+            <input [(ngModel)]="userForRegister.firstName" type="text" name="firstname" id="firstname" >
+        </label>
+        <label for="lastname">
+            Last name
+            <input [(ngModel)]="userForRegister.lastName" type="text" name="lastname" id="lastname" >
+        </label>
+        <label for="phone">
+            Phone
+            <input [(ngModel)]="userForRegister.phone" type="number" name="phone" id="phone" >
+        </label>
+        <label for="email">
+            E-mail
+            <input [(ngModel)]="userForRegister.email" type="email" name="email" id="email" >
+        </label>
+        <label for="country">
+            Country
+            <input [(ngModel)]="userForRegister.country" type="text" name="country" id="country" >
+        </label>
+        <label for="city">
+            City
+            <input [(ngModel)]="userForRegister.city" type="text" name="city" id="city" >
+        </label>
+        <label for="adress1">
+            Adress 1
+            <input [(ngModel)]="userForRegister.adress1" type="text" name="adress1" id="adress1" >
+        </label>
+        <label for="adress2">
+            Adress 2
+            <input [(ngModel)]="userForRegister.adress2" type="text" name="adress2" id="adress2" >
+        </label>
+        <label for="password">
+            Password
+            <input [(ngModel)]="userForRegister.password" type="password" name="password" id="password" >
+        </label>
+        <label for="confirm-password">
+            Confirm Password
+            <input [(ngModel)]="userForRegister.confirmPassord" type="password" name="confirm-password" id="confirm-password" >
+        </label>
+        <input (click)="signUp(userForRegister)"  type="submit" id="submit" name="submit" class="submit" value="Registration">
+    </form>
+</div>

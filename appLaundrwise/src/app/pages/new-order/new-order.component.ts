@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderModel} from '../../models';
-import {OrderService} from '../../services';
+import {ApiService} from '../../services';
 
 @Component({
     selector: 'app-new-order',
@@ -10,25 +10,23 @@ import {OrderService} from '../../services';
 export class NewOrderComponent implements OnInit {
     order: OrderModel = new OrderModel();
 
-    constructor(private orderService: OrderService) {}
+    constructor(private orderService: ApiService) {}
 
     ngOnInit() {
         this.getOrders();
     }
 
     createOrder(order) {
-        this.orderService.createOrder(order).then((data: any) => {
+        this.orderService.post('create_order', order).then((data: any) => {
                 console.log(data);
-                localStorage.setItem('token', 'testToken');
             },
             (error) => {
                 console.log(error);
             });
     }
     getOrders() {
-        this.orderService.getAllUserOrders().then((data: any) => {
+        this.orderService.get('get_all_orders').then((data: any) => {
                 console.log(data);
-                localStorage.setItem('token', 'testToken');
             },
             (error) => {
                 console.log(error);
