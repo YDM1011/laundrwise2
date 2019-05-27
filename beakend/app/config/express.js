@@ -1,6 +1,7 @@
 const express = require('express');
 const glob = require('glob');
 const fs = require('fs');
+const path = require('path');
 
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -14,7 +15,7 @@ const flash = require('connect-flash');
 
 const init = (app, config) =>{
 
-    app.set('views', 'views');
+    app.set('views', path.join(__dirname, '../../views'));
     app.set('view engine', 'ejs');
 
     app.use(logger('dev'));
