@@ -1,6 +1,4 @@
-import {throwError as observableThrowError} from 'rxjs';
 
-import {catchError} from 'rxjs/operators';
 import {Injectable, OnInit} from '@angular/core';
 import {
     HttpClient,
@@ -16,7 +14,6 @@ import {ApiService} from './api';
 @Injectable()
 export class OrderService implements OnInit {
     public config = environment;
-    public URL = environment;
     public headers: HttpHeaders = new HttpHeaders();
 
     constructor(
@@ -35,12 +32,12 @@ export class OrderService implements OnInit {
 
 
     public createOrder(order) {
-        return this.api.post('./assets/user.json', order);
+        return this.api.post('./create_order', order);
     }
     public getAllUserOrders() {
-        return this.api.get('./assets/user.json');
+        return this.api.get('./getAllOrders');
     }
     public getOrder() {
-        return this.api.get('./assets/user.json');
+        return this.api.get('./getOrderByID');
     }
 }

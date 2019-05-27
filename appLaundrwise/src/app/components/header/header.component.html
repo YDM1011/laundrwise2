@@ -1,11 +1,16 @@
-First name:<input [(ngModel)]="user.firstName" type="text"><br>
-Last name:<input [(ngModel)]="user.lastName" type="text"><br>
-Address1:<input [(ngModel)]="user.adress1" type="text"><br>
-Address2:<input  [(ngModel)]="user.adress2" type="text"><br>
-City:<input [(ngModel)]="user.city" type="text"><br>
-County:<input [(ngModel)]="user.country" type="text"><br>
-Email:<input [(ngModel)]="user.email" type="text"><br>
-Phone:<input [(ngModel)]="user.phone" type="text"><br>
-Pass:<input [(ngModel)]="user.password" type="text"><br>
-<a (click)="signIn(user)"> login</a><br>
-<a (click)="signUp(user)">>register</a><br>
+First name:<input [(ngModel)]="userForRegister.firstName" type="text"><br>
+Last name:<input [(ngModel)]="userForRegister.lastName" type="text"><br>
+Address1:<input [(ngModel)]="userForRegister.adress1" type="text"><br>
+Address2:<input  [(ngModel)]="userForRegister.adress2" type="text"><br>
+City:<input [(ngModel)]="userForRegister.city" type="text"><br>
+County:<input [(ngModel)]="userForRegister.country" type="text"><br>
+Email:<input [(ngModel)]="userForRegister.email" type="text"><br>
+Phone:<input [(ngModel)]="userForRegister.phone" type="text"><br>
+Pass:<input [(ngModel)]="userForRegister.password" type="text"><br>
+
+
+
+Email: <input [(ngModel)]="userForLogin.email" type="text"><br>
+Password: <input [(ngModel)]="userForLogin.password" type="text"><br>
+<button  (click)="signIn(userForLogin)"> login</button><br>
+<button  (click)="signUp(userForRegister)">register</button><br>

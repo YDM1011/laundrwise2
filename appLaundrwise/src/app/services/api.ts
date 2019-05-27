@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
     HttpClient,
     HttpHeaders
@@ -11,48 +11,55 @@ export class ApiService {
 
     public headers: HttpHeaders = new HttpHeaders();
     public config = environment;
-
+    public global: any = {};
     constructor(
         public http: HttpClient,
-        public router: Router) {}
-    public get(api) {
-        return new Promise((resolve, reject) => {
-            this.http.get(`${api}`)
-                .subscribe(
-                    (res: any) => {
-                        resolve(res);
-                    },
-                    err => reject(err)
-                );
-        });
+        public router: Router) {
     }
-    public post(api: string, body: any ) {
+
+    public get(path) {
         return new Promise((resolve, reject) => {
-            this.http.post(`${api}`, body)
-                .subscribe(
-                    (res: any) => {
-                        resolve(res);
-                    },
-                    err => reject(err)
-                );
+            resolve(this.global[path]);
+            // this.http.get(`${path}`)
+            //     .subscribe(
+            //         (res: any) => {
+            //             resolve(res);
+            //         },
+            //         err => reject(err)
+            //     );
         });
     }
 
-    public put(api: string, body: any ) {
+    public post(path: string, body: any) {
         return new Promise((resolve, reject) => {
-            this.http.put(`${api}`, body)
-                .subscribe(
-                    (res: any) => {
-                        resolve(res);
-                    },
-                    err => reject(err)
-                );
+            this.global[path] = body;
+            resolve(this.global[path]);
+            // this.http.post(`${path}`, body)
+            //     .subscribe(
+            //         (res: any) => {
+            //             resolve(this.global[path] = body);
+            //         },
+            //         err => reject(err)
+            //     );
         });
     }
 
-    public delete(api: string) {
+    public put(path: string, body: any) {
         return new Promise((resolve, reject) => {
-            this.http.delete(`${api}`)
+            this.global[path] = body;
+            // this.http.put(`${path}`, body)
+            //     .subscribe(
+            //         (res: any) => {
+            //             resolve(res);
+            //         },
+            //         err => reject(err)
+            //     );
+        });
+    }
+
+    public delete(path: string) {
+        return new Promise((resolve, reject) => {
+            this.http.delete(`${path}`)
                 .subscribe(
                     (res: any) => {
                         resolve(res);

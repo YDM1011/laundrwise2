@@ -19,9 +19,7 @@ import {
   MyAccountComponent,
   MyOrdersComponent,
   MyProfileComponent,
-  NewOrdersStepOneComponent,
-  NewOrdersStepThreeComponent,
-  NewOrdersStepTwoComponent,
+  NewOrderComponent,
   NotFoundComponent,
   OffersComponent,
   OurPartnersComponent,
@@ -34,13 +32,12 @@ import {
   ManagerAllOrdersComponent,
   ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent, AdminNewPostComponent
 } from './pages';
+import {AuthGuard} from './guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'about-us', component: AboutUsComponent},
-  {path: 'new-order/first-step', component: NewOrdersStepOneComponent},
-  {path: 'new-order/second-step', component: NewOrdersStepTwoComponent},
-  {path: 'new-order/third-step', component: NewOrdersStepThreeComponent},
+  {path: 'new-order', component: NewOrderComponent},
   {path: 'how-it-works', component: HowItWorksComponent},
   {path: 'blogs', component: BlogsComponent},
   {path: 'faq', component: FaqComponent},
@@ -49,7 +46,7 @@ const routes: Routes = [
   {path: 'contacts', component: ContactsComponent},
   {path: 'our-partners', component: OurPartnersComponent},
   {path: 'blog/:id', component: BlogComponent},
-  {path: 'profile', component: ProfileComponent , children: [
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] , children: [
       {path: 'my-profile', component: MyProfileComponent},
       {path: 'my-orders', component: MyOrdersComponent},
       {path: 'my-account', component: MyAccountComponent},
@@ -58,7 +55,7 @@ const routes: Routes = [
       {path: 'write-to-admin', component: WriteToAdminComponent},
       {path: '', redirectTo: 'my-profile', pathMatch: 'full'},
     ]},
-  {path: 'delivery', component: DeliveryComponent , children: [
+  {path: 'delivery', component: DeliveryComponent, canActivate: [AuthGuard] , children: [
       {path: 'dashboard', component: DeliveryDashboardComponent},
       {path: 'all-orders', component: DeliveryAllOrdersComponent},
       {path: 'service', component: DeliveryServiceComponent},
@@ -67,7 +64,7 @@ const routes: Routes = [
       {path: 'add-collaborator', component: AddCollaboratorComponent},
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
-  {path: 'manager', component: ManagerComponent , children: [
+  {path: 'manager', component: ManagerComponent, canActivate: [AuthGuard] , children: [
       {path: 'dashboard', component: ManagerDashboardComponent},
       {path: 'all-orders', component: ManagerAllOrdersComponent},
       {path: 'service', component: ManagerServiceComponent},
@@ -75,9 +72,9 @@ const routes: Routes = [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
   {path: 'admin', component: AdminComponent , children: [
-      {path: 'login', component: AdminLoginComponent},
+      {path: 'signIn', component: AdminLoginComponent},
       {path: 'new-post', component: AdminNewPostComponent},
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: '', redirectTo: 'signIn', pathMatch: 'full'},
     ]},
   {path: '**', component: NotFoundComponent}
 ];

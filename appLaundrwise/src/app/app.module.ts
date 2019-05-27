@@ -22,9 +22,7 @@ import {
   MyAccountComponent,
   MyOrdersComponent,
   MyProfileComponent,
-  NewOrdersStepOneComponent,
-  NewOrdersStepThreeComponent,
-  NewOrdersStepTwoComponent,
+  NewOrderComponent,
   NotFoundComponent,
   OffersComponent,
   OurPartnersComponent,
@@ -42,7 +40,7 @@ import {ApiService, AuthInterceptor, OrderService, PaymentService, ProfileServic
 import {FormsModule} from '@angular/forms';
 import {AuthentificationService} from './services';
 import {HeaderComponent} from './components';
-import {DynamicChangeStepOrderService} from './subjects';
+import {AuthGuard} from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -58,9 +56,7 @@ import {DynamicChangeStepOrderService} from './subjects';
     BecomeOurServiceComponent,
     OurPartnersComponent,
     OffersComponent,
-    NewOrdersStepOneComponent,
-    NewOrdersStepTwoComponent,
-    NewOrdersStepThreeComponent,
+    NewOrderComponent,
     ProfileComponent,
     MyProfileComponent,
     MyOrdersComponent,
@@ -95,8 +91,8 @@ import {DynamicChangeStepOrderService} from './subjects';
     AuthentificationService,
     OrderService,
     ProfileService,
-    DynamicChangeStepOrderService,
     PaymentService,
+    AuthGuard,
     ApiService,
       {
       provide: HTTP_INTERCEPTORS,

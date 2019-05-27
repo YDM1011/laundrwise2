@@ -26,7 +26,7 @@ module.exports = (backendApp, router) => {
             ]
         }, (err, user) => {
             if (err) return res.serverError(err);
-            if (user) return res.notFound("User with this login created");
+            if (user) return res.notFound("User with this signIn created");
             if (!user){
                 req.body.token = getToken(req.body.login);
                 req.body.pass = md5(req.body.pass);

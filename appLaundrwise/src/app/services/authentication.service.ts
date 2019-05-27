@@ -1,4 +1,4 @@
-import {of as observableOf, throwError as observableThrowError} from 'rxjs';
+import {of as observableOf} from 'rxjs';
 
 import {tap, catchError} from 'rxjs/operators';
 import {Injectable, OnInit} from '@angular/core';
@@ -12,6 +12,7 @@ import 'rxjs-compat/add/operator/do';
 import 'rxjs-compat/add/observable/of';
 import {environment} from '../../environments/environment';
 import {ApiService} from './api';
+import {UserModel} from "../models";
 
 @Injectable()
 export class AuthentificationService implements OnInit {
@@ -38,8 +39,8 @@ export class AuthentificationService implements OnInit {
         return this.api.post(`/reg`, registerUser);
     }
 
-    public signIn(user) {
-        return this.api.post(`/log`, user);
+    public signIn(userForLogin: UserModel) {
+        return this.api.post(`/log`, userForLogin);
     }
 
     public refreshToken() {

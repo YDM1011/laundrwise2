@@ -8,15 +8,16 @@ import {UserModel} from '../../models';
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    user: UserModel = new UserModel();
-
     constructor(private authServices: AuthentificationService) {
     }
 
+    userForRegister: UserModel = new UserModel();
+    userForLogin: UserModel = new UserModel();
+
     ngOnInit() {}
 
-    signUp(user) {
-        this.authServices.signUp(user).subscribe((data: any) => {
+    signUp(userForRegister) {
+        this.authServices.signUp(userForRegister).then((data: any) => {
                 console.log(data);
             },
             (error) => {
@@ -25,12 +26,15 @@ export class HeaderComponent implements OnInit {
     }
 
 
-    signIn(user) {
-        this.authServices.signIn(user).subscribe((data: any) => {
-                console.log(data);
-            },
-            (error) => {
-                console.log(error);
-            });
+    signIn(userForLogin) {
+        if (userForLogin.password && userForLogin.email) {
+            this.authServices.signIn(userForLogin).then((data: any) => {
+                    console.log(data);
+                    localStorage.setItem('token', 'testToken');
+                },
+                (error) => {
+                    console.log(error);
+                });
+        }
     }
 }

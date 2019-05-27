@@ -13,7 +13,7 @@ router.get('/home', function(req, res, next) {
 });
 
 /* GET home page. */
-router.get('/login', function(req, res, next) {
+router.get('/signIn', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
 
