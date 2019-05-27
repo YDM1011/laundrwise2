@@ -1,5 +1,6 @@
 const glob = require('glob');
 const cors = require('cors');
+const router = require('../../routes');
 
 module.exports = function (backendApp) {
 
@@ -22,6 +23,7 @@ module.exports = function (backendApp) {
   const apiRouter = backendApp.express.Router();
 
   backendApp.app.use('/api', apiRouter);
+  backendApp.app.use('/api', router);
 
   apiControllers.forEach((controller) => {
     require(controller)(backendApp, apiRouter);
