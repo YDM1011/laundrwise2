@@ -8,8 +8,8 @@
     <title>Laundrwise</title>
 
     <!--build:css css/styles.min.css-->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="../app/css/styles.css">
+    <link rel="stylesheet" href="../app/css/normalize.css">
     <!--endbuild-->
 </head>
 <body>
@@ -17,7 +17,7 @@
 <header>
     <div class="navigation">
         <div class="navigation__logo">
-            <img src="images/logo.svg" alt="logo">
+            <img src="../app/images/logo.svg" alt="logo">
         </div>
         <div class="navigation__buttons">
             <nav>
@@ -47,7 +47,7 @@
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
     </p>
     <div class="content__element">
-        <img src="./images/content.jpg" alt="">
+        <img src="../app/images/content.jpg" alt="">
         <div class="content__element-box">
             <div class="title">
                 Aliquam erat volutpat
@@ -74,10 +74,10 @@
             </svg>
         </div>
         <div class="pause" id="pause">
-            <img src="./images/pause-button-outline.svg" height="96" width="96" alt="">
+            <img src="../app/images/pause-button-outline.svg" height="96" width="96" alt="">
         </div>
-        <video src="./images/video.mp4" id="video">
-            <source src="./images/video.mp4" type="video/mp4"><!-- MP4 для Safari, IE9, iPhone, iPad, Android, и Windows Phone 7 -->
+        <video src="../app/images/video.mp4" id="video">
+            <source src="../app/images/video.mp4" type="video/mp4"><!-- MP4 для Safari, IE9, iPhone, iPad, Android, и Windows Phone 7 -->
             <!--            <source src="./images/video.webm" type="video/webm">&lt;!&ndash; WebM/VP8 для Firefox4, Opera, и Chrome &ndash;&gt;-->
             <!--            <source src="./images/video.ogv" type="video/ogg">&lt;!&ndash; Ogg/Vorbis для старых версий браузеров Firefox и Opera &ndash;&gt;-->
             <!--            <object data="./images/video.swf" type="application/x-shockwave-flash">&lt;!&ndash; добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video &ndash;&gt;-->
@@ -95,7 +95,7 @@
 
 <div class="content">
     <div class="content__element content__element-reverse">
-        <img src="./images/content.jpg" alt="">
+        <img src="../app/images/content.jpg" alt="">
         <div class="content__element-box">
             <div class="title">
                 Aliquam erat volutpat
@@ -118,16 +118,16 @@
             </p>
             <div class="buttons">
                 <a href="">
-                    <img src="./images/googlestore.svg" alt="">
+                    <img src="../app/images/googlestore.svg" alt="">
                 </a>
                 <a href="">
-                    <img src="./images/appstore.svg" alt="">
+                    <img src="../app/images/appstore.svg" alt="">
                 </a>
             </div>
         </div>
         <div class="right">
             <div class="img">
-                <img src="images/getapp.png" alt="get our applicaton ">
+                <img src="../app/images/getapp.png" alt="get our applicaton ">
             </div>
         </div>
     </div>
@@ -167,7 +167,7 @@
 <footer>
     <div class="footer-container">
         <div class="footer-container__left">
-            <img class="logo" src="./images/logo-white.svg" alt="logo">
+            <img class="logo" src="../app/images/logo-white.svg" alt="logo">
             <div class="description">
                 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
             </div>
@@ -262,8 +262,8 @@
 
 
 <!--build:js js/main.min.js -->
-<script src="js/lib/jquery.min.js"></script>
-<script src="js/main.js"></script>
+<script src="../app/js/lib/jquery.min.js"></script>
+<script src="../app/js/main.js"></script>
 <script>
     document.querySelector('#play').addEventListener('click',function () {
         this.classList.add('active');
