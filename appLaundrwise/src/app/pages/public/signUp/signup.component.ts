@@ -9,20 +9,20 @@ import {UserModel} from '../../../models';
 })
 export class SignupComponent implements OnInit {
     userForRegister: UserModel = new UserModel();
-    constructor(private authServices: AuthentificationService) {
-    }
+    constructor(private authServices: AuthentificationService) {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
 
     signUp(userForRegister) {
-        this.authServices.signUp(userForRegister).then((data: any) => {
-                console.log(data);
-            },
-            (error) => {
-                console.log(error);
-            });
+        if (userForRegister.password === userForRegister.confirmPassord) {
+            this.authServices.signUp(userForRegister).then((data: any) => {
+                    console.log(data);
+                },
+                (error) => {
+                    console.log(error);
+                });
+        }
     }
 
 

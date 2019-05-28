@@ -1,23 +1,23 @@
 <form action="" class="getintouch__form">
-    <label for="">
+    <label for="name">
         <span>Name</span>
-        <input type="text" required>
+        <input #name="ngModel" id="name" [(ngModel)]="formObject.name" name="name" type="text" required>
     </label>
-    <label for="">
+    <label for="emailUser">
         <span>Username or e-mail</span>
-        <input type="email" required>
+        <input #emailUser="ngModel" [email]="true" minlength="4" id="emailUser" [(ngModel)]="formObject.emailUser" name="emailUser" type="email" required>
     </label>
-    <label for="">
+    <label for="phoneUser">
         <span>Telephone</span>
-        <input type="number" required>
+        <input #phoneUser="ngModel" id="phoneUser" minlength="4" name="phone" [(ngModel)]="formObject.phoneUser" type="number" required>
     </label>
-    <label for="">
+    <label for="nature">
         <span>Nature of qnquiry</span>
-        <input type="text">
+        <input #nature="ngModel" id="nature" minlength="4" name="nature" [(ngModel)]="formObject.natureOfenquiry" type="text">
     </label>
-    <label for="">
+    <label for="message">
         <span>Message</span>
-        <textarea  class="message" required></textarea>
+        <textarea #message="ngModel" id="message" minlength="4" [(ngModel)]="formObject.message" name="message" class="message" required></textarea>
     </label>
-    <input type="submit" class="send" value="send">
+    <input (click)="sendForm(formObject)" [disabled]="name.invalid || emailUser.invalid || phoneUser.invalid  || nature.invalid || message.invalid"  type="submit" class="send" value="send">
 </form>

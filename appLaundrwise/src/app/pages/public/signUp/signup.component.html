@@ -6,44 +6,44 @@
     <form action="">
         <label for="firstname">
             First name
-            <input [(ngModel)]="userForRegister.firstName" type="text" name="firstname" id="firstname" >
+            <input #firstname="ngModel" minlength="4" [required]="true"[(ngModel)]="userForRegister.firstName" type="text" name="firstname" id="firstname" >
         </label>
         <label for="lastname">
             Last name
-            <input [(ngModel)]="userForRegister.lastName" type="text" name="lastname" id="lastname" >
+            <input #lastname="ngModel" minlength="4"  [required]="true"[(ngModel)]="userForRegister.lastName" type="text" name="lastname" id="lastname" >
         </label>
         <label for="phone">
             Phone
-            <input [(ngModel)]="userForRegister.phone" type="number" name="phone" id="phone" >
+            <input #phone="ngModel" [(ngModel)]="userForRegister.phone" [required]="true" type="number" name="phone" id="phone" >
         </label>
         <label for="email">
             E-mail
-            <input [(ngModel)]="userForRegister.email" type="email" name="email" id="email" >
+            <input #email="ngModel" [email]="true" [required]="true" [(ngModel)]="userForRegister.email" type="email" name="email" id="email" >
         </label>
         <label for="country">
             Country
-            <input [(ngModel)]="userForRegister.country" type="text" name="country" id="country" >
+            <input #country="ngModel" minlength="4" [required]="true" [(ngModel)]="userForRegister.country" type="text" name="country" id="country" >
         </label>
         <label for="city">
             City
-            <input [(ngModel)]="userForRegister.city" type="text" name="city" id="city" >
+            <input #city="ngModel"  minlength="4" [required]="true" [(ngModel)]="userForRegister.city" type="text" name="city" id="city" >
         </label>
         <label for="adress1">
             Adress 1
-            <input [(ngModel)]="userForRegister.adress1" type="text" name="adress1" id="adress1" >
+            <input #adress1="ngModel" minlength="4" [required]="true" [(ngModel)]="userForRegister.adress1" type="text" name="adress1" id="adress1" >
         </label>
         <label for="adress2">
             Adress 2
-            <input [(ngModel)]="userForRegister.adress2" type="text" name="adress2" id="adress2" >
+            <input #adress2="ngModel" minlength="4" [required]="true"  [(ngModel)]="userForRegister.adress2" type="text" name="adress2" id="adress2" >
         </label>
         <label for="password">
             Password
-            <input [(ngModel)]="userForRegister.password" type="password" name="password" id="password" >
+            <input minlength="4" [required]="true" [(ngModel)]="userForRegister.password" type="password" name="password" id="password" >
         </label>
-        <label for="confirm-password">
+        <label for="confirmpassword">
             Confirm Password
-            <input [(ngModel)]="userForRegister.confirmPassord" type="password" name="confirm-password" id="confirm-password" >
+            <input #confirmpassword="ngModel"  minlength="4" [(ngModel)]="userForRegister.confirmPassord" type="password" name="confirmpassword" id="confirmpassword" >
         </label>
-        <input (click)="signUp(userForRegister)"  type="submit" id="submit" name="submit" class="submit" value="Registration">
+        <input (click)="signUp(userForRegister)" [disabled]="firstname.invalid || lastname.invalid || phone.invalid ||  email.invalid || country.invalid || city.invalid || adress1.invalid || adress2.invalid || confirmpassword.invalid " type="submit" id="submit" name="submit" class="submit" value="Registration">
     </form>
 </div>

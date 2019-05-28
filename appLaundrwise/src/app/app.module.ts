@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
@@ -103,7 +103,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         FormsModule,
       HttpClientModule,
       MatDialogModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      ReactiveFormsModule
     ],
   providers: [
     {
