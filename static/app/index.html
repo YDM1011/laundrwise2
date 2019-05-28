@@ -137,11 +137,16 @@
             <div class="cleaner-select">
                 <img src="./images/logo-cleaner.png" class="logo-cleaner" alt="">
                 <span>Name Company</span>
+                <div class="arrow">
+                    <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.23922 6.46572L11.9 0.8049C12.0333 0.671615 12.0333 0.457857 11.9 0.324573C11.7668 0.191288 11.553 0.191288 11.4197 0.324573L6.00031 5.74397L0.580918 0.324572C0.447634 0.191288 0.233876 0.191288 0.100592 0.324572C0.0352068 0.389957 -2.93413e-09 0.477975 -3.92431e-09 0.563479C-4.91449e-09 0.648982 0.0326919 0.737 0.100592 0.802385L5.76141 6.4632C5.89218 6.59649 6.10845 6.59649 6.23922 6.46572Z" fill="#13AAFF"/>
+                    </svg>
+                </div>
                 <div class="cleaner-list">
                     <ul>
-                        <li><img src="./images/logo-cleaner.png" alt="">Name cliner</li>
-                        <li><img src="./images/logo-cleaner.png" alt="">Name cliner</li>
-                        <li><img src="./images/logo-cleaner.png" alt="">Name cliner</li>
+                        <li class="item-li"><img src="./images/logo-cleaner.png" alt="">Name Company</li>
+                        <li><img src="./images/logo-cleaner.png" alt="">Name Company</li>
+                        <li><img src="./images/logo-cleaner.png" alt="">Name Company</li>
                     </ul>
                 </div>
             </div>
@@ -385,10 +390,15 @@
     </div>
 </div>
 
-
 <!--build:js js/main.min.js -->
 <script src="js/lib/jquery.min.js"></script>
 <script src="js/main.js"></script>
+
+<script>
+    document.querySelector('.cleaner-select').addEventListener('click', function () {
+        this.classList.toggle('active')
+    })
+</script>
 <!-- endbuild -->
 </body>
 </html>

@@ -1,5 +1,3 @@
-
-
 .order-list{
   background: $main-blue;
   &-container{
@@ -75,10 +73,14 @@
       color: #333;
       max-width: 300px;
       position: relative;
+      cursor: pointer;
       .logo-cleaner{
         width: 46px;
         height: 26px;
         margin-right: 25px;
+      }
+      .arrow{
+        transition: transform .2s;
       }
       .cleaner-list{
         position: absolute;
@@ -89,6 +91,8 @@
         border: 1px solid $main-blue;
         border-radius: 20px;
         overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
         ul{
           padding: 8px 0;
           margin: 0;
@@ -100,15 +104,24 @@
             width: 100%;
             border: 1px solid #fff;
             cursor: pointer;
+            transition: all .2s;
             img{
               margin-right:25px;
             }
             &:hover{
-              border: 1px solid $main-blue;
-              border-right: none;
-              border-left: none;
+              box-shadow: 0 0 5px rgba(33,33,33,.2);
             }
           }
+        }
+      }
+      &.active{
+        .arrow{
+          transform: rotate(180deg);
+        }
+        .cleaner-list{
+          opacity: 1;
+          pointer-events: auto;
+
         }
       }
     }
@@ -324,7 +337,7 @@
           width: 45%;
         }
         .buttons{
-          width: 30%;
+          width: 26%;
         }
       }
     }

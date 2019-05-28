@@ -1332,11 +1332,14 @@ footer {
     padding: 8px 25px;
     color: #333;
     max-width: 300px;
-    position: relative; }
+    position: relative;
+    cursor: pointer; }
     .cleaner__box .cleaner-select .logo-cleaner {
       width: 46px;
       height: 26px;
       margin-right: 25px; }
+    .cleaner__box .cleaner-select .arrow {
+      transition: transform .2s; }
     .cleaner__box .cleaner-select .cleaner-list {
       position: absolute;
       background: #fff;
@@ -1345,7 +1348,9 @@ footer {
       left: 0;
       border: 1px solid #13AAFF;
       border-radius: 20px;
-      overflow: hidden; }
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none; }
       .cleaner__box .cleaner-select .cleaner-list ul {
         padding: 8px 0;
         margin: 0; }
@@ -1356,13 +1361,17 @@ footer {
           padding: 10px 25px;
           width: 100%;
           border: 1px solid #fff;
-          cursor: pointer; }
+          cursor: pointer;
+          transition: all .2s; }
           .cleaner__box .cleaner-select .cleaner-list ul li img {
             margin-right: 25px; }
           .cleaner__box .cleaner-select .cleaner-list ul li:hover {
-            border: 1px solid #13AAFF;
-            border-right: none;
-            border-left: none; }
+            box-shadow: 0 0 5px rgba(33, 33, 33, 0.2); }
+    .cleaner__box .cleaner-select.active .arrow {
+      transform: rotate(180deg); }
+    .cleaner__box .cleaner-select.active .cleaner-list {
+      opacity: 1;
+      pointer-events: auto; }
 
 .order__box {
   display: flex;
@@ -1511,7 +1520,7 @@ footer {
       .order__box-item .description {
         width: 45%; }
       .order__box-item .buttons {
-        width: 30%; } }
+        width: 26%; } }
 
 @media (min-width: 1200px) {
   .order-list-container .order-list__box {
