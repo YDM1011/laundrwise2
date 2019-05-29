@@ -1373,68 +1373,70 @@ footer {
       opacity: 1;
       pointer-events: auto; }
 
-.order__box {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px 0 146px; }
-  .order__box-item {
+.order {
+  padding: 0 0 146px; }
+  .order__box {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
-    color: #333;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-    .order__box-item .img {
-      margin-right: 10px;
-      width: 100px;
-      height: 100px; }
-      .order__box-item .img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 30px; }
-    .order__box-item .description {
-      width: 60%; }
-      .order__box-item .description .name {
-        font-size: 20px;
-        color: #000;
-        font-family: "Montserrat-Bold", sans-serif; }
-      .order__box-item .description .describe {
-        font-size: 12px;
-        line-height: 18px;
-        margin: 5px 0; }
-    .order__box-item .buttons {
-      width: 100%;
+    padding: 10px 0 10px; }
+    .order__box-item {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px; }
-      .order__box-item .buttons .counts {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      color: #333;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+      .order__box-item .img {
+        margin-right: 10px;
+        width: 100px;
+        height: 100px; }
+        .order__box-item .img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 30px; }
+      .order__box-item .description {
+        width: 60%; }
+        .order__box-item .description .name {
+          font-size: 20px;
+          color: #000;
+          font-family: "Montserrat-Bold", sans-serif; }
+        .order__box-item .description .describe {
+          font-size: 12px;
+          line-height: 18px;
+          margin: 5px 0; }
+      .order__box-item .buttons {
+        width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-between; }
-        .order__box-item .buttons .counts__btn {
-          width: 10px;
-          height: 10px;
-          margin: 0 10px;
+        justify-content: center;
+        margin-top: 10px; }
+        .order__box-item .buttons .counts {
+          display: flex;
+          align-items: center;
+          justify-content: space-between; }
+          .order__box-item .buttons .counts__btn {
+            width: 10px;
+            height: 10px;
+            margin: 0 10px;
+            display: inline-flex;
+            cursor: pointer; }
+            .order__box-item .buttons .counts__btn img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover; }
+          .order__box-item .buttons .counts .count {
+            color: #000; }
+        .order__box-item .buttons .price {
           display: inline-flex;
-          cursor: pointer; }
-          .order__box-item .buttons .counts__btn img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; }
-        .order__box-item .buttons .counts .count {
-          color: #000; }
-      .order__box-item .buttons .price {
-        display: inline-flex;
-        align-items: center;
-        border: 1px solid #000;
-        padding: 8px 12px;
-        border-radius: 20px;
-        color: #000;
-        margin-left: 20px; }
-        .order__box-item .buttons .price__usd {
-          margin-left: 5px; }
+          align-items: center;
+          border: 1px solid #000;
+          padding: 8px 12px;
+          border-radius: 20px;
+          color: #000;
+          margin-left: 20px; }
+          .order__box-item .buttons .price__usd {
+            margin-left: 5px; }
 
 .totalprice {
   position: fixed;
@@ -1447,21 +1449,212 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30px; }
+    padding: 22px; }
     .totalprice__box-result {
       color: #fff;
       font-weight: 600;
       font-size: 20px;
       line-height: 24px;
       margin-bottom: 10px; }
+    .totalprice__box-result-step3 {
+      color: #fff;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      margin-top: 10px; }
+    .totalprice__box-back {
+      border-radius: 20px;
+      border: 2px solid #fff;
+      padding: 8px 30px;
+      margin-top: 10px;
+      cursor: pointer; }
+      .totalprice__box-back a {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%; }
     .totalprice__box-basket {
       background: #fff;
       border-radius: 20px;
-      padding: 12px 40px; }
+      padding: 12px 40px;
+      cursor: pointer; }
       .totalprice__box-basket a {
         color: #13AAFF;
         font-size: 16px;
-        font-weight: 500; }
+        font-weight: 500;
+        width: 100%; }
+    .totalprice__box.reverse {
+      flex-direction: column-reverse; }
+
+.order-step {
+  padding-bottom: 200px; }
+  .order-step__box-headline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    border-bottom: 2px solid #13AAFF; }
+    .order-step__box-headline .title {
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 25px; }
+    .order-step__box-headline .cleaner-logo {
+      display: flex;
+      align-items: center;
+      font-size: 10px; }
+      .order-step__box-headline .cleaner-logo img {
+        margin-right: 15px;
+        width: 33px;
+        height: 18px; }
+  .order-step__box form {
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat-Light", sans-serif;
+    width: 100%;
+    margin: 20px auto 0; }
+    .order-step__box form label {
+      display: flex;
+      flex-direction: column; }
+      .order-step__box form label input {
+        font-family: "Montserrat-Regular", sans-serif;
+        font-weight: 500;
+        line-height: 17px;
+        padding: 10px 16px;
+        margin: 10px 0 20px;
+        border: 1px solid #D9D9D9;
+        border-radius: 36px; }
+      .order-step__box form label textarea {
+        font-family: "Montserrat-Regular", sans-serif;
+        font-weight: 500;
+        line-height: 17px;
+        padding: 10px 16px;
+        margin: 10px 0 20px;
+        border: 1px solid #D9D9D9;
+        border-radius: 36px;
+        height: 80px;
+        resize: none; }
+    .order-step__box form .card input {
+      width: 70%; }
+    .order-step__box form .card-detail {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      flex-direction: row; }
+      .order-step__box form .card-detail input {
+        margin-right: 25px; }
+      .order-step__box form .card-detail span {
+        width: 100%; }
+      .order-step__box form .card-detail .month {
+        width: 30%; }
+      .order-step__box form .card-detail .year {
+        width: 30%; }
+      .order-step__box form .card-detail .ccv {
+        width: 20%;
+        margin-right: 0; }
+  .order-step__box-adress, .order-step__box-time, .order-step__box-item, .order-step__box-payment {
+    margin-bottom: 25px; }
+  .order-step__box-item .paragraph {
+    font-family: "Montserrat-Light", sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 5px 15px; }
+  .order-step__box-item .elements__item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #D9D9D9; }
+    .order-step__box-item .elements__item img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%; }
+    .order-step__box-item .elements__item .count {
+      color: #13AAFF;
+      margin: 0 30px 0 10px; }
+    .order-step__box-item .elements__item .price {
+      margin: 0 20px 0 auto; }
+    .order-step__box-item .elements__item .cancel {
+      width: 10px;
+      height: 10px;
+      cursor: pointer; }
+  .order-step__box-checkout .total {
+    color: #333;
+    font-size: 24px;
+    line-height: 39px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+  .order-step__box-payment .payment-logo img {
+    margin-left: 10px; }
+  .order-step__box-payment a {
+    color: #13AAFF;
+    text-decoration: underline; }
+  .order-step__box-payment .payment-description {
+    margin: 20px 0;
+    color: #000;
+    font-family: "Montserrat-Light", sans-serif;
+    line-height: 24px; }
+  .order-step__box-payment .payment-access {
+    font-family: "Montserrat-Light", sans-serif; }
+    .order-step__box-payment .payment-access__item {
+      display: flex;
+      align-items: flex-start; }
+      .order-step__box-payment .payment-access__item input {
+        min-width: 14px;
+        min-height: 14px;
+        margin-right: 15px;
+        margin-top: 5px;
+        border: 0.5px solid #000000;
+        transition: .2s; }
+        .order-step__box-payment .payment-access__item input:checked {
+          position: relative; }
+          .order-step__box-payment .payment-access__item input:checked:before {
+            content: '\2713';
+            color: #13AAFF;
+            font-size: 10px;
+            position: absolute;
+            left: 3px;
+            top: 1px; }
+      .order-step__box-payment .payment-access__item p {
+        margin: 0;
+        line-height: 22px; }
+
+.thanks__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 15px; }
+  .thanks__box h2 {
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 30px;
+    font-family: "Montserrat-Bold", sans-serif;
+    margin: 35px 0 10px; }
+  .thanks__box p {
+    font-size: 12px;
+    line-height: 18px;
+    font-family: "Montserrat-Light", sans-serif;
+    text-align: center; }
+  .thanks__box .buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0; }
+    .thanks__box .buttons a {
+      background: #13AAFF;
+      color: #fff;
+      font-family: "Montserrat-Light", sans-serif;
+      font-size: 16px;
+      line-height: 20px;
+      border-radius: 30px;
+      padding: 10px 45px;
+      margin-bottom: 10px;
+      cursor: pointer; }
+      .thanks__box .buttons a:hover {
+        transition: all .1s;
+        transform: scale(1.02);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15); }
 
 @media (min-width: 768px) {
   .order-list-container .order-list__box-item {
@@ -1476,7 +1669,7 @@ footer {
     .cleaner__box span {
       margin-right: 25px; }
   .order__box {
-    padding: 10px 0 146px; }
+    padding: 10px 0 10px; }
     .order__box-item {
       width: 50%;
       padding: 20px 40px; }
@@ -1486,11 +1679,60 @@ footer {
         margin: 0; }
       .order__box-item .description {
         padding: 0 10px; }
+  .order-step .order-box {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 24px; }
+  .order-step__box-headline .cleaner-logo {
+    font-size: 12px; }
+    .order-step__box-headline .cleaner-logo img {
+      width: 40px;
+      height: 24px; }
+  .order-step__box form {
+    margin: 20px 0 0; }
+    .order-step__box form label span {
+      margin-left: 15px; }
+  .order-step .boxleft {
+    width: 50%;
+    padding: 0 30px 0 0; }
+  .order-step .boxright {
+    width: 50%;
+    padding: 0 0 0 30px; }
   .totalprice__box {
     flex-direction: row;
-    justify-content: space-between; }
+    justify-content: space-between;
+    padding: 30px; }
     .totalprice__box-result {
-      margin: 0; } }
+      margin: 0; }
+    .totalprice__box-result-step3 {
+      margin: 0 30px 0 auto; }
+    .totalprice__box-back {
+      margin-top: 0; }
+    .totalprice__box.reverse {
+      flex-direction: row; }
+  .thanks__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 15px 30px; }
+    .thanks__box h2 {
+      text-transform: uppercase;
+      font-size: 18px;
+      line-height: 30px;
+      font-family: "Montserrat-Bold", sans-serif;
+      margin: 35px 0 0px; }
+    .thanks__box p {
+      font-size: 12px;
+      line-height: 18px;
+      font-family: "Montserrat-Light", sans-serif;
+      text-align: center; }
+    .thanks__box .buttons {
+      display: flex;
+      flex-direction: row;
+      margin: 10px 0; }
+      .thanks__box .buttons a {
+        margin: 0 25px; } }
 
 @media (min-width: 992px) {
   .order-list-container .order-list__box {
@@ -1529,4 +1771,6 @@ footer {
       padding: 30px 35px; }
       .order-list-container .order-list__box-item .title {
         display: block;
-        margin-top: 20px; } }
+        margin-top: 20px; }
+  .order-step .order-box {
+    padding: 0; } }

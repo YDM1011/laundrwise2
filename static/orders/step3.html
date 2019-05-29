@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Laundrwise</title>
+
+    <!--build:css css/styles.min.css-->
+    <link rel="stylesheet" href="../app/css/styles.css">
+    <link rel="stylesheet" href="../app/css/normalize.css">
+    <!--endbuild-->
+</head>
+<body>
+
+<header>
+    <div class="navigation">
+        <div class="navigation__logo">
+            <img src="../app/images/logo.svg" alt="logo">
+        </div>
+        <div class="navigation__buttons">
+            <nav>
+                <a href="#about" class="nav-item">About Us</a>
+                <a href="#howitwork" class="nav-item">How it Works</a>
+                <a href="#blog" class="nav-item">Blog</a>
+                <a href="" class="nav-item">FAQ</a>
+                <a href="" class="nav-item">Cleaners</a>
+                <a href="" class="nav-item">Contacts</a>
+            </nav>
+            <a href="#" class="nav-btn">Log in</a>
+        </div>
+        <div class="navigation__burger">
+        </div>
+    </div>
+</header>
+
+
+<div class="order-step">
+    <div class="order-container">
+        <div class="order-box">
+            <div class="order-step__box boxleft">
+                <div class="order-step__box-adress">
+                    <div class="order-step__box-headline">
+                        <div class="title">
+                            Main
+                        </div>
+                    </div>
+                    <form action="">
+                        <label for="name">
+                            <span>First Name</span>
+                            <input type="text" name="name" id="name" >
+                        </label>
+                        <label for="lastname">
+                            <span>Last Name</span>
+                            <input type="text" name="lastname" id="lastname" >
+                        </label>
+                        <label for="phone">
+                            <span>Mobile</span>
+                            <input type="number" name="phone" id="phone" >
+                        </label>
+                        <label for="mail">
+                            <span>E-mail</span>
+                            <input type="email" name="mail" id="mail">
+                        </label>
+                        <label for="password">
+                            <span>Password</span>
+                            <input type="password" name="password" id="password">
+                        </label>
+                    </form>
+                </div>
+            </div>
+            <div class="order-step__box boxright">
+                <div class="order-step__box-payment">
+                    <div class="order-step__box-headline">
+                        <div class="title">Payment Details</div>
+                        <div class="payment-logo">
+                            <img src="../app/images/card1.svg" alt="">
+                            <img src="../app/images/card2.svg" alt="">
+                            <img src="../app/images/card3.svg" alt="">
+                        </div>
+                    </div>
+                    <form action="">
+                        <label for="card" class="card">
+                            <span>Cart number</span>
+                            <input type="number" placeholder="Your card number" name="card" id="card">
+                        </label>
+                        <label for="" class="card-detail">
+                            <span>Cart number</span>
+                            <input type="number" class="month" placeholder="Month" name="month" id="month">
+                            <input type="number" class="year" placeholder="Year" name="year" id="year">
+                            <input type="number" class="ccv" placeholder="CCV" name="ccv" id="ccv">
+                        </label>
+                    </form>
+                    <div class="payment-description">
+                        Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula.
+                        <a href="#">Payment FAQ</a>
+                    </div>
+                    <div class="payment-access">
+                        <div class="payment-access__item">
+                            <input type="checkbox" id="scales" name="scales">
+                            <p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer</p>
+                        </div>
+                        <div class="payment-access__item">
+                            <input type="checkbox">
+                            <p>I accept the <a href="#">Laundrapp Terms & Conditions</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="totalprice">
+    <div class="order-container">
+        <div class="totalprice__box reverse">
+            <div class="totalprice__box-back">
+                <a href="#" class="back">Back</a>
+            </div>
+            <div class="totalprice__box-result-step3">
+                Total: <span class="result">209.46</span> $
+            </div>
+            <div class="totalprice__box-basket">
+                <a href="#" class="basket">Complete Booking</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--build:js js/main.min.js -->
+<script src="../app/js/lib/jquery.min.js"></script>
+<script src="../app/js/main.js"></script>
+
+<!-- endbuild -->
+</body>
+</html>
