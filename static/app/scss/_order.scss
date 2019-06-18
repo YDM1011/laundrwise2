@@ -127,7 +127,11 @@
     }
   }
 }
-
+.order-nav{
+  a{
+    margin-right: 38px!important;
+  }
+}
 .order{
   padding: 0 0 146px;
   &__box{
@@ -386,6 +390,25 @@
             height: 10px;
             cursor: pointer;
           }
+        }
+      }
+    }
+    .order-add-btn{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .order-add{
+        color: $main-blue;
+        font-size: 16px;
+        margin: 20px auto;
+        border: 2px solid $main-blue;
+        padding: 7px 25px;
+        border-radius: 20px;
+        text-align: center;
+        &:hover{
+          transition: all .2s;
+          transform: scale(1.02);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 5px rgba(0, 0, 0, 0.15);
         }
       }
     }

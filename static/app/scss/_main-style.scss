@@ -138,7 +138,6 @@
   }
 }
 
-
 header{
   .navigation{
     display: flex;
@@ -161,8 +160,11 @@ header{
       .nav-item{
         color: #000;
         text-decoration: none;
-        margin-right: 20px;
+        margin-right: 25px;
         font-size: 16px;
+        &:nth-last-of-type(1){
+          margin-right: 0;
+        }
       }
       .nav-btn{
         display: inline-block;
@@ -173,6 +175,7 @@ header{
         width: 100px;
         text-align: center;
         padding: 8px 5px;
+        margin-left: 15px;
         &:hover{
           transition: all .2s;
           transform: scale(1.03);
@@ -182,7 +185,6 @@ header{
       .color{
         color: #fff;
         background: $main-blue;
-        margin-left: 15px;
       }
     }
     &__burger{
@@ -810,7 +812,8 @@ footer{
             top: 0;
             height: 100%;
             border-radius: 36px;
-            padding: 8px ;
+            padding: 8px;
+            cursor: pointer;
           }
         }
         .buttons{
@@ -831,7 +834,7 @@ footer{
 @media (min-width: 1024px) {
   header{
     .navigation{
-      padding: 25px 40px;
+      padding: 25px 16px;
       &__logo{
         img{
         }
@@ -1042,7 +1045,6 @@ footer{
         .color{
           color: #fff;
           background: $main-blue;
-          margin-left: 15px;
         }
       }
     }
