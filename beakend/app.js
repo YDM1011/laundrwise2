@@ -15,7 +15,7 @@ db.on('error', function () {
 });
 
 let models = glob.sync('./app/model/*.js');
-console.log(models);
+
 models.forEach(function (model) {
     if (model.indexOf('model_methods') > -1)
         return;
