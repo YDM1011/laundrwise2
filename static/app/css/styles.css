@@ -1301,8 +1301,8 @@ footer {
       .accordion-box .accordion__item .question.active .arrow-icon {
         fill: #13AAFF; }
   .accordion-box .accordion__item .ansver {
-    padding: 0 20px 0 60px;
-    max-height: 0;
+    padding: 0 10px 0 30px;
+    max-height: 100%;
     overflow: hidden;
     transition: max-height 0.2s ease-out; }
 

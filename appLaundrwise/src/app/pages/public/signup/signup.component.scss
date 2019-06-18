@@ -1,0 +1,17 @@
+
+.mat-form-field{
+  border-radius: 50px!important;
+}
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+  &:hover{
+    color: #13AAFF;
+    border-color: #13AAFF;
+  }
+}
+
+.mat-form-field-appearance-outline .mat-form-field-flex{
+  &:hover{
+    color: #13AAFF;
+    border-color: #13AAFF;
+  }
+}

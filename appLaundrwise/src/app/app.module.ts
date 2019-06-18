@@ -37,7 +37,19 @@ import {
   ManagerAllOrdersComponent,
   ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent, AdminNewPostComponent
 } from './pages';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AppHeaderComponent } from './pages/public/header/app-header.component';
+import {InitLayoutComponent} from './pages/public/init-layout/init-layout.component';
+import { FooterComponent } from './pages/public/footer/footer.component';
+import {MaterialModule} from './material-module';
+import { CleanersComponent } from './pages/public/cleaners/cleaners.component';
+import { CleanersDetailComponent } from './pages/public/cleaners-detail/cleaners-detail.component';
+import { SignupComponent } from './pages/public/signup/signup.component';
+import {MatNativeDateModule} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
+import {ApiInterceptor} from './api.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,13 +88,24 @@ import {
     ManagerPaymentSystemComponent,
     AdminComponent,
     AdminLoginComponent,
-    AdminNewPostComponent
+    AdminNewPostComponent,
+    AppHeaderComponent,
+    InitLayoutComponent,
+    FooterComponent,
+    CleanersComponent,
+    CleanersDetailComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
