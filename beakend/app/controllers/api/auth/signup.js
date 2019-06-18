@@ -3,12 +3,12 @@ const jwt = require('jsonwebtoken');
 module.exports = (backendApp, router) => {
 
     const getToken = login =>{
-        console.log(backendApp.config.jwtSecret)
+        console.log(backendApp.config.jwtSecret);
         return jwt.sign({login: login}, backendApp.config.jwtSecret);
     };
 
     const signup = (req,res,next) => {
-        var User = backendApp.mongoose.model("User");
+        var User = backendApp.mongoose.model("Client");
         var errors = {};
         if (!req.body.login) {
             errors.login = "Login is required";

@@ -57,12 +57,14 @@ const init = (app, config) =>{
         app: app,
         config: config,
         mongoose: mongoose,
-        express: express
+        express: express,
+        service: {}
     };
     global.backendApp = backendApp;
     backendApp.middlewares = require('../middlewares')(backendApp, config);
     backendApp.customEndPoints = [];
     require('../controllers')(backendApp);
+    require('../service')(backendApp);
     require('./mongooseRestApi')(backendApp);
 
 

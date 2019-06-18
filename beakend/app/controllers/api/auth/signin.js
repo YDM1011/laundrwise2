@@ -3,7 +3,7 @@ module.exports = (backendApp, router) => {
 
     const signin = (req,res,next) => {
 
-        var User = backendApp.mongoose.model("User");
+        var Client = backendApp.mongoose.model("Client");
         var errors = {};
         if (!req.body.login) {
             errors.login = "Login is required";
@@ -14,7 +14,7 @@ module.exports = (backendApp, router) => {
         if (Object.keys(errors).length > 0) {
             return res.badRequest(errors);
         }
-        User.findOne({
+        Client.findOne({
             $and:[{
                 $or:[
                     {login: req.body.login},
@@ -23,7 +23,7 @@ module.exports = (backendApp, router) => {
             },{pass:md5(req.body.pass)}],
         }).exec(function (err, user) {
             if (err) return res.serverError(err);
-            if (!user) return res.notFound("User not found");
+            if (!user) return res.notFound("Password or login invalid!");
             user.signin(req,res,backendApp)
         });
     };

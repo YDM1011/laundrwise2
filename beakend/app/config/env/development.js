@@ -9,8 +9,14 @@ module.exports = {
   port: process.env.PORT || 3000,
   db: 'mongodb://localhost:27017/solo',
   jwtSecret: process.env.JWTSECRET || "secret",
-  mail: {
-    from: "ydm101194@gmail.com"
+  email: {
+      host: "smtp.mail.yahoo.com",
+      port: 465,
+      secure: true,
+      user: "ydm101194@yahoo.com",
+      message: "Hello from Tasteol",
+      subject: "Laundrwise",
+      pass: "adn45hrf"
   },
   site: {
     sidDomain: "localhost",
