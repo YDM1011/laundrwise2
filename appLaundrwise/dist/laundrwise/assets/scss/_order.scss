@@ -450,25 +450,25 @@
         &__item{
           display: flex;
           align-items: flex-start;
-          input{
-            min-width: 14px;
-            min-height: 14px;
-            margin-right: 15px;
-            margin-top: 5px;
-            border: 0.5px solid #000000;
-            transition: .2s;
-            &:checked{
-              position: relative;
-              &:before{
-                content:'\2713';
-                color: $main-blue;
-                font-size: 10px;
-                position: absolute;
-                left: 3px;
-                top: 1px;
-              }
-            }
-          }
+          //input{
+          //  min-width: 14px;
+          //  min-height: 14px;
+          //  margin-right: 15px;
+          //  margin-top: 5px;
+          //  border: 0.5px solid #000000;
+          //  transition: .2s;
+          //  &:checked{
+          //    position: relative;
+          //    &:before{
+          //      content:'\2713';
+          //      color: $main-blue;
+          //      font-size: 10px;
+          //      position: absolute;
+          //      left: 3px;
+          //      top: 1px;
+          //    }
+          //  }
+          //}
           p{
             margin: 0;
             line-height: 22px;
