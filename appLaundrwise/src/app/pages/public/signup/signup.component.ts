@@ -1,10 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
+import {CrudService} from '../../../crud.service';
+import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
+import {AuthService} from '../../../auth.service';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
+export class MyErrorStateMatcher2 implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
@@ -16,27 +28,94 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-
-  constructor() { }
+  // public login;
+  public pass;
+  // public firstName;
+  // public lastName;
+  // public email;
+  // public mobile;
+  // public address1;
+  // public address2;
+  // public country;
+  // public cityCode;
+  myForm: FormGroup;
+  matcher = new MyErrorStateMatcher();
+  matcher2 = new MyErrorStateMatcher2();
+  constructor(  private router: Router,
+                private api: CrudService,
+                private cookieService: CookieService,
+                private auth: AuthService,
+                private formBuilder: FormBuilder
+  ) {
+    this.myForm = this.formBuilder.group({
+      passwordFormControl: ['', [Validators.required]],
+      password2FormControl: ['']
+    }, { validator: this.veryfyPass });
+  }
+  firstNameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  lastNameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  phoneFormControl = new FormControl('', [
+    Validators.required,
+    // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+  ]);
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-  textFormControl = new FormControl('', [
+  countryFormControl = new FormControl('', [
     Validators.required
   ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+  cityFormControl = new FormControl('', [
+    Validators.required
   ]);
-  phoneFormControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
-
+  cityCodeFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  addressFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  address2FormControl = new FormControl('', [
   ]);
 
-  matcher = new MyErrorStateMatcher();
   ngOnInit() {
+  }
+  veryfyPass(group: FormGroup) {
+    const pass = group.controls.passwordFormControl.value;
+    const confirmPass = group.controls.password2FormControl.value;
+    return pass === confirmPass ? null : { notSame: true };
+  }
+  signUp(e) {
+    e.preventDefault();
+    const apiUrl = 'signup';
+    const signup = {
+      firstName: this.firstNameFormControl.value,
+      lastName: this.lastNameFormControl.value,
+      login: this.emailFormControl.value,
+      email: this.emailFormControl.value,
+      mobile: this.phoneFormControl.value,
+      address1: this.addressFormControl.value,
+      address2: this.address2FormControl.value,
+      country: this.countryFormControl.value,
+      city: this.cityFormControl.value,
+      cityCode: this.cityCodeFormControl.value,
+      pass: this.myForm.value.passwordFormControl,
+    };
+
+    this.api.post(apiUrl, signup).then((value: any) => {
+          console.log(value);
+          this.cookieService.set('token', value.token);
+          this.cookieService.set('userId', value.userId);
+          this.auth.isAuth();
+          this.router.navigate(['/']);
+          // this.router.navigate(['/signin']);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
 }
