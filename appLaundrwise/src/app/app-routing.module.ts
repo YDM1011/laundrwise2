@@ -38,6 +38,8 @@ import {InitLayoutComponent} from './pages/public/init-layout/init-layout.compon
 import {CleanersComponent} from './pages/public/cleaners/cleaners.component';
 import {CleanersDetailComponent} from './pages/public/cleaners-detail/cleaners-detail.component';
 import {SignupComponent} from './pages/public/signup/signup.component';
+import {InitOrderComponent} from './pages/orders/init-order/init-order.component';
+import {ThanksComponent} from './pages/orders/thanks/thanks.component';
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -57,6 +59,12 @@ const routes: Routes = [
         {path: 'offers', component: OffersComponent},
         {path: 'become-our-service', component: BecomeOurServiceComponent},
         {path: 'our-partners', component: OurPartnersComponent},
+    ]},
+    {path: 'orders', component: InitOrderComponent, children: [
+        {path: '', component: NewOrdersStepOneComponent},
+        {path: 'step2', component: NewOrdersStepTwoComponent},
+        {path: 'step3', component: NewOrdersStepThreeComponent},
+        {path: 'thanks', component: ThanksComponent},
     ]},
     {path: 'profile', component: ProfileComponent , children: [
       {path: 'my-profile', component: MyProfileComponent},

@@ -47,9 +47,12 @@ import { CleanersDetailComponent } from './pages/public/cleaners-detail/cleaners
 import { SignupComponent } from './pages/public/signup/signup.component';
 import {MatNativeDateModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {ApiInterceptor} from './api.interceptor';
+import { InitOrderComponent } from './pages/orders/init-order/init-order.component';
+import { OrderHeaderComponent } from './pages/orders/order-header/order-header.component';
+import { ThanksComponent } from './pages/orders/thanks/thanks.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,6 +98,9 @@ import {ApiInterceptor} from './api.interceptor';
     CleanersComponent,
     CleanersDetailComponent,
     SignupComponent,
+    InitOrderComponent,
+    OrderHeaderComponent,
+    ThanksComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,7 +109,8 @@ import {ApiInterceptor} from './api.interceptor';
     MaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
