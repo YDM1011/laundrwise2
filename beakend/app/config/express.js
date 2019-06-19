@@ -11,11 +11,14 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const jwt = require('jwt-express');
 const flash = require('connect-flash');
+const path = require('path');
+// const cons = require('consolidate');
 
 const init = (app, config) =>{
-
-    app.set('views', 'views');
-    app.set('view engine', 'ejs');
+    var cons = require('consolidate');
+    app.set('views', path.join(__dirname, '../../../appLaundrwise/dist/laundrwise'));
+    app.engine('html', cons.swig);
+    app.set('view engine', 'html');
 
     app.use(logger('dev'));
     app.use(bodyParser.json({limit: '50mb', "strict": false,}));
@@ -23,6 +26,7 @@ const init = (app, config) =>{
     app.use(cookieParser());
     app.use(compress());
     app.use(flash());
+    app.use('/', express.static(path.join(__dirname, '../../../appLaundrwise/dist/laundrwise')));
     app.use(express.static(config.root + 'public'));
     app.use('/upload', express.static(config.root + 'upload'));
     app.use(methodOverride());
@@ -83,8 +87,8 @@ const init = (app, config) =>{
         res.locals.error = req.app.get('env') === 'development' ? err : {};
 
         // render the error page
-        res.status(err.status || 500);
-        res.render('error');
+        // res.status(err.status || 500);
+        res.render('index');
     });
 
     return app;

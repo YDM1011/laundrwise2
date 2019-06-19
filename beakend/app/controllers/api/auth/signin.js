@@ -3,8 +3,8 @@ module.exports = (backendApp, router) => {
 
     const signin = (req,res,next) => {
 
-        var Client = backendApp.mongoose.model("Client");
-        var errors = {};
+        const Client = backendApp.mongoose.model("Client");
+        let errors = {};
         if (!req.body.login) {
             errors.login = "Login is required";
         }

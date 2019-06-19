@@ -50,6 +50,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {ApiInterceptor} from './api.interceptor';
+import { AdminCreateComponent } from './pages/admin/admin-create/admin-create.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,6 +96,7 @@ import {ApiInterceptor} from './api.interceptor';
     CleanersComponent,
     CleanersDetailComponent,
     SignupComponent,
+    AdminCreateComponent,
   ],
   imports: [
     BrowserModule,

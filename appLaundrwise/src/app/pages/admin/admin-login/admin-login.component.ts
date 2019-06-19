@@ -1,5 +1,6 @@
 
 import {Component, OnInit} from '@angular/core';
+import {AuthAdmin, AuthAdminObj} from "./auth-admin";
 
 @Component({
   selector: 'app-admin-login',
@@ -7,11 +8,15 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
+  public adminAuth: AuthAdmin = new AuthAdminObj();
   constructor() {
   }
 
   ngOnInit() {
   }
 
-
+  doAuth() {
+    //api: api/adminCreate
+    console.log(this.adminAuth);
+  }
 }
