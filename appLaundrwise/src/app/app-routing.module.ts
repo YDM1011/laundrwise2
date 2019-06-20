@@ -38,6 +38,7 @@ import {InitLayoutComponent} from './pages/public/init-layout/init-layout.compon
 import {CleanersComponent} from './pages/public/cleaners/cleaners.component';
 import {CleanersDetailComponent} from './pages/public/cleaners-detail/cleaners-detail.component';
 import {SignupComponent} from './pages/public/signup/signup.component';
+import {AdminCreateComponent} from "./pages/admin/admin-create/admin-create.component";
 import {InitOrderComponent} from './pages/orders/init-order/init-order.component';
 import {ThanksComponent} from './pages/orders/thanks/thanks.component';
 
@@ -94,6 +95,7 @@ const routes: Routes = [
     {path: 'admin', component: AdminComponent , children: [
       {path: 'login', component: AdminLoginComponent},
       {path: 'new-post', component: AdminNewPostComponent},
+      {path: 'create', component: AdminCreateComponent},
       {path: '', redirectTo: 'login', pathMatch: 'full'},
     ]},
     {path: '**', component: NotFoundComponent}

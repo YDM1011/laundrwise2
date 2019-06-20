@@ -1,9 +1,9 @@
 const md5 = require('md5');
 module.exports = (backendApp, router) => {
 
-    const signin = (req,res,next) => {
+    router.post('/adminSignin', [], (req,res,next) => {
 
-        const Client = backendApp.mongoose.model("Client");
+        const Admin = backendApp.mongoose.model("Admin");
         let errors = {};
         if (!req.body.login) {
             errors.login = "Login is required";
@@ -14,7 +14,7 @@ module.exports = (backendApp, router) => {
         if (Object.keys(errors).length > 0) {
             return res.badRequest(errors);
         }
-        Client.findOne({
+        Admin.findOne({
             $and:[{
                 $or:[
                     {login: req.body.login},
@@ -26,7 +26,5 @@ module.exports = (backendApp, router) => {
             if (!user) return res.notFound("Password or login invalid!");
             user.signin(req,res,backendApp)
         });
-    };
-
-    router.post('/signin', [], signin);
+    });
 };

@@ -54,6 +54,7 @@ import { InitOrderComponent } from './pages/orders/init-order/init-order.compone
 import { OrderHeaderComponent } from './pages/orders/order-header/order-header.component';
 import { ThanksComponent } from './pages/orders/thanks/thanks.component';
 import { LoginpopupComponent } from './pages/public/loginpopup/loginpopup.component';
+import { AdminCreateComponent } from './pages/admin/admin-create/admin-create.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,6 +100,7 @@ import { LoginpopupComponent } from './pages/public/loginpopup/loginpopup.compon
     CleanersComponent,
     CleanersDetailComponent,
     SignupComponent,
+    AdminCreateComponent,
     InitOrderComponent,
     OrderHeaderComponent,
     ThanksComponent,

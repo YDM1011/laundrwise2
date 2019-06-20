@@ -1,0 +1,7 @@
+<h3>Create admin panel</h3>
+<form (submit)="doCreate()">
+  <input type="text" [(ngModel)]="adminAuth.login" name="log">
+  <input type="text" [(ngModel)]="adminAuth.pass" name="pass">
+  <button type="submit">ok</button>
+</form>
+<a [routerLink]="'/admin/login'">I have panel</a>

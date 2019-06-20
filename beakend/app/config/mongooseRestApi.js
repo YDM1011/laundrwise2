@@ -28,7 +28,7 @@ module.exports = function (backendApp) {
                 // preCustomLink: backendApp.middlewares.isLoggedIn
             });
             backendApp.app.use("/api", router);
-            backendApp.app.use("/", require('../../routes'));
+            // backendApp.app.use("/", require('../../routes'));
         }
     });
 
