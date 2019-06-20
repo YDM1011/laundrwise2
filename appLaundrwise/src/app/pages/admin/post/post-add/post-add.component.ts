@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Post, PostObj} from "../post";
 
 @Component({
   selector: 'app-post-add',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostAddComponent implements OnInit {
 
+  public post:Post = new PostObj();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  addPost() {
+
+  }
+  fsData(data) {
+    console.log(data);
+  }
 }

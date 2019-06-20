@@ -63,6 +63,8 @@ import { SigninComponent } from './components/signin/signin.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 import { ProfileNavigationComponent } from './components/profile-navigation/profile-navigation.component';
+import {UploadComponent} from "./components/upload/upload.component";
+import {DialogComponent} from "./components/upload/dialog/dialog.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -119,6 +121,8 @@ import { ProfileNavigationComponent } from './components/profile-navigation/prof
     SigninComponent,
     AdminSidebarComponent,
     AdminHeaderComponent,
+    UploadComponent,
+    DialogComponent,
     ProfileNavigationComponent,
   ],
   imports: [
@@ -131,7 +135,10 @@ import { ProfileNavigationComponent } from './components/profile-navigation/prof
     FormsModule,
     HttpClientModule
   ],
-  entryComponents: [LoginpopupComponent],
+  entryComponents: [
+      LoginpopupComponent,
+      DialogComponent
+  ],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
