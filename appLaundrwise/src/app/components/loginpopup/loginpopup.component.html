@@ -1,0 +1,38 @@
+<div class="login-registration">
+  <h2>
+    Sign in
+  </h2>
+  <p class="description">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores enim itaque nostrum rem.
+  </p>
+  <form action="" (ngSubmit)="signin($event)">
+    <mat-form-field class="signup-input" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" [formControl]="emailFormControl"
+             [errorStateMatcher]="matcher2">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="signup-input" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input autocomplete="off" required matInput placeholder="Password" type="password"
+             [errorStateMatcher]="matcher2" [formControl]="passwordFormControl">
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Please enter your newpassword
+      </mat-error>
+    </mat-form-field>
+
+    <input type="submit" id="submit" name="submit" class="submit" value="Login">
+
+  </form>
+
+  <div class="registrate">
+    <p>New here? Registrate now</p> <a [routerLink]="'/signup'" (click)="closeDialog()">Registration</a>
+  </div>
+</div>
+

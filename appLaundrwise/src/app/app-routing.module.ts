@@ -47,10 +47,14 @@ import {PostComponent} from "./pages/admin/post/post.component";
 import {PostAddComponent} from "./pages/admin/post/post-add/post-add.component";
 import {PostEditComponent} from "./pages/admin/post/post-edit/post-edit.component";
 import {DashboardComponent} from "./pages/admin/dashboard/dashboard.component";
+import {IsLoginGuard} from "./is-login.guard";
+import {SigninComponent} from "./components/signin/signin.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
-        {path: '', component: IndexComponent},
+        {path: '', component: IndexComponent, children: [
+            {path: 'signin', component: SigninComponent}
+            ]},
         {path: 'signup', component: SignupComponent},
         {path: 'about-us', component: AboutUsComponent},
         {path: 'how-it-works', component: HowItWorksComponent},
@@ -73,8 +77,8 @@ const routes: Routes = [
         {path: 'step3', component: NewOrdersStepThreeComponent},
         {path: 'thanks', component: ThanksComponent},
     ]},
-    {path: 'profile', component: ProfileComponent , children: [
-      {path: 'my-profile', component: MyProfileComponent},
+    {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
+      {path: '', component: MyProfileComponent},
       {path: 'my-orders', component: MyOrdersComponent},
       {path: 'my-account', component: MyAccountComponent},
       {path: 'payment', component: PaymentComponent},

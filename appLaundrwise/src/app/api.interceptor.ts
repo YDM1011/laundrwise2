@@ -10,7 +10,7 @@ export class ApiInterceptor implements HttpInterceptor {
     constructor(private cookie: CookieService) { }
 
     // intercept request and add token
-    intercept(request: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         // modify request
         request = request.clone({
