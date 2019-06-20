@@ -49,6 +49,7 @@ import {PostEditComponent} from "./pages/admin/post/post-edit/post-edit.componen
 import {DashboardComponent} from "./pages/admin/dashboard/dashboard.component";
 import {IsLoginGuard} from "./is-login.guard";
 import {SigninComponent} from "./components/signin/signin.component";
+import {AdminInitComponent} from "./pages/admin/admin-init/admin-init.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -103,14 +104,16 @@ const routes: Routes = [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin', component: AdminComponent , children: [
+
         {path: 'dashboard', component: DashboardComponent, canActivate: [AdminLoginedGuard]},
         {path: 'posts', component: PostComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-add', component: PostAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-edit', component: PostEditComponent, canActivate: [AdminLoginedGuard]},
-        {path: 'login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},
-        {path: 'create', component: AdminCreateComponent, canActivate: [AdminLogoutGuard]},
+
         {path: '', redirectTo: 'login', pathMatch: 'full'},
     ]},
+    {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},
+    {path: 'admin/create', component: AdminCreateComponent, canActivate: [AdminLogoutGuard]},
     {path: '**', component: NotFoundComponent}
 ];
 
