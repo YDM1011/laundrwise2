@@ -62,6 +62,7 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { SigninComponent } from './components/signin/signin.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
+import { ProfileNavigationComponent } from './components/profile-navigation/profile-navigation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,6 +119,7 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
     SigninComponent,
     AdminSidebarComponent,
     AdminHeaderComponent,
+    ProfileNavigationComponent,
   ],
   imports: [
     BrowserModule,
