@@ -14,7 +14,7 @@ export class ApiInterceptor implements HttpInterceptor {
         // modify request
         request = request.clone({
             setHeaders: {
-                Authorization: 'Bearer ' + this.cookie.get('sid')
+                Authorization: 'Bearer ' + this.cookie.get('token')
             },
             withCredentials: true
         });

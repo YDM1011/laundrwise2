@@ -1,0 +1,17 @@
+<form (submit)="addPost()">
+    <label>
+        <span>title</span>
+        <input type="text" [(ngModel)]="post.title" name="title">
+    </label>
+
+    <br>
+
+    <label>
+        <span>text</span>
+        <textarea name="text" cols="30" rows="10" [(ngModel)]="post.text"></textarea>
+    </label>
+
+    <br>
+
+    <app-upload (onFs)="fsData($event)"></app-upload>
+</form>

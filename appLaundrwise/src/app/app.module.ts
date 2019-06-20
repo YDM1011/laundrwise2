@@ -62,6 +62,8 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { SigninComponent } from './components/signin/signin.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
+import {UploadComponent} from "./components/upload/upload.component";
+import {DialogComponent} from "./components/upload/dialog/dialog.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,6 +120,8 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
     SigninComponent,
     AdminSidebarComponent,
     AdminHeaderComponent,
+    UploadComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,7 +133,10 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
     FormsModule,
     HttpClientModule
   ],
-  entryComponents: [LoginpopupComponent],
+  entryComponents: [
+      LoginpopupComponent,
+      DialogComponent
+  ],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
