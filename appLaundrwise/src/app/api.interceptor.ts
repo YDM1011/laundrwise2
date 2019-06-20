@@ -3,6 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from
 import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/internal/operators/tap';
+import Swal from 'sweetalert2'
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -29,7 +30,12 @@ export class ApiInterceptor implements HttpInterceptor {
                     }
                 }, error => {
                     // http response status code
+                    console.log(error);
 
+                    
+                    switch (error.status) {
+                        case 404: Swal.fire('Oops...', error.error, 'error')
+                    }
                 })
             );
 

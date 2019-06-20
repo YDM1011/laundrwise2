@@ -1,4 +1,3 @@
-export {AdminNewPostComponent} from './admin/admin-new-post/admin-new-post.component';
 export {AdminLoginComponent} from './admin/admin-login/admin-login.component';
 export {AdminComponent} from './admin/admin.component';
 export {ManagerPaymentSystemComponent} from './manager/payment-system/manager-payment-system.component';

@@ -35,7 +35,7 @@ import {
   WriteToAdminComponent,
   ManagerDashboardComponent,
   ManagerAllOrdersComponent,
-  ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent, AdminNewPostComponent
+  ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent,
 } from './pages';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppHeaderComponent } from './pages/public/header/app-header.component';
@@ -54,6 +54,10 @@ import { InitOrderComponent } from './pages/orders/init-order/init-order.compone
 import { OrderHeaderComponent } from './pages/orders/order-header/order-header.component';
 import { ThanksComponent } from './pages/orders/thanks/thanks.component';
 import { AdminCreateComponent } from './pages/admin/admin-create/admin-create.component';
+import { PostComponent } from './pages/admin/post/post.component';
+import { PostAddComponent } from './pages/admin/post/post-add/post-add.component';
+import { PostEditComponent } from './pages/admin/post/post-edit/post-edit.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +96,6 @@ import { AdminCreateComponent } from './pages/admin/admin-create/admin-create.co
     ManagerPaymentSystemComponent,
     AdminComponent,
     AdminLoginComponent,
-    AdminNewPostComponent,
     AppHeaderComponent,
     InitLayoutComponent,
     FooterComponent,
@@ -103,6 +106,10 @@ import { AdminCreateComponent } from './pages/admin/admin-create/admin-create.co
     InitOrderComponent,
     OrderHeaderComponent,
     ThanksComponent,
+    PostComponent,
+    PostAddComponent,
+    PostEditComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

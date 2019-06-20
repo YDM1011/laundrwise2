@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, CanActivate} from '@angular/router';
 import {
   AboutUsComponent,
   AddCollaboratorComponent,
@@ -32,7 +32,7 @@ import {
   WriteToAdminComponent,
   ManagerDashboardComponent,
   ManagerAllOrdersComponent,
-  ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent, AdminNewPostComponent
+  ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent
 } from './pages';
 import {InitLayoutComponent} from './pages/public/init-layout/init-layout.component';
 import {CleanersComponent} from './pages/public/cleaners/cleaners.component';
@@ -41,6 +41,12 @@ import {SignupComponent} from './pages/public/signup/signup.component';
 import {AdminCreateComponent} from "./pages/admin/admin-create/admin-create.component";
 import {InitOrderComponent} from './pages/orders/init-order/init-order.component';
 import {ThanksComponent} from './pages/orders/thanks/thanks.component';
+import {AdminLoginedGuard} from "./admin-logined.guard";
+import {AdminLogoutGuard} from "./admin-logout.guard";
+import {PostComponent} from "./pages/admin/post/post.component";
+import {PostAddComponent} from "./pages/admin/post/post-add/post-add.component";
+import {PostEditComponent} from "./pages/admin/post/post-edit/post-edit.component";
+import {DashboardComponent} from "./pages/admin/dashboard/dashboard.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -93,10 +99,13 @@ const routes: Routes = [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin', component: AdminComponent , children: [
-      {path: 'login', component: AdminLoginComponent},
-      {path: 'new-post', component: AdminNewPostComponent},
-      {path: 'create', component: AdminCreateComponent},
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
+        {path: 'dashboard', component: DashboardComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'posts', component: PostComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'post-add', component: PostAddComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'post-edit', component: PostEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},
+        {path: 'create', component: AdminCreateComponent, canActivate: [AdminLogoutGuard]},
+        {path: '', redirectTo: 'login', pathMatch: 'full'},
     ]},
     {path: '**', component: NotFoundComponent}
 ];
