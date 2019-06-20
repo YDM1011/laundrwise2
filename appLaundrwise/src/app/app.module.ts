@@ -35,7 +35,7 @@ import {
   WriteToAdminComponent,
   ManagerDashboardComponent,
   ManagerAllOrdersComponent,
-  ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent, AdminNewPostComponent
+  ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent,
 } from './pages';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppHeaderComponent } from './components/header/app-header.component';
@@ -55,6 +55,10 @@ import { OrderHeaderComponent } from './pages/orders/order-header/order-header.c
 import { ThanksComponent } from './pages/orders/thanks/thanks.component';
 import { LoginpopupComponent } from './components/loginpopup/loginpopup.component';
 import { AdminCreateComponent } from './pages/admin/admin-create/admin-create.component';
+import { PostComponent } from './pages/admin/post/post.component';
+import { PostAddComponent } from './pages/admin/post/post-add/post-add.component';
+import { PostEditComponent } from './pages/admin/post/post-edit/post-edit.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { SigninComponent } from './components/signin/signin.component';
 @NgModule({
   declarations: [
@@ -94,7 +98,6 @@ import { SigninComponent } from './components/signin/signin.component';
     ManagerPaymentSystemComponent,
     AdminComponent,
     AdminLoginComponent,
-    AdminNewPostComponent,
     AppHeaderComponent,
     InitLayoutComponent,
     FooterComponent,
@@ -105,6 +108,10 @@ import { SigninComponent } from './components/signin/signin.component';
     InitOrderComponent,
     OrderHeaderComponent,
     ThanksComponent,
+    PostComponent,
+    PostAddComponent,
+    PostEditComponent,
+    DashboardComponent,
     LoginpopupComponent,
     SigninComponent,
   ],

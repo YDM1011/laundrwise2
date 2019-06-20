@@ -1,6 +1,9 @@
 
 import {Component, OnInit} from '@angular/core';
 import {AuthAdmin, AuthAdminObj} from "./auth-admin";
+import {CrudService} from "../../../crud.service";
+import {Router} from "@angular/router";
+import {AuthService} from "../../../auth.service";
 
 @Component({
   selector: 'app-admin-login',
@@ -9,14 +12,27 @@ import {AuthAdmin, AuthAdminObj} from "./auth-admin";
 })
 export class AdminLoginComponent implements OnInit {
   public adminAuth: AuthAdmin = new AuthAdminObj();
-  constructor() {
-  }
+  constructor(
+      private router: Router,
+      private auth: AuthService,
+      private crud: CrudService
+  ) {}
 
   ngOnInit() {
   }
 
   doAuth() {
     //api: api/adminCreate
+    this.crud.post('adminSignin', this.adminAuth).then((v:any)=>{
+      if(v) {
+          if (this.auth.isAuthAdmin()) {
+              this.router.navigate(['/admin/dashboard']);
+              return false;
+          } else {
+              return true;
+          }
+      }
+    });
     console.log(this.adminAuth);
   }
 }

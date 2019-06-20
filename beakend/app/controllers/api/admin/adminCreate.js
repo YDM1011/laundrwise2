@@ -18,7 +18,7 @@ module.exports = (backendApp, router) => {
         req.body['email'] = req.body.login;
         Admin.findOne({}).exec(function (err, user) {
             if (err) return res.serverError(err);
-            if (user) return res.notFound("Admin created");
+            if (user) return res.notFound("Admin created!");
             if (!user){
                 req.body.token = getToken(req.body.login);
                 req.body.pass = md5(req.body.pass);
@@ -26,7 +26,7 @@ module.exports = (backendApp, router) => {
                 req.body.email = req.body.email ? req.body.email : req.body.login;
                 Admin.create(req.body, (e,r)=>{
                     if (e) return res.serverError(e);
-                    if (!r) return res.badRequest();
+                    if (!r) return res.badRequest("Admin created!");
                     r.signin(req,res,backendApp)
                 })
             }
