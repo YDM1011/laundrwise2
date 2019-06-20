@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-    // private updat = new BehaviorSubject<any>(null);
-    // public onUpDate = this.updat.asObservable();
+    private updat = new BehaviorSubject<any>(null);
+    public onUpDate = this.updat.asObservable();
 
   constructor(private cookieService: CookieService) { }
   isAuth() {
@@ -23,5 +24,9 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+
+  setUser(data) {
+    this.updat.next(data)
   }
 }

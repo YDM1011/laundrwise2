@@ -14,7 +14,7 @@ export class IsLogoutGuard implements CanActivate {
       next: ActivatedRouteSnapshot,
       state: RouterStateSnapshot) {
     if (this.auth.isAuth()) {
-      this.router.navigate(['']);
+      this.router.navigate(['/profile']);
       return false;
     } else {
       return true;

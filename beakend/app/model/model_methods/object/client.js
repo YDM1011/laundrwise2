@@ -7,7 +7,7 @@ module.exports = function (schema) {
               path:"/",
               httpOnly: true
           });
-      res.cookie('useriId', String(this._id),
+      res.cookie('userId', String(this._id),
           {
               domain: backendApp.config.site.sidDomain,
               path:"/",
@@ -15,21 +15,9 @@ module.exports = function (schema) {
           });
       res.ok({token:this.token,userId:this._id, user: this.toObject()})
   };
-  schema.methods.logout = function (req,res,backendApp) {
-      res.cookie('token',this.token,
-          {
-              domain: backendApp.config.site.sidDomain,
-              path:"/",
-              maxAge: 0,
-              httpOnly: true
-          });
-      res.cookie('useriId', String(this._id),
-          {
-              domain: backendApp.config.site.sidDomain,
-              path:"/",
-              maxAge: 0,
-              httpOnly: false
-          });
-      res.ok({})
+  schema.methods.logout = function (req,res) {
+      res.clearCookie('token');
+      res.clearCookie('userId');
+      res.ok({mes:'ok'})
   };
 };
