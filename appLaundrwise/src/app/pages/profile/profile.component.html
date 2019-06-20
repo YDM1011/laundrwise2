@@ -1,2 +1,32 @@
 <app-app-header></app-app-header>
-<router-outlet></router-outlet>
+<div class="account-header">
+    <div class="account-container">
+        <div class="account-header__box">
+            <div class="title">
+                Personal account
+            </div>
+            <div class="info">
+                <div class="img">
+                    <img src="../assets/images/user.svg" alt="">
+                </div>
+                <div class="name">
+                    User name
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-account">
+    <div class="account-container">
+        <div class="main-account__box">
+            <div class="main-account__box-left">
+                <app-profile-navigation class="navigation-page"></app-profile-navigation>
+            </div>
+            <div class="main-account__box-body">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+

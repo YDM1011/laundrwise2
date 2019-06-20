@@ -79,12 +79,11 @@ const routes: Routes = [
     ]},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
       {path: '', component: MyProfileComponent},
-      {path: 'my-orders', component: MyOrdersComponent},
-      {path: 'my-account', component: MyAccountComponent},
+      {path: 'account', component: MyAccountComponent},
       {path: 'payment', component: PaymentComponent},
-      {path: 'bonus', component: BonusComponent},
+      {path: 'bonuses', component: BonusComponent},
       {path: 'write-to-admin', component: WriteToAdminComponent},
-      {path: '', redirectTo: 'my-profile', pathMatch: 'full'},
+      {path: '', redirectTo: 'profile', pathMatch: 'full'},
     ]},
     {path: 'delivery', component: DeliveryComponent , children: [
       {path: 'dashboard', component: DeliveryDashboardComponent},
