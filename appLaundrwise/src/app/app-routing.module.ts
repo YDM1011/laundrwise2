@@ -38,18 +38,17 @@ import {InitLayoutComponent} from './pages/public/init-layout/init-layout.compon
 import {CleanersComponent} from './pages/public/cleaners/cleaners.component';
 import {CleanersDetailComponent} from './pages/public/cleaners-detail/cleaners-detail.component';
 import {SignupComponent} from './pages/public/signup/signup.component';
-import {AdminCreateComponent} from "./pages/admin/admin-create/admin-create.component";
+import {AdminCreateComponent} from './pages/admin/admin-create/admin-create.component';
 import {InitOrderComponent} from './pages/orders/init-order/init-order.component';
 import {ThanksComponent} from './pages/orders/thanks/thanks.component';
-import {AdminLoginedGuard} from "./admin-logined.guard";
-import {AdminLogoutGuard} from "./admin-logout.guard";
-import {PostComponent} from "./pages/admin/post/post.component";
-import {PostAddComponent} from "./pages/admin/post/post-add/post-add.component";
-import {PostEditComponent} from "./pages/admin/post/post-edit/post-edit.component";
-import {DashboardComponent} from "./pages/admin/dashboard/dashboard.component";
-import {IsLoginGuard} from "./is-login.guard";
-import {SigninComponent} from "./components/signin/signin.component";
-import {AdminInitComponent} from "./pages/admin/admin-init/admin-init.component";
+import {AdminLoginedGuard} from './admin-logined.guard';
+import {AdminLogoutGuard} from './admin-logout.guard';
+import {PostComponent} from './pages/admin/post/post.component';
+import {PostAddComponent} from './pages/admin/post/post-add/post-add.component';
+import {PostEditComponent} from './pages/admin/post/post-edit/post-edit.component';
+import {DashboardComponent} from './pages/admin/dashboard/dashboard.component';
+import {IsLoginGuard} from './is-login.guard';
+import {SigninComponent} from './components/signin/signin.component';
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ErrorStateMatcher, MatDialog, MatDialogRef} from '@angular/material';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher, MatDialogRef} from '@angular/material';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CrudService} from '../../crud.service';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthService} from '../../auth.service';
 import {Location} from '@angular/common';
-import {reject} from "q";
 
 export class MyErrorStateMatcher2 implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -43,7 +42,6 @@ export class LoginpopupComponent implements OnInit {
   ngOnInit() {
   }
   closeDialog() {
-    // this.location.back();
     this.dialogRef.close();
   }
   signin(e) {
