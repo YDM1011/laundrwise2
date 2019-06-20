@@ -5,15 +5,20 @@
     </div>
     <div class="navigation__buttons">
       <nav class="account-nav">
-        <a [routerLink]="'/about-us'" class="nav-item">About Us</a>
-        <a [routerLink]="'/how-it-works'" class="nav-item">How it Works</a>
-        <a [routerLink]="'/blogs'" class="nav-item">Blog</a>
-        <a [routerLink]="'/faq'" class="nav-item">FAQ</a>
-        <a [routerLink]="'/cleaners'" class="nav-item">Cleaners</a>
-        <a [routerLink]="'/contacts'" class="nav-item">Contacts</a>
+        <a routerLinkActive="active" [routerLink]="'/about-us'"  class="nav-item">About Us</a>
+        <a routerLinkActive="active" [routerLink]="'/how-it-works'" class="nav-item">How it Works</a>
+        <a routerLinkActive="active" [routerLink]="'/blogs'" class="nav-item">Blog</a>
+        <a routerLinkActive="active" [routerLink]="'/faq'" class="nav-item">FAQ</a>
+        <a routerLinkActive="active" [routerLink]="'/cleaners'" class="nav-item">Cleaners</a>
+        <a routerLinkActive="active" [routerLink]="'/contacts'" class="nav-item">Contacts</a>
       </nav>
       <a [routerLink]="'/orders'" class="color nav-btn">Make order</a>
-      <a  (click)="openLoginDialog()" class="nav-btn">Log in</a>
+      <a *ngIf="!islogin" (click)="openLoginDialog()" class="nav-btn">Log in</a>
+      <a *ngIf="islogin" class="nav-btn" [matMenuTriggerFor]="menu"> Menu</a>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="'/profile'">Profile</button>
+        <button mat-menu-item>Log out</button>
+      </mat-menu>
     </div>
     <div class="navigation__burger" id="navigation__burger">
     </div>

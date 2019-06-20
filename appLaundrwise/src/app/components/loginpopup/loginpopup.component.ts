@@ -6,6 +6,7 @@ import {CrudService} from '../../crud.service';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthService} from '../../auth.service';
 import {Location} from '@angular/common';
+import {reject} from "q";
 
 export class MyErrorStateMatcher2 implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -53,7 +54,6 @@ export class LoginpopupComponent implements OnInit {
       email: this.emailFormControl.value,
       pass: this.passwordFormControl.value,
     };
-
     this.api.post(apiUrl, signin).then((value: any) => {
           console.log(value);
           this.cookieService.set('token', value.token);
@@ -63,8 +63,8 @@ export class LoginpopupComponent implements OnInit {
           this.router.navigate(['/profile']);
         },
         (error) => {
-          console.log(error);
-        });
+
+        }).catch(error => {});
   }
 
 }
