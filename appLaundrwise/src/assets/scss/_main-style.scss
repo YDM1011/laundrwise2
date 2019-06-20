@@ -160,8 +160,34 @@ header{
         text-decoration: none;
         margin-right: 25px;
         font-size: 16px;
+        position: relative;
         &:nth-last-of-type(1){
           margin-right: 0;
+        }
+        &:before{
+          content: '';
+          display: block;
+          height: 1px;
+          width: 0;
+          position: absolute;
+          bottom: -8px;
+          left: 50%;
+          background: $main-blue;
+          transition: all .2s;
+        }
+        &:hover{
+          &:before{
+            left: 0;
+            right: 0;
+            width: 100%;
+          }
+        }
+        &.active{
+          &:before{
+            left: 0;
+            right: 0;
+            width: 100%;
+          }
         }
       }
       .nav-btn{
@@ -229,8 +255,6 @@ header{
     border-radius: 38.4181px;
   }
 }
-
-
 h2{
   font-size: 30px;
   line-height: 48px;
