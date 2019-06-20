@@ -4,6 +4,7 @@ import {LoginpopupComponent} from '../loginpopup/loginpopup.component';
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {CrudService} from "../../crud.service";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-app-header',
@@ -17,15 +18,12 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   constructor(
       private router: Router,
       private api: CrudService,
+      private auth: AuthService,
       private cookieService: CookieService,
       public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    if (this.cookieService.get('userId')) {
-      this.islogin = !this.islogin;
-    }
-
   }
 
   ngOnChanges() {
@@ -39,8 +37,13 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   }
   logout(e) {
     e.preventDefault();
-    const apiUrl = 'logout';
-    this.api.post(apiUrl, {}).then((value: any) => {
+    this.api.post('logout', {}).then((value: any) => {
+            if (this.auth.isAuth()) {
+                this.islogin = true;
+            } else {
+                this.router.navigate(['/signin']);
+                this.islogin = false;
+            }
           this.router.navigate(['/']);
         },
         (error) => {

@@ -60,6 +60,7 @@ export class LoginpopupComponent implements OnInit {
           } else {
               return true;
           }
+          this.auth.setUser(value.user);
         },
         (error) => {
 
