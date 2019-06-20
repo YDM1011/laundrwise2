@@ -6,8 +6,8 @@ module.exports = {
   app: {
     name: 'Escort'
   },
-  port: process.env.PORT || 3000,
-  db: 'mongodb://localhost:27017/solo',
+  port: process.env.PORT || 5000,
+  db: 'mongodb://localhost:27017',
   jwtSecret: process.env.JWTSECRET || "secret",
   email: {
       host: "smtp.mail.yahoo.com",
