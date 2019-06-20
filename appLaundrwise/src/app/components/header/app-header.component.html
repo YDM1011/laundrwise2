@@ -14,7 +14,9 @@
       </nav>
       <a [routerLink]="'/orders'" class="color nav-btn">Make order</a>
       <a *ngIf="!islogin" (click)="openLoginDialog()" class="nav-btn">Log in</a>
-      <a *ngIf="islogin" class="nav-btn" [matMenuTriggerFor]="menu"> Menu</a>
+      <a *ngIf="islogin && me" class="nav-btn" [matMenuTriggerFor]="menu">
+        {{name}}
+      </a>
       <mat-menu class="dropmenu" #menu="matMenu" xPosition="before">
         <button mat-menu-item [routerLink]="'/profile'">Profile</button>
         <button mat-menu-item (click)="logout($event)">Log out</button>

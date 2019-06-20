@@ -1,6 +1,6 @@
 module.exports = (backendApp, router) => {
 
-    router.post('/logout', [], (req,res,next) => {
+    router.get('/me', [], (req,res,next) => {
 
         const Client = backendApp.mongoose.model("Client");
         if (req.jwt) {
@@ -18,7 +18,7 @@ module.exports = (backendApp, router) => {
                         .exec((err, info)=>{
                             if (err) return res.serverError(err);
                             if (!info) return res.forbidden("forbidden");
-                            info.logout(req,res)
+                            res.ok(info);
                         });
                 }
             });

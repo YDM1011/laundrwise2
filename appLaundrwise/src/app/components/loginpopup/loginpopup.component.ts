@@ -46,19 +46,20 @@ export class LoginpopupComponent implements OnInit {
   }
   signin(e) {
     e.preventDefault();
-    const apiUrl = 'signin';
     const signin = {
       login: this.emailFormControl.value,
       email: this.emailFormControl.value,
       pass: this.passwordFormControl.value,
     };
-    this.api.post(apiUrl, signin).then((value: any) => {
-          console.log(value);
-          this.cookieService.set('token', value.token);
-          this.cookieService.set('userId', value.userId);
-          this.auth.isAuth();
+    this.api.post('signin', signin).then((value: any) => {
           this.dialogRef.close();
-          this.router.navigate(['/profile']);
+          this.auth.setUser(value)
+          if (this.auth.isAuth()) {
+              this.router.navigate(['/profile']);
+              return false;
+          } else {
+              return true;
+          }
         },
         (error) => {
 
