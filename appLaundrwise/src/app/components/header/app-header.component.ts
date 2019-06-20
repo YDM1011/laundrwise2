@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LoginpopupComponent} from '../loginpopup/loginpopup.component';
 import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
+import {CrudService} from "../../crud.service";
 
 @Component({
   selector: 'app-app-header',
@@ -11,6 +13,8 @@ import {CookieService} from "ngx-cookie-service";
 export class AppHeaderComponent implements OnInit {
   public islogin = false;
   constructor(
+      private router: Router,
+      private api: CrudService,
       private cookieService: CookieService,
       public dialog: MatDialog
   ) { }
@@ -24,5 +28,15 @@ export class AppHeaderComponent implements OnInit {
   openLoginDialog() {
     let dialogRef = this.dialog.open(LoginpopupComponent);
   }
+  logout(e) {
+    e.preventDefault();
+    const apiUrl = 'logout';
+    this.api.post(apiUrl, {}).then((value: any) => {
+          this.router.navigate(['/']);
+        },
+        (error) => {
+        }).catch(error => {});
+  }
+
 
 }
