@@ -53,6 +53,7 @@ import {ApiInterceptor} from './api.interceptor';
 import { InitOrderComponent } from './pages/orders/init-order/init-order.component';
 import { OrderHeaderComponent } from './pages/orders/order-header/order-header.component';
 import { ThanksComponent } from './pages/orders/thanks/thanks.component';
+import { LoginpopupComponent } from './pages/public/loginpopup/loginpopup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +102,7 @@ import { ThanksComponent } from './pages/orders/thanks/thanks.component';
     InitOrderComponent,
     OrderHeaderComponent,
     ThanksComponent,
+    LoginpopupComponent,
   ],
   imports: [
     BrowserModule,
