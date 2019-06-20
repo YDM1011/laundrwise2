@@ -28,16 +28,6 @@ export class MyErrorStateMatcher2 implements ErrorStateMatcher {
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  // public login;
-  public pass;
-  // public firstName;
-  // public lastName;
-  // public email;
-  // public mobile;
-  // public address1;
-  // public address2;
-  // public country;
-  // public cityCode;
   myForm: FormGroup;
   matcher = new MyErrorStateMatcher();
   matcher2 = new MyErrorStateMatcher2();

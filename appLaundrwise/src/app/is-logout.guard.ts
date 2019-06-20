@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthService} from './auth.service';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class IsLogoutGuard implements CanActivate {
       next: ActivatedRouteSnapshot,
       state: RouterStateSnapshot) {
     if (this.auth.isAuth()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
       return false;
     } else {
       return true;
