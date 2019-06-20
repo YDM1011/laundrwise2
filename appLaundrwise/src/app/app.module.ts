@@ -60,6 +60,8 @@ import { PostAddComponent } from './pages/admin/post/post-add/post-add.component
 import { PostEditComponent } from './pages/admin/post/post-edit/post-edit.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
+import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +116,8 @@ import { SigninComponent } from './components/signin/signin.component';
     DashboardComponent,
     LoginpopupComponent,
     SigninComponent,
+    AdminSidebarComponent,
+    AdminHeaderComponent,
   ],
   imports: [
     BrowserModule,

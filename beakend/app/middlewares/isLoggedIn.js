@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = mongoose.model('Client');
 const config = require('../config/config');
 
 module.exports = function (req, res, next) {

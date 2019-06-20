@@ -32,7 +32,7 @@ export class AdminLoginComponent implements OnInit {
               return true;
           }
       }
-    });
+    }).catch(e=>{});
     console.log(this.adminAuth);
   }
 }
