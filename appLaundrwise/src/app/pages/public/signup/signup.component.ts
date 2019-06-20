@@ -104,8 +104,8 @@ export class SignupComponent implements OnInit {
           // this.router.navigate(['/signin']);
         },
         (error) => {
-          console.log(error);
-        });
+
+        }).catch(error => {});
   }
 
 }
