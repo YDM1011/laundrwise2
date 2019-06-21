@@ -102,13 +102,11 @@ const routes: Routes = [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin', component: AdminComponent , children: [
-
         {path: 'dashboard', component: DashboardComponent, canActivate: [AdminLoginedGuard]},
         {path: 'posts', component: PostComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-add', component: PostAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-edit', component: PostEditComponent, canActivate: [AdminLoginedGuard]},
-
-        {path: '', redirectTo: 'login', pathMatch: 'full'},
+        {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},
     {path: 'admin/create', component: AdminCreateComponent, canActivate: [AdminLogoutGuard]},

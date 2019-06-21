@@ -8,7 +8,7 @@ export interface Post {
 export class PostObj implements Post {
     public title: string = ''
     public text: string = ''
-    public images: string[] = []
+    public images = []
     public date: string = ''
 
     constructor() {

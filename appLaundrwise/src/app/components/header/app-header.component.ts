@@ -24,6 +24,12 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
+      this.auth.onUpDate.subscribe((v:any)=>{
+          if (v){
+              this.islogin = this.auth.isAuth();
+              this.me = v;
+          }
+      });
   }
 
   ngOnChanges() {
@@ -35,19 +41,12 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   openLoginDialog() {
     let dialogRef = this.dialog.open(LoginpopupComponent);
   }
-  logout(e) {
-    e.preventDefault();
+  logout() {
     this.api.post('logout', {}).then((value: any) => {
-            if (this.auth.isAuth()) {
-                this.islogin = true;
-            } else {
-                this.router.navigate(['/signin']);
-                this.islogin = false;
-            }
-          this.router.navigate(['/']);
-        },
-        (error) => {
-        }).catch(error => {});
+        this.router.navigate(['/'])
+    },
+    (error) => {
+    }).catch(error => {});
   }
 
 
