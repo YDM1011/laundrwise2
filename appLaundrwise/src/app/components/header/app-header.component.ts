@@ -1,17 +1,16 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LoginpopupComponent} from '../loginpopup/loginpopup.component';
-import {CookieService} from "ngx-cookie-service";
-import {Router} from "@angular/router";
-import {CrudService} from "../../crud.service";
-import {AuthService} from "../../auth.service";
+import {Router} from '@angular/router';
+import {CrudService} from '../../crud.service';
+import {AuthService} from '../../auth.service';
 
 @Component({
   selector: 'app-app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss']
 })
-export class AppHeaderComponent implements OnInit, OnChanges {
+export class AppHeaderComponent implements OnInit {
   public islogin = false;
   public me;
   public name;
@@ -24,32 +23,37 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-      this.auth.onUpDate.subscribe((v:any)=>{
-          if (v){
+      this.auth.onUpDate.subscribe(( v:any ) => {
+          if (v) {
               this.islogin = this.auth.isAuth();
               this.me = v;
-              this.name = this.me.firstName[0] + this.me.lastName[0]
+              this.name = this.me.firstName[0] + this.me.lastName[0];
           }
       });
-      this.crud.get('me').then(v=>{
-          this.auth.setUser(v)
-      }).catch(e=>{})
+      this.crud.get('me').then(v => {
+          this.auth.setUser(v);
+      }).catch(e => {});
   }
     isOpen() {
         this.isopen = !this.isopen;
     }
-  ngOnChanges() {
-
-  }
 
   openLoginDialog() {
     let dialogRef = this.dialog.open(LoginpopupComponent);
-      this.isopen = !this.isopen;
+    if ( this.isopen ) {
+        this.isopen = !this.isopen;
+    } else {
+        return;
+    }
   }
   logout() {
     this.crud.post('logout', {}).then((value: any) => {
-        this.router.navigate(['/'])
-        this.isopen = !this.isopen;
+        this.router.navigate(['/']);
+        if ( this.isopen ) {
+            this.isopen = !this.isopen;
+        } else {
+            return;
+        }
     },
     (error) => {
     }).catch(error => {});

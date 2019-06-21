@@ -66,6 +66,7 @@ import {UploadComponent} from './components/uploadFile/upload.component';
 import {DialogComponent} from './components/uploadFile/dialog/dialog.component';
 import { ImgComponent } from './components/img/img.component';
 import { IsAppDownloadComponent } from './components/is-app-download/is-app-download.component';
+import { BlogPostComponent } from './components/blog-post/blog-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,6 +127,7 @@ import { IsAppDownloadComponent } from './components/is-app-download/is-app-down
     ProfileNavigationComponent,
     ImgComponent,
     IsAppDownloadComponent,
+    BlogPostComponent,
   ],
   imports: [
     BrowserModule,
