@@ -49,8 +49,7 @@
 }
 .main-nav .cancel{
   position: absolute;
-  right: 15px;
-  top: 22px;
+  padding:22px 15px;
   color: #000;
 }
 .main-nav .buttons{
@@ -63,11 +62,11 @@
     border-radius: 60px;
     border: 2px solid #13AAFF;
     text-align: center;
-    padding: 8px 5px;
+    padding: 8px 15px;
     margin:0 10px;
     transition: all .2s;
     cursor:pointer;
-    min-width: 100px;
+    min-width: 70px;
     &:hover{
       transform: scale(1.03);
       box-shadow: 0 1px 8px rgba(0,0,0,0.15), 0 1px 8px rgba(0,0,0,0.15);
@@ -122,8 +121,6 @@
 .main-nav li:nth-child(9) a {
   transition: all 275ms 575ms
 }
-
-
 /* Decoration */
 .main-nav ul,
 .main-nav li {
