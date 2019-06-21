@@ -53,6 +53,31 @@
   top: 22px;
   color: #000;
 }
+.main-nav .buttons{
+  display: flex;
+  align-items: center;
+  a{
+    display: inline-block;
+    color: $main-blue;
+    text-decoration: none;
+    border-radius: 60px;
+    border: 2px solid #13AAFF;
+    text-align: center;
+    padding: 8px 5px;
+    margin:0 10px;
+    transition: all .2s;
+    cursor:pointer;
+    min-width: 100px;
+    &:hover{
+      transform: scale(1.03);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.15), 0 1px 8px rgba(0,0,0,0.15);
+    }
+    &.color{
+      color: #fff;
+      background: $main-blue;
+    }
+  }
+}
 .main-nav li {
   display: block;
   margin: .5rem 0;
@@ -90,6 +115,12 @@
 }
 .main-nav li:nth-child(7) a {
   transition: all 275ms 475ms
+}
+.main-nav li:nth-child(8) a {
+  transition: all 275ms 525ms
+}
+.main-nav li:nth-child(9) a {
+  transition: all 275ms 575ms
 }
 
 

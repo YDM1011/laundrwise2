@@ -43,11 +43,13 @@ export class AppHeaderComponent implements OnInit, OnChanges {
 
   openLoginDialog() {
     let dialogRef = this.dialog.open(LoginpopupComponent);
+      this.isopen = !this.isopen;
   }
   logout() {
     this.api.post('logout', {}).then((value: any) => {
-        this.router.navigate(['/'])
-    },
+        this.router.navigate(['/']);
+        this.isopen = !this.isopen;
+        },
     (error) => {
     }).catch(error => {});
   }
