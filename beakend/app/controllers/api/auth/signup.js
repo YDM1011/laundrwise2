@@ -8,18 +8,15 @@ module.exports = (backendApp, router) => {
     };
 
     const signup = (req,res,next) => {
-        var User = backendApp.mongoose.model("Client");
-        var errors = {};
-        if (!req.body.login) {
-            errors.login = "Login is required";
-        }
-        if (!req.body.pass) {
-            errors.password = "Password is required";
-        }
+        const Client = backendApp.mongoose.model("Client");
+        let errors = {};
+
+
+
         if (Object.keys(errors).length > 0) {
             return res.badRequest(errors);
         }
-        User.findOne({
+        Client.findOne({
             $or:[
                 {login: req.body.login},
                 {email: req.body.login}
@@ -31,7 +28,7 @@ module.exports = (backendApp, router) => {
                 req.body.token = getToken(req.body.login);
                 req.body.pass = md5(req.body.pass);
                 req.body.email = req.body.email ? req.body.email : req.body.login;
-                User.create(req.body, (e,r)=>{
+                Client.create(req.body, (e,r)=>{
                     if (e) return res.serverError(e);
                     if (!r) return res.badRequest();
                     r.signin(req,res,backendApp)
@@ -40,5 +37,13 @@ module.exports = (backendApp, router) => {
         });
     };
 
-    router.post('/signup', [], signup);
+    const validate = (req,res,next) => {
+        console.log("Validator!!!", backendApp.service)
+        const err = backendApp.service.signupvalidator(req.body);
+        console.log(err);
+        if (err) return res.badRequest(err);
+        else return next()
+    }
+
+    router.post('/signup', [validate], signup);
 };

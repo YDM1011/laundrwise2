@@ -62,9 +62,6 @@ export class SignupComponent implements OnInit {
   cityFormControl = new FormControl('', [
     Validators.required
   ]);
-  cityCodeFormControl = new FormControl('', [
-    Validators.required
-  ]);
   addressFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -91,7 +88,6 @@ export class SignupComponent implements OnInit {
       address2: this.address2FormControl.value,
       country: this.countryFormControl.value,
       city: this.cityFormControl.value,
-      cityCode: this.cityCodeFormControl.value,
       pass: this.myForm.value.passwordFormControl,
     };
 

@@ -49,6 +49,9 @@ import {PostEditComponent} from './pages/admin/post/post-edit/post-edit.componen
 import {DashboardComponent} from './pages/admin/dashboard/dashboard.component';
 import {IsLoginGuard} from './is-login.guard';
 import {SigninComponent} from './components/signin/signin.component';
+import {CategoryEditComponent} from "./pages/admin/category-list/category-edit/category-edit.component";
+import {CategoryAddComponent} from "./pages/admin/category-list/category-add/category-add.component";
+import {CategoryListComponent} from "./pages/admin/category-list/category-list.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -106,6 +109,9 @@ const routes: Routes = [
         {path: 'posts', component: PostComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-add', component: PostAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-edit', component: PostEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'category', component: CategoryListComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'category-add', component: CategoryAddComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'category-edit', component: CategoryEditComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},

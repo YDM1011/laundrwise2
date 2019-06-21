@@ -1,6 +1,12 @@
-<input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+
+<ng-container *ngIf="multiple">
+  <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+</ng-container>
+<ng-container *ngIf="!multiple">
+  <input type="file" #file style="display: none" (change)="onFilesAdded()" />
+</ng-container>
 <div class="container" fxLayout="column" fxLayoutAlign="space-evenly stretch">
-  <h1 mat-dialog-title>Upload Files</h1>
+  <h1 mat-dialog-title>Upload Files {{multiple}}</h1>
   <div>
     <button [disabled]="uploading || uploadSuccessful" mat-raised-button color="primary" class="add-files-btn" (click)="addFiles()">
       Add Files

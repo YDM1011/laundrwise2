@@ -1,0 +1,5 @@
+<p *ngFor="let item of category">
+  {{item.name}} <br>
+  {{item.date | date:'yy-MM-dd'}}
+  <app-img [img]="item.icon"></app-img>
+</p>

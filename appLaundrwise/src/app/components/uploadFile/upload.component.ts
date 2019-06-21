@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { MatDialog } from "@angular/material";
 import { UploadService } from "./upload.service";
 import { DialogComponent } from "./dialog/dialog.component";
@@ -8,9 +8,10 @@ import { DialogComponent } from "./dialog/dialog.component";
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss']
 })
-export class UploadComponent implements OnInit{
+export class UploadComponent implements OnInit, OnChanges{
 
   @Output() onFs = new EventEmitter();
+  @Input() multiple = true;
 
   constructor(public dialog: MatDialog,
               public uploadService: UploadService) {}
@@ -20,6 +21,9 @@ export class UploadComponent implements OnInit{
           this.onFs.emit(v);
       }
     })
+  }
+  ngOnChanges(){
+    this.uploadService.setMultiple(this.multiple);
   }
   openUploadDialog() {
     let dialogRef = this.dialog.open(DialogComponent, { width: '50%', height: '50%' });

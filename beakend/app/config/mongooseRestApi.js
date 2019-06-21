@@ -1,7 +1,7 @@
 let restFunction = {};
 module.exports = function (backendApp) {
     // const restify = require('express-restify-mongoose');
-    var restify = require('../lib/express-restify-mongoose/lib/express-restify-mongoose');
+    var restify = require('express-restify-mongoose');
     var modelNames = backendApp.mongoose.modelNames();
     modelNames.forEach(function (modelName) {
         var model = backendApp.mongoose.model(modelName);
@@ -21,9 +21,9 @@ module.exports = function (backendApp) {
                 // preRead: (req,res,next)=>{preRead(model,req,res,next)},
                 // for access rights control
                 // preMiddleware: backendApp.middlewares.isLoggedIn,
-                preRead: [preRead, schemaPreRead],
-                preCreate: backendApp.middlewares.isLoggedIn,
-                preUpdate: backendApp.middlewares.isLoggedIn,
+                preRead: [schemaPreRead],
+                preCreate: [backendApp.middlewares.isLoggedIn, schemaPreSave],
+                preUpdate: [backendApp.middlewares.isLoggedIn, schemaPreUpdate],
                 preDelete: backendApp.middlewares.isLoggedIn,
                 // preCustomLink: backendApp.middlewares.isLoggedIn
             });
@@ -52,6 +52,34 @@ module.exports = function (backendApp) {
         }
 
     };
+
+    function schemaPreSave (req, res, next) {
+        let schem = restFunction[String(req.erm.model.modelName.toLowerCase())];
+        console.log("Schema", schem, req.erm.model.modelName);
+        if (schem) {
+            try {
+                schem.preSave(req, res, next, backendApp);
+            } catch (e) {
+                next()
+            }
+        } else {
+            next()
+        }
+    };
+
+    function schemaPreUpdate (req, res, next) {
+        let schem = restFunction[String(req.erm.model.modelName.toLowerCase())];
+        console.log("Schema", schem, req.erm.model.modelName);
+        if (schem) {
+            try {
+                schem.preUpdate(req, res, next, backendApp);
+            } catch (e) {
+                next()
+            }
+        } else {
+            next()
+        }
+    };
 };
 
 const parseFileName = str =>{
@@ -60,10 +88,13 @@ const parseFileName = str =>{
 
 
 const preRead = (req,res,next) => {
-    if (req._ermQueryOptions.skip){
-        req._ermQueryOptions.skip = req.query.skip * req.query.limit;
-        next()
-    }else{
-        next()
-    }
+    try{
+        if (req._ermQueryOptions.skip){
+            req._ermQueryOptions.skip = req.query.skip * req.query.limit;
+            next()
+        }else{
+            next()
+        }
+    }catch(e){}
+
 };

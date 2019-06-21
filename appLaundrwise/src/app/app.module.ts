@@ -66,6 +66,9 @@ import { ProfileNavigationComponent } from './components/profile-navigation/prof
 import {UploadComponent} from './components/uploadFile/upload.component';
 import {DialogComponent} from './components/uploadFile/dialog/dialog.component';
 import { ImgComponent } from './components/img/img.component';
+import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
+import { CategoryAddComponent } from './pages/admin/category-list/category-add/category-add.component';
+import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,6 +129,9 @@ import { ImgComponent } from './components/img/img.component';
     DialogComponent,
     ProfileNavigationComponent,
     ImgComponent,
+    CategoryListComponent,
+    CategoryAddComponent,
+    CategoryEditComponent,
   ],
   imports: [
     BrowserModule,

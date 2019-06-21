@@ -1,21 +1,30 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
 import { UploadService } from '../upload.service';
 import { MatDialogRef } from '@angular/material';
 import { forkJoin } from "rxjs";
+import {UploadComponent} from "../upload.component";
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent  implements OnInit, OnChanges {
   // @ts-ignore
   @ViewChild('file') file;
+  public multiple;
   public files: Set<File> = new Set();
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>, public uploadService: UploadService) {}
+  constructor(public dialogRef: MatDialogRef<DialogComponent>, public uploadService: UploadService) {
+  }
 
   ngOnInit() {
+    this.uploadService.onMultiple.subscribe(v=>{
+      this.multiple = v;
+    })
+  }
+  ngOnChanges(){
+      // this.multiple = this.uploadService.multiple
   }
 
   progress;

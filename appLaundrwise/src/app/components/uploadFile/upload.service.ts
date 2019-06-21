@@ -12,7 +12,13 @@ export class UploadService {
 
   private fs = new BehaviorSubject<any>(null);
   public onFs = this.fs.asObservable();
+  private multiple = new BehaviorSubject<any>(null);
+  public onMultiple = this.multiple.asObservable();
   constructor(private http: HttpClient) {}
+
+  setMultiple(is){
+    this.multiple.next(is ? true : false);
+  }
 
   public upload(
     files: Set<File>
@@ -67,5 +73,7 @@ export class UploadService {
 
     // return the map of progress.observables
     return status;
+
+
   }
 }

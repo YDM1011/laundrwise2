@@ -1,20 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+/**
+ * 1 - cleaners
+ * 2 - delivery
+ * role - manedger 1/2 superManedger 1/2 client
+ */
 const schem = new Schema({
-    login: {type: String, unique: true, required: [true, "Login is required"]},
+    login: {type: String, required: [true, "Login is required"]},
     pass: {type: String, required: [true, "Password is required"]},
     firstName: {type: String, required: [true, "First Name is required"]},
     lastName: {type: String, required: [true, "Last Name is required"]},
-    email: {type: String, required: [true, "Email is required"]},
-    mobile: {type: String, required: [true, "Mobile is required"]},
-    address1: {type: String, required: [true, "Address is required"]},
+    email: {type: String},
+    mobile: {type: String},
+    address1: {type: String},
     address2: String,
-    country: {type: String, required: [true, "Country is required"]},
-    cityCode: {type: String, required: [true, "City code is required"]},
+    country: {type: String},
+    cityCode: {type: String},
     basketList: [],
     basketListCount: Number,
     token: String,
+    role: String,
     data: {type: Date, default: new Date()}
 },{
     toJSON: {
@@ -27,7 +32,8 @@ const schem = new Schema({
         transform: function (doc, ret) {
             delete ret.pass;
             delete ret.token;
-        }
+        },
+        virtuals: true,
     },
     createRestApi: true,
     strict: true,
