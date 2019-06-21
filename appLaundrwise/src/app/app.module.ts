@@ -51,7 +51,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {ApiInterceptor} from './api.interceptor';
 import { InitOrderComponent } from './pages/orders/init-order/init-order.component';
-import { OrderHeaderComponent } from './pages/orders/order-header/order-header.component';
 import { ThanksComponent } from './pages/orders/thanks/thanks.component';
 import { LoginpopupComponent } from './components/loginpopup/loginpopup.component';
 import { AdminCreateComponent } from './pages/admin/admin-create/admin-create.component';
@@ -66,6 +65,7 @@ import { ProfileNavigationComponent } from './components/profile-navigation/prof
 import {UploadComponent} from './components/uploadFile/upload.component';
 import {DialogComponent} from './components/uploadFile/dialog/dialog.component';
 import { ImgComponent } from './components/img/img.component';
+import { IsAppDownloadComponent } from './components/is-app-download/is-app-download.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,7 +112,6 @@ import { ImgComponent } from './components/img/img.component';
     SignupComponent,
     AdminCreateComponent,
     InitOrderComponent,
-    OrderHeaderComponent,
     ThanksComponent,
     PostComponent,
     PostAddComponent,
@@ -126,6 +125,7 @@ import { ImgComponent } from './components/img/img.component';
     DialogComponent,
     ProfileNavigationComponent,
     ImgComponent,
+    IsAppDownloadComponent,
   ],
   imports: [
     BrowserModule,
