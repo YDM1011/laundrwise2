@@ -22,7 +22,6 @@ export class AdminLoginComponent implements OnInit {
   }
 
   doAuth() {
-    //api: api/adminCreate
     this.crud.post('adminSignin', this.adminAuth).then((v:any)=>{
       if(v) {
           if (this.auth.isAuthAdmin()) {

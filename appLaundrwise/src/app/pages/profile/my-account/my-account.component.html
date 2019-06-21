@@ -1,65 +1,78 @@
 <div class="infoedit">
     <h2>My account</h2>
     <div class="infoedit__box">
-        <form action="" class="">
-            <div class="infoedit__headline">
-                <div class="name">General</div>
-                <span class="edit">edit</span>
-            </div>
-            <label for="name">
-                                <span class="title">
-                                    First Name
-                                </span>
-                <input type="text" value="Tymofii" id="name" disabled>
+        <div class="infoedit__headline">
+            <div class="name">General</div>
+            <span class="edit" (click)="editUser()">edit</span>
+        </div>
+        <div class="information" *ngIf="!useredit">
+            <span>{{AuthAccount.firstName}}</span>
+            <span>{{AuthAccount.lastName}}</span>
+            <span>{{AuthAccount.mobile}}</span>
+            <span>{{AuthAccount.email}}</span>
+        </div>
+        <form action="" (ngSubmit)="userSubmit()" class="active" *ngIf="useredit">
+            <label>
+                <span class="title">
+                    First Name
+                </span>
+                <input type="text" value="{{AuthAccount.firstName}}" name="firstName" [(ngModel)]="AuthAccount.firstName">
             </label>
-            <label for="lastname">
-                                <span class="title">
-                                    Name
-                                </span>
-                <input type="text" value="Yuzefovych" id="lastname" disabled>
+            <label>
+                <span class="title">
+                    Name
+                </span>
+                <input type="text" value="{{AuthAccount.lastName}}" name="lastName" [(ngModel)]="AuthAccount.lastName">
             </label>
-            <label for="phone">
-                                <span class="title">
-                                    Phone number
-                                </span>
-                <input type="text" value="0982284853" id="phone" disabled>
+            <label>
+                <span class="title">
+                    Phone number
+                </span>
+                <input type="text" value="{{AuthAccount.mobile}}" name="mobile" [(ngModel)]="AuthAccount.mobile">
             </label>
-            <label for="email">
-                                <span class="title">
-                                    Phone number
-                                </span>
-                <input type="text" value="tymofii.yuzeovych@gmail.com" id="email" disabled>
+            <label>
+                <span class="title">
+                    Email
+                </span>
+                <input type="text" value="{{AuthAccount.email}}" name="email" [(ngModel)]="AuthAccount.email">
             </label>
             <input type="submit" class="save" value="Save">
         </form>
-        <form action="" class="">
-            <div class="infoedit__headline">
-                <div class="name">Adress 1</div>
-                <span class="edit">edit</span>
-            </div>
-            <label for="name">
-                                <span class="title">
-                                    Country
-                                </span>
-                <input type="text" value="" placeholder="Country" id="" disabled>
-            </label>
-            <label for="lastname">
-                                <span class="title">
-                                    City, code
-                                </span>
-                <input type="text" value="" placeholder="City, code" id="" disabled>
-            </label>
-            <label for="phone">
-                                <span class="title">
-                                    Adress1
-                                </span>
-                <input type="text" value="" placeholder="Adress1" id="" disabled>
-            </label>
-            <label for="email">
+
+        <div class="infoedit__headline">
+            <div class="name">Adress</div>
+            <span class="edit" (click)="editAddress()">edit</span>
+        </div>
+        <div class="information" *ngIf="!addressedit">
+            <span>{{AuthAccount.country}}</span>
+            <span>{{AuthAccount.city}}</span>
+            <span>{{AuthAccount.address1}}</span>
+            <span>{{AuthAccount.address2}}</span>
+        </div>
+        <form action="" (ngSubmit)="addressSubmit()" class="active" *ngIf="addressedit">
+            <label>
                 <span class="title">
-                    Adress2
+                    Country
                 </span>
-                <input type="text" value="" placeholder="Adress2" id="" disabled>
+                <input type="text" value="{{AuthAccount.country}}" name="" placeholder="Country" >
+            </label>
+            <label>
+                <span class="title">
+                    City
+                </span>
+                <input type="text" value="{{AuthAccount.city}}" name="city" placeholder="City, code">
+            </label>
+            <label>
+                <span class="title">
+                    Address1
+                </span>
+                <input type="text" value="{{AuthAccount.address1}}" name="address1" placeholder="Address1">
+            </label>
+            <label>
+                <span class="title">
+                    Address2
+                </span>
+                <input type="text" value="{{AuthAccount.address2}}" placeholder="Address2">
             </label>
             <input type="submit" class="save" value="Save">
         </form>

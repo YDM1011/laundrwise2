@@ -16,9 +16,9 @@ export class CrudService {
   get(api, id = null) {
     return new Promise((resolve, reject) => {
       id = id ? '/' + id : id;
-      if (this.DB[`${this.api}${api}${id ? id : ''}`]){
+      if (this.DB[`${this.api}${api}${id ? id : ''}`]) {
           resolve(this.DB[`${this.api}${api}${id ? id : ''}`]);
-      }else{
+      } else {
           this.http.get(`${this.api}${api}${id ? id : ''}`).subscribe(data => {
               this.DB[`${this.api}${api}${id ? id : ''}`] = data;
               resolve(data);
@@ -30,9 +30,9 @@ export class CrudService {
     });
   }
 
-  post(api, obj) {
+  post(api, obj, id = null) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${this.api}${api}`, obj).subscribe(data => {
+      this.http.post(`${this.api}${api}${id ? '/' + id : ''}`, obj).subscribe(data => {
        resolve(data);
       }, error => {
         reject(error);

@@ -60,71 +60,71 @@
     padding: 10px 0;
     position: relative;
     span{
-      margin: 10px 0;
+      //margin: 10px 0;
       color: #333;
     }
-    .cleaner-select{
-      display: inline-flex;
-      background: #fff;
-      border: 1px solid $main-blue;
-      border-radius: 20px;
-      align-items: center;
-      padding: 8px 25px;
-      color: #333;
-      max-width: 300px;
-      position: relative;
-      cursor: pointer;
-      .logo-cleaner{
-        width: 46px;
-        height: 26px;
-        margin-right: 25px;
-      }
-      .arrow{
-        transition: transform .2s;
-      }
-      .cleaner-list{
-        position: absolute;
-        background: #fff;
-        top: calc(100% + 1px);
-        width: 100%;
-        left: 0;
-        border: 1px solid $main-blue;
-        border-radius: 20px;
-        overflow: hidden;
-        opacity: 0;
-        pointer-events: none;
-        ul{
-          padding: 8px 0;
-          margin: 0;
-          li{
-            display: inline-flex;
-            align-items: center;
-            list-style: none;
-            padding: 10px 25px;
-            width: 100%;
-            border: 1px solid #fff;
-            cursor: pointer;
-            transition: all .2s;
-            img{
-              margin-right:25px;
-            }
-            &:hover{
-              box-shadow: 0 0 5px rgba(33,33,33,.2);
-            }
-          }
-        }
-      }
-      &.active{
-        .arrow{
-          transform: rotate(180deg);
-        }
-        .cleaner-list{
-          opacity: 1;
-          pointer-events: auto;
-
-        }
-      }
-    }
+    //.cleaner-select{
+    //  display: inline-flex;
+    //  background: #fff;
+    //  border: 1px solid $main-blue;
+    //  border-radius: 20px;
+    //  align-items: center;
+    //  padding: 8px 25px;
+    //  color: #333;
+    //  max-width: 300px;
+    //  position: relative;
+    //  cursor: pointer;
+    //  .logo-cleaner{
+    //    width: 46px;
+    //    height: 26px;
+    //    margin-right: 25px;
+    //  }
+    //  .arrow{
+    //    transition: transform .2s;
+    //  }
+    //  .cleaner-list{
+    //    position: absolute;
+    //    background: #fff;
+    //    top: calc(100% + 1px);
+    //    width: 100%;
+    //    left: 0;
+    //    border: 1px solid $main-blue;
+    //    border-radius: 20px;
+    //    overflow: hidden;
+    //    opacity: 0;
+    //    pointer-events: none;
+    //    ul{
+    //      padding: 8px 0;
+    //      margin: 0;
+    //      li{
+    //        display: inline-flex;
+    //        align-items: center;
+    //        list-style: none;
+    //        padding: 10px 25px;
+    //        width: 100%;
+    //        border: 1px solid #fff;
+    //        cursor: pointer;
+    //        transition: all .2s;
+    //        img{
+    //          margin-right:25px;
+    //        }
+    //        &:hover{
+    //          box-shadow: 0 0 5px rgba(33,33,33,.2);
+    //        }
+    //      }
+    //    }
+    //  }
+    //  &.active{
+    //    .arrow{
+    //      transform: rotate(180deg);
+    //    }
+    //    .cleaner-list{
+    //      opacity: 1;
+    //      pointer-events: auto;
+    //
+    //    }
+    //  }
+    //}
   }
 }
 .order-nav{
@@ -251,6 +251,7 @@
         width: 100%;
         padding: 8px 30px;
         border-radius: 20px;
+        display: inline-block;
       }
     }
     &-basket{
@@ -264,6 +265,7 @@
         width: 100%;
         border-radius: 20px;
         padding: 12px 40px;
+        display: inline-block;
       }
     }
     &.reverse{
@@ -546,8 +548,11 @@
       padding: 20px 0 20px 30px;
       flex-direction: row;
       align-items: center;
-      span{
+      .name{
         margin-right: 25px;
+      }
+      span{
+        //margin-right: 25px;
       }
     }
   }
@@ -675,16 +680,16 @@
     }
   }
 
-  .cleaner{
-    &__box{
-      padding: 30px 0 30px 30px;
-      flex-direction: row;
-      align-items: center;
-      span{
-        margin-right: 25px;
-      }
-    }
-  }
+  //.cleaner{
+  //  &__box{
+  //    padding: 30px 0 30px 30px;
+  //    flex-direction: row;
+  //    align-items: center;
+  //    span{
+  //      margin-right: 25px;
+  //    }
+  //  }
+  //}
 
   .order{
     &__box{

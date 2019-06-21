@@ -8,7 +8,7 @@ import {CrudService} from "../../crud.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+    public userName: string;
     constructor(
         private auth: AuthService,
         private crud: CrudService
@@ -17,5 +17,8 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.crud.get('me').then(v => {
+            this.userName = Object(v).firstName + ' ' + Object(v).lastName;
+        }).catch(e => {});
     }
 }

@@ -23,7 +23,7 @@ export class AppHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.auth.onUpDate.subscribe(( v:any ) => {
+      this.auth.onUpDate.subscribe(( v: any ) => {
           if (v) {
               this.islogin = this.auth.isAuth();
               this.me = v;
