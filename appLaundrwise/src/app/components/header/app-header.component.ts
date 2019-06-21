@@ -15,6 +15,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   @Input() islogin = false;
   @Input() me;
   public name;
+  public isopen = false;
   constructor(
       private router: Router,
       private api: CrudService,
@@ -25,7 +26,9 @@ export class AppHeaderComponent implements OnInit, OnChanges {
 
   ngOnInit() {
   }
-
+  isOpen() {
+      this.isopen = !this.isopen;
+  }
   ngOnChanges() {
       if (this.me) {
           this.name = this.me.firstName[0] + this.me.lastName[0]

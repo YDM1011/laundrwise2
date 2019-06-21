@@ -1,3 +1,30 @@
+<nav class="main-nav" [class.is-open]="isopen" id="main-nav" >
+  <ul>
+    <span class="cancel" (click)="isOpen()"><img src="../assets/images/close.svg" alt=""></span>
+    <li>
+      <a routerLinkActive="active" [routerLink]="'/about-us'"  class="nav-item">About Us</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="'/how-it-works'" class="nav-item">How it Works</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="'/blogs'" class="nav-item">Blog</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="'/faq'" class="nav-item">FAQ</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="'/cleaners'" class="nav-item">Cleaners</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="'/contacts'" class="nav-item">Contacts</a>
+    </li>
+    <li class="buttons">
+
+    </li>
+  </ul>
+</nav>
+
 <header>
   <div class="navigation">
     <div class="navigation__logo">
@@ -22,7 +49,7 @@
         <button mat-menu-item (click)="logout($event)">Log out</button>
       </mat-menu>
     </div>
-    <div class="navigation__burger" id="navigation__burger">
+    <div class="navigation__burger" (click)="isOpen()" id="navigation__burger">
     </div>
   </div>
 </header>
