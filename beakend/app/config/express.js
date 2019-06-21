@@ -26,9 +26,10 @@ const init = (app, config) =>{
     app.use(cookieParser());
     app.use(compress());
     app.use(flash());
+    app.use('/upload', express.static(path.join(__dirname, '../../upload')));
     app.use('/', express.static(path.join(__dirname, '../../../appLaundrwise/dist/laundrwise')));
     app.use(express.static(config.root + 'public'));
-    app.use('/upload', express.static(config.root + 'upload'));
+
     app.use(methodOverride());
     app.use(function (req, res, next) {
         if (req.query.accessToken) {

@@ -1,3 +1,6 @@
-<p>
-  post works!
+<p *ngFor="let item of post">
+  {{item.title}} <br>
+  {{item.text}}
+  {{item.data | date:'yy-MM-dd'}}
+  <app-img *ngFor="let img of item.images" [img]="img"></app-img>
 </p>

@@ -53,13 +53,9 @@ export class LoginpopupComponent implements OnInit {
     };
     this.api.post('signin', signin).then((value: any) => {
           this.dialogRef.close();
-          this.auth.setUser(value)
           if (this.auth.isAuth()) {
               this.router.navigate(['/profile']);
-              return false;
-          } else {
-              return true;
-          }
+          };
           this.auth.setUser(value.user);
         },
         (error) => {

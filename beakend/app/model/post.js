@@ -7,6 +7,9 @@ const schema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "User"
         }},
+    title: String,
+    text: String,
+    images: [String],
     data: {type: Date, default: new Date()}
 },{
     toJSON: {

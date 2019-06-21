@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Post, PostObj} from "../post";
+import {CrudService} from "../../../../crud.service";
 
 @Component({
   selector: 'app-post-add',
@@ -10,15 +11,18 @@ export class PostAddComponent implements OnInit {
 
   public post:Post = new PostObj();
 
-  constructor() { }
+  constructor(
+      private crud: CrudService
+  ) { }
 
   ngOnInit() {
   }
 
   addPost() {
-
+    this.crud.post('post', this.post);
+    console.log(this.post);
   }
   fsData(data) {
-    console.log(data);
+    this.post.images.push(data.file );
   }
 }

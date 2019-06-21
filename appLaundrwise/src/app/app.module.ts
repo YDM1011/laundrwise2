@@ -65,6 +65,7 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
 import { ProfileNavigationComponent } from './components/profile-navigation/profile-navigation.component';
 import {UploadComponent} from './components/uploadFile/upload.component';
 import {DialogComponent} from './components/uploadFile/dialog/dialog.component';
+import { ImgComponent } from './components/img/img.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +125,7 @@ import {DialogComponent} from './components/uploadFile/dialog/dialog.component';
     UploadComponent,
     DialogComponent,
     ProfileNavigationComponent,
+    ImgComponent,
   ],
   imports: [
     BrowserModule,
