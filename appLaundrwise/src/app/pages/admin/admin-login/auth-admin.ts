@@ -6,7 +6,7 @@ export interface AuthAdmin {
 export class AuthAdminObj implements AuthAdmin{
     public login = '';
     public pass = '';
-    constructor(){
+    constructor() {
         return {
             login: this.login,
             pass: this.pass

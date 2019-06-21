@@ -626,6 +626,36 @@
   }
   &__box{
     width: 100%;
+    .infoedit__headline{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #D9D9D9;
+      .name{
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        text-transform: uppercase;
+        font-family: $medium;
+      }
+      .edit{
+        color: $main-blue;
+        cursor: pointer;
+      }
+    }
+    .information{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      span{
+        font-size: 16px;
+        color: #333;
+        font-family: $light;
+        margin-bottom: 15px;
+      }
+    }
     form{
       display: flex;
       flex-direction: column;
@@ -633,25 +663,6 @@
       max-width: 500px;
       margin: 0 auto 25px;
       transition: all .2s;
-      .infoedit__headline{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-bottom: 5px;
-        margin-bottom: 20px;
-        border-bottom: 1px solid #D9D9D9;
-        .name{
-          font-weight: 600;
-          font-size: 14px;
-          line-height: 21px;
-          text-transform: uppercase;
-          font-family: $medium;
-        }
-        .edit{
-          color: $main-blue;
-          cursor: pointer;
-        }
-      }
       label{
         .title{
           display: none;

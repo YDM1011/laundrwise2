@@ -97,23 +97,14 @@
 <div class="cleaner">
     <div class="order-container">
         <div class="cleaner__box">
-            <span>Cleaner name</span>
-            <div class="cleaner-select">
-<!--                <img src="../assets/images/logo-cleaner.png" class="logo-cleaner" alt="">-->
-                <span>Name Company</span>
-                <div class="arrow">
-                    <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.23922 6.46572L11.9 0.8049C12.0333 0.671615 12.0333 0.457857 11.9 0.324573C11.7668 0.191288 11.553 0.191288 11.4197 0.324573L6.00031 5.74397L0.580918 0.324572C0.447634 0.191288 0.233876 0.191288 0.100592 0.324572C0.0352068 0.389957 -2.93413e-09 0.477975 -3.92431e-09 0.563479C-4.91449e-09 0.648982 0.0326919 0.737 0.100592 0.802385L5.76141 6.4632C5.89218 6.59649 6.10845 6.59649 6.23922 6.46572Z" fill="#13AAFF"/>
-                    </svg>
-                </div>
-                <div class="cleaner-list">
-                    <ul>
-                        <li class="item-li"><img src="../assets/images/logo-cleaner.png" alt="">Name Company</li>
-                        <li><img src="../app/images/logo-cleaner.png" alt="">Name Company</li>
-                        <li><img src="../app/images/logo-cleaner.png" alt="">Name Company</li>
-                    </ul>
-                </div>
-            </div>
+            <span class="name">Cleaner name</span>
+            <mat-form-field>
+                <mat-select [(value)]="selected">
+                    <mat-option value="company1">Name company 1</mat-option>
+                    <mat-option value="company2">Name company 2</mat-option>
+                    <mat-option value="company3">Name company 3</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
 </div>

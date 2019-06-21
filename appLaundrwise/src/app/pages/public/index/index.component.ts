@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CrudService} from '../../../crud.service';
 
 @Component({
   selector: 'app-index',
@@ -6,10 +7,15 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-
-  constructor() {
+  public arrayPost;
+  constructor(
+      private crud: CrudService
+  ) {
   }
 
   ngOnInit() {
+    this.crud.get('post?query={}&skip=0&limit=3&sort={"data":-1}', ).then((value) => {
+      this.arrayPost = value;
+    }).catch(e => {});
   }
 }

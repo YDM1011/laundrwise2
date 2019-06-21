@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CrudService} from '../../../crud.service';
 
 @Component({
   selector: 'app-contacts',
@@ -6,11 +7,15 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-  constructor() {
+  public arrayPost;
+  constructor(
+      private crud: CrudService
+  ) {
   }
 
   ngOnInit() {
+    this.crud.get('post?query={}&skip=0&limit=3', ).then((value) => {
+      this.arrayPost = value;
+    }).catch(e => {});
   }
-
-
 }

@@ -1,0 +1,11 @@
+<a class="blog__container-item" >
+  {{itemPost.id}}
+  <div class="img">
+    <img src="{{itemPost.images[0]}}" alt="{{itemPost.title}}">
+  </div>
+  <div class="title">{{itemPost.title}}</div>
+  <div class="date">{{itemPost.data.slice(0, 10)}}</div>
+  <div class="description">
+    {{itemPost.text.slice(0, 200)}}
+  </div>
+</a>

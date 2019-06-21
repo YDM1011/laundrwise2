@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./new-orders-step-one.component.css']
 })
 export class NewOrdersStepOneComponent implements OnInit {
+  selected = 'company1';
   constructor() {
   }
 

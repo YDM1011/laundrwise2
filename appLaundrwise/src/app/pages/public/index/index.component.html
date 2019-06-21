@@ -183,62 +183,12 @@
     </div>
 </section>
 
-<section class="getapp">
-    <div class="getapp-container">
-        <div class="left">
-            <h2>Get our application</h2>
-            <p class="description">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </p>
-            <div class="buttons">
-                <a href="">
-                    <img src="../assets/images/googlestore.svg" alt="">
-                </a>
-                <a href="">
-                    <img src="../assets/images/appstore.svg" alt="">
-                </a>
-            </div>
-        </div>
-        <div class="right">
-            <div class="img">
-                <img src="../assets/images/getapp.png" alt="get our applicaton ">
-            </div>
-        </div>
-    </div>
-</section>
+<app-is-app-download></app-is-app-download>
 
 <section class="blog" id="blog">
     <h2>Blog</h2>
     <div class="blog__container">
-        <a href="" class="blog__container-item">
-            <div class="img">
-                <img src="../assets/images/blog.jpeg" alt="">
-            </div>
-            <div class="title">Something</div>
-            <div class="date">01/05/19</div>
-            <div class="description">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </div>
-        </a>
-        <a href="" class="blog__container-item">
-            <div class="img">
-                <img src="../assets/images/blog.jpeg" alt="">
-            </div>
-            <div class="title">Something</div>
-            <div class="date">01/05/19</div>
-            <div class="description">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </div>
-        </a>
-        <a href="" class="blog__container-item">
-            <div class="img">
-                <img src="../assets/images/blog.jpeg" alt="">
-            </div>
-            <div class="title">Something</div>
-            <div class="date">01/05/19</div>
-            <div class="description">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </div>
-        </a>
+        <app-blog-post  *ngFor="let item of arrayPost" [itemPost]="item">
+        </app-blog-post>
     </div>
 </section>
