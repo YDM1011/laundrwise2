@@ -15,6 +15,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   public islogin = false;
   public me;
   public name;
+  public isopen = false;
   constructor(
       private router: Router,
       private crud: CrudService,
@@ -34,17 +35,21 @@ export class AppHeaderComponent implements OnInit, OnChanges {
           this.auth.setUser(v)
       }).catch(e=>{})
   }
-
+    isOpen() {
+        this.isopen = !this.isopen;
+    }
   ngOnChanges() {
 
   }
 
   openLoginDialog() {
     let dialogRef = this.dialog.open(LoginpopupComponent);
+      this.isopen = !this.isopen;
   }
   logout() {
     this.crud.post('logout', {}).then((value: any) => {
         this.router.navigate(['/'])
+        this.isopen = !this.isopen;
     },
     (error) => {
     }).catch(error => {});

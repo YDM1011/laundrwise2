@@ -1,3 +1,38 @@
+<nav class="main-nav" [class.is-open]="isopen" id="main-nav" >
+  <ul>
+    <span class="cancel" (click)="isOpen()"><img src="../assets/images/close.svg" alt=""></span>
+    <li>
+      <a routerLinkActive="active" (click)="isOpen()" [routerLink]="'/about-us'"  class="nav-item">About Us</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" (click)="isOpen()" [routerLink]="'/how-it-works'" class="nav-item">How it Works</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" (click)="isOpen()" [routerLink]="'/blogs'" class="nav-item">Blog</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" (click)="isOpen()" [routerLink]="'/faq'" class="nav-item">FAQ</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" (click)="isOpen()" [routerLink]="'/cleaners'" class="nav-item">Cleaners</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" (click)="isOpen()" [routerLink]="'/contacts'" class="nav-item">Contacts</a>
+    </li>
+    <li class="buttons">
+      <a [routerLink]="'/orders'" (click)="isOpen()" class="color nav-btn">Make order</a>
+      <a *ngIf="!islogin" (click)="openLoginDialog()" class="nav-btn">Log in</a>
+      <a *ngIf="islogin && me" class="nav-btn" [matMenuTriggerFor]="menu">
+        {{name}}
+      </a>
+      <mat-menu class="dropmenu" #menu="matMenu" xPosition="before">
+        <button mat-menu-item [routerLink]="'/profile'" (click)="isOpen()">Profile</button>
+        <button mat-menu-item (click)="logout()">Log out</button>
+      </mat-menu>
+    </li>
+  </ul>
+</nav>
+
 <header>
   <div class="navigation">
     <div class="navigation__logo">
@@ -22,7 +57,7 @@
         <button mat-menu-item (click)="logout()">Log out</button>
       </mat-menu>
     </div>
-    <div class="navigation__burger" id="navigation__burger">
+    <div class="navigation__burger" (click)="isOpen()" id="navigation__burger">
     </div>
   </div>
 </header>
