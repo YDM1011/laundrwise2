@@ -8,8 +8,6 @@ import {CrudService} from "../../crud.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-    public isAuth = false;
-    public me;
 
     constructor(
         private auth: AuthService,
@@ -19,16 +17,5 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.auth.onUpDate.subscribe((v:any)=>{
-            if (v){
-                this.isAuth = true;
-                this.me = v;
-            }
-        });
-        this.crud.get('me').then(v=>{
-            this.auth.setUser(v)
-        }).catch(e=>{
-
-        })
     }
 }

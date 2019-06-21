@@ -12,14 +12,13 @@ import {AuthService} from "../../auth.service";
   styleUrls: ['./app-header.component.scss']
 })
 export class AppHeaderComponent implements OnInit, OnChanges {
-  @Input() islogin = false;
-  @Input() me;
+  public islogin = false;
+  public me;
   public name;
   constructor(
       private router: Router,
-      private api: CrudService,
+      private crud: CrudService,
       private auth: AuthService,
-      private cookieService: CookieService,
       public dialog: MatDialog
   ) { }
 
@@ -28,21 +27,23 @@ export class AppHeaderComponent implements OnInit, OnChanges {
           if (v){
               this.islogin = this.auth.isAuth();
               this.me = v;
+              this.name = this.me.firstName[0] + this.me.lastName[0]
           }
       });
+      this.crud.get('me').then(v=>{
+          this.auth.setUser(v)
+      }).catch(e=>{})
   }
 
   ngOnChanges() {
-      if (this.me) {
-          this.name = this.me.firstName[0] + this.me.lastName[0]
-      }
+
   }
 
   openLoginDialog() {
     let dialogRef = this.dialog.open(LoginpopupComponent);
   }
   logout() {
-    this.api.post('logout', {}).then((value: any) => {
+    this.crud.post('logout', {}).then((value: any) => {
         this.router.navigate(['/'])
     },
     (error) => {
