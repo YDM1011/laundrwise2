@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   host: 'http://localhost:3000/api/',
-  domain: 'http://localhost:3000'
+  domain: 'http://localhost:3000',
+  ws: 'ws://localhost:6759'
 };
 
 /*
