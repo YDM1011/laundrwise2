@@ -108,7 +108,7 @@ const routes: Routes = [
         {path: 'dashboard', component: DashboardComponent, canActivate: [AdminLoginedGuard]},
         {path: 'posts', component: PostComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-add', component: PostAddComponent, canActivate: [AdminLoginedGuard]},
-        {path: 'post-edit', component: PostEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'post-edit/:id', component: PostEditComponent, canActivate: [AdminLoginedGuard]},
         {path: 'category', component: CategoryListComponent, canActivate: [AdminLoginedGuard]},
         {path: 'category-add', component: CategoryAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'category-edit', component: CategoryEditComponent, canActivate: [AdminLoginedGuard]},

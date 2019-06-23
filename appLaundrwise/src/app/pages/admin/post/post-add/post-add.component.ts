@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Post, PostObj} from "../post";
-import {CrudService} from "../../../../crud.service";
+import {Post, PostObj} from '../post';
+import {CrudService} from '../../../../crud.service';
 
 @Component({
   selector: 'app-post-add',
@@ -9,7 +9,7 @@ import {CrudService} from "../../../../crud.service";
 })
 export class PostAddComponent implements OnInit {
 
-  public post:Post = new PostObj();
+  public post: Post = new PostObj();
 
   constructor(
       private crud: CrudService

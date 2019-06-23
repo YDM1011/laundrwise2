@@ -1,3 +1,32 @@
-<p>
-  post-edit works!
-</p>
+<div class="post-header">
+  <div class="title">
+    Edit Post
+  </div>
+</div>
+<form action="" (submit)="userSubmit()" class="active" *ngIf="useredit" (keyup)="formCheck()">
+  <label>
+    <span class="title">
+        First Name
+    </span>
+    <input type="text" value="{{authAccount.firstName}}" name="firstName" [(ngModel)]="authAccount.firstName">
+  </label>
+  <label>
+    <span class="title">
+        Name
+    </span>
+    <input type="text" value="{{authAccount.lastName}}" name="lastName" [(ngModel)]="authAccount.lastName">
+  </label>
+  <label>
+    <span class="title">
+        Phone number
+    </span>
+    <input type="text" value="{{authAccount.mobile}}" name="mobile" [(ngModel)]="authAccount.mobile">
+  </label>
+  <label>
+    <span class="title">
+        Email
+    </span>
+    <input type="text" value="{{authAccount.email}}" name="email" [(ngModel)]="authAccount.email">
+  </label>
+  <input type="submit" class="save" value="Save" *ngIf="isBlok">
+</form>
