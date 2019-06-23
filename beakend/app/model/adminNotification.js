@@ -6,7 +6,8 @@ const schem = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Client"
         }},
-    data: {type: Date, default: new Date()}
+    entity: String,
+    date: {type: Date, default: new Date()}
 },{
     toJSON: {
         transform: function (doc, ret) {

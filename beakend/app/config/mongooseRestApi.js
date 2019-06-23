@@ -58,6 +58,7 @@ module.exports = function (backendApp) {
         console.log("Schema", schem, req.erm.model.modelName);
         if (schem) {
             try {
+                req.body.date = req.body.date ? req.body.date : new Date();
                 schem.preSave(req, res, next, backendApp);
             } catch (e) {
                 next()

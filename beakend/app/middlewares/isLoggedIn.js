@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var User = mongoose.model('Client');
+var Client = mongoose.model('Client');
 const config = require('../config/config');
 
 module.exports = function (req, res, next) {
@@ -15,8 +15,7 @@ module.exports = function (req, res, next) {
           if (err) {
               return res.serverError("Token error");
           }else{
-
-              User.findOne({login: data.login })
+              Client.findOne({login: data.login })
                   .exec((err, info)=>{
                       if (err) return next(err);
                       if (!info) return res.forbidden("forbidden3");

@@ -70,6 +70,7 @@ import { BlogPostComponent } from './components/blog-post/blog-post.component';
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
 import { CategoryAddComponent } from './pages/admin/category-list/category-add/category-add.component';
 import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
+import { FormNotificationComponent } from './components/form-notification/form-notification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -134,6 +135,7 @@ import { CategoryEditComponent } from './pages/admin/category-list/category-edit
     CategoryListComponent,
     CategoryAddComponent,
     CategoryEditComponent,
+    FormNotificationComponent,
   ],
   imports: [
     BrowserModule,

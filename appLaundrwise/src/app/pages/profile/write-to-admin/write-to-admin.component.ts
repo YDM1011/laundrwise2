@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./write-to-admin.component.css']
 })
 export class WriteToAdminComponent implements OnInit {
+
   constructor() {
   }
 

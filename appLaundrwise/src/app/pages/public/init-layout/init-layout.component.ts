@@ -18,11 +18,7 @@ export class InitLayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.crud.get('me').then(v=>{
-        this.auth.setUser(v)
-    }).catch(e=>{
 
-    })
   }
 
 }
