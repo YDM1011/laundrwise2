@@ -71,6 +71,8 @@ import { CategoryListComponent } from './pages/admin/category-list/category-list
 import { CategoryAddComponent } from './pages/admin/category-list/category-add/category-add.component';
 import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
 import { FormNotificationComponent } from './components/form-notification/form-notification.component';
+import {WebsocketModule} from "./websocket";
+import {environment} from "../environments/environment";
 import { NotificationAdminComponent } from './components/notification-admin/notification-admin.component';
 @NgModule({
   declarations: [
@@ -147,7 +149,10 @@ import { NotificationAdminComponent } from './components/notification-admin/noti
     MatNativeDateModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    WebsocketModule.config({
+        url: environment.ws
+    })
   ],
   entryComponents: [
       LoginpopupComponent,

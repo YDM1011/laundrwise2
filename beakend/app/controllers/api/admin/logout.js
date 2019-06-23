@@ -1,8 +1,8 @@
 module.exports = (backendApp, router) => {
 
-    router.post('/logout', [], (req,res,next) => {
+    router.post('/adminLogout', [], (req,res,next) => {
 
-        const Client = backendApp.mongoose.model("Client");
+        const Admin = backendApp.mongoose.model("Admin");
         if (req.jwt) {
             const jwt = require('jsonwebtoken');
             const protect = req.cookies['token'] || req.jwt.token;
@@ -14,7 +14,7 @@ module.exports = (backendApp, router) => {
                 if (err) {
                     return res.serverError("Token error");
                 }else{
-                    Client.findOne({login: data.login })
+                    Admin.findOne({login: data.login })
                         .exec((err, info)=>{
                             if (err) return res.serverError(err);
                             if (!info) return res.forbidden("forbidden");

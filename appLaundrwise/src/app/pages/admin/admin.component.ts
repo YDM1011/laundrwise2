@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {WebsocketService} from "../../websocket";
+import {WS} from "../../websocket/websocket.events";
+
 
 @Component({
   selector: 'app-admin',
@@ -6,10 +9,22 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  constructor() {
+  public notification$;
+  constructor(private wsService: WebsocketService) {
   }
 
   ngOnInit() {
+    this.notification$ = this.wsService.on(WS.ON.ON_NOTIFICATION);
+
+    this.notification$.subscribe(v=>{
+      console.log(v)
+    });
+
+
+  }
+  send() {
+    console.log("send")
+    this.wsService.send(WS.SEND.NOTIFICATION, {data:'test sf'});
   }
 
 

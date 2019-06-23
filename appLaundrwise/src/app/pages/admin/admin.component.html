@@ -1,4 +1,8 @@
 <div class="admin-wrap">
+    <i (click)="send()">send</i>
+    <ul *ngIf="notification$ | async as messages">
+        {{ messages.data }}
+    </ul>
     <app-admin-sidebar></app-admin-sidebar>
     <div class="content">
         <app-admin-header></app-admin-header>
