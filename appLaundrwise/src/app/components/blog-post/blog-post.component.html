@@ -1,11 +1,10 @@
 <a class="blog__container-item" >
-  {{itemPost.id}}
   <div class="img">
-    <img src="{{itemPost.images[0]}}" alt="{{itemPost.title}}">
+    <app-img [img]="itemPost.images[0]"></app-img>
   </div>
   <div class="title">{{itemPost.title}}</div>
-  <div class="date">{{itemPost.data.slice(0, 10)}}</div>
+  <div class="date">{{itemPost.data | date:'yy MM dd'}}</div>
   <div class="description">
-    {{itemPost.text.slice(0, 200)}}
+    {{itemPost.text}}
   </div>
 </a>
