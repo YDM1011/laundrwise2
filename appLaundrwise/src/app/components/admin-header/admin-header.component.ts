@@ -17,10 +17,9 @@ export class AdminHeaderComponent implements OnInit {
   ngOnInit() {
   }
   logout() {
-    this.crud.post('adminLogout', {}).then((value: any) => {
-          this.router.navigate(['/admin']);
-        },
-        (error) => {
+
+    this.crud.post('adminLogout', {}).then((v: any) => {
+        this.router.navigate(['/']);
         }).catch(error => {});
   }
 }

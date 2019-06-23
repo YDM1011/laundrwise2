@@ -5,7 +5,7 @@ module.exports = (backendApp, router) => {
         const Admin = backendApp.mongoose.model("Admin");
         if (req.jwt) {
             const jwt = require('jsonwebtoken');
-            const protect = req.cookies['token'] || req.jwt.token;
+            const protect = req.cookies['adminToken'] || req.jwt.token;
             if(!protect){
                 return res.forbidden("forbidden");
             }
