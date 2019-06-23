@@ -78,6 +78,8 @@
 <section class="blog" id="blog">
     <h2>Blog</h2>
     <div class="blog__container">
-        <app-blog-post  *ngFor="let item of arrayPost" [itemPost]="item"></app-blog-post>
+        <ng-container *ngIf="arrayPost.length > 0">
+            <app-blog-post  *ngFor="let item of arrayPost" [itemPost]="item"></app-blog-post>
+        </ng-container>
     </div>
 </section>

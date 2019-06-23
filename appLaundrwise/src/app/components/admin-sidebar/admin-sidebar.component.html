@@ -1,11 +1,14 @@
 <nav>
+  <div class="logo">
+    <img src="../assets/images/logo.svg" alt="">
+  </div>
   <ul>
-    <li><a [routerLink]="'/admin/dashboard'">dashboard</a></li>
-    <li><a [routerLink]="'/admin/posts'">posts</a></li>
-    <li><a [routerLink]="'/admin/post-add'">add post</a></li>
-    <li><a [routerLink]="'/admin/post-edit'">edit post</a></li>
-    <li><a [routerLink]="'/admin/category'">category</a></li>
-    <li><a [routerLink]="'/admin/category-add'">add category</a></li>
-    <li><a [routerLink]="'/admin/category-edit'">edit category</a></li>
+    <li><a routerLinkActive="active" [routerLink]="'/admin/dashboard'" ><span class="icon"></span>dashboard</a></li>
+    <li><a routerLinkActive="active" [routerLink]="'/admin/posts'">posts</a></li>
+    <li><a routerLinkActive="active" [routerLink]="'/admin/post-add'">add post</a></li>
+    <li><a routerLinkActive="active" [routerLink]="'/admin/post-edit'">edit post</a></li>
+    <li><a routerLinkActive="active" [routerLink]="'/admin/category'">category</a></li>
+    <li><a routerLinkActive="active" [routerLink]="'/admin/category-add'">add category</a></li>
+    <li><a routerLinkActive="active" [routerLink]="'/admin/category-edit'">edit category</a></li>
   </ul>
 </nav>

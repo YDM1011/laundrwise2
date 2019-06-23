@@ -1,0 +1,35 @@
+nav{
+  width: 250px;
+  min-height: 100vh;
+  height: 100%;
+  .logo{
+    padding: 10px;
+    img{
+      width: 180px;
+      height: 37px;
+      object-fit: cover;
+    }
+  }
+  ul{
+    background: #45A8E1;
+    padding: 10px 0;
+    margin: 0;
+    li{
+      list-style: none;
+      a{
+        display: inline-block;
+        color: #fff;
+        padding: 15px 50px 15px;
+        width: 100%;
+        text-transform: capitalize;
+        &:hover{
+          background: #179CE7;
+        }
+        &.active{
+          background: #179CE7;
+
+        }
+      }
+    }
+  }
+}

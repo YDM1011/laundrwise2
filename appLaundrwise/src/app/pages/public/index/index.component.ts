@@ -15,7 +15,7 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.crud.get('post?query={}&skip=0&limit=3&sort={"data":-1}', ).then((value:any) => {
+    this.crud.get('post?query={}&skip=0&limit=3&sort={"date":-1}', ).then((value: any) => {
       this.arrayPost = value;
     }).catch(e => {});
   }

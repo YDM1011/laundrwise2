@@ -1,3 +1,23 @@
-<p>
-  admin-header works!
-</p>
+<div class="admin-header">
+  <div class="current-page">
+    page title
+  </div>
+  <div class="header-info">
+    <div class="notification" [matMenuTriggerFor]="menu">
+      <img src="../assets/images/bell.svg" alt="">
+      <span class="notification-circle"></span>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button  mat-menu-item>Cleaners -<span class="count">3</span></button>
+        <button mat-menu-item>Delivery -<span class="count">2</span></button>
+        <button mat-menu-item>Clients -<span class="count">1</span></button>
+        <button mat-menu-item>FAQ -<span class="count">192</span></button>
+      </mat-menu>
+    </div>
+    <div class="admin-name">
+      Admin
+    </div>
+    <div class="logout">
+      <img src="../assets/images/logout.svg" alt="">
+    </div>
+  </div>
+</div>
