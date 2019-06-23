@@ -17,8 +17,13 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.crud.get('me').then(v => {
-            this.userName = Object(v).firstName + ' ' + Object(v).lastName;
-        }).catch(e => {});
+        // this.crud.get('me').then(v => {
+        //     this.userName = Object(v).firstName + ' ' + Object(v).lastName;
+        // }).catch(e => {});
+        this.auth.onUpDate.subscribe(( v: any ) => {
+            if (v) {
+                this.userName = Object(v).firstName + ' ' + Object(v).lastName;
+            }
+        });
     }
 }

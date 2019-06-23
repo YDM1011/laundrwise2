@@ -6,37 +6,37 @@
             <span class="edit" (click)="editUser()">edit</span>
         </div>
         <div class="information" *ngIf="!useredit">
-            <span>{{AuthAccount.firstName}}</span>
-            <span>{{AuthAccount.lastName}}</span>
-            <span>{{AuthAccount.mobile}}</span>
-            <span>{{AuthAccount.email}}</span>
+            <span>{{initDataProfile.firstName}}</span>
+            <span>{{initDataProfile.lastName}}</span>
+            <span>{{initDataProfile.mobile}}</span>
+            <span>{{initDataProfile.email}}</span>
         </div>
-        <form action="" (ngSubmit)="userSubmit()" class="active" *ngIf="useredit">
+        <form action="" (submit)="userSubmit()" class="active" *ngIf="useredit" (keyup)="formCheck()">
             <label>
                 <span class="title">
                     First Name
                 </span>
-                <input type="text" value="{{AuthAccount.firstName}}" name="firstName" [(ngModel)]="AuthAccount.firstName">
+                <input type="text" value="{{authAccount.firstName}}" name="firstName" [(ngModel)]="authAccount.firstName">
             </label>
             <label>
                 <span class="title">
                     Name
                 </span>
-                <input type="text" value="{{AuthAccount.lastName}}" name="lastName" [(ngModel)]="AuthAccount.lastName">
+                <input type="text" value="{{authAccount.lastName}}" name="lastName" [(ngModel)]="authAccount.lastName">
             </label>
             <label>
                 <span class="title">
                     Phone number
                 </span>
-                <input type="text" value="{{AuthAccount.mobile}}" name="mobile" [(ngModel)]="AuthAccount.mobile">
+                <input type="text" value="{{authAccount.mobile}}" name="mobile" [(ngModel)]="authAccount.mobile">
             </label>
             <label>
                 <span class="title">
                     Email
                 </span>
-                <input type="text" value="{{AuthAccount.email}}" name="email" [(ngModel)]="AuthAccount.email">
+                <input type="text" value="{{authAccount.email}}" name="email" [(ngModel)]="authAccount.email">
             </label>
-            <input type="submit" class="save" value="Save">
+            <input type="submit" class="save" value="Save" *ngIf="isBlok">
         </form>
 
         <div class="infoedit__headline">
@@ -44,35 +44,35 @@
             <span class="edit" (click)="editAddress()">edit</span>
         </div>
         <div class="information" *ngIf="!addressedit">
-            <span>{{AuthAccount.country}}</span>
-            <span>{{AuthAccount.city}}</span>
-            <span>{{AuthAccount.address1}}</span>
-            <span>{{AuthAccount.address2}}</span>
+            <span>{{initDataProfile.country}}</span>
+            <span>{{initDataProfile.city}}</span>
+            <span>{{initDataProfile.address1}}</span>
+            <span>{{initDataProfile.address2}}</span>
         </div>
         <form action="" (ngSubmit)="addressSubmit()" class="active" *ngIf="addressedit">
             <label>
                 <span class="title">
                     Country
                 </span>
-                <input type="text" value="{{AuthAccount.country}}" name="" placeholder="Country" >
+                <input type="text" value="{{authAccount.country}}" name="" placeholder="Country" >
             </label>
             <label>
                 <span class="title">
                     City
                 </span>
-                <input type="text" value="{{AuthAccount.city}}" name="city" placeholder="City, code">
+                <input type="text" value="{{authAccount.city}}" name="city" placeholder="City, code">
             </label>
             <label>
                 <span class="title">
                     Address1
                 </span>
-                <input type="text" value="{{AuthAccount.address1}}" name="address1" placeholder="Address1">
+                <input type="text" value="{{authAccount.address1}}" name="address1" placeholder="Address1">
             </label>
             <label>
                 <span class="title">
                     Address2
                 </span>
-                <input type="text" value="{{AuthAccount.address2}}" placeholder="Address2">
+                <input type="text" value="{{authAccount.address2}}" placeholder="Address2">
             </label>
             <input type="submit" class="save" value="Save">
         </form>

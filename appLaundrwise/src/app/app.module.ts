@@ -70,6 +70,7 @@ import { BlogPostComponent } from './components/blog-post/blog-post.component';
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
 import { CategoryAddComponent } from './pages/admin/category-list/category-add/category-add.component';
 import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
+import { FormNotificationComponent } from './components/form-notification/form-notification.component';
 import { NotificationAdminComponent } from './components/notification-admin/notification-admin.component';
 @NgModule({
   declarations: [
@@ -135,6 +136,7 @@ import { NotificationAdminComponent } from './components/notification-admin/noti
     CategoryListComponent,
     CategoryAddComponent,
     CategoryEditComponent,
+    FormNotificationComponent,
     NotificationAdminComponent,
   ],
   imports: [

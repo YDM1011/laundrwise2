@@ -30,9 +30,12 @@ export class AppHeaderComponent implements OnInit {
               this.name = this.me.firstName[0] + this.me.lastName[0];
           }
       });
-      this.crud.get('me').then(v => {
-          this.auth.setUser(v);
-      }).catch(e => {});
+      if (this.auth.isAuth()){
+          this.crud.get('me').then(v => {
+              this.auth.setUser(v);
+          }).catch(e => {});
+      }
+
   }
     isOpen() {
         this.isopen = !this.isopen;

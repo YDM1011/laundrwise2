@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthAccount, AuthAccountObj} from './auth-account';
 import {CrudService} from '../../../crud.service';
+import {AuthService} from "../../../auth.service";
 
 @Component({
   selector: 'app-account',
@@ -9,26 +10,26 @@ import {CrudService} from '../../../crud.service';
 })
 export class MyAccountComponent implements OnInit {
   public userId: number;
+  public isBlok: boolean = false;
   public useredit = false;
   public addressedit = false;
-  public AuthAccount: AuthAccount = new AuthAccountObj();
+  public authAccount: AuthAccount = new AuthAccountObj();
+  public initDataProfile: AuthAccount = new AuthAccountObj();
 
   constructor(
-      public crud: CrudService
+      public crud: CrudService,
+      public auth: AuthService
   ) {}
 
   ngOnInit() {
-    this.crud.get('me').then(v => {
-      this.userId = Object(v)._id;
-      this.AuthAccount.firstName = Object(v).firstName;
-      this.AuthAccount.lastName = Object(v).lastName;
-      this.AuthAccount.mobile = Object(v).mobile;
-      this.AuthAccount.email = Object(v).email;
-      this.AuthAccount.country = Object(v).country;
-      this.AuthAccount.city = Object(v).city;
-      this.AuthAccount.address1 = Object(v).address1;
-      this.AuthAccount.address2 = Object(v).address2;
-    }).catch(e => {});
+    this.auth.onUpDate.subscribe(( v: any ) => {
+      if (v) {
+        console.log(v);
+        this.userId = v._id;
+        this.initDataProfile = v;
+        this.authAccount = Object.assign({}, v)
+      }
+    });
   }
 
   editUser() {
@@ -39,26 +40,42 @@ export class MyAccountComponent implements OnInit {
     this.addressedit = !this.addressedit;
   }
 
+  validate() {
+    let isTrue = false;
+    for (let key in this.authAccount){
+      if (this.initDataProfile[key] !== this.authAccount[key]) isTrue = true
+    }
+    return isTrue
+  }
+
+  btnBlok(is) {
+    this.isBlok = is
+  }
+  formCheck() {
+    this.btnBlok(this.validate())
+  }
   userSubmit() {
-    this.crud.post('Client', this.AuthAccount, this.userId ).then( ( value: any ) => {
-      if (this.useredit) {
-        this.editUser();
-      }
-      if (this.addressedit) {
-        this.editAddress();
-      }
+    this.crud.post('client', this.authAccount, this.userId ).then( ( v: any ) => {
+      this.userId = v._id;
+      this.initDataProfile = v;
+      this.authAccount = Object.assign({}, v);
+      this.useredit = false;
+      this.addressedit = false;
+      this.auth.setUser(v);
     }).catch(e => {
+
     });
   }
   addressSubmit() {
-    this.crud.post('Client', this.AuthAccount, this.userId ).then( ( value: any ) => {
-      if (this.useredit) {
-        this.editUser();
-      }
-      if (this.addressedit) {
-        this.editAddress();
-      }
-    }).catch(e => {
-    });
+      this.crud.post('client', this.authAccount, this.userId ).then( ( v: any ) => {
+          this.userId = v._id;
+          this.initDataProfile = v;
+          this.authAccount = Object.assign({}, v);
+          this.useredit = false;
+          this.addressedit = false;
+          this.auth.setUser(v);
+      }).catch(e => {
+
+      });
   }
 }
