@@ -1,4 +1,3 @@
-
 import {Component, OnInit} from '@angular/core';
 import {AuthAdmin, AuthAdminObj} from "./auth-admin";
 import {CrudService} from "../../../crud.service";

@@ -45,12 +45,16 @@
   height: 93%; /* Should be 100%, but we have a notice message :D */
   align-items: center;
   justify-content: center;
+  width: 100%;
+  position: relative;
   //transform: translateX(-18%) skew(-16deg);
 }
 .main-nav .cancel{
   position: absolute;
-  padding:22px 15px;
+  padding:15px 16px;
   color: #000;
+  top: 0;
+  right: 0;
 }
 .main-nav .buttons{
   display: flex;

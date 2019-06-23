@@ -41,10 +41,24 @@ export class MyAccountComponent implements OnInit {
 
   userSubmit() {
     this.crud.post('Client', this.AuthAccount, this.userId ).then( ( value: any ) => {
+      if (this.useredit) {
+        this.editUser();
+      }
+      if (this.addressedit) {
+        this.editAddress();
+      }
     }).catch(e => {
     });
   }
   addressSubmit() {
-
+    this.crud.post('Client', this.AuthAccount, this.userId ).then( ( value: any ) => {
+      if (this.useredit) {
+        this.editUser();
+      }
+      if (this.addressedit) {
+        this.editAddress();
+      }
+    }).catch(e => {
+    });
   }
 }
