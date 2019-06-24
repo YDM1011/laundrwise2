@@ -16,25 +16,25 @@
                 <span class="title">
                     First Name
                 </span>
-                <input type="text" value="{{authAccount.firstName}}" name="firstName" [(ngModel)]="authAccount.firstName">
+                <input type="text" name="firstName" [(ngModel)]="authAccount.firstName">
             </label>
             <label>
                 <span class="title">
                     Name
                 </span>
-                <input type="text" value="{{authAccount.lastName}}" name="lastName" [(ngModel)]="authAccount.lastName">
+                <input type="text" name="lastName" [(ngModel)]="authAccount.lastName">
             </label>
             <label>
                 <span class="title">
                     Phone number
                 </span>
-                <input type="text" value="{{authAccount.mobile}}" name="mobile" [(ngModel)]="authAccount.mobile">
+                <input type="text" name="mobile" [(ngModel)]="authAccount.mobile">
             </label>
             <label>
                 <span class="title">
                     Email
                 </span>
-                <input type="text" value="{{authAccount.email}}" name="email" [(ngModel)]="authAccount.email">
+                <input type="text" name="email" [(ngModel)]="authAccount.email">
             </label>
             <input type="submit" class="save" value="Save" *ngIf="isBlok">
         </form>
@@ -49,32 +49,32 @@
             <span>{{initDataProfile.address1}}</span>
             <span>{{initDataProfile.address2}}</span>
         </div>
-        <form action="" (ngSubmit)="addressSubmit()" class="active" *ngIf="addressedit">
+        <form action="" (ngSubmit)="addressSubmit()" class="active" *ngIf="addressedit" (keyup)="formCheck()">
             <label>
                 <span class="title">
                     Country
                 </span>
-                <input type="text" value="{{authAccount.country}}" name="" placeholder="Country" >
+                <input type="text" name="country" placeholder="Country" [(ngModel)]="authAccount.country">
             </label>
             <label>
                 <span class="title">
                     City
                 </span>
-                <input type="text" value="{{authAccount.city}}" name="city" placeholder="City, code">
+                <input type="text" name="city" placeholder="City" [(ngModel)]="authAccount.city">
             </label>
             <label>
                 <span class="title">
                     Address1
                 </span>
-                <input type="text" value="{{authAccount.address1}}" name="address1" placeholder="Address1">
+                <input type="text" name="address1" placeholder="Address1" [(ngModel)]="authAccount.address1">
             </label>
             <label>
                 <span class="title">
                     Address2
                 </span>
-                <input type="text" value="{{authAccount.address2}}" placeholder="Address2">
+                <input type="text" name="address2" placeholder="Address2" [(ngModel)]="authAccount.address2">
             </label>
-            <input type="submit" class="save" value="Save">
+            <input type="submit" class="save" value="Save" *ngIf="isBlok">
         </form>
     </div>
 </div>

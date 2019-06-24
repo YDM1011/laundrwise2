@@ -1,0 +1,22 @@
+<div class="img">
+  <img src="../assets/images/order-item.png" alt="order items">
+</div>
+<div class="description">
+  <div class="name">Order Name</div>
+  <p class="describe">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+</div>
+<div class="buttons">
+  <div class="counts">
+    <div class="counts__btn">
+      <img src="../assets/images/minus.svg" (click)="decrement()" alt="">
+    </div>
+    <div class="count">{{count}}</div>
+    <div class="counts__btn">
+      <img src="../assets/images/plus.svg" (click)="increment()" alt="">
+    </div>
+  </div>
+  <div class="price">
+    <div class="price__item">{{price}}</div>
+    <div class="price__usd">$</div>
+  </div>
+</div>

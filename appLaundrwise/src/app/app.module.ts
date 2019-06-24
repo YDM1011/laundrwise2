@@ -74,6 +74,9 @@ import { FormNotificationComponent } from './components/form-notification/form-n
 import {WebsocketModule} from "./websocket";
 import {environment} from "../environments/environment";
 import { NotificationAdminComponent } from './components/notification-admin/notification-admin.component';
+import { NewOrdersStepSeroComponent } from './pages/orders/new-orders-step-sero/new-orders-step-sero.component';
+import { OrderItemComponent } from './components/order-item/order-item.component';
+import { OrderFooterComponent } from './components/order-footer/order-footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -140,6 +143,9 @@ import { NotificationAdminComponent } from './components/notification-admin/noti
     CategoryEditComponent,
     FormNotificationComponent,
     NotificationAdminComponent,
+    NewOrdersStepSeroComponent,
+    OrderItemComponent,
+    OrderFooterComponent,
   ],
   imports: [
     BrowserModule,

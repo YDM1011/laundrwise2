@@ -1,0 +1,44 @@
+mat-form-field{
+  border: 1px solid #13AAFF;
+  border-radius:20px;
+  padding: 0 20px;
+  max-width: 260px;
+}
+
+.mat-form-field-wrapper{
+  padding: 0;
+}
+.mat-form-field-infix{
+  border: none;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline{
+  background-color: transparent!important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline{
+  height: 0!important;
+}
+.mat-select-disabled .mat-select-value {
+  color: rgba(black, 0.38);
+}
+.mat-form-field-disabled{
+  border:1px solid #343434;
+}
+
+
+.order-0__box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.order-0-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .name{
+    margin: 25px 0 15px;
+  }
+}
+

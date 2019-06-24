@@ -1,0 +1,13 @@
+<div class="order-container">
+  <div class="totalprice__box">
+    <div class="totalprice__box-result">
+      Total: <span class="result">{{totalPrice}}</span> $
+    </div>
+    <div class="buttons">
+      <div class="basket">
+        <span (click)="decrementStep()">Back</span>
+        <span (click)="incrementStep()">{{btns[step]}}</span>
+      </div>
+    </div>
+  </div>
+</div>

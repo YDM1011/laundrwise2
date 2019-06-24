@@ -55,7 +55,7 @@ export class LoginpopupComponent implements OnInit {
           this.dialogRef.close();
           if (this.auth.isAuth()) {
               this.router.navigate(['/profile']);
-          };
+          }
           this.auth.setUser(value.user);
         },
         (error) => {
