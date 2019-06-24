@@ -77,6 +77,9 @@ import { NotificationAdminComponent } from './components/notification-admin/noti
 import { CleanersListComponent } from './pages/admin/cleaners-list/cleaners-list.component';
 import { CleanersAddComponent } from './pages/admin/cleaners-list/cleaners-add/cleaners-add.component';
 import { CleanersEditComponent } from './pages/admin/cleaners-list/cleaners-edit/cleaners-edit.component';
+import { NewOrdersStepSeroComponent } from './pages/orders/new-orders-step-sero/new-orders-step-sero.component';
+import { OrderItemComponent } from './components/order-item/order-item.component';
+import { OrderFooterComponent } from './components/order-footer/order-footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,6 +149,9 @@ import { CleanersEditComponent } from './pages/admin/cleaners-list/cleaners-edit
     CleanersListComponent,
     CleanersAddComponent,
     CleanersEditComponent,
+    NewOrdersStepSeroComponent,
+    OrderItemComponent,
+    OrderFooterComponent,
   ],
   imports: [
     BrowserModule,

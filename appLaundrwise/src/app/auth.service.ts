@@ -6,9 +6,11 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class AuthService {
-
     private updat = new BehaviorSubject<any>(null);
     public onUpDate = this.updat.asObservable();
+
+  private step = new BehaviorSubject<number>(0);
+  public getStep = this.step.asObservable();
 
   constructor(private cookieService: CookieService) { }
   isAuth() {
@@ -27,6 +29,9 @@ export class AuthService {
   }
 
   setUser(data) {
-    this.updat.next(data)
+    this.updat.next(data);
+  }
+  setStep(data) {
+    this.step.next(data);
   }
 }

@@ -27,7 +27,7 @@ export class MyAccountComponent implements OnInit {
         console.log(v);
         this.userId = v._id;
         this.initDataProfile = v;
-        this.authAccount = Object.assign({}, v)
+        this.authAccount = Object.assign({}, v);
       }
     });
   }
@@ -42,25 +42,21 @@ export class MyAccountComponent implements OnInit {
 
   validate() {
     let isTrue = false;
-    for (let key in this.authAccount){
-      if (this.initDataProfile[key] !== this.authAccount[key]) isTrue = true
+    for (let key in this.authAccount) {
+      if (this.initDataProfile[key] !== this.authAccount[key]) isTrue = true;
     }
-    return isTrue
+    return isTrue;
   }
 
   btnBlok(is) {
-    this.isBlok = is
+    this.isBlok = is;
   }
   formCheck() {
-    this.btnBlok(this.validate())
+    this.btnBlok(this.validate());
   }
   userSubmit() {
     this.crud.post('client', this.authAccount, this.userId ).then( ( v: any ) => {
-      this.userId = v._id;
-      this.initDataProfile = v;
-      this.authAccount = Object.assign({}, v);
       this.useredit = false;
-      this.addressedit = false;
       this.auth.setUser(v);
     }).catch(e => {
 
@@ -68,10 +64,6 @@ export class MyAccountComponent implements OnInit {
   }
   addressSubmit() {
       this.crud.post('client', this.authAccount, this.userId ).then( ( v: any ) => {
-          this.userId = v._id;
-          this.initDataProfile = v;
-          this.authAccount = Object.assign({}, v);
-          this.useredit = false;
           this.addressedit = false;
           this.auth.setUser(v);
       }).catch(e => {

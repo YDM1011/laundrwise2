@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../../auth.service";
-import {CrudService} from "../../../crud.service";
+import {AuthService} from '../../../auth.service';
+import {CrudService} from '../../../crud.service';
 
 @Component({
   selector: 'app-init-order',
@@ -9,6 +9,7 @@ import {CrudService} from "../../../crud.service";
 })
 export class InitOrderComponent implements OnInit {
 
+    public step = 0;
 
     constructor(
         private auth: AuthService,
@@ -18,6 +19,12 @@ export class InitOrderComponent implements OnInit {
     }
 
   ngOnInit() {
+      this.auth.getStep.subscribe(( v: any ) => {
+          this.step = v;
+      });
+  }
+  incrementStep() {
+        this.auth.setStep(this.step += 1);
   }
 
 }

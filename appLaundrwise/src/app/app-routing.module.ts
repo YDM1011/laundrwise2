@@ -55,6 +55,7 @@ import {CategoryListComponent} from "./pages/admin/category-list/category-list.c
 import {CleanersListComponent} from "./pages/admin/cleaners-list/cleaners-list.component";
 import {CleanersEditComponent} from "./pages/admin/cleaners-list/cleaners-edit/cleaners-edit.component";
 import {CleanersAddComponent} from "./pages/admin/cleaners-list/cleaners-add/cleaners-add.component";
+import {NewOrdersStepSeroComponent} from "./pages/orders/new-orders-step-sero/new-orders-step-sero.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -78,11 +79,14 @@ const routes: Routes = [
         {path: 'our-partners', component: OurPartnersComponent},
     ]},
     {path: 'orders', component: InitOrderComponent, children: [
-        {path: '', component: NewOrdersStepOneComponent},
-        {path: 'step2', component: NewOrdersStepTwoComponent},
-        {path: 'step3', component: NewOrdersStepThreeComponent},
-        {path: 'thanks', component: ThanksComponent},
-    ]},
+        {path: ':type', component: InitOrderComponent},
+        // {path: '', component: NewOrdersStepOneComponent},
+        // {path: 'step2', component: NewOrdersStepTwoComponent},
+        // {path: 'step3', component: NewOrdersStepThreeComponent},
+        // {path: 'thanks', component: ThanksComponent},
+        // {path: '',  redirectTo: 'orders', pathMatch: 'full'},
+
+        ]},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
       {path: '', component: MyProfileComponent},
       {path: 'account', component: MyAccountComponent},
@@ -124,7 +128,6 @@ const routes: Routes = [
     {path: 'admin/create', component: AdminCreateComponent, canActivate: [AdminLogoutGuard]},
     {path: '**', component: NotFoundComponent}
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
