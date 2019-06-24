@@ -7,46 +7,126 @@ import {environment} from '../environments/environment';
 })
 export class CrudService {
 
-  // private updat = new BehaviorSubject<any>(null);
-  // public onUpDate = this.updat.asObservable();
-  private api = environment.host;
-  private DB = {};
-  constructor( private http: HttpClient ) { }
+    // private updat = new BehaviorSubject<any>(null);
+    // public onUpDate = this.updat.asObservable();
+    private api = environment.host;
+    private DB = {};
+    constructor( private http: HttpClient ) { }
 
-  get(api, id = null) {
-    return new Promise((resolve, reject) => {
-      id = id ? '/' + id : id;
-      if (this.DB[`${this.api}${api}${id ? id : ''}`]) {
-          resolve(this.DB[`${this.api}${api}${id ? id : ''}`]);
-      } else {
-          this.http.get(`${this.api}${api}${id ? id : ''}`).subscribe(data => {
-              this.DB[`${this.api}${api}${id ? id : ''}`] = data;
-              resolve(data);
+    get(api, id = null) {
+        return new Promise((resolve, reject) => {
+          id = id ? '/' + id : id;
+          if (this.DB[`${this.api}${api}${id ? id : ''}`]) {
+              resolve(this.DB[`${this.api}${api}${id ? id : ''}`]);
+          } else {
+              this.http.get(`${this.api}${api}${id ? id : ''}`).subscribe(data => {
+                  this.DB[`${this.api}${api}${id ? id : ''}`] = data;
+                  resolve(data);
+              }, error => {
+                  reject(error);
+              });
+          }
+
+        });
+    }
+
+    post(api, obj, id = null, isUpdate:any = false) {
+        return new Promise((resolve, reject) => {
+          this.http.post(`${this.api}${api}${id ? '/' + id : ''}`, obj).subscribe(data => {
+           resolve(data);
+           if (isUpdate) {
+               isUpdate.map(property=>{
+                   this.update(property, obj, id)
+               })
+           }
           }, error => {
-              reject(error);
+            reject(error);
           });
-      }
+        });
+    }
 
-    });
-  }
+    delete(api, id = null, ogjAfterDel:any = null, isUpdate:any = false) {
+        return new Promise((resolve, reject) => {
+          this.http.delete(`${this.api}${api}/${id ? id : ''}`).subscribe(data => {
+           resolve(data);
+              if (isUpdate && ogjAfterDel) {
+                  isUpdate.map(property=>{
+                      this.update(property, ogjAfterDel, 'delete')
+                  })
+              }
+          }, error => {
+            reject(error);
+          });
+        });
+    }
 
-  post(api, obj, id = null) {
-    return new Promise((resolve, reject) => {
-      this.http.post(`${this.api}${api}${id ? '/' + id : ''}`, obj).subscribe(data => {
-       resolve(data);
-      }, error => {
-        reject(error);
-      });
-    });
-  }
+    update(property, data, type = null){
+        if(typeof this.DB[this.api+property] == 'object'){
+            if (type == 'delete'){
+                try{
+                    if (this.DB[this.api+property].length > 0){
+                        let index = this.find('_id',data._id,this.DB[this.api+property]);
+                        if (index){
+                            this.DB[this.api+property].splice(index, 1);
+                        }
+                        console.log(this.DB[this.api+property], index)
+                    }
+                }catch (e) {
+                    alert('update error')
+                }
+            } if (!type) {
+                try {
+                    if (this.DB[this.api + property].length > 0) {
+                        this.DB[this.api + property].push(data);
+                    }
+                } catch(e) {
 
-  delete(api, id = null) {
-    return new Promise((resolve, reject) => {
-      this.http.delete(`${this.api}${api}/${id ? id : ''}`).subscribe(data => {
-       resolve(data);
-      }, error => {
-        reject(error);
-      });
-    });
-  }
+                }
+            }else{
+                try{
+                    if (this.DB[this.api+property].length > 0){
+                        let index = this.find('_id',data._id,this.DB[this.api+property]);
+                        if (index){
+                            this.DB[this.api+property][index] = data;
+                        }
+                        console.log(this.DB[this.api+property], index)
+                    }
+                    if (type == data._id) {
+                        this.DB[this.api+property+'/'+type] = data;
+                        console.log(this.DB[this.api+property])
+                    }
+                }catch (e) {
+                    alert('update error')
+                }
+            }
+
+
+        }
+        // this.DB[this.api+property] = data;
+
+        console.log(this.DB)
+    }
+
+    find(property,id,data,type='index') {
+        for (let i=0; i<data.length; i++){
+            if (data[i][property] === id){
+                let dataItem = null;
+                switch (type) {
+                    case 'index': dataItem = i;
+                        break;
+                    case 'obj': dataItem = data[i];
+                        break;
+                    default: break;
+                }
+                return dataItem
+            }
+        }
+    }
+    arrObjToArrId(data){
+        let arr = []
+        data.map(obj=>{
+            arr.push(obj._id)
+        });
+        return arr
+    }
 }

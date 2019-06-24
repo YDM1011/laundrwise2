@@ -1,0 +1,21 @@
+<form (submit)="addPost()">
+  <label>
+    <span>name</span>
+    <input type="text" [(ngModel)]="cleaner.name" name="title">
+  </label>
+  <label>
+    <span>Country</span>
+    <input type="text" [(ngModel)]="cleaner.country" name="title">
+  </label>
+  <label>
+    <span>city</span>
+    <input type="text" [(ngModel)]="cleaner.city" name="title">
+  </label>
+  <label>
+    <span>address</span>
+    <input type="text" [(ngModel)]="cleaner.address" name="title">
+  </label>
+  <button type="submit">ok</button>
+</form>
+
+<app-category-list [iframe]="true" (onCategory)="pullCategory($event)" ></app-category-list>

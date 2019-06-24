@@ -3,6 +3,7 @@ export interface Category {
     icon: string
     product: string[]
     date: string
+    checked?: boolean
 }
 
 export class CategoryObj implements Category {
@@ -10,13 +11,15 @@ export class CategoryObj implements Category {
     public icon: string = ''
     public product = []
     public date: string = ''
+    public checked?: boolean = false
 
     constructor() {
         return {
             name: this.name,
             icon: this.icon,
             product: this.product,
-            date: this.date
+            date: this.date,
+            checked: this.checked
         }
     }
 }

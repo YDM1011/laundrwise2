@@ -2,15 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schem = new Schema({
-    name: {type: String, required: [true, "Category Name is required"]},
-    icon: {type: String, required: [true, "Categori's icon is required"]},
-    product: [{
+    name: {type: String, required: [true, "Cleaner Name is required"]},
+    country: {type: String, required: [true, "Cleaner country is required"]},
+    city: {type: String, required: [true, "Cleaner city is required"]},
+    address: {type: String, required: [true, "Cleaner address is required"]},
+    category: [{
         type: Schema.Types.ObjectId,
-        ref: "Product"
-    }],
-    cleaner: [{
-        type: Schema.Types.ObjectId,
-        ref: "Cleaner"
+        ref: "Category"
     }],
     createdBy: {itemId:{
             type: Schema.Types.ObjectId,
@@ -34,4 +32,4 @@ const schem = new Schema({
     strict: true,
 
 });
-mongoose.model('Category', schem);
+mongoose.model('Cleaner', schem);

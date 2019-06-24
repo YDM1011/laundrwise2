@@ -52,6 +52,9 @@ import {SigninComponent} from './components/signin/signin.component';
 import {CategoryEditComponent} from "./pages/admin/category-list/category-edit/category-edit.component";
 import {CategoryAddComponent} from "./pages/admin/category-list/category-add/category-add.component";
 import {CategoryListComponent} from "./pages/admin/category-list/category-list.component";
+import {CleanersListComponent} from "./pages/admin/cleaners-list/cleaners-list.component";
+import {CleanersEditComponent} from "./pages/admin/cleaners-list/cleaners-edit/cleaners-edit.component";
+import {CleanersAddComponent} from "./pages/admin/cleaners-list/cleaners-add/cleaners-add.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -111,7 +114,10 @@ const routes: Routes = [
         {path: 'post-edit/:id', component: PostEditComponent, canActivate: [AdminLoginedGuard]},
         {path: 'category', component: CategoryListComponent, canActivate: [AdminLoginedGuard]},
         {path: 'category-add', component: CategoryAddComponent, canActivate: [AdminLoginedGuard]},
-        {path: 'category-edit', component: CategoryEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'category-edit/:id', component: CategoryEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'cleaners', component: CleanersListComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'cleaner-add', component: CleanersAddComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'cleaner-edit/:id', component: CleanersEditComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},

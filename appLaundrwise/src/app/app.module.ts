@@ -74,6 +74,9 @@ import { FormNotificationComponent } from './components/form-notification/form-n
 import {WebsocketModule} from "./websocket";
 import {environment} from "../environments/environment";
 import { NotificationAdminComponent } from './components/notification-admin/notification-admin.component';
+import { CleanersListComponent } from './pages/admin/cleaners-list/cleaners-list.component';
+import { CleanersAddComponent } from './pages/admin/cleaners-list/cleaners-add/cleaners-add.component';
+import { CleanersEditComponent } from './pages/admin/cleaners-list/cleaners-edit/cleaners-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -140,6 +143,9 @@ import { NotificationAdminComponent } from './components/notification-admin/noti
     CategoryEditComponent,
     FormNotificationComponent,
     NotificationAdminComponent,
+    CleanersListComponent,
+    CleanersAddComponent,
+    CleanersEditComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,22 @@
-<p>
-  category-edit works!
-</p>
+<div class="post-header">
+  <div class="title">
+    Edit Category
+  </div>
+</div>
+<ng-container *ngIf="category">
+  <form (submit)="userSubmit()" class="active" (keyup)="formCheck()">
+    <label>
+    <span class="title">
+        Name
+    </span>
+      <input type="text" name="name" [(ngModel)]="category.name">
+    </label>
+
+    <app-img [img]="category.icon"></app-img>
+
+    <app-upload (onFs)="fsData($event)" [multiple]="false"></app-upload>
+
+    <input type="submit" class="save" value="Save" *ngIf="isBlok">
+  </form>
+</ng-container>
+
