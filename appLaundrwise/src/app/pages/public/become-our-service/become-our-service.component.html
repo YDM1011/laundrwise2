@@ -7,13 +7,13 @@
 
 <div class="content">
     <div class="tabs">
-        <button class="tabs-btn active" data-tab="delivery">For delivery</button>
-        <button class="tabs-btn" data-tab="laundry">For Laundry service</button>
+        <button class="tabs-btn" [class.active]="showContent" data-tab="delivery" (click)="show()">For delivery</button>
+        <button class="tabs-btn" [class.active]="!showContent"  data-tab="laundry" (click)="show()">For Laundry service</button>
     </div>
 </div>
 
 
-<div class="content tabcontent" id="delivery" style="display:block;">
+<div class="content tabcontent" id="delivery" *ngIf="showContent">
     <p>
         Delivery ipsum dolor sit amet, consectetur adipisicing elit. Iste laborum laudantium nulla, repellendus rerum sunt tempore totam unde! Ab aperiam et exercitationem maxime mollitia nostrum, pariatur praesentium rem repellendus suscipit! At aut commodi eius maxime modi quas quisquam quod voluptas?
     </p>
@@ -35,38 +35,12 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste laborum laudantium nulla, repellendus rerum sunt tempore totam unde! Ab aperiam et exercitationem maxime mollitia nostrum, pariatur praesentium rem repellendus suscipit! At aut commodi eius maxime modi quas quisquam quod voluptas?
     </p>
 
-    <div class="getintouch">
-        <div class="getintouch__title">
-            Become our delivery service
-        </div>
-        <form action="" class="getintouch__form">
-            <label for="">
-                <span>Name</span>
-                <input type="text" required>
-            </label>
-            <label for="">
-                <span>Username or e-mail</span>
-                <input type="email" required>
-            </label>
-            <label for="">
-                <span>Telephone</span>
-                <input type="number" required>
-            </label>
-            <label for="">
-                <span>Nature of qnquiry</span>
-                <input type="text">
-            </label>
-            <label for="">
-                <span>Message</span>
-                <textarea type="text" class="message" required></textarea>
-            </label>
-            <input type="submit" class="send" value="send">
-        </form>
-    </div>
+    <app-form-notification [entity]="'delivery'" [title]="'Become our delivery service'"></app-form-notification>
+
 </div>
 
 
-<div class="content tabcontent" id="laundry">
+<div class="content tabcontent" id="laundry" *ngIf="!showContent">
     <p>
         Laundry ipsum dolor sit amet, consectetur adipisicing elit. Iste laborum laudantium nulla, repellendus rerum sunt tempore totam unde! Ab aperiam et exercitationem maxime mollitia nostrum, pariatur praesentium rem repellendus suscipit! At aut commodi eius maxime modi quas quisquam quod voluptas?
     </p>
@@ -88,36 +62,9 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste laborum laudantium nulla, repellendus rerum sunt tempore totam unde! Ab aperiam et exercitationem maxime mollitia nostrum, pariatur praesentium rem repellendus suscipit! At aut commodi eius maxime modi quas quisquam quod voluptas?
     </p>
 
-    <div class="getintouch">
-        <div class="getintouch__title">
-            Become our laundry service
-        </div>
-        <form action="" class="getintouch__form">
-            <label for="">
-                <span>Name</span>
-                <input type="text" required>
-            </label>
-            <label for="">
-                <span>Username or e-mail</span>
-                <input type="email" required>
-            </label>
-            <label for="">
-                <span>Telephone</span>
-                <input type="number" required>
-            </label>
-            <label for="">
-                <span>Nature of qnquiry</span>
-                <input type="text">
-            </label>
-            <label for="">
-                <span>Message</span>
-                <textarea type="text" class="message" required></textarea>
-            </label>
-            <input type="submit" class="send" value="send">
-        </form>
-    </div>
-</div>
+    <app-form-notification [entity]="'cleaners'" [title]="'Become our laundry service'"></app-form-notification>
 
+</div>
 
 <!--<script>-->
 <!--    let tabsbtn = [... document.getElementsByClassName('tabs-btn')];-->

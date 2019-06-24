@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthAdmin, AuthAdminObj} from "./auth-admin";
-import {CrudService} from "../../../crud.service";
-import {Router} from "@angular/router";
-import {AuthService} from "../../../auth.service";
+import {AuthAdmin, AuthAdminObj} from './auth-admin';
+import {CrudService} from '../../../crud.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../auth.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -21,7 +21,7 @@ export class AdminLoginComponent implements OnInit {
   }
 
   doAuth() {
-    this.crud.post('adminSignin', this.adminAuth).then((v:any)=>{
+    this.crud.post('adminSignin', this.adminAuth).then((v: any) => {
       if(v) {
           if (this.auth.isAuthAdmin()) {
               this.router.navigate(['/admin/dashboard']);
@@ -30,7 +30,6 @@ export class AdminLoginComponent implements OnInit {
               return true;
           }
       }
-    }).catch(e=>{});
-    console.log(this.adminAuth);
+    }).catch(e => {});
   }
 }

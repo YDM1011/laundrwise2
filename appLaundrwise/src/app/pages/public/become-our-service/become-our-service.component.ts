@@ -6,11 +6,15 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./become-our-service.component.css']
 })
 export class BecomeOurServiceComponent implements OnInit {
+  public showContent: boolean = true;
   constructor() {
   }
 
   ngOnInit() {
   }
 
+  show() {
+    this.showContent = !this.showContent;
+  }
 
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {WebsocketService} from "../../websocket";
-import {WS} from "../../websocket/websocket.events";
+import {WebsocketService} from '../../websocket';
+import {WS} from '../../websocket/websocket.events';
 
 
 @Component({
@@ -16,15 +16,13 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.notification$ = this.wsService.on(WS.ON.ON_NOTIFICATION);
 
-    this.notification$.subscribe(v=>{
-      console.log(v)
+    this.notification$.subscribe(v => {
+      console.log(v);
     });
-
-
   }
   send() {
-    console.log("send")
-    this.wsService.send(WS.SEND.NOTIFICATION, {data:'test sf'});
+    console.log('send');
+    this.wsService.send(WS.SEND.NOTIFICATION, { data: 'test sf' });
   }
 
 

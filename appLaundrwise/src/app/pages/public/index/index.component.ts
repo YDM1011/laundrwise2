@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CrudService} from '../../../crud.service';
-import {Post} from "../../admin/post/post";
+import {Post} from '../../admin/post/post';
 
 @Component({
   selector: 'app-index',
@@ -8,7 +8,7 @@ import {Post} from "../../admin/post/post";
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-  public arrayPost:Post[] = [];
+  public arrayPost: Post[] = [];
   constructor(
       private crud: CrudService
   ) {

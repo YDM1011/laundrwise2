@@ -11,15 +11,6 @@ input, textarea{
   -moz-appearance: none;
   -webkit-appearance: none;
 }
-body{
-  background: #fff;
-  font-size: 14px;
-  font-family: $regular;
-  min-height: 100vh;
-  height: 100%;
-  scroll-behavior: smooth;
-}
-
 
 @import "main-style";
 @import "other-pages";
