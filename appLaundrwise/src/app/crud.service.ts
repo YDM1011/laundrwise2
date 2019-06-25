@@ -30,6 +30,16 @@ export class CrudService {
         });
     }
 
+    getNoCache(api, id = null, any = null) {
+        return new Promise((resolve, reject) => {
+            this.http.get(`${this.api}${api}${id ? '/' + id : ''}${any ? any : ''}`).subscribe(data => {
+                resolve(data);
+            }, error => {
+                reject(error);
+            });
+        });
+    }
+
     post(api, obj, id = null, isUpdate:any = false) {
         return new Promise((resolve, reject) => {
           this.http.post(`${this.api}${api}${id ? '/' + id : ''}`, obj).subscribe(data => {

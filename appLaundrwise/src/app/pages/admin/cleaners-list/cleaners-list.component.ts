@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MatTableDataSource} from "@angular/material";
+import {MatDialog, MatTableDataSource} from "@angular/material";
 import {CrudService} from "../../../crud.service";
 import {Cleaner} from "./cleaner";
+import {CategoryIncludedComponent} from "../../../components/category-included/category-included.component";
+import {SuperManagerFormComponent} from "../../../components/super-manager-form/super-manager-form.component";
 
 @Component({
   selector: 'app-cleaners-list',
@@ -10,10 +12,10 @@ import {Cleaner} from "./cleaner";
 })
 export class CleanersListComponent implements OnInit {
     public dataSource = new MatTableDataSource();
-    public displayedColumns: string[] = ['name','date','edit','del'];
+    public displayedColumns: string[] = ['name','sm','category','date','edit','del'];
     public cleaner: Cleaner[];
-
     constructor(
+        public dialog: MatDialog,
         private crud: CrudService
     ) { }
 
@@ -30,6 +32,14 @@ export class CleanersListComponent implements OnInit {
 
             this.dataSource = new MatTableDataSource(this.cleaner);
         });
+    }
+
+    showCategory(elem) {
+        this.dialog.open(CategoryIncludedComponent, { width: '50%', height: '50%', data: elem});
+    }
+
+    addManeger(elem) {
+        this.dialog.open(SuperManagerFormComponent, { width: '50%', height: '50%', data: {_id:elem}});
     }
 
 }

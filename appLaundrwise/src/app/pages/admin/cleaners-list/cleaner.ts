@@ -1,5 +1,6 @@
 export interface Cleaner {
     name: string
+    superManager?: string
     country: string
     city: string
     address: string
@@ -10,6 +11,7 @@ export interface Cleaner {
 
 export class CleanerObj implements Cleaner {
     public name: string = ''
+    public superManager?: string = ''
     public country: string = ''
     public city: string = ''
     public address: string = ''
@@ -20,6 +22,7 @@ export class CleanerObj implements Cleaner {
     constructor() {
         return {
             name: this.name,
+            superManager: this.superManager,
             country: this.country,
             city: this.city,
             address: this.address,

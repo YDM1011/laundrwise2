@@ -10,6 +10,14 @@ const schem = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Category"
     }],
+    superManager: {
+        type: Schema.Types.ObjectId,
+        ref: "Client"
+    },
+    managers: [{
+        type: Schema.Types.ObjectId,
+        ref: "Client"
+    }],
     createdBy: {itemId:{
             type: Schema.Types.ObjectId,
             ref: "Client"

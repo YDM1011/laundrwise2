@@ -80,6 +80,8 @@ import { CleanersEditComponent } from './pages/admin/cleaners-list/cleaners-edit
 import { NewOrdersStepSeroComponent } from './pages/orders/new-orders-step-sero/new-orders-step-sero.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { OrderFooterComponent } from './components/order-footer/order-footer.component';
+import { CategoryIncludedComponent } from './components/category-included/category-included.component';
+import { SuperManagerFormComponent } from './components/super-manager-form/super-manager-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -152,6 +154,8 @@ import { OrderFooterComponent } from './components/order-footer/order-footer.com
     NewOrdersStepSeroComponent,
     OrderItemComponent,
     OrderFooterComponent,
+    CategoryIncludedComponent,
+    SuperManagerFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -168,7 +172,9 @@ import { OrderFooterComponent } from './components/order-footer/order-footer.com
   ],
   entryComponents: [
       LoginpopupComponent,
-      DialogComponent
+      DialogComponent,
+      SuperManagerFormComponent,
+      CategoryIncludedComponent
   ],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
