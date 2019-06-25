@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../../auth.service';
 
 @Component({
   selector: 'app-new-orders-step-two',
@@ -6,11 +7,17 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./new-orders-step-two.component.css']
 })
 export class NewOrdersStepTwoComponent implements OnInit {
-  constructor() {
-  }
+  public me;
+  public instruction: string;
+  constructor(
+      private auth: AuthService
+  ) {}
 
   ngOnInit() {
+    this.auth.onUpDate.subscribe((v: any) => {
+      if (v) {
+        this.me = v;
+      }
+    });
   }
-
-
 }

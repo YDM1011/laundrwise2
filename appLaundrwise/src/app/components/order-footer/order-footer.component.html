@@ -6,7 +6,7 @@
     <div class="buttons">
       <div class="basket">
         <span (click)="decrementStep()">Back</span>
-        <span (click)="incrementStep()">{{btns[step]}}</span>
+        <a [routerLink]="link" (click)="incrementStep()">{{btns[step]}}</a>
       </div>
     </div>
   </div>

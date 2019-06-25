@@ -9,21 +9,21 @@
                         </div>
                     </div>
                     <form action="">
-                        <label for="line1">
-                            <span>Line 1</span>
-                            <input type="text" name="line1" id="line1" >
+                        <label>
+                            <span>City</span>
+                            <input type="text" name="city" id="city" [(ngModel)]="me.city">
                         </label>
-                        <label for="line2">
-                            <span>Line 2</span>
-                            <input type="text" name="line2" id="line2" >
+                        <label>
+                            <span>Address 1</span>
+                            <input type="text" name="address1" [(ngModel)]="me.address1">
                         </label>
-                        <label for="postcode">
-                            <span>Postcode</span>
-                            <input type="number" name="postcode" id="postcode" >
+                        <label>
+                            <span>Address 2</span>
+                            <input type="text" name="address2" [(ngModel)]="me.address2">
                         </label>
                         <label for="instructions">
                             <span>Delivery Instructions</span>
-                            <textarea type="text" name="instructions" id="instructions" ></textarea>
+                            <textarea type="text" name="instructions" id="instructions" [(ngModel)]="instruction"></textarea>
                         </label>
                     </form>
                 </div>
@@ -41,7 +41,6 @@
                     <div class="order-step__box-headline">
                         <div class="title">items</div>
                         <div class="cleaner-logo">
-<!--                            <img src="../assets/images/logo-cleaner.png" alt="">-->
                             Name company
                         </div>
                     </div>

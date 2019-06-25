@@ -148,6 +148,7 @@
          margin-left: 10px;
          max-width: 80px;
          width: 100%;
+         pointer-events: none;
          &__usd{
            margin-left: 5px;
          }
@@ -203,7 +204,7 @@
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        span{
+        span, a{
           color: $main-blue;
           text-align: center;
           font-size: 16px;

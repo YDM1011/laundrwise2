@@ -30,9 +30,6 @@
         border-radius: 50%;
         background: #FF0101;
       }
-      .mat-menu-item{
-
-      }
 
     }
     .admin-name{
@@ -45,6 +42,25 @@
     }
   }
 }
+.mat-menu-content{
+  .mat-menu-item{
+    padding: 0 35px!important;
+  }
+}
+.notification-item{
+  padding: 0 35px!important;
+}
 span.count{
-  color: blue!important;
+  display: flex;
+  width: 2em;
+  height: 2em;
+  background: #45a8e1;
+  border-radius: 50%;
+  position: absolute;
+  top: 16px;
+  left: 10px;
+  justify-content: center;
+  align-items: center;
+  color: #fff!important;
+  font-size: 0.6em;
 }
