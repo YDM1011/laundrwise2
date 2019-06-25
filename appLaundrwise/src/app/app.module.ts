@@ -80,7 +80,6 @@ import { CleanersEditComponent } from './pages/admin/cleaners-list/cleaners-edit
 import { NewOrdersStepSeroComponent } from './pages/orders/new-orders-step-sero/new-orders-step-sero.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { OrderFooterComponent } from './components/order-footer/order-footer.component';
-import { ConfirgmDeleteComponent } from './components/confirgm-delete/confirgm-delete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -153,7 +152,6 @@ import { ConfirgmDeleteComponent } from './components/confirgm-delete/confirgm-d
     NewOrdersStepSeroComponent,
     OrderItemComponent,
     OrderFooterComponent,
-    ConfirgmDeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -171,7 +169,6 @@ import { ConfirgmDeleteComponent } from './components/confirgm-delete/confirgm-d
   entryComponents: [
       LoginpopupComponent,
       DialogComponent,
-      ConfirgmDeleteComponent
   ],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]

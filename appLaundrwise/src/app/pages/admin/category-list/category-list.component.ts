@@ -41,8 +41,8 @@ export class CategoryListComponent implements OnInit {
     }
 
     deletItem(elem) {
-        this.category.splice(this.crud.find('_id', elem._id, this.category), 1);
         this.crud.delete('category', elem._id, elem, ['category']).then((v: any) => {
+            this.category.splice(this.crud.find('_id', elem._id, this.category), 1);
             this.dataSource = new MatTableDataSource(this.category);
         });
     }

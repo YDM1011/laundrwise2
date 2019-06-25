@@ -8,7 +8,7 @@ import { DialogComponent } from "./dialog/dialog.component";
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss']
 })
-export class UploadComponent implements OnInit, OnChanges{
+export class UploadComponent implements OnInit, OnChanges {
 
   @Output() onFs = new EventEmitter();
   @Input() multiple = true;

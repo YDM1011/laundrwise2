@@ -19,7 +19,8 @@ export class PostAddComponent implements OnInit {
   }
 
   addPost() {
-    this.crud.post('post', this.post);
+    this.crud.post('post', this.post, null, ['post']).then( value => {
+    });
   }
   fsData(data) {
     this.post.images.push(data.file );
