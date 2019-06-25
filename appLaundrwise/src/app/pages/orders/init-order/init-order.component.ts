@@ -10,7 +10,6 @@ import {CrudService} from '../../../crud.service';
 export class InitOrderComponent implements OnInit {
 
     public step = 0;
-
     constructor(
         private auth: AuthService,
         private crud: CrudService

@@ -9,7 +9,8 @@ import {AuthService} from "../../auth.service";
 export class OrderFooterComponent implements OnInit {
   public step: number;
   public totalPrice: number = 0;
-  public btns = ['', 'Your basket', 'Payment system', 'Finish'];
+  public link: string = '/orders';
+  public btns = ['', 'Your basket', 'Confirm order', 'Finish'];
   constructor(
       private auth: AuthService
   ) { }
@@ -17,6 +18,9 @@ export class OrderFooterComponent implements OnInit {
   ngOnInit() {
     this.auth.getStep.subscribe(( v: number ) => {
       this.step = v;
+      if (this.step === 2) {
+        this.link = '/profile';
+      }
     });
   }
 
@@ -25,6 +29,9 @@ export class OrderFooterComponent implements OnInit {
   }
 
   incrementStep() {
+    if (this.step === 2) {
+      this.auth.setStep(0);
+    }
     this.auth.setStep(this.step += 1);
   }
 

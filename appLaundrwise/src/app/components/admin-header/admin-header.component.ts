@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CrudService} from "../../crud.service";
 
 @Component({
@@ -8,16 +8,15 @@ import {CrudService} from "../../crud.service";
   styleUrls: ['./admin-header.component.scss']
 })
 export class AdminHeaderComponent implements OnInit {
-
   constructor(
       private router: Router,
-      private crud: CrudService,
+      private routeActive: ActivatedRoute,
+      private crud: CrudService
   ) { }
 
   ngOnInit() {
   }
   logout() {
-
     this.crud.post('adminLogout', {}).then((v: any) => {
         this.router.navigate(['/']);
         }).catch(error => {});

@@ -12,9 +12,7 @@
 <ng-container *ngIf="step==3">
     <app-new-orders-step-three></app-new-orders-step-three>
 </ng-container>
-<ng-container *ngIf="step==4">
-    <app-thanks></app-thanks>
-</ng-container>
-<app-order-footer *ngIf="step > 0 && step < 4" class="totalprice"></app-order-footer>
+<!--<ng-container *ngIf="step==-->
+<app-order-footer *ngIf="step > 0 && step < 3" class="totalprice"></app-order-footer>
 
 <button (click)="incrementStep()">next</button>
