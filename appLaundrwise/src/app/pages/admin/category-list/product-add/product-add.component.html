@@ -1,0 +1,22 @@
+<div class="post-header">
+  <div class="title">
+    Add Product
+  </div>
+</div>
+<form (submit)="addProduct()" class="cleaner-form">
+  <label>
+    <span>Name Product</span>
+    <input type="text" [(ngModel)]="product.name" name="name">
+  </label>
+  <label>
+    <span>Description</span>
+    <input type="text" [(ngModel)]="product.des" name="desc">
+  </label>
+  <label>
+    <span>Price</span>
+    <input type="text" [(ngModel)]="product.price" name="desc">
+  </label>
+  <app-upload (onFs)="fsData($event)" [multiple]="false"></app-upload>
+  <br>
+  <button class="send" type="submit">Add Product</button>
+</form>

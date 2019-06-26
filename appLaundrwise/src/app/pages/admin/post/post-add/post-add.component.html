@@ -8,17 +8,12 @@
         <span>title</span>
         <input type="text" [(ngModel)]="post.title" name="title">
     </label>
-
-    <br>
-
     <label>
         <span>text</span>
         <textarea name="text" cols="30" rows="10" [(ngModel)]="post.text"></textarea>
     </label>
-
+    <app-upload (onFs)="fsData($event)" [multiple]="true"></app-upload>
     <br>
 
-    <app-upload (onFs)="fsData($event)" [multiple]="true"></app-upload>
-
-    <button type="submit">ok</button>
+    <button type="submit" class="send">ok</button>
 </form>

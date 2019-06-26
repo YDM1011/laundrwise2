@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CrudService} from '../../../crud.service';
-import {Category, CategoryObj} from './category';
+import {Category} from './category';
 import {MatTableDataSource} from '@angular/material';
 
 @Component({

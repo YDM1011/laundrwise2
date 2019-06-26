@@ -1,9 +1,3 @@
-<!--<p *ngFor="let item of post">-->
-<!--  {{item.title}} <br>-->
-<!--  {{item.text}}-->
-<!--  {{item.data | date:'yy-MM-dd'}}-->
-<!--  <app-img *ngFor="let img of item.images" [img]="img"></app-img>-->
-<!--</p>-->
 <div class="post-header">
   <div class="title">
     Post
@@ -13,41 +7,43 @@
     add new
   </a>
 </div>
-<div class="table-header">
-  <mat-form-field appearance="standard">
-    <mat-label>Search post</mat-label>
-    <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="Search post">
-  </mat-form-field>
-  <img src="../assets/images/filter-icon.svg" alt="">
-</div>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Title Column -->
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> Title </th>
-    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-  </ng-container>
+<ng-container *ngIf="post?.length > 0">
+  <div class="table-header">
+    <mat-form-field appearance="standard">
+      <mat-label>Search post</mat-label>
+      <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="Search post">
+    </mat-form-field>
+    <img src="../assets/images/filter-icon.svg" alt="">
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
 
-  <!-- Date Column -->
-  <ng-container matColumnDef="data">
-    <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.date | date:'yy MM dd'}} </td>
-  </ng-container>
+    <!-- Date Column -->
+    <ng-container matColumnDef="data">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date | date:'yy MM dd'}} </td>
+    </ng-container>
 
-  <!-- edit Column -->
-  <ng-container matColumnDef="_id">
-    <th mat-header-cell *matHeaderCellDef> Edit </th>
-    <td mat-cell *matCellDef="let element">
-      <a class="edit-link" [routerLink]="'/admin/post-edit/'+element._id">Edit</a>
-    </td>
-  </ng-container>
-  <!-- edit Column -->
-  <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef> Delete </th>
-    <td mat-cell *matCellDef="let element">
-      <a class="delete-link" (click)="delete(element)">Delete</a>
-    </td>
-  </ng-container>
+    <!-- edit Column -->
+    <ng-container matColumnDef="_id">
+      <th mat-header-cell *matHeaderCellDef> Edit </th>
+      <td mat-cell *matCellDef="let element">
+        <a class="edit-link" [routerLink]="'/admin/post-edit/'+element._id">Edit</a>
+      </td>
+    </ng-container>
+    <!-- edit Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Delete </th>
+      <td mat-cell *matCellDef="let element">
+        <a class="delete-link" (click)="delete(element)">Delete</a>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-container>

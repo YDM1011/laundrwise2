@@ -20,16 +20,16 @@ export class PostComponent implements OnInit {
       private crud: CrudService
   ) { }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
   ngOnInit() {
     this.crud.get('post').then((v: any) => {
       this.post = v;
       this.dataSource = new MatTableDataSource(this.post);
     });
+  }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
   delete(element) {
     const apiData = 'post';
