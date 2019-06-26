@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class CleanersAddComponent implements OnInit {
 
-    public cleaner:Cleaner = new CleanerObj();
+    public cleaner: Cleaner = new CleanerObj();
 
     constructor(
         private router: Router,
@@ -22,16 +22,13 @@ export class CleanersAddComponent implements OnInit {
 
     addPost() {
         delete this.cleaner.date;
-        this.crud.post('cleaner', this.cleaner, null, ['cleaner']).then(v=>{
-            this.router.navigate(['/admin/cleaners'])
+        this.crud.post('cleaner', this.cleaner, null, ['cleaner']).then(v => {
+            this.router.navigate(['/admin/cleaners']);
         });
     }
 
-    pullCategory(elems){
+    pullCategory(elems) {
         this.cleaner.category = this.crud.arrObjToArrId(elems);
-        console.log(this.crud.arrObjToArrId(elems))
+        console.log(this.crud.arrObjToArrId(elems));
     }
-
-
-
 }

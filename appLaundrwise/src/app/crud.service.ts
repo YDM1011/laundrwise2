@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../environments/environment';
+import {BehaviorSubject} from "rxjs";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
 
-    // private updat = new BehaviorSubject<any>(null);
-    // public onUpDate = this.updat.asObservable();
+    private del = new BehaviorSubject<any>(null);
+    public onDel = this.del.asObservable();
     private api = environment.host;
     private DB = {};
     constructor( private http: HttpClient ) { }
@@ -26,7 +28,6 @@ export class CrudService {
                   reject(error);
               });
           }
-
         });
     }
 
@@ -45,9 +46,9 @@ export class CrudService {
           this.http.post(`${this.api}${api}${id ? '/' + id : ''}`, obj).subscribe(data => {
            resolve(data);
            if (isUpdate) {
-               isUpdate.map(property=>{
-                   this.update(property, obj, id)
-               })
+               isUpdate.map(property => {
+                   this.update(property, obj, id);
+               });
            }
           }, error => {
             reject(error);
@@ -55,58 +56,76 @@ export class CrudService {
         });
     }
 
-    delete(api, id = null, ogjAfterDel:any = null, isUpdate:any = false) {
+    delete(api, id = null, ogjAfterDel: any = null, isUpdate: any = false) {
         return new Promise((resolve, reject) => {
-          this.http.delete(`${this.api}${api}/${id ? id : ''}`).subscribe(data => {
-           resolve(data);
-              if (isUpdate && ogjAfterDel) {
-                  isUpdate.map(property=>{
-                      this.update(property, ogjAfterDel, 'delete')
-                  })
-              }
-          }, error => {
-            reject(error);
-          });
+            Swal.fire({
+                title: 'Do you confirm the deletion?',
+                type: 'warning',
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: true,
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel!',
+                confirmButtonColor: '#dd4535',
+            }).then((result) => {
+                if (result.value) {
+                    this.http.delete(`${this.api}${api}/${id ? id : ''}`).subscribe(data => {
+                        resolve(data);
+                        if (isUpdate && ogjAfterDel) {
+                            isUpdate.map(property => {
+                                this.update(property, ogjAfterDel, 'delete');
+                            });
+                        }
+                    }, error => {
+                        reject(error);
+                    });
+                }
+            });
         });
     }
 
-    update(property, data, type = null){
-        if(typeof this.DB[this.api+property] == 'object'){
-            if (type == 'delete'){
-                try{
-                    if (this.DB[this.api+property].length > 0){
-                        let index = this.find('_id',data._id,this.DB[this.api+property]);
-                        if (index){
-                            this.DB[this.api+property].splice(index, 1);
+    confirmDelet(data) {
+        console.log(data)
+        this.del.next(data);
+    }
+    update(property, data, type = null) {
+        if (typeof this.DB[this.api + property] === 'object') {
+            if (type === 'delete') {
+                try {
+                    if (this.DB[this.api + property].length > 0) {
+                        const index = this.find('_id', data._id, this.DB[this.api + property]);
+                        if (index) {
+                            this.DB[this.api + property].splice(index, 1);
                         }
-                        console.log(this.DB[this.api+property], index)
+                        console.log(this.DB[this.api + property], index);
                     }
-                }catch (e) {
-                    alert('update error')
+                } catch (e) {
+                    alert('update error');
                 }
-            } if (!type) {
+            }
+            if (!type) {
                 try {
                     if (this.DB[this.api + property].length > 0) {
                         this.DB[this.api + property].push(data);
                     }
-                } catch(e) {
+                } catch (e) {
 
                 }
-            }else{
-                try{
-                    if (this.DB[this.api+property].length > 0){
-                        let index = this.find('_id',data._id,this.DB[this.api+property]);
-                        if (index){
-                            this.DB[this.api+property][index] = data;
+            } else {
+                try {
+                    if (this.DB[this.api + property].length > 0) {
+                        const index = this.find('_id', data._id, this.DB[this.api + property]);
+                        if (index) {
+                            this.DB[this.api + property ][index] = data;
                         }
-                        console.log(this.DB[this.api+property], index)
+                        console.log(this.DB[this.api + property], index);
                     }
-                    if (type == data._id) {
-                        this.DB[this.api+property+'/'+type] = data;
-                        console.log(this.DB[this.api+property])
+                    if (type === data._id) {
+                        this.DB[this.api + property + '/' + type] = data;
+                        console.log(this.DB[this.api + property]);
                     }
-                }catch (e) {
-                    alert('update error')
+                } catch (e) {
+                    alert('update error');
                 }
             }
 
@@ -114,12 +133,12 @@ export class CrudService {
         }
         // this.DB[this.api+property] = data;
 
-        console.log(this.DB)
+        console.log(this.DB);
     }
 
-    find(property,id,data,type='index') {
-        for (let i=0; i<data.length; i++){
-            if (data[i][property] === id){
+    find(property, id, data, type = 'index') {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i][property] === id) {
                 let dataItem = null;
                 switch (type) {
                     case 'index': dataItem = i;
@@ -128,15 +147,15 @@ export class CrudService {
                         break;
                     default: break;
                 }
-                return dataItem
+                return dataItem;
             }
         }
     }
-    arrObjToArrId(data){
-        let arr = []
-        data.map(obj=>{
-            arr.push(obj._id)
+    arrObjToArrId(data) {
+        const arr = [];
+        data.map(obj => {
+            arr.push(obj._id);
         });
-        return arr
+        return arr;
     }
 }

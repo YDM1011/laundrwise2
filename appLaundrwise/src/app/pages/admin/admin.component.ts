@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {WebsocketService} from '../../websocket';
 import {WS} from '../../websocket/websocket.events';
+import {CrudService} from "../../crud.service";
+import {MatDialog} from "@angular/material";
 
 
 @Component({
@@ -10,8 +12,11 @@ import {WS} from '../../websocket/websocket.events';
 })
 export class AdminComponent implements OnInit {
   public notification$;
-  constructor(private wsService: WebsocketService) {
-  }
+  constructor(
+      private crud: CrudService,
+      public dialog: MatDialog,
+      private wsService: WebsocketService
+  ) {}
 
   ngOnInit() {
     this.notification$ = this.wsService.on(WS.ON.ON_NOTIFICATION);
@@ -24,6 +29,4 @@ export class AdminComponent implements OnInit {
     console.log('send');
     this.wsService.send(WS.SEND.NOTIFICATION, { data: 'test sf' });
   }
-
-
 }

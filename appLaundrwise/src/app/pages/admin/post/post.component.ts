@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Post} from './post';
 import {CrudService} from '../../../crud.service';
-import {MatDialog, MatSort, MatTableDataSource} from '@angular/material';
-import {ConfirgmDeleteComponent} from "../../../components/confirgm-delete/confirgm-delete.component";
+import {MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-post',
@@ -18,8 +17,7 @@ export class PostComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   constructor(
-      private crud: CrudService,
-      public dialog: MatDialog
+      private crud: CrudService
   ) { }
 
   applyFilter(filterValue: string) {
@@ -33,19 +31,11 @@ export class PostComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.post);
     });
   }
-  openDialog(element) {
-    const dialogRef = this.dialog.open(ConfirgmDeleteComponent, {
-      width: '350px',
-      data: 'Do you confirm the deletion?'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.post.splice(this.crud.find('_id', element._id, this.post), 1);
-        this.crud.delete('post', element._id).then(value => {
-          this.dataSource = new MatTableDataSource(this.post);
-        });
-      }
+  delete(element) {
+    const apiData = 'post';
+    this.crud.delete(apiData, element._id).then((v: any) => {
+      this.post.splice(this.crud.find('_id', element._id, this.post), 1);
+      this.dataSource = new MatTableDataSource(this.post);
     });
   }
 }

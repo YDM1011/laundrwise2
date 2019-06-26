@@ -7,7 +7,9 @@ import Swal from 'sweetalert2';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-    constructor(private cookie: CookieService) { }
+    constructor(
+        private cookie: CookieService,
+    ) { }
 
     // intercept request and add token
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -18,7 +20,6 @@ export class ApiInterceptor implements HttpInterceptor {
             },
             withCredentials: true
         });
-
         return next.handle(request)
             .pipe(
                 tap(event => {
@@ -34,4 +35,5 @@ export class ApiInterceptor implements HttpInterceptor {
                 })
             );
     }
+
 }
