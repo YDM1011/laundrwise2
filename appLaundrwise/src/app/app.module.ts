@@ -82,7 +82,6 @@ import { OrderItemComponent } from './components/order-item/order-item.component
 import { OrderFooterComponent } from './components/order-footer/order-footer.component';
 import { CategoryIncludedComponent } from './components/category-included/category-included.component';
 import { SuperManagerFormComponent } from './components/super-manager-form/super-manager-form.component';
-import { ConfirgmDeleteComponent } from './components/confirgm-delete/confirgm-delete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -155,7 +154,6 @@ import { ConfirgmDeleteComponent } from './components/confirgm-delete/confirgm-d
     NewOrdersStepSeroComponent,
     OrderItemComponent,
     OrderFooterComponent,
-    ConfirgmDeleteComponent,
     CategoryIncludedComponent,
     SuperManagerFormComponent,
   ],
@@ -178,7 +176,6 @@ import { ConfirgmDeleteComponent } from './components/confirgm-delete/confirgm-d
       SuperManagerFormComponent,
       CategoryIncludedComponent,
       DialogComponent,
-      ConfirgmDeleteComponent
   ],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]

@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 var Client = mongoose.model('Client');
+var Admin = mongoose.model('Admin');
 const config = require('../config/config');
 
 module.exports = function (req, res, next) {
   if (req.jwt) {
       const jwt = require('jsonwebtoken');
-      const protect = req.cookies['token'] || req.jwt.token;
+      const protect = req.cookies['adminToken'] || req.cookies['token'] || req.jwt.token;
       console.log(protect)
       if(!protect){
           return res.forbidden("forbidden12");
@@ -18,10 +19,21 @@ module.exports = function (req, res, next) {
               Client.findOne({login: data.login })
                   .exec((err, info)=>{
                       if (err) return next(err);
-                      if (!info) return res.forbidden("forbidden3");
-                      req.user = info.toObject();
-                      bodyModyfi(req);
-                      next()
+                      if (!info){
+                          Admin.findOne({login: data.login })
+                              .exec((err, infoA)=>{
+                                  if (err) return next(err);
+                                  if (!infoA) return res.forbidden("forbidden3");
+                                  req.user = infoA.toObject();
+                                  bodyModyfi(req);
+                                  next()
+                              });
+                      } else {
+                          req.user = info.toObject();
+                          bodyModyfi(req);
+                          next()
+                      }
+
                   });
           }
       });
