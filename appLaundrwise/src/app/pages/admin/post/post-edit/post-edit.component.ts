@@ -80,8 +80,6 @@ export class PostEditComponent implements OnInit {
   fsData(data) {
     this.post.images.push(data.file);
     this.initDataPost.images.push(data.file);
-    console.log(this.post);
-    console.log(this.initDataPost);
     this.btnBlok(this.validate());
   }
 }

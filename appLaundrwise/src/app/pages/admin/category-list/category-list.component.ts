@@ -10,7 +10,7 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class CategoryListComponent implements OnInit {
     public dataSource = new MatTableDataSource();
-    public displayedColumns: string[] = ['select', 'name', 'date', 'edit', 'del'];
+    public displayedColumns: string[] = ['count', 'select', 'name', 'date', 'edit', 'del'];
     public category: Category[];
     @Input() iframe = false;
     @Input() useCategory = null;
@@ -21,9 +21,9 @@ export class CategoryListComponent implements OnInit {
 
     ngOnInit() {
         if (this.iframe) {
-            this.displayedColumns = ['select', 'name', 'date'];
+            this.displayedColumns = ['count', 'select', 'name', 'date'];
         } else {
-            this.displayedColumns = ['name', 'date', 'edit', 'del'];
+            this.displayedColumns = ['count', 'name', 'date', 'edit', 'del'];
         }
         this.crud.get('category').then((v: any) => {
             this.category = v;

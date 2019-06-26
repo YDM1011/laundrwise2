@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../environments/environment';
-import {BehaviorSubject} from "rxjs";
 import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
-
-    private del = new BehaviorSubject<any>(null);
-    public onDel = this.del.asObservable();
+    // private del = new BehaviorSubject<any>(null);
+    // public onDel = this.del.asObservable();
     private api = environment.host;
     private DB = {};
     constructor( private http: HttpClient ) { }
@@ -64,8 +62,9 @@ export class CrudService {
                 showCloseButton: true,
                 showCancelButton: true,
                 focusConfirm: true,
-                confirmButtonText: 'Delete',
+                reverseButtons: true,
                 cancelButtonText: 'Cancel!',
+                confirmButtonText: 'Delete',
                 confirmButtonColor: '#dd4535',
             }).then((result) => {
                 if (result.value) {
@@ -82,11 +81,6 @@ export class CrudService {
                 }
             });
         });
-    }
-
-    confirmDelet(data) {
-        console.log(data)
-        this.del.next(data);
     }
     update(property, data, type = null) {
         if (typeof this.DB[this.api + property] === 'object') {
@@ -133,7 +127,7 @@ export class CrudService {
         }
         // this.DB[this.api+property] = data;
 
-        console.log(this.DB);
+        // console.log(this.DB);
     }
 
     find(property, id, data, type = 'index') {

@@ -24,6 +24,7 @@ module.exports = function (backendApp) {
                 preRead: schemaPreRead,
                 preCreate: [backendApp.middlewares.isLoggedIn, schemaPreSave],
                 preUpdate: [backendApp.middlewares.isLoggedIn, schemaPreUpdate],
+                postUpdate: schemaPostUpdate,
                 preDelete: backendApp.middlewares.isLoggedIn,
                 // preCustomLink: backendApp.middlewares.isLoggedIn
             });
@@ -75,6 +76,20 @@ module.exports = function (backendApp) {
         if (schem) {
             try {
                 schem.preUpdate(req, res, next, backendApp);
+            } catch (e) {
+                next()
+            }
+        } else {
+            next()
+        }
+    };
+
+    function schemaPostUpdate (req, res, next) {
+        let schem = restFunction[String(req.erm.model.modelName.toLowerCase())];
+        console.log("Schema", schem, req.erm.model.modelName);
+        if (schem) {
+            try {
+                schem.postUpdate(req, res, next, backendApp);
             } catch (e) {
                 next()
             }

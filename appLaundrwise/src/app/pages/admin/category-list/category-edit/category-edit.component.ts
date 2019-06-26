@@ -35,14 +35,12 @@ export class CategoryEditComponent implements OnInit {
             this.displayedColumns = ['name', 'date', 'edit', 'del'];
         }
         this.id = this.route.snapshot.paramMap.get('id');
-
-        this.crud.get('category', this.id).then((v: any) => {
-            this.initDataPost = v;
-            this.category = Object.assign({}, v);
-        });
-        const query = JSON.stringify({path: 'superManager', skip: 0, limit: 8});
-        this.crud.get(`product?category=${query}`).then((v: any) => {
-            this.producForTable = v;
+        const populate = JSON.stringify({path: 'product', skip: 0, limit: 0});
+        const query = JSON.stringify({_id: this.id});
+        this.crud.get(`category?query=${query}&populate=${populate}`).then((v: any) => {
+            this.initDataPost = v[0];
+            this.category = Object.assign({}, v[0]);
+            this.producForTable = v[0].product;
             this.dataSource = new MatTableDataSource(this.producForTable);
         });
     }
@@ -76,5 +74,10 @@ export class CategoryEditComponent implements OnInit {
 
         });
     }
-
+    deletProd(elem) {
+        this.crud.delete('product', elem._id, elem, ['product']).then((v: any) => {
+            this.producForTable.splice(this.crud.find('_id', elem._id, this.category), 1);
+            this.dataSource = new MatTableDataSource(this.producForTable);
+        });
+    }
 }

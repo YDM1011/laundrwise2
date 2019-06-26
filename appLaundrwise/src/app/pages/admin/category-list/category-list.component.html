@@ -24,6 +24,12 @@
   </ng-container>
 
   <!-- Title Column -->
+  <ng-container matColumnDef="count">
+    <th mat-header-cell *matHeaderCellDef> Count </th>
+    <td mat-cell *matCellDef="let element"> {{element.product.length}} </td>
+  </ng-container>
+
+  <!-- Title Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Title </th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>

@@ -1,3 +1,30 @@
-<p>
-  product-edit works!
-</p>
+<div class="post-header">
+  <div class="title">
+    Edit Product
+  </div>
+</div>
+<ng-container *ngIf="product">
+  <form class="active cleaner-form" (keyup)="formCheck()">
+    <label>
+        <span class="title">
+            Title
+        </span>
+        <input type="text" name="name" [(ngModel)]="product.name">
+    </label>
+    <label>
+        <span class="title">
+            Description
+        </span>
+        <input type="text" name="des" [(ngModel)]="product.des">
+    </label>
+
+      <app-upload style="margin-bottom: 10px" *ngIf="remImg" (onFs)="fsData($event)" [multiple]="true"></app-upload>
+
+      <ng-container  class="images" *ngIf="!remImg">
+          <app-img [img]="product.images"></app-img>
+          <button (click)="removeImg()" class="remove-img">remove img</button>
+      </ng-container>
+
+    <input type="submit" (click)="userSubmit()" class="send" value="Save" *ngIf="isBlok">
+  </form>
+</ng-container>
