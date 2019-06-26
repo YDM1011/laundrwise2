@@ -22,6 +22,7 @@ export class CleanersAddComponent implements OnInit {
 
     addPost() {
         delete this.cleaner.date;
+        delete this.cleaner.superManager;
         this.crud.post('cleaner', this.cleaner, null, ['cleaner']).then(v => {
             this.router.navigate(['/admin/cleaners']);
         });

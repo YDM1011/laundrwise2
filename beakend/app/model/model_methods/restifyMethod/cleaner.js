@@ -1,6 +1,8 @@
 module.exports.preRead = (req,res,next, backendApp) => {
     // let err = backendApp.service.signUpValidator(req.body);
     // if (err) return res.badRequest(err);
+    req.erm.query = {populate:{path:'superManager'}};
+    console.log("ok!!!",req.erm)
     next()
 };
 module.exports.preUpdate = async (req,res,next, backendApp) => {

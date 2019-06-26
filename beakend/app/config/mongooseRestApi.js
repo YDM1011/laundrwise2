@@ -43,6 +43,7 @@ module.exports = function (backendApp) {
         console.log("Schema", schem, req.erm.model.modelName);
         if (schem) {
             try {
+                console.log("ok")
                 schem.preRead(req, res, next, backendApp);
             } catch (e) {
                 next()

@@ -1,6 +1,11 @@
-<form (submit)="addPost()">
+<div class="post-header">
+  <div class="title">
+    Add Cleaners
+  </div>
+</div>
+<form (submit)="addPost()" class="cleaner-form">
   <label>
-    <span>name</span>
+    <span>Name</span>
     <input type="text" [(ngModel)]="cleaner.name" name="title">
   </label>
   <label>
@@ -8,14 +13,14 @@
     <input type="text" [(ngModel)]="cleaner.country" name="title">
   </label>
   <label>
-    <span>city</span>
+    <span>City</span>
     <input type="text" [(ngModel)]="cleaner.city" name="title">
   </label>
   <label>
-    <span>address</span>
+    <span>Address</span>
     <input type="text" [(ngModel)]="cleaner.address" name="title">
   </label>
-  <button type="submit">ok</button>
+  <button class="send" type="submit">Add Cleaners</button>
 </form>
 
 <app-category-list [iframe]="true" (onCategory)="pullCategory($event)" ></app-category-list>
