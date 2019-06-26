@@ -21,7 +21,7 @@ module.exports = function (backendApp) {
                 // preRead: (req,res,next)=>{preRead(model,req,res,next)},
                 // for access rights control
                 // preMiddleware: backendApp.middlewares.isLoggedIn,
-                preRead: [schemaPreRead],
+                preRead: schemaPreRead,
                 preCreate: [backendApp.middlewares.isLoggedIn, schemaPreSave],
                 preUpdate: [backendApp.middlewares.isLoggedIn, schemaPreUpdate],
                 preDelete: backendApp.middlewares.isLoggedIn,
