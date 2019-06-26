@@ -7,7 +7,7 @@ module.exports = function (req, res, next) {
   if (req.jwt) {
       const jwt = require('jsonwebtoken');
       const protect = req.cookies['adminToken'] || req.cookies['token'] || req.jwt.token;
-      console.log(protect)
+      console.log("Cookies", protect, req.cookies)
       if(!protect){
           return res.forbidden("forbidden12");
       }
@@ -25,6 +25,7 @@ module.exports = function (req, res, next) {
                                   if (err) return next(err);
                                   if (!infoA) return res.forbidden("forbidden3");
                                   req.user = infoA.toObject();
+                                  req.isAdmin = true;
                                   bodyModyfi(req);
                                   next()
                               });
