@@ -82,6 +82,8 @@ import { OrderItemComponent } from './components/order-item/order-item.component
 import { OrderFooterComponent } from './components/order-footer/order-footer.component';
 import { CategoryIncludedComponent } from './components/category-included/category-included.component';
 import { SuperManagerFormComponent } from './components/super-manager-form/super-manager-form.component';
+import { ProductAddComponent } from './pages/admin/category-list/product-add/product-add.component';
+import { ProductEditComponent } from './pages/admin/category-list/product-edit/product-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -156,6 +158,8 @@ import { SuperManagerFormComponent } from './components/super-manager-form/super
     OrderFooterComponent,
     CategoryIncludedComponent,
     SuperManagerFormComponent,
+    ProductAddComponent,
+    ProductEditComponent,
   ],
   imports: [
     BrowserModule,

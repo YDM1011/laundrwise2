@@ -8,7 +8,8 @@ const schema = new Schema({
         }},
     categoryOwner: {
             type: Schema.Types.ObjectId,
-            ref: "Category"
+            ref: "Category",
+            required: [true, "Check category"]
         },
     name: {type: String, required: [true, "Name is required"]},
     des: String,
@@ -32,6 +33,22 @@ const schema = new Schema({
     createRestApi: true,
     strict: true,
 
+});
+
+schema.post('save', (doc,next)=>{
+    mongoose.model('Category')
+        .findOneAndUpdate({_id:doc.categoryOwner},{$push:{product:doc._id}})
+        .exec((err,r)=>{
+            next()
+        })
+});
+
+schema.post('remove', (doc,next)=>{
+    mongoose.model('Category')
+        .findOneAndUpdate({_id:doc.categoryOwner},{$pull:{product:doc._id}})
+        .exec((err,r)=>{
+            next()
+        })
 });
 
 mongoose.model('Product', schema);

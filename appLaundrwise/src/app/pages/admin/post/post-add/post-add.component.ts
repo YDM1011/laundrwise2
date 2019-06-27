@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Post, PostObj} from '../post';
 import {CrudService} from '../../../../crud.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-add',
@@ -12,7 +13,8 @@ export class PostAddComponent implements OnInit {
   public post: Post = new PostObj();
 
   constructor(
-      private crud: CrudService
+      private crud: CrudService,
+      private router: Router
   ) { }
 
   ngOnInit() {
@@ -20,6 +22,7 @@ export class PostAddComponent implements OnInit {
 
   addPost() {
     this.crud.post('post', this.post, null, ['post']).then( value => {
+      this.router.navigate(['/admin/posts']);
     });
   }
   fsData(data) {

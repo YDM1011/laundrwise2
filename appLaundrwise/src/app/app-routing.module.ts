@@ -56,6 +56,8 @@ import {CleanersListComponent} from "./pages/admin/cleaners-list/cleaners-list.c
 import {CleanersEditComponent} from "./pages/admin/cleaners-list/cleaners-edit/cleaners-edit.component";
 import {CleanersAddComponent} from "./pages/admin/cleaners-list/cleaners-add/cleaners-add.component";
 import {NewOrdersStepSeroComponent} from "./pages/orders/new-orders-step-sero/new-orders-step-sero.component";
+import {ProductAddComponent} from "./pages/admin/category-list/product-add/product-add.component";
+import {ProductEditComponent} from "./pages/admin/category-list/product-edit/product-edit.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -119,6 +121,8 @@ const routes: Routes = [
         {path: 'category', component: CategoryListComponent, canActivate: [AdminLoginedGuard]},
         {path: 'category-add', component: CategoryAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'category-edit/:id', component: CategoryEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'product-add/:id', component: ProductAddComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'product-edit/:id', component: ProductEditComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaners', component: CleanersListComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaner-add', component: CleanersAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaner-edit/:id', component: CleanersEditComponent, canActivate: [AdminLoginedGuard]},

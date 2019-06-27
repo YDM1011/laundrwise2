@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CrudService} from '../../../../crud.service';
 import {Post, PostObj} from '../post';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-post-edit',
@@ -15,6 +16,7 @@ export class PostEditComponent implements OnInit {
   public isBlok: boolean = false;
   constructor(
       private route: ActivatedRoute,
+      private router: Router,
       private crud: CrudService
   ) { }
 
@@ -24,11 +26,10 @@ export class PostEditComponent implements OnInit {
 
     this.crud.get('post', this.id).then((v: any) => {
       this.initDataPost = v;
+      console.log(this.initDataPost)
       this.post = Object.assign({}, v);
     });
   }
-
-
 
   validate() {
     let isTrue = false;
@@ -45,12 +46,40 @@ export class PostEditComponent implements OnInit {
     this.btnBlok(this.validate());
   }
   userSubmit() {
-    this.crud.post('client', this.post, this.id ).then( ( v: any ) => {
+    this.crud.post('post', this.post, this.id).then( ( v: any ) => {
       this.initDataPost = v;
       this.post = Object.assign({}, v);
+      this.router.navigate(['/admin/posts']);
     }).catch(e => {
 
     });
   }
+  removeImg() {
+    Swal.fire({
+      title: 'Do you confirm the deletion?',
+      type: 'warning',
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel!',
+      confirmButtonColor: '#dd4535',
+    }).then((result) => {
+      if (result.value) {
+        delete this.initDataPost.images[0];
+        this.initDataPost.images = [];
+        delete this.post.images[0];
+        this.post.images = [];
+        this.btnBlok(this.validate());
+        console.log(this.initDataPost);
+        console.log(this.post);
+      }
+    });
+  }
 
+  fsData(data) {
+    this.post.images.push(data.file);
+    this.initDataPost.images.push(data.file);
+    this.btnBlok(this.validate());
+  }
 }
