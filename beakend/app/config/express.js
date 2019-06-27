@@ -38,7 +38,7 @@ const init = (app, config) =>{
         next();
     });
     app.use(jwt.init(config.jwtSecret, {
-        cookies: false
+        cookies: true
     }));
 
     app.use(function (req, res, next) {

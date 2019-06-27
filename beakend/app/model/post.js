@@ -30,7 +30,7 @@ const schema = new Schema({
 });
 
 schema.post('save', (doc, next)=>{
-    console.log("asdasd", doc)
+    console.log("asdasd", doc);
     next()
 });
 const Post = mongoose.model('Post', schema);
