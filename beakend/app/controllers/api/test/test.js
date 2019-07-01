@@ -2,16 +2,17 @@ const fs = require('fs');
 module.exports = function (backendApp, router) {
 
     router.post('/', [], function (req, res, next) {
-        console.log("ok2");
-        console.log(req.headers);
-        console.log(req.body);
-        let filePath = `upload/test`;
-        fs.writeFile(filePath, (req.body), function(err) {
-            if (err) { console.log(err) }
-            res.send('ok').status(200)
-        });
-    });
+        backendApp.mongoose.model('Admin').find({}).exec((e,r)=>{
+            if (r[0]) {
+                backendApp.service.ws(backendApp,r[0].socket,JSON.stringify({
+                    event: 'on-notification',
+                    data: "it work!!"
+                }) );
 
+                res.ok("ok!!!");
+            }
+        })
+    });
 };
 const convertation = b64string =>{
     let buf;

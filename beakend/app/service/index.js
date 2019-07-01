@@ -8,7 +8,7 @@ module.exports = function (backendApp) {
       backendApp['service'][parseFileName(controller).toLowerCase()] = require(controller);
   });
 
-  backendApp.service.ws();
+  backendApp.service.ws(backendApp);
 };
 const parseFileName = str =>{
     return str.match(/\/?([^:\/\s]+)((\/\w+)*\/)([a-zA-Z]\w+)?/i)[4]
