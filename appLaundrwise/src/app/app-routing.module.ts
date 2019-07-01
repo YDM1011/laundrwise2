@@ -58,6 +58,8 @@ import {CleanersAddComponent} from "./pages/admin/cleaners-list/cleaners-add/cle
 import {NewOrdersStepSeroComponent} from "./pages/orders/new-orders-step-sero/new-orders-step-sero.component";
 import {ProductAddComponent} from "./pages/admin/category-list/product-add/product-add.component";
 import {ProductEditComponent} from "./pages/admin/category-list/product-edit/product-edit.component";
+import {SettingComponent} from "./pages/admin/setting/setting.component";
+import {AddCountryComponent} from "./pages/admin/setting/add-country/add-country.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -119,6 +121,8 @@ const routes: Routes = [
         {path: 'cleaners', component: CleanersListComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaner-add', component: CleanersAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaner-edit/:id', component: CleanersEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'setting', component: SettingComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'setting/add-country', component: AddCountryComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},

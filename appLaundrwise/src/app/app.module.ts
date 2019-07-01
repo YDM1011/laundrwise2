@@ -84,6 +84,8 @@ import { CategoryIncludedComponent } from './components/category-included/catego
 import { SuperManagerFormComponent } from './components/super-manager-form/super-manager-form.component';
 import { ProductAddComponent } from './pages/admin/category-list/product-add/product-add.component';
 import { ProductEditComponent } from './pages/admin/category-list/product-edit/product-edit.component';
+import { SettingComponent } from './pages/admin/setting/setting.component';
+import { AddCountryComponent } from './pages/admin/setting/add-country/add-country.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,6 +162,8 @@ import { ProductEditComponent } from './pages/admin/category-list/product-edit/p
     SuperManagerFormComponent,
     ProductAddComponent,
     ProductEditComponent,
+    SettingComponent,
+    AddCountryComponent,
   ],
   imports: [
     BrowserModule,

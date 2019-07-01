@@ -15,17 +15,19 @@
     line-height: 21px;
     text-transform: uppercase;
   }
-  .addnew{
-    display: inline-flex;
-    align-items: center;
-    text-decoration: underline;
-    cursor: pointer;
-    color: #000;
-    img{
-      margin-right: 5px;
-    }
+}
+
+.addnew{
+  display: inline-flex;
+  align-items: center;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #000;
+  img{
+    margin-right: 5px;
   }
 }
+
 .cleaner-form{
   display: flex;
   flex-direction: column;
