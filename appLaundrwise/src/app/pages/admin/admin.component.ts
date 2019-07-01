@@ -11,7 +11,7 @@ import {MatDialog} from "@angular/material";
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  public notification$;
+
   constructor(
       private crud: CrudService,
       public dialog: MatDialog,
@@ -19,13 +19,7 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.notification$ = this.wsService.on(WS.ON.ON_NOTIFICATION);
-    this.wsService.status.subscribe(v => {
-      console.log(v);
-    });
-    this.notification$.subscribe(v => {
-      console.log(v);
-    });
+
   }
   send() {
     console.log('send');

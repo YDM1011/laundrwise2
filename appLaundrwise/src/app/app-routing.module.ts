@@ -40,7 +40,6 @@ import {CleanersDetailComponent} from './pages/public/cleaners-detail/cleaners-d
 import {SignupComponent} from './pages/public/signup/signup.component';
 import {AdminCreateComponent} from './pages/admin/admin-create/admin-create.component';
 import {InitOrderComponent} from './pages/orders/init-order/init-order.component';
-import {ThanksComponent} from './pages/orders/thanks/thanks.component';
 import {AdminLoginedGuard} from './admin-logined.guard';
 import {AdminLogoutGuard} from './admin-logout.guard';
 import {PostComponent} from './pages/admin/post/post.component';
@@ -55,11 +54,14 @@ import {CategoryListComponent} from "./pages/admin/category-list/category-list.c
 import {CleanersListComponent} from "./pages/admin/cleaners-list/cleaners-list.component";
 import {CleanersEditComponent} from "./pages/admin/cleaners-list/cleaners-edit/cleaners-edit.component";
 import {CleanersAddComponent} from "./pages/admin/cleaners-list/cleaners-add/cleaners-add.component";
-import {NewOrdersStepSeroComponent} from "./pages/orders/new-orders-step-sero/new-orders-step-sero.component";
 import {ProductAddComponent} from "./pages/admin/category-list/product-add/product-add.component";
 import {ProductEditComponent} from "./pages/admin/category-list/product-edit/product-edit.component";
 import {SettingComponent} from "./pages/admin/setting/setting.component";
 import {AddCountryComponent} from "./pages/admin/setting/add-country/add-country.component";
+import {DeliveryListComponent} from "./pages/admin/delivery-list/delivery-list.component";
+import {DeliveryAddComponent} from "./pages/admin/delivery-list/delivery-add/delivery-add.component";
+import {DeliveryEditComponent} from "./pages/admin/delivery-list/delivery-edit/delivery-edit.component";
+import {NotificationListComponent} from "./pages/admin/notification-list/notification-list.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -121,8 +123,12 @@ const routes: Routes = [
         {path: 'cleaners', component: CleanersListComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaner-add', component: CleanersAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaner-edit/:id', component: CleanersEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'delivery', component: DeliveryListComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'delivery-add', component: DeliveryAddComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'delivery-edit/:id', component: DeliveryEditComponent, canActivate: [AdminLoginedGuard]},
         {path: 'setting', component: SettingComponent, canActivate: [AdminLoginedGuard]},
         {path: 'setting/add-country', component: AddCountryComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'notification/:id', component: NotificationListComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},

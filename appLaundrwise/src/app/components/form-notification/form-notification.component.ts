@@ -5,6 +5,8 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import {CrudService} from '../../crud.service';
 import Swal from 'sweetalert2';
 import {AuthService} from '../../auth.service';
+import {WS} from "../../websocket/websocket.events";
+import {WebsocketService} from "../../websocket";
 
 export class MyErrorStateMatcher2 implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,7 +34,8 @@ export class FormNotificationComponent implements OnInit {
 
   constructor(
       private auth: AuthService,
-      private crud: CrudService
+      private crud: CrudService,
+      private wsService: WebsocketService
   ) { }
 
   ngOnInit() {
@@ -50,9 +53,11 @@ export class FormNotificationComponent implements OnInit {
   }
 
   formSend() {
-    let obj = this.getFormData();
+    let obj:any = this.getFormData();
     if (!obj) return Swal.fire('Something broken', '', 'error');
+
     this.crud.post('adminNotification', obj).then((value) => {
+        this.wsService.send(WS.SEND.NOTIFICATION, 'admin',  { data: obj.entity });
         Swal.fire('Success', 'Message sended', 'success');
         this.formClear();
     });

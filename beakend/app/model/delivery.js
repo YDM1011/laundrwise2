@@ -2,12 +2,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schem = new Schema({
+    name: {type: String, required: [true, "Cleaner Name is required"]},
+    country: {type: String, required: [true, "Cleaner country is required"]},
+    city: {type: String, required: [true, "Cleaner city is required"]},
+    address: {type: String, required: [true, "Cleaner address is required"]},
+    superManager: {
+        type: Schema.Types.ObjectId,
+        ref: "Client"
+    },
+    managers: [{
+        type: Schema.Types.ObjectId,
+        ref: "Client"
+    }],
     createdBy: {itemId:{
             type: Schema.Types.ObjectId,
             ref: "Client"
         }},
-    entity: String,
-    isNotRead: {type: Boolean, default: true},
     date: {type: Date, default: new Date()}
 },{
     toJSON: {
@@ -23,7 +33,7 @@ const schem = new Schema({
         }
     },
     createRestApi: true,
-    strict: false,
+    strict: true,
 
 });
-mongoose.model('adminNotification', schem);
+mongoose.model('Delivery', schem);

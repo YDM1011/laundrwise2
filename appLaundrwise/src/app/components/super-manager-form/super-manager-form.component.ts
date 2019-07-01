@@ -21,7 +21,12 @@ export class SuperManagerFormComponent implements OnInit {
 
   addPost() {
     console.log(this.data, this.manager);
-    this.crud.post('cleaner', {manager:this.manager}, this.data._id);
+    let api = 'cleaner';
+    if (this.data.role) {
+        this.manager.role = this.data.role;
+        api = 'delivery'
+    }
+    this.crud.post(api, {manager:this.manager}, this.data._id);
     this.dialogRef.close()
   }
 

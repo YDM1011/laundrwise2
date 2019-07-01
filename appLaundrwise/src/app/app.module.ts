@@ -86,6 +86,11 @@ import { ProductAddComponent } from './pages/admin/category-list/product-add/pro
 import { ProductEditComponent } from './pages/admin/category-list/product-edit/product-edit.component';
 import { SettingComponent } from './pages/admin/setting/setting.component';
 import { AddCountryComponent } from './pages/admin/setting/add-country/add-country.component';
+import { DeliveryListComponent } from './pages/admin/delivery-list/delivery-list.component';
+import { DeliveryAddComponent } from './pages/admin/delivery-list/delivery-add/delivery-add.component';
+import { DeliveryEditComponent } from './pages/admin/delivery-list/delivery-edit/delivery-edit.component';
+import { NotificationLabelComponent } from './components/notification-label/notification-label.component';
+import {NotificationListComponent} from "./pages/admin/notification-list/notification-list.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -164,6 +169,11 @@ import { AddCountryComponent } from './pages/admin/setting/add-country/add-count
     ProductEditComponent,
     SettingComponent,
     AddCountryComponent,
+    DeliveryListComponent,
+    DeliveryAddComponent,
+    DeliveryEditComponent,
+    NotificationLabelComponent,
+    NotificationListComponent,
   ],
   imports: [
     BrowserModule,

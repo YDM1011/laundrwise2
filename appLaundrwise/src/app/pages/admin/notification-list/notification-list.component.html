@@ -1,0 +1,8 @@
+<h4>New</h4>
+<ng-container *ngIf="notifications">
+  <p *ngFor="let notification of notifications">
+    {{notification.name}}
+    <br>
+    {{notification.mes}}
+  </p>
+</ng-container>
