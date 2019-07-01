@@ -29,6 +29,6 @@ export class AdminComponent implements OnInit {
   }
   send() {
     console.log('send');
-    this.wsService.send(WS.SEND.NOTIFICATION, { data: 'test sf' });
+    this.wsService.send(WS.SEND.NOTIFICATION, 'admin',  { data: 'test sf' });
   }
 }

@@ -7,7 +7,8 @@ const schem = new Schema({
     email: {type: String, required: [true, "Email is required"]},
     token: String,
     verify: {type: Boolean, default: false},
-    data: {type: Date, default: new Date()}
+    data: {type: Date, default: new Date()},
+    socket: []
 },{
     toJSON: {
         transform: function (doc, ret) {

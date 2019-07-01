@@ -4,7 +4,7 @@
         <app-admin-header></app-admin-header>
         <i (click)="send()">send</i>
         <ul *ngIf="notification$ | async as messages">
-            {{ messages.data }}
+            {{ messages }}
         </ul>
         <router-outlet></router-outlet>
     </div>

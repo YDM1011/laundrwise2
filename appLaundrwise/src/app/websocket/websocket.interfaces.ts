@@ -14,5 +14,6 @@ export interface WebSocketConfig {
 
 export interface IWsMessage<T> {
     event: string;
+    to: string;
     data: T;
 }
