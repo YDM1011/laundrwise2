@@ -13,12 +13,12 @@
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
   </ng-container>
-
   <!-- Title Column -->
   <ng-container matColumnDef="sm">
     <th mat-header-cell *matHeaderCellDef> Super Manager </th>
     <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="element.superManager">
+
         {{element.superManager.firstName + ' ' + element.superManager.lastName}}
       </ng-container>
       <ng-container *ngIf="!element.superManager">
@@ -38,7 +38,7 @@
   <!-- Date Column -->
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.date | date:'yy MM dd'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd.MM.yyyy'}} </td>
   </ng-container>
 
   <!-- edit Column -->

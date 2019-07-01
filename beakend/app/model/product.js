@@ -32,7 +32,6 @@ const schema = new Schema({
     },
     createRestApi: true,
     strict: true,
-
 });
 
 schema.post('save', (doc,next)=>{
