@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CrudService} from "../../../crud.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Product, ProductObj} from "../../admin/category-list/product";
 
 @Component({
   selector: 'app-new-orders-step-one',
@@ -9,11 +8,12 @@ import {Product, ProductObj} from "../../admin/category-list/product";
   styleUrls: ['./new-orders-step-one.component.css']
 })
 export class NewOrdersStepOneComponent implements OnInit {
-  selected = 'company1';
+  public selected = '';
   @Input() stepZeroValue;
   public courentClener: any;
   public category: [];
-  public product: Product = new ProductObj();
+  public product: [];
+  public allCleaners: [];
   constructor(
       private router: Router,
       private route: ActivatedRoute,
@@ -28,7 +28,9 @@ export class NewOrdersStepOneComponent implements OnInit {
 
     const query = JSON.stringify({path: '', skip: 0, limit: 0});
     this.crud.get(`cleaner?populate=${query}`).then((v: any) => {
-      this.courentClener = v[1];
+      this.courentClener = v[0];
+      this.allCleaners = v;
+      this.selected = this.courentClener._id.toString();
       this.getCategory(this.courentClener);
     });
   }
@@ -38,18 +40,34 @@ export class NewOrdersStepOneComponent implements OnInit {
     query = `?populate=${query}`;
     this.crud.getNoCache('cleaner', cat._id, query).then((v: any) => {
       this.category = v.category;
-      console.log(v)
       const defoultCategory = v.category[0].name.toLowerCase();
       this.router.navigate(['/orders/' + defoultCategory]);
     });
   }
   getProducts(prod) {
-    // let query = JSON.stringify({path: 'name', limit: 0, skip: 0});
-    // query = `?populate=${query}`;
-    // this.crud.getNoCache('category', prod, query).then((v: any) => {
-    //   this.product = v;
-    //   console.log(this.category);
-    // });
+    const populate = JSON.stringify({path: 'product', limit: 1, skip: 0});
+    let query = JSON.stringify({name: prod});
+    query = `?populate=${populate}&query=${query}`;
+    this.crud.getNoCache('category', null, query).then((v: any) => {
+      if ( v.length > 0 ) {
+        this.product = v[0].product;
+      }
+    });
   }
 
+  cleanersChange(value) {
+    let query = JSON.stringify({path: '', limit: 0, skip: 0});
+    query = `?populate=${query}`;
+    this.crud.getNoCache('cleaner', value.value, query).then((v: any) => {
+      this.courentClener = v;
+      this.category = v.category;
+      this.router.navigate(['/orders/' + this.courentClener.name.toLowerCase()]);
+      this.getCategory(v);
+
+    });
+  }
+
+  orderItem(value) {
+    console.log(value);
+  }
 }

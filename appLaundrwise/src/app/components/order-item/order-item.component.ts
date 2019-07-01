@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-order-item',
@@ -7,7 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class OrderItemComponent implements OnInit {
   public count: number = 0;
-  @Input() price;
+  @Input() obj;
+  @Output() public myOutput: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -18,8 +19,15 @@ export class OrderItemComponent implements OnInit {
       return this.count = 0;
     }
     this.count--;
+    this.obj.count = this.count;
+    console.log(this.obj);
   }
   increment() {
     this.count++;
+    this.obj.count = this.count;
+    this.sendOutEvent(this.obj);
+  }
+  sendOutEvent(value) {
+    this.myOutput.emit(value);
   }
 }

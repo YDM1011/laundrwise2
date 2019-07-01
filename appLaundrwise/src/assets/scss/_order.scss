@@ -8,6 +8,7 @@
       display: flex;
       justify-content: flex-start;
       overflow: auto;
+      min-height: 64px;
       &-item{
         cursor: pointer;
         padding: 9px 13px;
@@ -16,11 +17,11 @@
         img, svg{
           width: 34px;
           height: 42px;
-          fill:#fff;
+          object-fit: contain;
         }
         .title{
           display: none;
-          color: #fff;
+          color: #000;
           margin-top: 10px;
           font-weight: bold;
         }
@@ -468,11 +469,12 @@
   .order-list{
     &-container{
       .order-list__box{
+        min-height: 109px;
         &-item{
-          padding: 20px 30px;
+          padding: 15px 25px;
           .title{
             display: block;
-            margin-top: 20px;
+            margin-top: 15px;
           }
         }
       }
@@ -600,12 +602,13 @@
   .order-list{
     &-container{
       .order-list__box{
+        min-height: 109px;
         justify-content: center;
         &-item{
-          padding: 20px 30px;
+          padding: 15px 25px;
           .title{
             display: block;
-            margin-top: 20px;
+            margin-top: 15px;
           }
         }
       }

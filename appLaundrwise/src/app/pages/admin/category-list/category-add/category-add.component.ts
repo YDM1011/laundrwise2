@@ -23,6 +23,7 @@ export class CategoryAddComponent implements OnInit {
 
     addPost() {
         delete this.category.date;
+        this.category.name = this.category.name.toLowerCase();
         this.crud.post('category', this.category, null, ['category']).then(v => {
             this.router.navigate(['/admin/category']);
         });

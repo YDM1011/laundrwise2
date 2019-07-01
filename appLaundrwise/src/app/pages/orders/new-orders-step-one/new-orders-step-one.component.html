@@ -18,10 +18,10 @@
         <div class="cleaner__box">
             <span class="name">Cleaner name</span>
             <mat-form-field>
-                <mat-select [(value)]="selected">
-                    <mat-option value="company1">Name company 1</mat-option>
-                    <mat-option value="company2">Name company 2</mat-option>
-                    <mat-option value="company3">Name company 3</mat-option>
+                <mat-select [(value)]="selected" (selectionChange)="cleanersChange($event)">
+                    <ng-container *ngFor="let item of allCleaners">
+                        <mat-option value="{{item._id}}">{{item.name}}</mat-option>
+                    </ng-container>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -31,10 +31,9 @@
 <div class="order">
     <div class="order-container">
         <div class="order__box">
-            <app-order-item class="order__box-item" [price]="2"></app-order-item>
-            <app-order-item class="order__box-item" [price]="5"></app-order-item>
-            <app-order-item class="order__box-item" [price]="3"></app-order-item>
-            <app-order-item class="order__box-item" [price]="10"></app-order-item>
+            <ng-container  *ngFor="let item of product">
+                <app-order-item class="order__box-item" [obj]="item" (myOutput)="orderItem($event)"></app-order-item>
+            </ng-container>
         </div>
     </div>
 </div>

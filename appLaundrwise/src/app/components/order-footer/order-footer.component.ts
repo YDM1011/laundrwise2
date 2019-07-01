@@ -18,7 +18,7 @@ export class OrderFooterComponent implements OnInit {
   ngOnInit() {
     this.auth.getStep.subscribe(( v: number ) => {
       this.step = v;
-      if (this.step === 2) {
+      if (this.step === 3) {
         this.link = '/profile';
       }
     });
@@ -29,7 +29,7 @@ export class OrderFooterComponent implements OnInit {
   }
 
   incrementStep() {
-    if (this.step === 2) {
+    if (this.step === 3) {
       this.auth.setStep(0);
     }
     this.auth.setStep(this.step += 1);

@@ -41,7 +41,7 @@ export class CategoryListComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges() {
-        if (this.iframe && this.useCategory) {
+        if (this.iframe && this.useCategory, this.category) {
             this.category.map((item: any) => {
                 if (this.useCategory.indexOf(item._id) > -1) {
                     item.checked = true;

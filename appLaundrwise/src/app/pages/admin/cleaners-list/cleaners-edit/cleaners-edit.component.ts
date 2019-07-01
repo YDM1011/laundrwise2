@@ -1,7 +1,7 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {CrudService} from "../../../../crud.service";
-import {Cleaner, CleanerObj} from "../cleaner";
+import {ActivatedRoute, Router} from '@angular/router';
+import {CrudService} from '../../../../crud.service';
+import {Cleaner, CleanerObj} from '../cleaner';
 
 @Component({
   selector: 'app-cleaners-edit',
@@ -12,7 +12,7 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     public id;
     public cleaner: Cleaner = new CleanerObj();
     public initDataPost: Cleaner = new CleanerObj();
-    public isBlok = false;
+    public isBlok: boolean = false;
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -20,7 +20,6 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     ) { }
 
     ngOnInit() {
-
         this.id = this.route.snapshot.paramMap.get('id');
 
         this.crud.getNoCache('cleaner', this.id).then((v: any) => {
@@ -52,6 +51,7 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     pullCategory(elems) {
         this.cleaner.category = this.crud.arrObjToArrId(elems);
         this.formCheck();
+        console.log(this.crud.arrObjToArrId(elems));
     }
 
     btnBlok(is) {
@@ -68,7 +68,6 @@ export class CleanersEditComponent implements OnInit, OnChanges {
             this.cleaner = Object.assign({}, v);
             this.router.navigate(['/admin/cleaners']);
         }).catch(e => {
-
         });
     }
 }

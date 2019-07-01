@@ -2,8 +2,8 @@
   <img src="../assets/images/order-item.png" alt="order items">
 </div>
 <div class="description">
-  <div class="name">Order Name</div>
-  <p class="describe">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+  <div class="name">{{obj.name}}</div>
+  <p class="describe">{{obj.description}}</p>
 </div>
 <div class="buttons">
   <div class="counts">
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="price">
-    <div class="price__item">{{price}}</div>
+    <div class="price__item">{{obj.price}}</div>
     <div class="price__usd">$</div>
   </div>
 </div>
