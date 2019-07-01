@@ -12,7 +12,7 @@ import {SuperManagerFormComponent} from "../../../components/super-manager-form/
 })
 export class CleanersListComponent implements OnInit {
     public dataSource = new MatTableDataSource();
-    public displayedColumns: string[] = ['name','sm','category','date','edit','del'];
+    public displayedColumns: string[] = ['name', 'sm', 'category', 'date', 'edit', 'del'];
     public cleaner: Cleaner[];
     constructor(
         public dialog: MatDialog,
@@ -20,17 +20,16 @@ export class CleanersListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        const query = JSON.stringify({path:'superManager', skip:0,limit:0});
-        this.crud.get(`cleaner?populate=${query}`).then((v:any)=>{
+        const query = JSON.stringify({path: 'superManager', skip: 0, limit: 0});
+        this.crud.get(`cleaner?populate=${query}`).then((v: any) => {
             this.cleaner = v;
             this.dataSource = new MatTableDataSource(this.cleaner);
         });
     }
 
-    deletItem(elem){
-        this.cleaner.splice(this.crud.find('_id',elem._id,this.cleaner), 1);
-        this.crud.delete('cleaner', elem._id, elem, ['cleaner']).then((v:any)=>{
-
+    deletItem(elem) {
+        this.cleaner.splice(this.crud.find('_id', elem._id, this.cleaner), 1);
+        this.crud.delete('cleaner', elem._id, elem, ['cleaner']).then((v: any) => {
             this.dataSource = new MatTableDataSource(this.cleaner);
         });
     }
@@ -40,7 +39,7 @@ export class CleanersListComponent implements OnInit {
     }
 
     addManeger(elem) {
-        this.dialog.open(SuperManagerFormComponent, { width: '50%', height: '50%', data: {_id:elem}});
+        this.dialog.open(SuperManagerFormComponent, { width: '50%', height: '50%', data: {_id: elem}});
     }
 
 }

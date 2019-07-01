@@ -58,6 +58,8 @@ import {CleanersAddComponent} from "./pages/admin/cleaners-list/cleaners-add/cle
 import {NewOrdersStepSeroComponent} from "./pages/orders/new-orders-step-sero/new-orders-step-sero.component";
 import {ProductAddComponent} from "./pages/admin/category-list/product-add/product-add.component";
 import {ProductEditComponent} from "./pages/admin/category-list/product-edit/product-edit.component";
+import {SettingComponent} from "./pages/admin/setting/setting.component";
+import {AddCountryComponent} from "./pages/admin/setting/add-country/add-country.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -80,15 +82,8 @@ const routes: Routes = [
         {path: 'become-our-service', component: BecomeOurServiceComponent},
         {path: 'our-partners', component: OurPartnersComponent},
     ]},
-    {path: 'orders', component: InitOrderComponent, children: [
-        {path: ':type', component: InitOrderComponent},
-        // {path: '', component: NewOrdersStepOneComponent},
-        // {path: 'step2', component: NewOrdersStepTwoComponent},
-        // {path: 'step3', component: NewOrdersStepThreeComponent},
-        // {path: 'thanks', component: ThanksComponent},
-        // {path: '',  redirectTo: 'orders', pathMatch: 'full'},
-
-        ]},
+    {path: 'orders', component: InitOrderComponent},
+    {path: 'orders/:type', component: InitOrderComponent},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
       {path: '', component: MyProfileComponent},
       {path: 'account', component: MyAccountComponent},
@@ -126,6 +121,8 @@ const routes: Routes = [
         {path: 'cleaners', component: CleanersListComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaner-add', component: CleanersAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'cleaner-edit/:id', component: CleanersEditComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'setting', component: SettingComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'setting/add-country', component: AddCountryComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},

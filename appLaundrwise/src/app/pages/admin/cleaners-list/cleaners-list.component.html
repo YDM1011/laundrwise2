@@ -7,13 +7,6 @@
     add new
   </a>
 </div>
-<div class="table-header">
-  <mat-form-field appearance="standard">
-    <mat-label>Search post</mat-label>
-    <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="Search company">
-  </mat-form-field>
-  <img src="../assets/images/filter-icon.svg" alt="">
-</div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!-- Title Column -->
   <ng-container matColumnDef="name">
