@@ -55,9 +55,6 @@ module.exports = (backendApp, socket = null, data = null) => {
 
     });
 
-
-
-
 };
 
 const parseCookieHeader = (str) => {
