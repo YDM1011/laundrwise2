@@ -3,7 +3,7 @@
     Edit Cleaner
   </div>
 </div>
-<ng-container *ngIf="cleaner">
+<ng-container *ngIf="cleaner > 0">
   <form (submit)="userSubmit()" class="active cleaner-form" (keyup)="formCheck()">
     <label>
       <span class="title">

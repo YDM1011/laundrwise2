@@ -80,15 +80,8 @@ const routes: Routes = [
         {path: 'become-our-service', component: BecomeOurServiceComponent},
         {path: 'our-partners', component: OurPartnersComponent},
     ]},
-    {path: 'orders', component: InitOrderComponent, children: [
-        {path: ':type', component: InitOrderComponent},
-        // {path: '', component: NewOrdersStepOneComponent},
-        // {path: 'step2', component: NewOrdersStepTwoComponent},
-        // {path: 'step3', component: NewOrdersStepThreeComponent},
-        // {path: 'thanks', component: ThanksComponent},
-        // {path: '',  redirectTo: 'orders', pathMatch: 'full'},
-
-        ]},
+    {path: 'orders', component: InitOrderComponent},
+    {path: 'orders/:type', component: InitOrderComponent},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
       {path: '', component: MyProfileComponent},
       {path: 'account', component: MyAccountComponent},

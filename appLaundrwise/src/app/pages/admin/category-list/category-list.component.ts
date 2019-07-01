@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {CrudService} from '../../../crud.service';
 import {Category} from './category';
 import {MatTableDataSource} from '@angular/material';
@@ -8,7 +8,7 @@ import {MatTableDataSource} from '@angular/material';
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
-export class CategoryListComponent implements OnInit {
+export class CategoryListComponent implements OnInit, OnChanges {
     public dataSource = new MatTableDataSource();
     public displayedColumns: string[] = ['count', 'select', 'name', 'date', 'edit', 'del'];
     public category: Category[];
@@ -38,6 +38,19 @@ export class CategoryListComponent implements OnInit {
             }
             this.dataSource = new MatTableDataSource(this.category);
         });
+    }
+
+    ngOnChanges() {
+        if (this.iframe && this.useCategory) {
+            this.category.map((item: any) => {
+                if (this.useCategory.indexOf(item._id) > -1) {
+                    item.checked = true;
+                } else {
+                    item.checked = false;
+                }
+            });
+            this.dataSource = new MatTableDataSource(this.category);
+        }
     }
 
     deletItem(elem) {

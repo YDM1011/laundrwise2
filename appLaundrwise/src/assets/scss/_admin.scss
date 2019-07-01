@@ -26,8 +26,6 @@
     }
   }
 }
-
-
 .cleaner-form{
   display: flex;
   flex-direction: column;
@@ -55,18 +53,115 @@
     }
   }
   .send{
+    color: #fff!important;
     background: #13AAFF;
-    color: #fff;
-    border-radius: 50px;
-    border: none;
-    padding: 8px 50px;
+    width: max-content;
+    padding: 6px 26px;
+    font-size: 14px;
+    margin: 5px 0;
+    border: 1px solid #13AAFF;
+    border-radius: 5px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all .2s;
+    transition: .3s;
     &:hover{
-      transform: scale(1.01);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.15);
+      background: #179CE7;
+      border: 1px solid #179CE7;
     }
   }
 
 }
+
+//table
+
+table{
+  width: 100%;
+  max-width: 700px;
+}
+.table-header{
+  display: inline-flex;
+  align-items: center;
+}
+mat-cell{
+  display:flex !important;
+  justify-content:center!important;
+
+}
+mat-header-cell {
+  display:flex!important;;
+  justify-content:center!important;
+}
+th.mat-header-cell{
+  text-align: center;
+}
+
+td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type{
+  text-align: center;
+}
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
+  text-align: center;
+}
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell{
+  text-align: center;
+}
+
+
+//end table
+
+
+//buttons
+
+.mat-cell .edit-link{
+  color: #fff!important;
+  background: #13AAFF;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid #13AAFF;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  &:hover{
+    background: #179CE7;
+    border: 1px solid #179CE7;
+  }
+}
+.mat-cell .delete-link{
+  color: #fff;
+  background: red;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .3s;
+  &:hover{
+    background: rgba(255, 10, 5, 0.78);
+    border: 1px solid rgba(255, 10, 5, 0.78);
+  }
+}
+
+.remove-img{
+  color: #fff;
+  background: red;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .3s;
+  &:hover{
+    background: rgba(255, 10, 5, 0.78);
+    border: 1px solid rgba(255, 10, 5, 0.78);
+  }
+}
+
+//buttons end

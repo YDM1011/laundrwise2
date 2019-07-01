@@ -1,10 +1,10 @@
 <app-app-header></app-app-header>
 <!--<router-outlet></router-outlet>-->
 <ng-container *ngIf="step==0">
-    <app-new-orders-step-sero></app-new-orders-step-sero>
+    <app-new-orders-step-sero (myOutput)="handleValue($event)"></app-new-orders-step-sero>
 </ng-container>
 <ng-container *ngIf="step==1">
-    <app-new-orders-step-one></app-new-orders-step-one>
+    <app-new-orders-step-one [stepZeroValue]="stepZero"></app-new-orders-step-one>
 </ng-container>
 <ng-container *ngIf="step==2">
     <app-new-orders-step-two></app-new-orders-step-two>

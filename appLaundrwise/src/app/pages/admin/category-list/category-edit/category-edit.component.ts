@@ -5,6 +5,7 @@ import {CrudService} from "../../../../crud.service";
 import {Category, CategoryObj} from "../category";
 import {MatTableDataSource} from "@angular/material";
 import {Product, ProductObj} from "../product";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-category-edit',
@@ -22,6 +23,7 @@ export class CategoryEditComponent implements OnInit {
     public product: Product = new ProductObj();
     public producForTable: Product[];
     public dataSource = new MatTableDataSource();
+    public remImg: boolean = false;
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -63,6 +65,26 @@ export class CategoryEditComponent implements OnInit {
 
     fsData(data) {
         this.category.icon = (data.file);
+    }
+
+    removeImg() {
+        Swal.fire({
+            title: 'Do you confirm the deletion?',
+            type: 'warning',
+            showCloseButton: true,
+            showCancelButton: true,
+            focusConfirm: true,
+            reverseButtons: true,
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel!',
+            confirmButtonColor: '#dd4535',
+        }).then((result) => {
+            if (result.value) {
+                this.category.icon = null;
+                this.product.images = null;
+                this.remImg = !this.remImg;
+            }
+        });
     }
 
     userSubmit() {

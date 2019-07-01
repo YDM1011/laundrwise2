@@ -4,7 +4,7 @@
   </div>
 </div>
 <ng-container *ngIf="category">
-  <form (submit)="userSubmit()" class="active cleaner-form" (keyup)="formCheck()">
+  <form class="active cleaner-form" (keyup)="formCheck()">
     <label>
     <span class="title">
         Name
@@ -12,11 +12,13 @@
       <input type="text" name="name" [(ngModel)]="category.name">
     </label>
 
-    <app-img [img]="category.icon"></app-img>
+    <app-upload style="margin-bottom: 10px" *ngIf="remImg" (onFs)="fsData($event)" [multiple]="true"></app-upload>
 
-    <app-upload (onFs)="fsData($event)" [multiple]="false" style="margin: 10px 0"></app-upload>
-
-    <input type="submit" class="send" value="Save" *ngIf="isBlok">
+    <ng-container  class="images" *ngIf="!remImg">
+      <app-img [img]="category.icon"></app-img>
+      <button (click)="removeImg()" class="remove-img">remove img</button>
+    </ng-container>
+    <input type="submit" class="send" (click)="userSubmit()" value="Save" *ngIf="isBlok">
   </form>
 </ng-container>
 
