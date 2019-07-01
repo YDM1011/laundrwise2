@@ -7,15 +7,10 @@ const schema = new Schema({
             ref: "Client"
         }},
     categoryOwner: {
-        type: Schema.Types.ObjectId,
-        ref: "Category",
-        required: [true, "Check category"]
-    },
-    count: Number,
-    basketOwner: {
-        type: Schema.Types.ObjectId,
-        ref: "Basket"
-    },
+            type: Schema.Types.ObjectId,
+            ref: "Category",
+            required: [true, "Check category"]
+        },
     name: {type: String, required: [true, "Name is required"]},
     des: String,
     price: {type: Number, required: [true, "Price is required"]},
@@ -55,5 +50,5 @@ schema.post('remove', (doc,next)=>{
         })
 });
 
-mongoose.model('Product', schema);
+mongoose.model('Order', schema);
 

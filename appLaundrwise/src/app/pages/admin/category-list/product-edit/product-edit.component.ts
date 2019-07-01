@@ -23,7 +23,6 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    // const populate = JSON.stringify({path: 'product', skip: 0, limit: 0});
     const query = JSON.stringify({_id: this.id});
 
     this.crud.get(`product?query=${query}`).then((v: any) => {
@@ -56,7 +55,7 @@ export class ProductEditComponent implements OnInit {
   }
 
   userSubmit() {
-    this.crud.post('product', this.product, this.id, ['product'] ).then( ( v: any ) => {
+    this.crud.post('order', this.product, this.id, ['order'] ).then( ( v: any ) => {
       this.initDataProduct = v;
       this.product = Object.assign({}, v);
       this.router.navigate(['/admin/category']);

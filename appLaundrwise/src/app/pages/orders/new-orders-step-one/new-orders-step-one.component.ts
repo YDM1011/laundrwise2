@@ -39,9 +39,13 @@ export class NewOrdersStepOneComponent implements OnInit {
     let query = JSON.stringify({path: 'category', limit: 0, skip: 0});
     query = `?populate=${query}`;
     this.crud.getNoCache('cleaner', cat._id, query).then((v: any) => {
-      this.category = v.category;
-      const defoultCategory = v.category[0].name.toLowerCase();
-      this.router.navigate(['/orders/' + defoultCategory]);
+      if (v.category.length > 0) {
+        this.category = v.category;
+        const defoultCategory = v.category[0].name.toLowerCase();
+        this.router.navigate(['/orders/' + defoultCategory]);
+      } else {
+        this.product = [];
+      }
     });
   }
   getProducts(prod) {

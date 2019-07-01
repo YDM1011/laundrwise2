@@ -23,7 +23,7 @@ export class ProductAddComponent implements OnInit {
 
   addProduct() {
     this.product.categoryOwner = this.id;
-    this.crud.post('product', this.product, null, ['product']).then(v => {
+    this.crud.post('order', this.product, null, ['order']).then(v => {
       this.router.navigate(['/admin/category']);
     });
   }
