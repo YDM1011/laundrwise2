@@ -12,7 +12,7 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     public id;
     public cleaner: Cleaner = new CleanerObj();
     public initDataPost: Cleaner = new CleanerObj();
-    public isBlok: boolean = false;
+    public isBlok = false;
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -52,7 +52,6 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     pullCategory(elems) {
         this.cleaner.category = this.crud.arrObjToArrId(elems);
         this.formCheck();
-        console.log(this.crud.arrObjToArrId(elems));
     }
 
     btnBlok(is) {
@@ -62,7 +61,6 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     formCheck() {
         this.btnBlok(this.validate());
     }
-
 
     userSubmit() {
         this.crud.post('cleaner', this.cleaner, this.id, ['cleaner'] ).then( ( v: any ) => {

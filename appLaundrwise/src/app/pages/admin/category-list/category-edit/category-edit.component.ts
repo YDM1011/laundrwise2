@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Post, PostObj} from "../../post/post";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CrudService} from "../../../../crud.service";
 import {Category, CategoryObj} from "../category";
