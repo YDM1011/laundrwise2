@@ -9,6 +9,7 @@ import {CrudService} from "../../crud.service";
 })
 export class ProfileComponent implements OnInit {
     public userName: string;
+    public user: any;
     constructor(
         private auth: AuthService,
         private crud: CrudService
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
         // }).catch(e => {});
         this.auth.onUpDate.subscribe(( v: any ) => {
             if (v) {
+                this.user = v;
                 this.userName = Object(v).firstName + ' ' + Object(v).lastName;
             }
         });

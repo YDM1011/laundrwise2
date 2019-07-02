@@ -14,6 +14,8 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
 
 const createManeger = (req, backendApp) => {
     return new Promise((rs,rj)=>{
+        delete req.body.manager.token;
+        req.body.manager['token'] = getToken(backendApp,req.body.manager.login);
         backendApp.mongoose.model('Client')
             .create(req.body.manager, (err,r)=>{
                 console.log(err,r);
@@ -21,4 +23,8 @@ const createManeger = (req, backendApp) => {
                 rs(r);
             })
     })
+};
+const getToken = (backendApp,login) =>{
+    const jwt = require('jsonwebtoken');
+    return jwt.sign({login: login}, backendApp.config.jwtSecret);
 };

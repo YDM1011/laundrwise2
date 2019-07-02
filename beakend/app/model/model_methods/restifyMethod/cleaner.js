@@ -19,7 +19,8 @@ const readStep2 = async (req,res,next,backendApp) => {
 
 module.exports.preUpdate = async (req,res,next, backendApp) => {
     if (typeof req.body.manager == 'object'){
-        let manager = await createManeger(req, backendApp).catch(e=>{res.notFound(e)});
+        let manager = await createManeger(req, backendApp).catch(e=>{return res.notFound(e)});
+        console.log(manager, "maneger")
         req.body = {superManager: manager._id}
         next()
     } else {
@@ -29,11 +30,16 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
 
 const createManeger = (req, backendApp) => {
     return new Promise((rs,rj)=>{
+        delete req.body.manager.token;
+        req.body.manager['token'] = getToken(backendApp,req.body.manager.login);
         backendApp.mongoose.model('Client')
             .create(req.body.manager, (err,r)=>{
-                console.log(err,r);
                 if(err) return rj(err);
                 rs(r);
             })
     })
+};
+const getToken = (backendApp,login) =>{
+    const jwt = require('jsonwebtoken');
+    return jwt.sign({login: login}, backendApp.config.jwtSecret);
 };

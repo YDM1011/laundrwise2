@@ -17,16 +17,67 @@
     </div>
 </div>
 
-<div class="main-account">
-    <div class="account-container">
-        <div class="main-account__box">
-            <div class="main-account__box-left">
-                <app-profile-navigation class="navigation-page"></app-profile-navigation>
-            </div>
-            <div class="main-account__box-body">
-                <router-outlet></router-outlet>
+<ng-container *ngIf="user">
+    <div class="main-account" *ngIf="!user.role">
+        <div class="account-container">
+            <div class="main-account__box">
+                <div class="main-account__box-left">
+                    <app-profile-navigation class="navigation-page"></app-profile-navigation>
+                </div>
+                <div class="main-account__box-body">
+                    <router-outlet></router-outlet>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="main-account" *ngIf="user.role == 'superManagerCleaner'">
+        <div class="account-container">
+            <div class="main-account__box">
+                <div class="main-account__box-left">
+                    <app-profile-navigation class="navigation-page"></app-profile-navigation>
+                </div>
+                <div class="main-account__box-body">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-account" *ngIf="user.role == 'superManagerDelivery'">
+        <div class="account-container">
+            <div class="main-account__box">
+                <div class="main-account__box-left">
+                    <app-profile-navigation class="navigation-page"></app-profile-navigation>
+                </div>
+                <div class="main-account__box-body">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-account" *ngIf="user.role == 'managerCleaner'">
+        <div class="account-container">
+            <div class="main-account__box">
+                <div class="main-account__box-left">
+                    <app-profile-navigation class="navigation-page"></app-profile-navigation>
+                </div>
+                <div class="main-account__box-body">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-account" *ngIf="user.role == 'managerDelivery'">
+        <div class="account-container">
+            <div class="main-account__box">
+                <div class="main-account__box-left">
+                    <app-profile-navigation class="navigation-page"></app-profile-navigation>
+                </div>
+                <div class="main-account__box-body">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
 
