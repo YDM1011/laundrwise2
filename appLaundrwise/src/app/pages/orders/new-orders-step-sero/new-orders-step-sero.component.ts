@@ -40,15 +40,16 @@ export class NewOrdersStepSeroComponent implements OnInit {
     });
   }
   countryChange(e) {
-    this.disableCity = new FormControl(false);
-    this.step1Completed = true;
-    this.outputObj.country = e.value;
-  }
-  cityChange(e) {
     this.disableCompany = new FormControl(false);
-    this.step2Completed = true;
-    this.outputObj.city = e.value;
+    this.step1Completed = true;
+    this.outputObj.country = e.country;
+    this.outputObj.city = e.city;
   }
+  // cityChange(e) {
+  //   this.disableCompany = new FormControl(false);
+  //   this.step2Completed = true;
+  //   this.outputObj.city = e.value;
+  // }
   public companyChange(e) {
     this.auth.setStep(this.step += 1);
     this.outputObj.company = e.value;

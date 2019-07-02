@@ -96,7 +96,7 @@ export class CategoryEditComponent implements OnInit {
         });
     }
     deletProd(elem) {
-        this.crud.delete('product', elem._id, elem, ['product']).then((v: any) => {
+        this.crud.delete('order', elem._id, elem, ['order']).then((v: any) => {
             this.producForTable.splice(this.crud.find('_id', elem._id, this.category), 1);
             this.dataSource = new MatTableDataSource(this.producForTable);
         });

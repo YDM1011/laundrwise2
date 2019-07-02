@@ -42,11 +42,21 @@ schema.post('save', (doc,next)=>{
         })
 });
 
-schema.post('remove', (doc,next)=>{
+schema.post('remove', (doc) => {
+    console.log(doc)
     mongoose.model('Category')
         .findOneAndUpdate({_id:doc.categoryOwner},{$pull:{product:doc._id}})
         .exec((err,r)=>{
-            next()
+            // next()
+        })
+});
+
+schema.post('findOneAndRemove', (doc) => {
+    console.log(doc)
+    mongoose.model('Category')
+        .findOneAndUpdate({_id:doc.categoryOwner},{$pull:{product:doc._id}})
+        .exec((err,r)=>{
+            // next()
         })
 });
 

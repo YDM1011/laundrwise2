@@ -11,18 +11,22 @@
       </span>
       <input type="text" name="name" [(ngModel)]="delivery.name">
     </label>
-    <label>
-      <span class="title">
-          country
-      </span>
-      <input type="text" name="country" [(ngModel)]="delivery.country">
-    </label>
-    <label>
-      <span class="title">
-          city
-      </span>
-      <input type="text" name="city" [(ngModel)]="delivery.city">
-    </label>
+    <app-select-location
+            [defLocation]="delivery"
+            (data)="delivery.country=$event.country; delivery.city=$event.city; formCheck()"></app-select-location>
+    <!--<label>-->
+      <!--<span class="title">-->
+          <!--country-->
+      <!--</span>-->
+      <!--<input type="text" name="country" [(ngModel)]="delivery.country">-->
+      <!---->
+    <!--</label>-->
+    <!--<label>-->
+      <!--<span class="title">-->
+          <!--city-->
+      <!--</span>-->
+      <!--<input type="text" name="city" [(ngModel)]="delivery.city">-->
+    <!--</label>-->
     <label>
       <span class="title">
           address

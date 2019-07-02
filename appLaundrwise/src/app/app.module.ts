@@ -91,6 +91,7 @@ import { DeliveryAddComponent } from './pages/admin/delivery-list/delivery-add/d
 import { DeliveryEditComponent } from './pages/admin/delivery-list/delivery-edit/delivery-edit.component';
 import { NotificationLabelComponent } from './components/notification-label/notification-label.component';
 import {NotificationListComponent} from "./pages/admin/notification-list/notification-list.component";
+import { SelectLocationComponent } from './components/select-location/select-location.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -174,6 +175,7 @@ import {NotificationListComponent} from "./pages/admin/notification-list/notific
     DeliveryEditComponent,
     NotificationLabelComponent,
     NotificationListComponent,
+    SelectLocationComponent,
   ],
   imports: [
     BrowserModule,

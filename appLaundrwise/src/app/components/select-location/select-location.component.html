@@ -1,0 +1,22 @@
+<span class="title">Location</span>
+<div class="custom-select">
+  <p class="selected" (click)="isOpenC = !isOpenC">{{defLocation ? defLocation.country : null || location.country || 'Country'}}</p>
+  <ul *ngIf="isOpenC" class="option-wrap">
+    <li (click)="countryChange('location')">Country</li>
+    <li *ngFor="let item of locations" (click)="countryChange(item)">
+      {{item.country}}
+    </li>
+  </ul>
+</div>
+
+<div class="custom-select" *ngIf="isShowCity && location">
+  <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.country : null || locData.city || 'City'}}</p>
+  <ul *ngIf="isOpen" class="option-wrap">
+    <li (click)="cityChange('location')">City</li>
+    <li *ngFor="let item of location.city" (click)="cityChange(item)">
+      {{item}}
+    </li>
+  </ul>
+</div>
+
+<div class="glass" *ngIf="isOpenC || isOpen" (click)="isOpen= false; isOpenC=false"></div>

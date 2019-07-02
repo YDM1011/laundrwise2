@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ILocation} from "./location";
+import {CrudService} from "../../../../crud.service";
 
 @Component({
   selector: 'app-add-country',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCountryComponent implements OnInit {
 
-  constructor() { }
+  public locations;
+
+  public location:ILocation = {country:'', city:[]};
+  public isAdd:boolean=false;
+  public city:string='';
+
+  constructor(
+      private crud:CrudService
+  ) { }
 
   ngOnInit() {
+    this.crud.getNoCache('location').then((v:any)=>{
+      this.locations = v;
+    })
   }
 
+  addCity(){
+    console.log(this.location)
+    this.isAdd = false;
+    this.location.city ? this.location.city : this.location.city = [];
+    this.location.city.push(this.city);
+    this.city = ''
+  }
+  save(){
+    this.location = {country:'', city:[]};
+    this.crud.post('location', this.location).then(v=>{
+      this.locations.push(v);
+    }).catch(e=>{console.log(e)})
+  }
 }

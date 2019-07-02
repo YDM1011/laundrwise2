@@ -13,12 +13,13 @@ import {AuthService} from "../../../auth.service";
 export class NewOrdersStepOneComponent implements OnInit, OnChanges {
   public selected = '';
   @Input() stepZeroValue;
+  @Input() courentClener;
   @Output() totalPrice: EventEmitter<any> = new EventEmitter();
   @Output() outputArray: EventEmitter<any> = new EventEmitter();
-  public courentClener: any;
-  public category: [];
-  public product: [];
-  public allCleaners: [];
+  // public courentClener: any;
+  public category: any[];
+  public product: any[];
+  public allCleaners: any[];
   public order: OrderProduct = new OrderProductObj();
   public orderArray: Array<any> = [];
   public totalPriceArray: number = 0;
@@ -30,18 +31,18 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
+    this.getCategory(this.courentClener);
     this.route.params.subscribe((params: any) => {
       this.getProducts(params.type);
     });
     this.auth.getBasket.subscribe((v: any) => {
       this.orderArray = v;
     });
-    const query = JSON.stringify({path: '', skip: 0, limit: 0});
-    this.crud.get(`cleaner?populate=${query}`).then((v: any) => {
-      this.courentClener = v[0];
+    const populate = JSON.stringify({path: '', skip: 0, limit: 0});
+    this.crud.get(`cleaner?populate=${populate}`).then((v: any) => {
+      // this.courentClener = v[0];
       this.allCleaners = v;
-      this.selected = this.courentClener._id.toString();
-      this.getCategory(this.courentClener);
+      // this.selected = this.courentClener._id.toString();
     });
   }
 
