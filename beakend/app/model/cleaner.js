@@ -26,14 +26,12 @@ const schem = new Schema({
 },{
     toJSON: {
         transform: function (doc, ret) {
-            delete ret.pass;
-            delete ret.token;
+
         }
     },
     toObject: {
         transform: function (doc, ret) {
-            delete ret.pass;
-            delete ret.token;
+
         }
     },
     createRestApi: true,

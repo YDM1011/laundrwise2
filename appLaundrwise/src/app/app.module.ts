@@ -5,20 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   AboutUsComponent,
-  AddCollaboratorComponent,
-  DeliveryAllOrdersComponent,
   BecomeOurServiceComponent,
   BlogComponent,
   BlogsComponent,
   BonusComponent,
-  CollaboratorsComponent,
   ContactsComponent,
-  DeliveryDashboardComponent,
-  DeliveryComponent,
   FaqComponent,
   HowItWorksComponent,
   IndexComponent,
-  ManagerComponent,
   MyAccountComponent,
   MyOrdersComponent,
   MyProfileComponent,
@@ -29,13 +23,10 @@ import {
   OffersComponent,
   OurPartnersComponent,
   PaymentComponent,
-  DeliveryPaymentSystemComponent,
   ProfileComponent,
-  DeliveryServiceComponent,
   WriteToAdminComponent,
-  ManagerDashboardComponent,
-  ManagerAllOrdersComponent,
-  ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent,
+  AdminComponent,
+  AdminLoginComponent,
 } from './pages';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppHeaderComponent } from './components/header/app-header.component';
@@ -71,8 +62,8 @@ import { CategoryListComponent } from './pages/admin/category-list/category-list
 import { CategoryAddComponent } from './pages/admin/category-list/category-add/category-add.component';
 import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
 import { FormNotificationComponent } from './components/form-notification/form-notification.component';
-import {WebsocketModule} from "./websocket";
-import {environment} from "../environments/environment";
+import {WebsocketModule} from './websocket';
+import {environment} from '../environments/environment';
 import { NotificationAdminComponent } from './components/notification-admin/notification-admin.component';
 import { CleanersListComponent } from './pages/admin/cleaners-list/cleaners-list.component';
 import { CleanersAddComponent } from './pages/admin/cleaners-list/cleaners-add/cleaners-add.component';
@@ -92,6 +83,9 @@ import { DeliveryEditComponent } from './pages/admin/delivery-list/delivery-edit
 import { NotificationLabelComponent } from './components/notification-label/notification-label.component';
 import {NotificationListComponent} from "./pages/admin/notification-list/notification-list.component";
 import { SelectLocationComponent } from './components/select-location/select-location.component';
+import {NotificationListComponent} from './pages/admin/notification-list/notification-list.component';
+import { StatisticComponent } from './pages/profile/statistic/statistic.component';
+import {CollaboratorsComponent} from './pages/profile/collaborators/collaborators.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,18 +110,6 @@ import { SelectLocationComponent } from './components/select-location/select-loc
     PaymentComponent,
     BonusComponent,
     WriteToAdminComponent,
-    DeliveryComponent,
-    DeliveryDashboardComponent,
-    DeliveryAllOrdersComponent,
-    DeliveryServiceComponent,
-    DeliveryPaymentSystemComponent,
-    CollaboratorsComponent,
-    AddCollaboratorComponent,
-    ManagerComponent,
-    ManagerDashboardComponent,
-    ManagerAllOrdersComponent,
-    ManagerServiceComponent,
-    ManagerPaymentSystemComponent,
     AdminComponent,
     AdminLoginComponent,
     AppHeaderComponent,
@@ -176,6 +158,8 @@ import { SelectLocationComponent } from './components/select-location/select-loc
     NotificationLabelComponent,
     NotificationListComponent,
     SelectLocationComponent,
+    StatisticComponent,
+    CollaboratorsComponent
   ],
   imports: [
     BrowserModule,

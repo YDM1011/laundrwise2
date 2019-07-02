@@ -2,22 +2,15 @@ import { NgModule } from '@angular/core';
 import {Routes, RouterModule, CanActivate} from '@angular/router';
 import {
   AboutUsComponent,
-  AddCollaboratorComponent,
-  DeliveryAllOrdersComponent,
   BecomeOurServiceComponent,
   BlogComponent,
   BlogsComponent,
   BonusComponent,
-  CollaboratorsComponent,
   ContactsComponent,
-  DeliveryDashboardComponent,
-  DeliveryComponent,
   FaqComponent,
   HowItWorksComponent,
   IndexComponent,
-  ManagerComponent,
   MyAccountComponent,
-  MyOrdersComponent,
   MyProfileComponent,
   NewOrdersStepOneComponent,
   NewOrdersStepThreeComponent,
@@ -26,13 +19,10 @@ import {
   OffersComponent,
   OurPartnersComponent,
   PaymentComponent,
-  DeliveryPaymentSystemComponent,
   ProfileComponent,
-  DeliveryServiceComponent,
   WriteToAdminComponent,
-  ManagerDashboardComponent,
-  ManagerAllOrdersComponent,
-  ManagerServiceComponent, ManagerPaymentSystemComponent, AdminComponent, AdminLoginComponent
+    AdminComponent,
+    AdminLoginComponent
 } from './pages';
 import {InitLayoutComponent} from './pages/public/init-layout/init-layout.component';
 import {CleanersComponent} from './pages/public/cleaners/cleaners.component';
@@ -48,20 +38,22 @@ import {PostEditComponent} from './pages/admin/post/post-edit/post-edit.componen
 import {DashboardComponent} from './pages/admin/dashboard/dashboard.component';
 import {IsLoginGuard} from './is-login.guard';
 import {SigninComponent} from './components/signin/signin.component';
-import {CategoryEditComponent} from "./pages/admin/category-list/category-edit/category-edit.component";
-import {CategoryAddComponent} from "./pages/admin/category-list/category-add/category-add.component";
-import {CategoryListComponent} from "./pages/admin/category-list/category-list.component";
-import {CleanersListComponent} from "./pages/admin/cleaners-list/cleaners-list.component";
-import {CleanersEditComponent} from "./pages/admin/cleaners-list/cleaners-edit/cleaners-edit.component";
-import {CleanersAddComponent} from "./pages/admin/cleaners-list/cleaners-add/cleaners-add.component";
-import {ProductAddComponent} from "./pages/admin/category-list/product-add/product-add.component";
-import {ProductEditComponent} from "./pages/admin/category-list/product-edit/product-edit.component";
-import {SettingComponent} from "./pages/admin/setting/setting.component";
-import {AddCountryComponent} from "./pages/admin/setting/add-country/add-country.component";
-import {DeliveryListComponent} from "./pages/admin/delivery-list/delivery-list.component";
-import {DeliveryAddComponent} from "./pages/admin/delivery-list/delivery-add/delivery-add.component";
-import {DeliveryEditComponent} from "./pages/admin/delivery-list/delivery-edit/delivery-edit.component";
-import {NotificationListComponent} from "./pages/admin/notification-list/notification-list.component";
+import {CategoryEditComponent} from './pages/admin/category-list/category-edit/category-edit.component';
+import {CategoryAddComponent} from './pages/admin/category-list/category-add/category-add.component';
+import {CategoryListComponent} from './pages/admin/category-list/category-list.component';
+import {CleanersListComponent} from './pages/admin/cleaners-list/cleaners-list.component';
+import {CleanersEditComponent} from './pages/admin/cleaners-list/cleaners-edit/cleaners-edit.component';
+import {CleanersAddComponent} from './pages/admin/cleaners-list/cleaners-add/cleaners-add.component';
+import {ProductAddComponent} from './pages/admin/category-list/product-add/product-add.component';
+import {ProductEditComponent} from './pages/admin/category-list/product-edit/product-edit.component';
+import {SettingComponent} from './pages/admin/setting/setting.component';
+import {AddCountryComponent} from './pages/admin/setting/add-country/add-country.component';
+import {DeliveryListComponent} from './pages/admin/delivery-list/delivery-list.component';
+import {DeliveryAddComponent} from './pages/admin/delivery-list/delivery-add/delivery-add.component';
+import {DeliveryEditComponent} from './pages/admin/delivery-list/delivery-edit/delivery-edit.component';
+import {NotificationListComponent} from './pages/admin/notification-list/notification-list.component';
+import {StatisticComponent} from './pages/profile/statistic/statistic.component';
+import {CollaboratorsComponent} from "./pages/profile/collaborators/collaborators.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -91,24 +83,11 @@ const routes: Routes = [
       {path: 'account', component: MyAccountComponent},
       {path: 'payment', component: PaymentComponent},
       {path: 'bonuses', component: BonusComponent},
+      {path: 'collaborators', component: CollaboratorsComponent},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'statistic', component: StatisticComponent},
       {path: 'write-to-admin', component: WriteToAdminComponent},
       {path: '', redirectTo: 'profile', pathMatch: 'full'},
-    ]},
-    {path: 'delivery', component: DeliveryComponent , children: [
-      {path: 'dashboard', component: DeliveryDashboardComponent},
-      {path: 'all-orders', component: DeliveryAllOrdersComponent},
-      {path: 'service', component: DeliveryServiceComponent},
-      {path: 'payment-system', component: DeliveryPaymentSystemComponent},
-      {path: 'collaborators', component: CollaboratorsComponent},
-      {path: 'add-collaborator', component: AddCollaboratorComponent},
-      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-    ]},
-    {path: 'manager', component: ManagerComponent , children: [
-      {path: 'dashboard', component: ManagerDashboardComponent},
-      {path: 'all-orders', component: ManagerAllOrdersComponent},
-      {path: 'service', component: ManagerServiceComponent},
-      {path: 'payment-system', component: ManagerPaymentSystemComponent},
-      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin', component: AdminComponent , children: [
         {path: 'dashboard', component: DashboardComponent, canActivate: [AdminLoginedGuard]},
