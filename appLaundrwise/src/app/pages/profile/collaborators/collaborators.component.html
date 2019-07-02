@@ -1,0 +1,90 @@
+<div class="collaborators">
+  <h2>
+    Collaborators
+  </h2>
+  <div class="infoedit">
+    <div class="infoedit__box" *ngIf= "initManager">
+      <ng-container *ngFor="let item of initManager">
+        <div class="infoedit__headline">
+          <div class="name">Manager</div>
+          <span class="edit" (click)="editManager()">edit</span>
+        </div>
+        <div class="information"  *ngIf="!manadgerEdit">
+          <span>{{item.firstName}}</span>
+          <span>{{item.lastName}}</span>
+          <span>{{item.login}}</span>
+          <span>{{item.pass}}</span>
+        </div>
+        <!--      <form action="" (submit)="userSubmit()" class="active" *ngIf="manadgerEdit" (keyup)="formCheck()">-->
+        <!--        <label>-->
+        <!--                <span class="title">-->
+        <!--                    First Name-->
+        <!--                </span>-->
+        <!--          <input type="text" name="firstName" [(ngModel)]="authAccount.firstName">-->
+        <!--        </label>-->
+        <!--        <label>-->
+        <!--                <span class="title">-->
+        <!--                    Name-->
+        <!--                </span>-->
+        <!--          <input type="text" name="lastName" [(ngModel)]="authAccount.lastName">-->
+        <!--        </label>-->
+        <!--        <label>-->
+        <!--                <span class="title">-->
+        <!--                    Phone number-->
+        <!--                </span>-->
+        <!--          <input type="text" name="mobile" [(ngModel)]="authAccount.mobile">-->
+        <!--        </label>-->
+        <!--        <label>-->
+        <!--                <span class="title">-->
+        <!--                    Email-->
+        <!--                </span>-->
+        <!--          <input type="text" name="email" [(ngModel)]="authAccount.email">-->
+        <!--        </label>-->
+        <!--        <input type="submit" class="save" value="Save" *ngIf="isBlok">-->
+        <!--      </form>-->
+      </ng-container>
+    </div>
+
+        <div class="infoedit__box" *ngIf="newColabIf">
+          <div class="infoedit__headline">
+            <div class="name">Add New Collaborators</div>
+            <span class="cancel" (click)="newColabIfFunc()">Cancel</span>
+          </div>
+          <form action="" (submit)="addCollaborators()" class="active">
+            <label>
+              <span class="title">
+                  First Name
+              </span>
+              <input type="text" name="lastName" [(ngModel)]="newColab.firstName">
+            </label>
+            <label>
+              <span class="title">
+                  Last Name
+              </span>
+              <input type="text" name="lastName" [(ngModel)]="newColab.lastName">
+            </label>
+
+            <label>
+              <span class="title">
+                  Login
+              </span>
+              <input type="text" name="email" [(ngModel)]="newColab.login">
+            </label>
+            <label>
+              <span class="title">
+                Password
+              </span>
+              <input type="text" name="mobile" [(ngModel)]="newColab.pass">
+            </label>
+            <input type="submit" class="save" value="Create">
+          </form>
+        </div>
+
+    <span class="add-collaborators" *ngIf="!newColabIf" (click)="newColabIfFunc()">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 0C4.48615 0 0 4.48577 0 10C0 15.5142 4.48615 20 10 20C15.5138 20 20 15.5142 20 10C20 4.48577 15.5138 0 10 0ZM10 19.2308C4.91038 19.2308 0.769231 15.0896 0.769231 10C0.769231 4.91038 4.91038 0.769231 10 0.769231C15.0896 0.769231 19.2308 4.91038 19.2308 10C19.2308 15.0896 15.0896 19.2308 10 19.2308Z" fill="#13AAFF"/>
+        <path d="M14.8076 9.61538H10.3845V5.38462C10.3845 5.17192 10.2122 5 9.99992 5C9.78762 5 9.61531 5.17192 9.61531 5.38462V9.61538H5.19223C4.97992 9.61538 4.80762 9.78731 4.80762 10C4.80762 10.2127 4.97992 10.3846 5.19223 10.3846H9.61531V15C9.61531 15.2127 9.78762 15.3846 9.99992 15.3846C10.2122 15.3846 10.3845 15.2127 10.3845 15V10.3846H14.8076C15.0199 10.3846 15.1922 10.2127 15.1922 10C15.1922 9.78731 15.0199 9.61538 14.8076 9.61538Z" fill="#13AAFF"/>
+      </svg>
+      Add collaborators</span>
+  </div>
+</div>
