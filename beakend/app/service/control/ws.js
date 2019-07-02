@@ -44,7 +44,7 @@ module.exports = (backendApp, socket = null, data = null) => {
             };
             let wsController = require('../wsControler')();
             wsEvent[wsController.event] = wsController.fun;
-            wsEvent[res.event](send);
+            wsEvent[res.event](data, send);
 
 
         });

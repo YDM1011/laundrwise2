@@ -1,0 +1,36 @@
+<div class="post-header">
+  <div class="title">
+    Edit Delivery
+  </div>
+</div>
+<ng-container *ngIf="delivery">
+  <form (submit)="userSubmit()" class="active cleaner-form" (keyup)="formCheck()">
+    <label>
+      <span class="title">
+          Name
+      </span>
+      <input type="text" name="name" [(ngModel)]="delivery.name">
+    </label>
+    <label>
+      <span class="title">
+          country
+      </span>
+      <input type="text" name="country" [(ngModel)]="delivery.country">
+    </label>
+    <label>
+      <span class="title">
+          city
+      </span>
+      <input type="text" name="city" [(ngModel)]="delivery.city">
+    </label>
+    <label>
+      <span class="title">
+          address
+      </span>
+      <input type="text" name="address" [(ngModel)]="delivery.address">
+    </label>
+    <input type="submit" class="send" value="Save" *ngIf="isBlok">
+  </form>
+</ng-container>
+
+<!--<app-category-list [iframe]="true" (onCategory)="pullCategory($event)" [useCategory]="cleaner.category"></app-category-list>-->

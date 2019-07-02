@@ -37,9 +37,29 @@ body{
 }
 
 .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple){
-  background: rgba(35, 133, 255, 0.21);
+  background: rgba(35, 133, 255, 0.2);
 }
 
 .mat-sort-header-container{
   justify-content: center;
+}
+
+header{
+  position: fixed;
+  background: #fff;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(54, 81, 103, 0.3);
+}
+
+body{
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  padding-top: 60px;
+}
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #00B7FF!important;
 }

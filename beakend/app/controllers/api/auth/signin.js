@@ -20,10 +20,15 @@ module.exports = (backendApp, router) => {
                     {login: req.body.login},
                     {email: req.body.login}
                 ]
-            },{pass:md5(req.body.pass)}],
+            }],
         }).exec(function (err, user) {
             if (err) return res.serverError(err);
             if (!user) return res.notFound("Password or login invalid!");
+            if (!user.role){
+                if (user.pass != md5(req.body.pass)) return res.notFound("Password or login invalid!");
+            }else {
+                if (user.pass != req.body.pass) return res.notFound("Password or login invalid!");
+            }
             user.signin(req,res,backendApp)
         });
     };

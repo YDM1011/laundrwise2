@@ -1,9 +1,9 @@
 module.exports = () => {
     return {
         event: 'form-notification',
-        fun: (next) => {
+        fun: (data, next) => {
 
-            next('on-notification', 'ok2!!')
+            next('on-notification', data)
 
         }
     }

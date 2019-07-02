@@ -63,10 +63,10 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     }
 
     userSubmit() {
-        this.crud.post('cleaner', this.cleaner, this.id, ['cleaner'] ).then( ( v: any ) => {
+        this.crud.post('delivery', this.cleaner, this.id, ['delivery'] ).then( ( v: any ) => {
             this.initDataPost = v;
             this.cleaner = Object.assign({}, v);
-            this.router.navigate(['/admin/cleaners']);
+            this.router.navigate(['/admin/delivery']);
         }).catch(e => {
         });
     }
