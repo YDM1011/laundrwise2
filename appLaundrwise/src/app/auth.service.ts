@@ -12,6 +12,9 @@ export class AuthService {
   private step = new BehaviorSubject<number>(0);
   public getStep = this.step.asObservable();
 
+  private basket = new BehaviorSubject<any>(null);
+  public getBasket = this.basket.asObservable();
+
   constructor(private cookieService: CookieService) { }
   isAuth() {
     if (this.cookieService.get('userId')) {
@@ -33,5 +36,8 @@ export class AuthService {
   }
   setStep(data) {
     this.step.next(data);
+  }
+  setBasket(data) {
+    this.basket.next(data);
   }
 }

@@ -10,13 +10,10 @@
                     </div>
                     <form action="">
                         <label>
-                            <span>City</span>
-                            <input type="text" name="city" id="city" [(ngModel)]="me.city">
-                        </label>
-                        <label>
                             <span>Address 1</span>
                             <input type="text" name="address1" [(ngModel)]="me.address1">
                         </label>
+
                         <label>
                             <span>Address 2</span>
                             <input type="text" name="address2" [(ngModel)]="me.address2">
@@ -44,37 +41,27 @@
                             Name company
                         </div>
                     </div>
-                    <div class="paragraph">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                    </div>
-                    <div class="elements">
-                        <div class="elements__item">
-                            <img src="../assets/images/order-item.png" alt="">
-                            <div class="count">2x</div>
-                            <div class="title">Jacket</div>
-                            <div class="price">29 $</div>
-                            <img src="../assets/images/cancel.svg" class="cancel" alt="">
+                    <ng-container *ngIf="basketArray">
+                        <div class="paragraph">
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                         </div>
-                        <div class="elements__item">
-                            <img src="../assets/images/order-item.png" alt="">
-                            <div class="count">2x</div>
-                            <div class="title">Jacket</div>
-                            <div class="price">29 $</div>
-                            <img src="../assets/images/cancel.svg" class="cancel" alt="">
+                        <div class="elements">
+                            <ng-container *ngFor="let item of basketArray">
+                                <div class="elements__item">
+                                    <app-img [img]="item.images"></app-img>
+                                    <div class="count">{{item.count}}x</div>
+                                    <div class="title">{{item.name}}</div>
+                                    <div class="price">{{item.totalPrice}}$</div>
+                                    <img src="../assets/images/cancel.svg" class="cancel" alt="">
+                                </div>
+                            </ng-container>
                         </div>
-                        <div class="elements__item">
-                            <img src="../assets/images/order-item.png" alt="">
-                            <div class="count">2x</div>
-                            <div class="title">Jacket</div>
-                            <div class="price">29 $</div>
-                            <img src="../assets/images/cancel.svg" class="cancel" alt="">
-                        </div>
-                    </div>
-                    <form action="">
-                        <label for="">
-                            <textarea name="" placeholder="Clearning instructions (optional)"></textarea>
-                        </label>
-                    </form>
+                        <form action="">
+                            <label for="">
+                                <textarea name="" placeholder="Clearning instructions (optional)"></textarea>
+                            </label>
+                        </form>
+                    </ng-container>
                 </div>
 <!--                <div class="order-add-btn">-->
 <!--                    <a [routerLink]="'/orders'" class="order-add">+ add</a>-->

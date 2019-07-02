@@ -48,7 +48,6 @@ export class NewOrdersStepSeroComponent implements OnInit {
     this.disableCompany = new FormControl(false);
     this.step2Completed = true;
     this.outputObj.city = e.value;
-
   }
   public companyChange(e) {
     this.auth.setStep(this.step += 1);

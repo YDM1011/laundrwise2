@@ -32,7 +32,9 @@
     <div class="order-container">
         <div class="order__box">
             <ng-container  *ngFor="let item of product">
-                <app-order-item class="order__box-item" [obj]="item" (myOutput)="orderItem($event)"></app-order-item>
+                <app-order-item class="order__box-item" [obj]="item"
+                                (onDelete)="orderItemRemove($event)"
+                                (onAdd)="orderItemAdd($event)"></app-order-item>
             </ng-container>
         </div>
     </div>

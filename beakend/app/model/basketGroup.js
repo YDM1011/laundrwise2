@@ -10,10 +10,6 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Product"
     }],
-    cleanerOwner: {
-        type: Schema.Types.ObjectId,
-        ref: "Cleaner"
-    }
 },{
     toJSON: {
         transform: function (doc, ret) {
@@ -33,5 +29,5 @@ const schema = new Schema({
 
 });
 
-mongoose.model('Basket', schema);
+mongoose.model('BasketGroup', schema);
 
