@@ -6,7 +6,6 @@ export {ManagerAllOrdersComponent} from './manager/all-orders/manager-all-orders
 export {ManagerDashboardComponent} from './manager/dashboard/manager-dashboard.component';
 export {ManagerComponent} from './manager/manager.component';
 export {AddCollaboratorComponent} from './delivery/add-collaborator/add-collaborator.component';
-export {CollaboratorsComponent} from './delivery/collaborators/collaborators.component';
 export {DeliveryPaymentSystemComponent} from './delivery/payment-system/delivery-payment-system.component';
 export {DeliveryServiceComponent} from './delivery/service/delivery-service.component';
 export {DeliveryAllOrdersComponent} from './delivery/all-orders/delivery-all-orders.component';

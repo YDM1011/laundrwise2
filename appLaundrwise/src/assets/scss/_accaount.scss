@@ -196,6 +196,56 @@
     }
   }
 }
+.collaborators{
+  h2{
+    margin: 0 auto 20px;
+    text-align: center;
+    width: 100%;
+  }
+  .add-collaborators{
+    display: flex;
+    align-items: center;
+    background: #fff;
+    cursor: pointer;
+    svg{
+      margin-right: 10px;
+    }
+  }
+}
+.status{
+  display: flex;
+  align-items: center;
+  &__lamp{
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: #C4C4C4;
+    &.active{
+      background: #04DE41;
+    }
+    &.waiting{
+      background: #FF9A37;
+    }
+    &.done{
+      background: #C4C4C4;
+    }
+  }
+  &__title{
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 17px;
+  }
+}
+.date{
+  margin: 0 5% 0 auto;
+  span{
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
 .orders{
   width: 100%;
   h2{
@@ -206,57 +256,21 @@
     .order__item{
       width: 100%;
       margin-bottom: 10px;
-      border: 1px solid #D9D9D9;
-      border-radius: 30px;
+      //border: 1px solid #D9D9D9;
+      //border-radius: 30px;
       .head{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 20px;
-        .status{
-          display: flex;
-          align-items: center;
-          &__lamp{
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 8px;
-            background: #C4C4C4;
-            &.active{
-              background: #04DE41;
-            }
-            &.waiting{
-              background: #FF9A37;
-            }
-            &.done{
-              background: #C4C4C4;
-            }
-          }
-          &__title{
-            font-weight: 300;
-            font-size: 12px;
-            line-height: 17px;
-          }
-        }
-        .date{
-          margin: 0 5% 0 auto;
-          span{
-            font-weight: 300;
-            font-size: 11px;
-            line-height: 13px;
-          }
-        }
-        .arrow{
-          height: 11px;
-        }
+        //padding: 10px 20px;
+
       }
       .order__body{
         width: 100%;
         border-top: 1px solid #D9D9D9;
         .items__box{
           width: 100%;
-          padding: 10px 20px;
+          padding: 10px;
           .item{
             width: 100%;
             margin: 10px 0 20px;
@@ -311,7 +325,7 @@
               }
               .price{
                 font-family: $medium;
-                font-weight: 700;
+                font-weight: 500;
                 font-size: 14px;
                 line-height: 17px;
                 white-space: nowrap;
@@ -338,6 +352,7 @@
             border-bottom: 1px solid #D9D9D9;
             padding: 5px;
             width: 80%;
+            margin-top: 10px;
           }
           &__box{
             border-right: 1px dashed #D9D9D9;
@@ -365,7 +380,7 @@
               }
               .date{
                 font-family: $medium;
-                font-weight: 700;
+                font-weight: 500;
                 font-size: 16px;
                 line-height: 17px;
                 text-transform: capitalize;
@@ -494,7 +509,7 @@
       border-bottom: 2px solid $main-blue;
       .title{
         text-transform: uppercase;
-        font-weight: 700;
+        font-weight: 500;
         line-height: 25px;
         font-family: $medium;
 
@@ -834,7 +849,7 @@
         .order__body{
           display: flex;
           .items__box{
-            padding: 10px 30px;
+            padding: 10px;
             .item{
               width: 100%;
               margin: 10px 0 20px;
@@ -865,8 +880,8 @@
           .time{
             flex-direction: column;
             flex-basis: 320px;
-            margin-left: 50px;
-            padding:20px 30px;
+            //margin-left: 50px;
+            padding:10px 20px;
             &__headline{
             }
             &__box{
@@ -875,7 +890,7 @@
                 }
                 .date{
                   font-family: $medium;
-                  font-weight: 700;
+                  font-weight: 500;
                   font-size: 16px;
                   line-height: 17px;
                   text-transform: capitalize;
@@ -1063,7 +1078,7 @@
     padding: 0 16px;
   }
   .main-account{
-    padding: 30px 16px;
+    padding: 50px 16px;
     &__box{
       display: flex;
       align-items: flex-start;
@@ -1129,5 +1144,18 @@
       }
     }
   }
+
+  .collaborators{
+    h2{
+      text-align: center;
+      margin: 0 0 25px;
+
+    }
+  }
+}
+
+
+.ng-container-orders{
+  width: 100%;
 }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-profile-navigation',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-navigation.component.scss']
 })
 export class ProfileNavigationComponent implements OnInit {
-
-  constructor() { }
+  public user: any;
+  constructor( private auth: AuthService) { }
 
   ngOnInit() {
+    this.auth.onUpDate.subscribe(( v: any ) => {
+      if (v) {
+        this.user = v;
+      }
+    });
   }
 
 }

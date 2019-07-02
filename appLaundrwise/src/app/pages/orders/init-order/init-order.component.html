@@ -1,19 +1,22 @@
-<app-app-header></app-app-header>
-<!--<router-outlet></router-outlet>-->
-<ng-container *ngIf="step==0">
-    <app-new-orders-step-sero (myOutput)="handleValue($event)"></app-new-orders-step-sero>
-</ng-container>
-<ng-container *ngIf="step==1">
-    <app-new-orders-step-one [stepZeroValue]="stepZero"
-                             (outputArray)="outputArray($event)"></app-new-orders-step-one>
-</ng-container>
-<ng-container *ngIf="step==2">
-    <app-new-orders-step-two></app-new-orders-step-two>
-</ng-container>
-<ng-container *ngIf="step==3">
-    <app-new-orders-step-three></app-new-orders-step-three>
-</ng-container>
-<!--<ng-container *ngIf="step==-->
-<app-order-footer *ngIf="step > 0 && step < 4" [mainTotalPrice]="basketOrder" class="totalprice"></app-order-footer>
+<div class="order-class">
+    <app-app-header></app-app-header>
+    <!--<router-outlet></router-outlet>-->
+    <ng-container *ngIf="step==0">
+        <app-new-orders-step-sero (myOutput)="handleValue($event)"></app-new-orders-step-sero>
+    </ng-container>
+    <ng-container *ngIf="step==1">
+        <app-new-orders-step-one [stepZeroValue]="stepZero"
+                                 (outputArray)="outputArray($event)"></app-new-orders-step-one>
+    </ng-container>
+    <ng-container *ngIf="step==2">
+        <app-new-orders-step-two></app-new-orders-step-two>
+    </ng-container>
+    <ng-container *ngIf="step==3">
+        <app-new-orders-step-three></app-new-orders-step-three>
+    </ng-container>
+    <!--<ng-container *ngIf="step==-->
+    <app-order-footer *ngIf="step > 0 && step < 4" [mainTotalPrice]="basketOrder" class="totalprice"></app-order-footer>
 
-<button (click)="incrementStep()">next</button>
+    <button (click)="incrementStep()">next</button>
+
+</div>
