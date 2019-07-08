@@ -20,8 +20,7 @@ const schem = new Schema({
     basketListCount: Number,
     token: String,
     role: String,
-    data: {type: Date, default: new Date()},
-    socket: []
+    data: {type: Date, default: new Date()}
 },{
     toJSON: {
         transform: function (doc, ret) {

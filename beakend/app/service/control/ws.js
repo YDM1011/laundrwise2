@@ -1,6 +1,6 @@
 const WebSocketServer = require('ws').Server;
 const wss = new WebSocketServer({ port: 6759 });
-const wsEvent = {}
+const wsEvent = {};
 module.exports = (backendApp, socket = null, data = null) => {
 
 
@@ -14,7 +14,6 @@ module.exports = (backendApp, socket = null, data = null) => {
             const data = JSON.parse(event);
             const res = JSON.parse(data);
             const sendTo = (to, event, data) => {
-                console.log(to);
                 if (!to) {
                     wss[userData._id].forEach(ws=>{
                         ws.send(JSON.stringify({
@@ -50,7 +49,7 @@ module.exports = (backendApp, socket = null, data = null) => {
         });
 
         ws.on('close', () => {
-            console.log('disconnected', ws);
+            console.log('disconnected');
         });
 
     });

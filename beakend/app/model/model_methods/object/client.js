@@ -16,8 +16,20 @@ module.exports = function (schema) {
       res.ok({token:this.token,userId:this._id, user: this.toObject()})
   };
   schema.methods.logout = function (req,res) {
-      res.clearCookie('token');
-      res.clearCookie('userId');
+      res.cookie('token',this.token,
+          {
+              domain: backendApp.config.site.sidDomain,
+              path:"/",
+              expires: new Date(-1),
+              httpOnly: true
+          });
+      res.cookie('userId', String(this._id),
+          {
+              domain: backendApp.config.site.sidDomain,
+              path:"/",
+              expires: new Date(-1),
+              httpOnly: false
+          });
       res.ok({mes:'ok'})
   };
 };
