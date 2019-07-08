@@ -11,7 +11,6 @@ import {MatDialog} from "@angular/material";
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
   constructor(
       private crud: CrudService,
       public dialog: MatDialog,

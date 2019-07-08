@@ -3,7 +3,7 @@
     <div class="content">
         <app-admin-header></app-admin-header>
         <i (click)="send()">send</i>
-        <ul *ngIf="notification$ | async as messages">
+        <ul *ngIf=" notification$ | async as messages">
             {{ messages }}
         </ul>
         <router-outlet></router-outlet>

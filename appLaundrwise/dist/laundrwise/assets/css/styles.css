@@ -1042,19 +1042,19 @@ footer .footer-container__right .buttons {
   padding: 20px; }
 
 .headline-about {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/about-title.jpg") center center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url("../images/about-title.jpg") center center;
   background-size: cover; }
 
 .headline-blogs {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/blog-title.jpg") center center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url("../images/blog-title.jpg") center center;
   background-size: cover; }
 
 .headline-howitworks {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/partners-title.jpg") center center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url("../images/partners-title.jpg") center center;
   background-size: cover; }
 
 .headline-contacts {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/contacts-title.jpg") center center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url("../images/contacts-title.jpg") center center;
   background-size: cover; }
 
 .content {

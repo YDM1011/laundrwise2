@@ -81,11 +81,11 @@ import { DeliveryListComponent } from './pages/admin/delivery-list/delivery-list
 import { DeliveryAddComponent } from './pages/admin/delivery-list/delivery-add/delivery-add.component';
 import { DeliveryEditComponent } from './pages/admin/delivery-list/delivery-edit/delivery-edit.component';
 import { NotificationLabelComponent } from './components/notification-label/notification-label.component';
-import {NotificationListComponent} from "./pages/admin/notification-list/notification-list.component";
 import { SelectLocationComponent } from './components/select-location/select-location.component';
 import {NotificationListComponent} from './pages/admin/notification-list/notification-list.component';
 import { StatisticComponent } from './pages/profile/statistic/statistic.component';
 import {CollaboratorsComponent} from './pages/profile/collaborators/collaborators.component';
+import { DashboardProfileComponent } from './pages/profile/dashboard-profile/dashboard-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -159,7 +159,9 @@ import {CollaboratorsComponent} from './pages/profile/collaborators/collaborator
     NotificationListComponent,
     SelectLocationComponent,
     StatisticComponent,
-    CollaboratorsComponent
+    CollaboratorsComponent,
+    DashboardComponent,
+    DashboardProfileComponent
   ],
   imports: [
     BrowserModule,

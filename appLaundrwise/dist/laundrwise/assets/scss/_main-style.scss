@@ -160,8 +160,34 @@ header{
         text-decoration: none;
         margin-right: 25px;
         font-size: 16px;
+        position: relative;
         &:nth-last-of-type(1){
           margin-right: 0;
+        }
+        &:before{
+          content: '';
+          display: block;
+          height: 1px;
+          width: 0;
+          position: absolute;
+          bottom: -8px;
+          left: 50%;
+          background: $main-blue;
+          transition: all .2s;
+        }
+        &:hover{
+          &:before{
+            left: 0;
+            right: 0;
+            width: 100%;
+          }
+        }
+        &.active{
+          &:before{
+            left: 0;
+            right: 0;
+            width: 100%;
+          }
         }
       }
       .nav-btn{
@@ -175,9 +201,13 @@ header{
         padding: 8px 5px;
         margin-left: 15px;
         transition: all .2s;
+        cursor:pointer;
         &:hover{
           transform: scale(1.03);
           box-shadow: 0 1px 8px rgba(0,0,0,0.15), 0 1px 8px rgba(0,0,0,0.15);
+        }
+        &:nth-of-type(2) {
+          text-transform: uppercase;
         }
       }
       .color{
@@ -205,6 +235,7 @@ header{
   margin-bottom: 30px;
   background: linear-gradient(168.84deg, rgba(255, 255, 255, 0.5) 45.51%, rgba(255, 255, 255, 0) 91.04%), url("../src/assets/images/header.jpg") no-repeat center center;
   background-size: cover;
+  margin-top: 60px;
   h1{
     text-transform: capitalize;
     font-family: $bold;
@@ -228,8 +259,6 @@ header{
     border-radius: 38.4181px;
   }
 }
-
-
 h2{
   font-size: 30px;
   line-height: 48px;
@@ -498,7 +527,7 @@ h2{
       .title{
         font-family: $bold;
         font-size: 20px;
-        line-height: 60px;
+        line-height: 30px;
         font-weight: bold;
         margin: 0 auto 0 0;
         color: #000;
@@ -511,6 +540,10 @@ h2{
       }
       .description{
         @include description;
+        max-height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
       }
 
     }
@@ -815,6 +848,7 @@ footer{
             border-radius: 36px;
             padding: 8px;
             cursor: pointer;
+            line-height: 14px;
           }
         }
         .buttons{
@@ -849,6 +883,7 @@ footer{
     }
   }
   .headerbox{
+    margin-top: 90px;
     padding: 80px 30px 120px;
     &-container{
       max-width: 840px;

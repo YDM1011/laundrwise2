@@ -1,7 +1,11 @@
-<h3>Create admin panel</h3>
-<form (submit)="doCreate()">
-  <input type="text" [(ngModel)]="adminAuth.login" name="log">
-  <input type="text" [(ngModel)]="adminAuth.pass" name="pass">
-  <button type="submit">ok</button>
-</form>
-<a [routerLink]="'/admin/login'">I have panel</a>
+<div class="admin-login">
+  <div class="admin-login__box">
+    <h3>Create admin panel</h3>
+    <form (submit)="doCreate()">
+      <input type="text" [(ngModel)]="adminAuth.login" placeholder="Login" name="log">
+      <input type="text" [(ngModel)]="adminAuth.pass" placeholder="Password" name="pass">
+      <button type="submit">Create</button>
+    </form>
+    <a [routerLink]="'/admin/login'" class="create-admin">I have panel</a>
+  </div>
+</div>
