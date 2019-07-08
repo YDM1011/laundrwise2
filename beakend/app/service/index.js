@@ -7,7 +7,7 @@ module.exports = function (backendApp) {
   apiControllers.forEach((controller) => {
       backendApp['service'][parseFileName(controller).toLowerCase()] = require(controller);
   });
-
+    console.log(backendApp.service)
   backendApp.service.ws(backendApp);
 };
 const parseFileName = str =>{
