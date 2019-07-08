@@ -5,6 +5,7 @@ module.exports = function (backendApp) {
   let apiControllers = glob.sync(backendApp.config.root+'/service/control/*.js');
 
   apiControllers.forEach((controller) => {
+      console.log(controller)
       backendApp['service'][parseFileName(controller).toLowerCase()] = require(controller);
   });
     console.log(backendApp.service)
