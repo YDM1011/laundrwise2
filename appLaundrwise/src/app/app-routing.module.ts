@@ -76,8 +76,8 @@ const routes: Routes = [
         {path: 'become-our-service', component: BecomeOurServiceComponent},
         {path: 'our-partners', component: OurPartnersComponent},
     ]},
-    {path: 'orders', component: InitOrderComponent},
-    {path: 'orders/:type', component: InitOrderComponent},
+    {path: 'orders', component: InitOrderComponent, canActivate: [IsLoginGuard]},
+    {path: 'orders/:type', component: InitOrderComponent, canActivate: [IsLoginGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
       {path: '', component: MyProfileComponent},
       {path: 'account', component: MyAccountComponent},

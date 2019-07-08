@@ -85,6 +85,7 @@ import { SelectLocationComponent } from './components/select-location/select-loc
 import {NotificationListComponent} from './pages/admin/notification-list/notification-list.component';
 import { StatisticComponent } from './pages/profile/statistic/statistic.component';
 import {CollaboratorsComponent} from './pages/profile/collaborators/collaborators.component';
+import { DashboardProfileComponent } from './pages/profile/dashboard-profile/dashboard-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -158,7 +159,9 @@ import {CollaboratorsComponent} from './pages/profile/collaborators/collaborator
     NotificationListComponent,
     SelectLocationComponent,
     StatisticComponent,
-    CollaboratorsComponent
+    CollaboratorsComponent,
+    DashboardComponent,
+    DashboardProfileComponent
   ],
   imports: [
     BrowserModule,

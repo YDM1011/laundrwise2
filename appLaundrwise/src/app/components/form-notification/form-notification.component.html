@@ -6,7 +6,7 @@
     <p *ngIf="description">
       Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula.
     </p>
-    <form (submit)="formSend($event)">
+    <form (submit)="formSend()">
       <mat-form-field appearance="outline">
         <mat-label>Name*</mat-label>
         <input matInput placeholder="Name" [formControl]="nameFormControl"

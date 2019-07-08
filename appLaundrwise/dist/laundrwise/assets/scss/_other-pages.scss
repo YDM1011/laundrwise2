@@ -16,19 +16,19 @@
 }
 
 .headline-about{
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../src/assets/images/about-title.jpg') center center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('../src/assets/images/about-title.jpg') center center;
   background-size: cover;
 }
 .headline-blogs{
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../src/assets/images/blog-title.jpg') center center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('../src/assets/images/blog-title.jpg') center center;
   background-size: cover;
 }
 .headline-howitworks{
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../src/assets/images/partners-title.jpg') center center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('../src/assets/images/partners-title.jpg') center center;
   background-size: cover;
 }
 .headline-contacts{
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../src/assets/images/contacts-title.jpg') center center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('../src/assets/images/contacts-title.jpg') center center;
   background-size: cover;
 }
 
@@ -182,6 +182,7 @@
 @media (min-width: 768px) {
   .headline{
     margin-bottom: 30px;
+    padding-top: 60px;
     .headline-title{
       h3{
         font-size: 36px;
@@ -243,6 +244,7 @@
 @media (min-width: 992px) {
   .headline{
     margin-bottom: 40px;
+    padding-top: 90px;
     .headline-title{
       h3{
         font-size: 42px;
@@ -443,8 +445,7 @@
   }
 }
 .tabcontent{
-  display: none;
-  animation: fadeEffect 1s;
+  display: block;
 }
 
 @media (min-width: 768px) {
