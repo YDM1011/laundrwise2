@@ -12,5 +12,5 @@ module.exports = function (backendApp) {
   backendApp.service.ws(backendApp);
 };
 const parseFileName = str =>{
-    return str.match(/\/?([^:\/\s]+)((\/\w+)*\/)([a-zA-Z]\w+)?/i)[4]
+    return str.match(/\/?([^:\/\s]+)((\/\w+)*\/)([a-zA-Z]\w+)?/ig)[4]
 };
