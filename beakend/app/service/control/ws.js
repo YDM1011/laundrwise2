@@ -1,8 +1,7 @@
 const WebSocketServer = require('ws').Server;
-const wss = new WebSocketServer({ port: 6759 });
+const wss = new WebSocketServer({ port: 6759, path: '/ws' });
 const wsEvent = {};
 module.exports = (backendApp, socket = null, data = null) => {
-
 
     wss.on('connection', async (ws, req) => {
         let tokenData = parseCookieHeader(req.headers.cookie);
