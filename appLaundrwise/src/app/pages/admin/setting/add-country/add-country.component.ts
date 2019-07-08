@@ -33,9 +33,10 @@ export class AddCountryComponent implements OnInit {
     this.city = ''
   }
   save(){
-    this.location = {country:'', city:[]};
+
     this.crud.post('location', this.location).then(v=>{
       this.locations.push(v);
     }).catch(e=>{console.log(e)})
+      this.location = {country:'', city:[]};
   }
 }
