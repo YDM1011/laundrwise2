@@ -1,0 +1,40 @@
+<div class="infoedit__headline">
+  <div class="name">Manager</div>
+  <span class="edit" (click)="editManager()">
+    {{manadgerEdit ? 'Cancel' : 'Edit'}}
+  </span>
+</div>
+<div class="information">
+  <span>First name: {{obj.firstName}}</span>
+  <span>Last name: {{obj.lastName}}</span>
+  <span>Login: {{obj.login}}</span>
+  <span>Password: {{obj.pass}}</span>
+</div>
+<form action="" (submit)="userSubmit()" class="active" *ngIf="manadgerEdit" (keyup)="formCheck()">
+  <label>
+          <span class="title">
+              First Name
+          </span>
+    <input type="text" name="firstName" [(ngModel)]="collaborator.firstName">
+  </label>
+  <label>
+          <span class="title">
+              Name
+          </span>
+    <input type="text" name="lastName" [(ngModel)]="collaborator.lastName">
+  </label>
+  <label>
+          <span class="title">
+              Login
+          </span>
+    <input type="text" name="mobile" [(ngModel)]="collaborator.login">
+  </label>
+  <label>
+          <span class="title">
+              Pass
+          </span>
+    <input type="text" name="email" [(ngModel)]="collaborator.pass">
+  </label>
+  <button class="remove-collaborator" (click)="removeCollaborator()">Remove</button>
+  <input type="submit" class="save" value="Save" *ngIf="isBlok">
+</form>

@@ -3,7 +3,6 @@ import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
 import {CrudService} from "../../crud.service";
 import {Category} from "../../pages/admin/category-list/category";
 
-
 @Component({
   selector: 'app-category-included',
   templateUrl: './category-included.component.html',
@@ -23,8 +22,8 @@ export class CategoryIncludedComponent implements OnInit {
     query = `?populate=${query}`;
     this.crud.getNoCache('cleaner', this.data._id, query).then((v: any) => {
         this.category = this.category.concat(v.category);
-        console.log(v);
-    })
+        // console.log(v);
+    });
   }
   closeDialog() {
       this.dialogRef.close();

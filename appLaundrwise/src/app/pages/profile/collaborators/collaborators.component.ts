@@ -14,7 +14,6 @@ export class CollaboratorsComponent implements OnInit {
   public user: any;
   public cleaner;
   public initManager: [];
-  public manadgerEdit: boolean = false;
   constructor(
       private crud: CrudService,
       private auth: AuthService,
@@ -32,7 +31,6 @@ export class CollaboratorsComponent implements OnInit {
         this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((v: any) => {
           this.cleaner = v[0];
           this.initManager = v[0].managers;
-          console.log(this.initManager);
         });
       }
     });
@@ -41,6 +39,7 @@ export class CollaboratorsComponent implements OnInit {
 
   addCollaborators() {
     this.newColab.role = 'managerCleaner';
+    delete this.newColab._id;
     this.crud.post('cleaner', {manager: this.newColab}, this.cleaner._id, ['cleaner']).then(v => {
       this.newColab = new NewCollaboratorObj();
       this.newColabIfFunc();
@@ -51,8 +50,5 @@ export class CollaboratorsComponent implements OnInit {
     this.newColabIf = !this.newColabIf;
   }
 
-  editManager() {
-    this.manadgerEdit = !this.manadgerEdit;
-  }
 
 }

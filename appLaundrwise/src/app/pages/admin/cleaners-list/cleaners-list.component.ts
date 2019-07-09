@@ -39,7 +39,7 @@ export class CleanersListComponent implements OnInit {
     }
 
     addManeger(elem) {
-        this.dialog.open(SuperManagerFormComponent, { width: '50%', height: '50%', data: {_id: elem}});
+        this.dialog.open(SuperManagerFormComponent, { width: 'auto', height: '420px', data: {_id: elem}});
     }
 
 }

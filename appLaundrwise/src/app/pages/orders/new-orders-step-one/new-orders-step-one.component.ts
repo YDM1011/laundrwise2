@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {CrudService} from "../../../crud.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Product} from "../../admin/category-list/product";
 import {OrderProduct, OrderProductObj} from "./orderProduct";
 import {AuthService} from "../../../auth.service";
 
@@ -12,17 +11,20 @@ import {AuthService} from "../../../auth.service";
 })
 export class NewOrdersStepOneComponent implements OnInit, OnChanges {
   public selected = '';
-  @Input() stepZeroValue;
-  @Input() courentClener;
+  public defoultCategoryRouter = '';
+  @Input() chooseCompany;
+  @Input() allCompany;
   @Output() totalPrice: EventEmitter<any> = new EventEmitter();
   @Output() outputArray: EventEmitter<any> = new EventEmitter();
-  // public courentClener: any;
   public category: any[];
   public product: any[];
   public allCleaners: any[];
   public order: OrderProduct = new OrderProductObj();
   public orderArray: Array<any> = [];
   public totalPriceArray: number = 0;
+  public currentBasketList: any = [];
+  public prod: any;
+  public productlist: Array<any> = [];
   constructor(
       private router: Router,
       private route: ActivatedRoute,
@@ -31,36 +33,28 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    this.getCategory(this.courentClener);
+    this.selected = this.chooseCompany._id;
+    this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
+    this.router.navigate(['/orders/' + this.defoultCategoryRouter]);
     this.route.params.subscribe((params: any) => {
       this.getProducts(params.type);
     });
-    this.auth.getBasket.subscribe((v: any) => {
-      this.orderArray = v;
-    });
-    const populate = JSON.stringify({path: '', skip: 0, limit: 0});
-    this.crud.get(`cleaner?populate=${populate}`).then((v: any) => {
-      // this.courentClener = v[0];
-      this.allCleaners = v;
-      // this.selected = this.courentClener._id.toString();
-    });
+    // this.auth.getBasketGroup.subscribe((v: any) => {
+    //   this.orderArray = v;
+    // });
   }
-
+  companyChange(e) {
+    this.chooseCompany = e;
+    this.selected = this.chooseCompany._id;
+    this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
+    this.router.navigate(['/orders/' + this.defoultCategoryRouter]);
+  }
   ngOnChanges() {
-    this.auth.setBasket(this.orderArray);
+    this.auth.setBasketGroup(this.orderArray);
   }
-
-  getCategory(cat) {
-    let query = JSON.stringify({path: 'category', limit: 0, skip: 0});
-    query = `?populate=${query}`;
-    this.crud.getNoCache('cleaner', cat._id, query).then((v: any) => {
-      if (v.category.length > 0) {
-        this.category = v.category;
-        const defoultCategory = v.category[0].name.toLowerCase();
-        this.router.navigate(['/orders/' + defoultCategory]);
-      } else {
-        this.product = [];
-      }
+  getProductByCleanerId() {
+    this.crud.getNoCache(`productBy/:${this.chooseCompany._id}`, null).then((v: any) => {
+      console.log(v);
     });
   }
   getProducts(prod) {
@@ -74,35 +68,35 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges {
     });
   }
 
-  cleanersChange(value) {
-    let query = JSON.stringify({path: '', limit: 0, skip: 0});
-    query = `?populate=${query}`;
-    this.crud.getNoCache('cleaner', value.value, query).then((v: any) => {
-      this.courentClener = v;
-      this.category = v.category;
-      this.router.navigate(['/orders/' + this.courentClener.name.toLowerCase()]);
-      this.getCategory(v);
-    });
-  }
-
   orderItemAdd(value) {
-    const index = this.crud.find('_id', value._id, this.orderArray);
+    value.cleanerOwner = this.chooseCompany._id;
+    this.prod = Object.assign({}, value);
+    this.prod['currentOrder'] = this.prod._id;
+    delete this.prod._id;
+
+    // this.crud.post('product', this.prod).then((v: any) => {
+    //   console.log(v);
+    // });
+
+    const index = this.crud.find('_id', value._id, this.productlist);
     if (typeof index === 'number') {
-      this.orderArray[index].count = value.count;
-      this.product['count'] = value.count;
+      this.productlist[index].count = value.count;
     } else {
-      this.orderArray.push(value);
+      this.productlist.push(value);
     }
-    this.auth.setBasket(this.orderArray);
+    console.log(this.productlist);
   }
 
   orderItemRemove(value) {
-    const index = this.crud.find('_id', value._id, this.orderArray);
-    if (typeof index === 'number') {
-      this.totalPriceArray = this.totalPriceArray - value.price;
-      this.product['count'] = 0;
-      this.orderArray.splice(index, 1);
-      this.auth.setBasket(this.orderArray);
+    value.cleanerOwner = this.chooseCompany._id;
+    this.prod = Object.assign({}, value);
+    this.prod['currentOrder'] = this.prod._id;
+    delete this.prod._id;
+
+    const index = this.crud.find('_id', value._id, this.productlist);
+    if (value.count === 0) {
+      this.productlist.splice(index, 1);
     }
+    console.log(this.productlist);
   }
 }

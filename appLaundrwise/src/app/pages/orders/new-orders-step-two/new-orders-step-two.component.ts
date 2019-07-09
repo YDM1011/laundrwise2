@@ -20,7 +20,7 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
         this.me = v;
       }
     });
-    this.auth.getBasket.subscribe((v: any) => {
+    this.auth.getBasketGroup.subscribe((v: any) => {
       this.basketArray = v;
       console.log(this.basketArray);
     });

@@ -1,7 +1,7 @@
 <div class="order-list">
     <div class="order-list-container">
         <div class="order-list__box">
-            <ng-container *ngFor="let item of category">
+            <ng-container *ngFor="let item of chooseCompany.category">
                 <a routerLinkActive="active" [routerLink]="['/orders/'+ item.name | lowercase ]" class="order-list__box-item">
                     <app-img [img]="item.icon"></app-img>
                     <span class="title">
@@ -17,13 +17,9 @@
     <div class="order-container">
         <div class="cleaner__box">
             <span class="name">Cleaner name</span>
-            <mat-form-field>
-                <mat-select [(value)]="selected" (selectionChange)="cleanersChange($event)">
-                    <ng-container *ngFor="let item of allCleaners">
-                        <mat-option value="{{item._id}}">{{item.name}}</mat-option>
-                    </ng-container>
-                </mat-select>
-            </mat-form-field>
+            <app-select-company [allCleaner]="allCompany"
+                                [curentCompany]="chooseCompany"
+                                (curentCompanyEmit)="companyChange($event)" ></app-select-company>
         </div>
     </div>
 </div>

@@ -5,46 +5,9 @@
   <div class="infoedit">
     <div class="infoedit__box" *ngIf= "initManager">
       <ng-container *ngFor="let item of initManager">
-        <div class="infoedit__headline">
-          <div class="name">Manager</div>
-          <span class="edit" (click)="editManager()">edit</span>
-        </div>
-        <div class="information"  *ngIf="!manadgerEdit">
-          <span>{{item.firstName}}</span>
-          <span>{{item.lastName}}</span>
-          <span>{{item.login}}</span>
-          <span>{{item.pass}}</span>
-        </div>
-        <!--      <form action="" (submit)="userSubmit()" class="active" *ngIf="manadgerEdit" (keyup)="formCheck()">-->
-        <!--        <label>-->
-        <!--                <span class="title">-->
-        <!--                    First Name-->
-        <!--                </span>-->
-        <!--          <input type="text" name="firstName" [(ngModel)]="authAccount.firstName">-->
-        <!--        </label>-->
-        <!--        <label>-->
-        <!--                <span class="title">-->
-        <!--                    Name-->
-        <!--                </span>-->
-        <!--          <input type="text" name="lastName" [(ngModel)]="authAccount.lastName">-->
-        <!--        </label>-->
-        <!--        <label>-->
-        <!--                <span class="title">-->
-        <!--                    Phone number-->
-        <!--                </span>-->
-        <!--          <input type="text" name="mobile" [(ngModel)]="authAccount.mobile">-->
-        <!--        </label>-->
-        <!--        <label>-->
-        <!--                <span class="title">-->
-        <!--                    Email-->
-        <!--                </span>-->
-        <!--          <input type="text" name="email" [(ngModel)]="authAccount.email">-->
-        <!--        </label>-->
-        <!--        <input type="submit" class="save" value="Save" *ngIf="isBlok">-->
-        <!--      </form>-->
+        <app-collaborators-item [obj]="item" [idCleaner]="cleaner._id"></app-collaborators-item>
       </ng-container>
     </div>
-
         <div class="infoedit__box" *ngIf="newColabIf">
           <div class="infoedit__headline">
             <div class="name">Add New Collaborators</div>

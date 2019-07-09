@@ -4,15 +4,7 @@
   </ng-template>
   <mat-step [completed]="step1Completed">
       <ng-template matStepLabel>Fill out your country</ng-template>
-      <!--<mat-form-field>-->
-        <!--<mat-select [(value)]="country"-->
-                    <!--(selectionChange)="countryChange($event)">-->
-          <!--<mat-option value="location">Location</mat-option>-->
-          <!--<mat-option value="company1">Name company 1</mat-option>-->
-          <!--<mat-option value="company2">Name company 2</mat-option>-->
-          <!--<mat-option value="company3">Name company 3</mat-option>-->
-        <!--</mat-select>-->
-      <!--</mat-form-field>-->
+
       <app-select-location
               (data)="countryChange($event)"></app-select-location>
       <div>
@@ -20,34 +12,11 @@
       </div>
   </mat-step>
 
-  <!--<mat-step [completed]="step2Completed">-->
-      <!--<ng-template matStepLabel>Fill out your city</ng-template>-->
-      <!--<mat-form-field>-->
-        <!--<mat-select [(value)]="city"-->
-                    <!--[disabled]="disableCity.value"-->
-                    <!--(selectionChange)="cityChange($event)">-->
-          <!--<mat-option value="company1">Name company 1</mat-option>-->
-          <!--<mat-option value="company2">Name company 2</mat-option>-->
-          <!--<mat-option value="company3">Name company 3</mat-option>-->
-        <!--</mat-select>-->
-      <!--</mat-form-field>-->
-      <!--<div>-->
-        <!--<button mat-button matStepperPrevious>Back</button>-->
-        <!--<button mat-button matStepperNext>Next</button>-->
-      <!--</div>-->
-  <!--</mat-step>-->
   <mat-step [completed]="step2Completed">
       <ng-template matStepLabel>Fill out company</ng-template>
-          <mat-form-field>
-            <mat-select [(value)]="company"
-                        [disabled]="disableCompany.value"
-                        (selectionChange)="companyChange($event)"
-                        >
-              <mat-option value="company1">Name company 1</mat-option>
-              <mat-option value="company2">Name company 2</mat-option>
-              <mat-option value="company3">Name company 3</mat-option>
-            </mat-select>
-          </mat-form-field>
+
+      <app-select-company *ngIf="outputObj.city && outputObj.country"
+              (curentCompanyEmit)="companyChange($event)" (allCompany)="allCompany($event)"  [cityandcountry]="outputObj"></app-select-company>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>

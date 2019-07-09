@@ -1,0 +1,47 @@
+form{
+  display: flex;
+  flex-direction: column;
+  max-width:460px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  label{
+    display: flex;
+    flex-direction: column;
+    font-family: Montserrat-Light, sans-serif;
+    width: 100%;
+    span{
+      font-weight: 200;
+      font-size: 14px;
+      margin-bottom: 8px;
+      margin-left: 20px;
+    }
+    input{
+      width: 100%;
+      color: #000;
+      min-width: 320px;
+      font-family: Montserrat-Regular, sans-serif;
+      border: 1px solid #D9D9D9;
+      border-radius: 36px;
+      padding: 10px 20px;
+    }
+  }
+  button{
+    color: #fff!important;
+    background: #13AAFF;
+    width: max-content;
+    padding: 6px 26px;
+    font-size: 14px;
+    margin: 5px auto;
+    border: 1px solid #13AAFF;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover{
+      background: #179CE7;
+      border: 1px solid #179CE7;
+    }
+  }
+}

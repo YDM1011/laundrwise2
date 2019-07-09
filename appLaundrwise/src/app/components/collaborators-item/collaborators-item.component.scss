@@ -1,0 +1,17 @@
+.remove-collaborator{
+  color: #fff;
+  background: red;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .3s;
+  &:hover{
+    background: rgba(255, 10, 5, 0.78);
+    border: 1px solid rgba(255, 10, 5, 0.78);
+  }
+}

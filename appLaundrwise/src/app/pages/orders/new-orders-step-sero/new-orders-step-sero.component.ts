@@ -1,9 +1,8 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild, ViewChildren} from '@angular/core';
+import {Component, EventEmitter, OnChanges, OnInit, Output, ViewChild, ViewChildren} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from "../../../auth.service";
 import {StepZero, StepZeroObj} from "./stepZero";
-import {MatTableDataSource} from "@angular/material";
 import {CrudService} from "../../../crud.service";
 
 @Component({
@@ -12,16 +11,18 @@ import {CrudService} from "../../../crud.service";
   styleUrls: ['./new-orders-step-sero.component.scss']
 })
 export class NewOrdersStepSeroComponent implements OnInit {
-  public country = 'location';
-  public company = 'company';
-  public city = 'company';
+  // public country = 'location';
+  public company = '';
+  // public city = 'company';
   public step: number;
   public step1Completed: boolean = false;
   public step2Completed: boolean = false;
   public step3Completed: boolean = false;
   public disableCity = new FormControl(true);
   public disableCompany = new FormControl(true);
-  @Output() public myOutput: EventEmitter<any> = new EventEmitter();
+  @Output() public sendChooseCompany: EventEmitter<any> = new EventEmitter();
+  @Output() public sendAllCompany: EventEmitter<any> = new EventEmitter();
+  @Output() public stepOutput: EventEmitter<any> = new EventEmitter();
   public outputObj: StepZero = new StepZeroObj();
   public allCleaners: any;
 
@@ -31,10 +32,6 @@ export class NewOrdersStepSeroComponent implements OnInit {
       private crud: CrudService
   ) { }
   ngOnInit() {
-    // const query = JSON.stringify({path: '', skip: 0, limit: 0});
-    // this.crud.get(`cleaner?populate=${query}`).then((v: any) => {
-    //   this.allCleaners = v;
-    // });
     this.auth.getStep.subscribe(( v: number ) => {
         this.step = v;
     });
@@ -45,17 +42,14 @@ export class NewOrdersStepSeroComponent implements OnInit {
     this.outputObj.country = e.country;
     this.outputObj.city = e.city;
   }
-  // cityChange(e) {
-  //   this.disableCompany = new FormControl(false);
-  //   this.step2Completed = true;
-  //   this.outputObj.city = e.value;
-  // }
-  public companyChange(e) {
+  companyChange(e) {
     this.auth.setStep(this.step += 1);
-    this.outputObj.company = e.value;
-    this.sendOutEvent(this.outputObj);
+    this.sendChooseCompany.emit(e);
+  }
+  allCompany(e) {
+    this.sendAllCompany.emit(e);
   }
   sendOutEvent(value) {
-    this.myOutput.emit(value);
+    // this.myOutput.emit(value);
   }
 }

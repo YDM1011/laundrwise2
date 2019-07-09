@@ -13,7 +13,9 @@ export class InitOrderComponent implements OnInit {
     public mainTotalPrice: number;
     public basketOrder: [];
     public step = 0;
-    public stepZero: StepZero = new StepZeroObj();
+    public chooseCompany;
+    public allCompany;
+    // public stepZero: StepZero = new StepZeroObj();
     constructor(
         private auth: AuthService,
         private crud: CrudService
@@ -25,11 +27,11 @@ export class InitOrderComponent implements OnInit {
           this.step = v;
       });
     }
-    incrementStep() {
-        this.auth.setStep(this.step += 1);
+    getChooseCompany(value) {
+        this.chooseCompany = value;
     }
-    handleValue(value) {
-        this.stepZero = value;
+    getAllCompany(value) {
+        this.allCompany = value;
     }
     outputArray(value) {
         // this.basketOrder = value;

@@ -1,7 +1,13 @@
 .order-class{
-  padding-top: 60px;
+  padding-top: 66px;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
+  .order-class{
+    padding-top: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
   .order-class{
     padding-top: 90px;
   }

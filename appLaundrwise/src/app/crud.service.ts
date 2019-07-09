@@ -122,8 +122,6 @@ export class CrudService {
                     alert('update error');
                 }
             }
-
-
         }
         // this.DB[this.api+property] = data;
 

@@ -1,9 +1,9 @@
 <ng-container>
     <div class="non-orders">
         Now you don't have orders
-        <a [routerLink]="'/orders'">Make order</a>
+        <a [routerLink]="'/orders'" *ngIf="!user.role">Make order</a>
     </div>
-    <div class="benefits">
+    <div class="benefits" *ngIf="!user.role">
         <h2>
             Service benefits
         </h2>

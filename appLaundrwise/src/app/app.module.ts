@@ -86,6 +86,8 @@ import {NotificationListComponent} from './pages/admin/notification-list/notific
 import { StatisticComponent } from './pages/profile/statistic/statistic.component';
 import {CollaboratorsComponent} from './pages/profile/collaborators/collaborators.component';
 import { DashboardProfileComponent } from './pages/profile/dashboard-profile/dashboard-profile.component';
+import { CollaboratorsItemComponent } from './components/collaborators-item/collaborators-item.component';
+import { SelectCompanyComponent } from './components/select-company/select-company.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -161,7 +163,9 @@ import { DashboardProfileComponent } from './pages/profile/dashboard-profile/das
     StatisticComponent,
     CollaboratorsComponent,
     DashboardComponent,
-    DashboardProfileComponent
+    DashboardProfileComponent,
+    CollaboratorsItemComponent,
+    SelectCompanyComponent
   ],
   imports: [
     BrowserModule,

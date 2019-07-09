@@ -1,0 +1,10 @@
+<span class="title" *ngIf="!allCleaner">Location</span>
+<div class="custom-select">
+  <p class="selected" (click)="isOpenC = !isOpenC">{{ curentCompany ?  curentCompany.name : 'Company'}}</p>
+  <ul *ngIf="isOpenC" class="option-wrap">
+<!-- <li (click)="countryChange('location')">Country</li>-->
+    <li *ngFor="let item of company" (click)="companyChange(item)">
+      {{item.name}}
+    </li>
+  </ul>
+</div>

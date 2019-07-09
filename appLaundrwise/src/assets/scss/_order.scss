@@ -1,5 +1,5 @@
 .order-class{
-  padding-top: 60px;
+  padding-top: 80px;
 }
 .order-list{
   background: $main-blue;
@@ -551,7 +551,7 @@
     &__box{
       flex-direction: row;
       justify-content: space-between;
-      padding: 30px;
+      padding:10px 20px;
       &-result{
         margin: 0;
       }

@@ -18,7 +18,6 @@
     <th mat-header-cell *matHeaderCellDef> Super Manager </th>
     <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="element.superManager">
-
         {{element.superManager.firstName + ' ' + element.superManager.lastName}}
       </ng-container>
       <ng-container *ngIf="!element.superManager">
