@@ -6,14 +6,16 @@ const schema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Client"
         }},
-    product: [{
+    products: [{
         type: Schema.Types.ObjectId,
         ref: "Product"
     }],
     cleanerOwner: {
         type: Schema.Types.ObjectId,
         ref: "Cleaner"
-    }
+    },
+    status: Number,
+    date: {type: Date, default: new Date()}
 },{
     toJSON: {
         transform: function (doc, ret) {

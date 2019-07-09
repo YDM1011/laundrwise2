@@ -18,8 +18,8 @@ module.exports = (backendApp, router) => {
         }
         Client.findOne({
             $or:[
-                {login: req.body.login},
-                {email: req.body.login}
+                {login: req.body.login.toLowerCase()},
+                {email: req.body.login.toLowerCase()}
             ]
         }, (err, user) => {
             if (err) return res.serverError(err);
@@ -27,7 +27,8 @@ module.exports = (backendApp, router) => {
             if (!user){
                 req.body.token = getToken(req.body.login);
                 req.body.pass = md5(req.body.pass);
-                req.body.email = req.body.email ? req.body.email : req.body.login;
+                // req.body.email = req.body.email ? req.body.email : req.body.login;
+                req.body.email = req.body.email ? req.body.email.toLowerCase() : req.body.login.toLowerCase();
                 Client.create(req.body, (e,r)=>{
                     if (e) return res.serverError(e);
                     if (!r) return res.badRequest();

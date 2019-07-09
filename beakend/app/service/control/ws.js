@@ -1,6 +1,12 @@
 const WebSocketServer = require('ws').Server;
 const wss = new WebSocketServer({ port: 6759, path: '/ws' });
 const wsEvent = {};
+const glob = require('glob');
+const wsControllers = glob.sync(backendApp.config.root+'/service/wsEvents/*.js');
+wsControllers.forEach((controller) => {
+    let wsController = require(controller)();
+    wsEvent[wsController.event] = wsController.fun;
+});
 module.exports = (backendApp, socket = null, data = null) => {
 
     wss.on('connection', async (ws, req) => {
@@ -40,10 +46,9 @@ module.exports = (backendApp, socket = null, data = null) => {
                     sendTo(res.to, event, data);
                 }
             };
-            let wsController = require('../wsControler')();
-            wsEvent[wsController.event] = wsController.fun;
             wsEvent[res.event](data, send);
 
+            // let wsController = require('../wsEvents/wsControler')();
 
         });
 

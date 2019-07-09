@@ -89,6 +89,7 @@ export class SignupComponent implements OnInit {
       country: this.countryFormControl.value,
       city: this.cityFormControl.value,
       pass: this.myForm.value.passwordFormControl,
+      role: 'client',
     };
 
     this.api.post(apiUrl, signup).then((value: any) => {

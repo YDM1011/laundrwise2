@@ -6,10 +6,11 @@ const schema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Client"
         }},
-    product: [{
+    baskets: [{
         type: Schema.Types.ObjectId,
-        ref: "Product"
+        ref: "Basket"
     }],
+    status: Number
 },{
     toJSON: {
         transform: function (doc, ret) {
@@ -26,7 +27,6 @@ const schema = new Schema({
     },
     createRestApi: true,
     strict: true,
-
 });
 
 mongoose.model('BasketGroup', schema);

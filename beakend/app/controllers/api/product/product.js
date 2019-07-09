@@ -1,11 +1,25 @@
 const fs = require('fs');
 module.exports = function (backendApp, router) {
 
-    router.post('/', [], async function (req, res, next) {
-        let arr = [{name:'test'},{name:'test2'}];
-        let r = await asyncForEach(arr, createBasket, backendApp);
-        console.log('presend', r)
-        res.ok(r)
+    router.get('/productBy/:cleanerId', [], async function (req, res, next) {
+        try {
+            backendApp.find({
+                "createdBy.userId": req.user.id,
+                cleanerOwner: req.params.cleanerId,
+            }).exec((e,r)=>{
+                if (e) return res.serverError(e);
+                if (!r) return res.notFound("One of product is invalid!");
+                if (r) {
+                    let obj = {};
+                    r.map(it=>{
+                        obj[it.currentOrder] = it;
+                    });
+                    res.ok(obj)
+                }
+            })
+        } catch(e) {
+            res.notFound("Can't be read")
+        }
     });
 };
 const convertation = b64string =>{

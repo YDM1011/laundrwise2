@@ -17,8 +17,8 @@ module.exports = (backendApp, router) => {
         Client.findOne({
             $and:[{
                 $or:[
-                    {login: req.body.login},
-                    {email: req.body.login}
+                    {login: req.body.login.toLowerCase()},
+                    {email: req.body.login.toLowerCase()}
                 ]
             }],
         }).exec(function (err, user) {

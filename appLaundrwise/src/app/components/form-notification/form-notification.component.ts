@@ -39,6 +39,7 @@ export class FormNotificationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+        this.form['entity'] = this.entity;
       this.auth.onUpDate.subscribe(( v: any ) => {
           if (v) {
             this.form = new FormNotificationObj(v);
@@ -54,6 +55,7 @@ export class FormNotificationComponent implements OnInit {
 
   formSend() {
     let obj:any = this.getFormData();
+    console.log(obj);
     if (!obj) return Swal.fire('Something broken', '', 'error');
 
     this.crud.post('adminNotification', obj).then((value) => {

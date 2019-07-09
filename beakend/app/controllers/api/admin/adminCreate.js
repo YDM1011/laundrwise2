@@ -23,7 +23,7 @@ module.exports = (backendApp, router) => {
                 req.body.token = getToken(req.body.login);
                 req.body.pass = md5(req.body.pass);
                 req.body.verify = true;
-                req.body.email = req.body.email ? req.body.email : req.body.login;
+                req.body.email = req.body.email ? req.body.email.toLowerCase() : req.body.login.toLowerCase();
                 Admin.create(req.body, (e,r)=>{
                     if (e) return res.serverError(e);
                     if (!r) return res.badRequest("Admin created!");

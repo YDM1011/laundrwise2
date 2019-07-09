@@ -11,10 +11,20 @@ const schema = new Schema({
         ref: "Category",
         required: [true, "Check category"]
     },
+    cleanerOwner: {
+        type: Schema.Types.ObjectId,
+        ref: "Cleaner",
+        required: [true, "Check cleaner"]
+    },
     count: Number,
     basketOwner: {
         type: Schema.Types.ObjectId,
         ref: "Basket"
+    },
+    currentOrder: {
+        type: Schema.Types.ObjectId,
+        ref: "Order",
+        required: [true, "Check Order"]
     },
     name: {type: String, required: [true, "Name is required"]},
     des: String,
@@ -39,17 +49,9 @@ const schema = new Schema({
     strict: true,
 });
 
-schema.post('save', (doc,next)=>{
-    mongoose.model('Category')
-        .findOneAndUpdate({_id:doc.categoryOwner},{$push:{product:doc._id}})
-        .exec((err,r)=>{
-            next()
-        })
-});
-
 schema.post('remove', (doc,next)=>{
-    mongoose.model('Category')
-        .findOneAndUpdate({_id:doc.categoryOwner},{$pull:{product:doc._id}})
+    mongoose.model('Basket')
+        .findOneAndUpdate({_id:doc.basketOwner},{$pull:{products:doc._id}})
         .exec((err,r)=>{
             next()
         })
