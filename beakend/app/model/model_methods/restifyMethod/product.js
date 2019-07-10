@@ -22,15 +22,18 @@ const readStep = async (req,res,next,backendApp) => {
 
 module.exports.preSave = async (req, res, next, backendApp) => {
     try {
-        if (typeof req.body.basketArray.length>0) {
-            let user = await backendApp.service.checkrole(req.body, backendApp).catch(e => {return res.notFound(e)});
-            if (user) {
+        console.log(req.body)
+        if (req.body) {
+            // let user = await checkUser(req, res, backendApp).catch(e => {return res.notFound(e)});
+            // if (user) {
+                req.body['createdBy'] = {itemId:req.user._id};
+                // console.log(req.body, user, req.user)
                 let product = await createProduct(req.body, backendApp).catch(e => {return res.notFound(e)});
                 let basket = await checkAndInitBasket(req, backendApp, product).catch(e => {return res.notFound(e)});
                 await setBasketToProduct(product, backendApp, basket).catch(e => {return res.notFound(e)});
                 res.ok(product);
-            }
-            console.log(manager, "maneger");
+            // }
+            // console.log(manager, "maneger");
         } else {
             next()
         }
@@ -96,5 +99,13 @@ const setBasketToProduct = (data,backendApp,basket) => {
                 if (!r) return rj("One of product is invalid!");
                 if (r) return rs(r)
             });
+    })
+};
+
+const checkUser = (req,res,backendApp)=>{
+    return new Promise((rs,rj)=>{
+        backendApp.middlewares.isLoggedIn(req, res, (e = true)=>{
+            rs(e)
+        })
     })
 };

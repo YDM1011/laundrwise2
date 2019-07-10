@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {AuthService} from '../../../auth.service';
 import {CrudService} from '../../../crud.service';
 import {StepZero, StepZeroObj} from "../new-orders-step-sero/stepZero";
@@ -9,9 +9,9 @@ import {forEach} from "@angular/router/src/utils/collection";
   templateUrl: './init-order.component.html',
   styleUrls: ['./init-order.component.scss']
 })
-export class InitOrderComponent implements OnInit {
+export class InitOrderComponent implements OnInit, OnChanges {
     public mainTotalPrice: number;
-    public basketOrder: [];
+    public basketOrder = [];
     public step = 0;
     public chooseCompany;
     public allCompany;
@@ -23,10 +23,11 @@ export class InitOrderComponent implements OnInit {
 
     }
     ngOnInit() {
-      this.auth.getStep.subscribe(( v: any ) => {
-          this.step = v;
-      });
+      // this.auth.getStep.subscribe(( v: any ) => {
+      //     this.step = v;
+      // });
     }
+    ngOnChanges() {}
     getChooseCompany(value) {
         this.chooseCompany = value;
     }
