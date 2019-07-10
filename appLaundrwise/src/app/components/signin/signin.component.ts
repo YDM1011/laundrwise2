@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material";
 import {LoginpopupComponent} from "../loginpopup/loginpopup.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signin',
@@ -9,10 +10,16 @@ import {LoginpopupComponent} from "../loginpopup/loginpopup.component";
 })
 export class SigninComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+      public dialog: MatDialog,
+      private router: Router
+  ) { }
 
   ngOnInit() {
-    let dialogRef = this.dialog.open(LoginpopupComponent);
+    const dialogRef = this.dialog.open(LoginpopupComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.router.navigate(['/']);
+    });
   }
 
 }

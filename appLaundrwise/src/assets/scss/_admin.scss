@@ -113,6 +113,28 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell{
 
 //buttons
 
+.simple-blue{
+  color: #fff!important;
+  background: #13AAFF;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid #13AAFF;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  &:hover{
+    background: #179CE7;
+    border: 1px solid #179CE7;
+  }
+  .active{
+    background: #cce730;
+    border: 1px solid #cce730;
+  }
+}
+
 .mat-cell .edit-link{
   color: #fff!important;
   background: #13AAFF;

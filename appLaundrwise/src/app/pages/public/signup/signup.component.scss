@@ -1,4 +1,3 @@
-
 .mat-form-field{
   border-radius: 50px!important;
 }
@@ -13,5 +12,13 @@
   &:hover{
     color: #13AAFF;
     border-color: #13AAFF;
+  }
+}
+.login-registration{
+  padding-top:60px;
+}
+@media(min-width: 768px){
+  .login-registration{
+    padding-top:100px;
   }
 }

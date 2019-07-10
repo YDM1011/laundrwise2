@@ -1,16 +1,36 @@
-<form (submit)="save()">
-    <input type="text" [(ngModel)]="location.country" name="country">
-    <ul>
-        <li *ngFor="let city of location.city">{{city}}</li>
-    </ul>
-    <button type="submit">save</button>
-</form>
-<button type="button" (click)="isAdd = true">add city</button>
-<form *ngIf="isAdd" (submit)="addCity()">
-    <input type="text" [(ngModel)]="city" name="city">
-    <button type="submit">ok</button>
-</form>
-
-<div>
-    <div *ngFor="let loc of locations">{{loc.country}} : {{loc.city}}</div>
+<div class="list-countries">
+    <div class="list-countries__item" *ngFor="let loc of locations">{{loc.country}} : {{loc.city}}</div>
 </div>
+
+<button (click)="addCountry()" [class.active]="addCountryIf===true" class="simple-blue">
+    {{ addCountryIf ? "Close" : "Add country" }}
+</button>
+<ng-container *ngIf="addCountryIf">
+    <div class="post-header">
+        <div class="title">
+            Add country
+        </div>
+    </div>
+    <form (submit)="save()" class="cleaner-form">
+        <label>
+            <span>Country</span>
+            <input type="text" placeholder="Country" [(ngModel)]="location.country" name="country">
+        </label>
+
+        <ul>
+            <li *ngFor="let city of location.city">{{city}}</li>
+        </ul>
+        <button type="button" class="send" *ngIf="location.country" (click)="isAdd = true" >Create city</button>
+
+        <form *ngIf="isAdd" (submit)="addCity()" class="cleaner-form">
+            <label>
+                <span>City</span>
+                <input type="text" placeholder="City" [(ngModel)]="city" name="city">
+            </label>
+            <button class="send" *ngIf="city" type="submit">Add city</button>
+        </form>
+
+        <button class="send" *ngIf="location.country" type="submit">save</button>
+
+    </form>
+</ng-container>

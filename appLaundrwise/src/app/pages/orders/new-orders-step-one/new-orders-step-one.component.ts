@@ -53,7 +53,7 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges {
     this.auth.setBasketGroup(this.orderArray);
   }
   getProductByCleanerId() {
-    this.crud.getNoCache(`productBy/:${this.chooseCompany._id}`, null).then((v: any) => {
+    this.crud.getNoCache(`productBy/:cleanerId`, this.chooseCompany._id).then((v: any) => {
       console.log(v);
     });
   }
@@ -74,9 +74,9 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges {
     this.prod['currentOrder'] = this.prod._id;
     delete this.prod._id;
 
-    // this.crud.post('product', this.prod).then((v: any) => {
-    //   console.log(v);
-    // });
+    this.crud.post('product', this.prod).then((v: any) => {
+      console.log(v);
+    });
 
     const index = this.crud.find('_id', value._id, this.productlist);
     if (typeof index === 'number') {

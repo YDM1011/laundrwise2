@@ -10,7 +10,7 @@ import {CrudService} from "../../../../crud.service";
 })
 export class DeliveryAddComponent implements OnInit {
     public delivery: Cleaner = new CleanerObj();
-
+    public cityandcountry: any;
     constructor(
         private router: Router,
         private crud: CrudService
@@ -22,9 +22,16 @@ export class DeliveryAddComponent implements OnInit {
     addPost() {
         delete this.delivery.date;
         delete this.delivery.superManager;
+        this.delivery.city = this.cityandcountry.city;
+        this.delivery.country = this.cityandcountry.country;
         this.crud.post('delivery', this.delivery, null, ['delivery']).then(v => {
             this.router.navigate(['/admin/delivery']);
         });
+    }
+    countryChange(e) {
+        if (e) {
+            this.cityandcountry = e;
+        }
     }
 
     pullCategory(elems) {

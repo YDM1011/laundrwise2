@@ -21,9 +21,9 @@ export class SelectLocationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.crud.getNoCache('location').then((v: any) => {
-          this.locations = v;
-      });
+    this.crud.getNoCache('location').then((v: any) => {
+      this.locations = v;
+    });
   }
 
   validate(e) {

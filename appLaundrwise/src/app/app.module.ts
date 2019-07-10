@@ -88,6 +88,7 @@ import {CollaboratorsComponent} from './pages/profile/collaborators/collaborator
 import { DashboardProfileComponent } from './pages/profile/dashboard-profile/dashboard-profile.component';
 import { CollaboratorsItemComponent } from './components/collaborators-item/collaborators-item.component';
 import { SelectCompanyComponent } from './components/select-company/select-company.component';
+import { ApplicationSettingsComponent } from './pages/admin/setting/application-settings/application-settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -165,7 +166,8 @@ import { SelectCompanyComponent } from './components/select-company/select-compa
     DashboardComponent,
     DashboardProfileComponent,
     CollaboratorsItemComponent,
-    SelectCompanyComponent
+    SelectCompanyComponent,
+    ApplicationSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -185,7 +187,7 @@ import { SelectCompanyComponent } from './components/select-company/select-compa
       DialogComponent,
       SuperManagerFormComponent,
       CategoryIncludedComponent,
-      DialogComponent,
+      DialogComponent
   ],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
