@@ -168,7 +168,7 @@ import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-typ
     DashboardProfileComponent,
     CollaboratorsItemComponent,
     SelectCompanyComponent,
-    InitOrderTypeComponent
+    InitOrderTypeComponent,
     SelectCompanyComponent,
     ApplicationSettingsComponent
   ],
