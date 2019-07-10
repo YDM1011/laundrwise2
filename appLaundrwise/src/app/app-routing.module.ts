@@ -54,6 +54,7 @@ import {DeliveryEditComponent} from './pages/admin/delivery-list/delivery-edit/d
 import {NotificationListComponent} from './pages/admin/notification-list/notification-list.component';
 import {StatisticComponent} from './pages/profile/statistic/statistic.component';
 import {CollaboratorsComponent} from "./pages/profile/collaborators/collaborators.component";
+import {InitOrderTypeComponent} from "./pages/orders/init-order/init-order-type/init-order-type.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -76,8 +77,9 @@ const routes: Routes = [
         {path: 'become-our-service', component: BecomeOurServiceComponent},
         {path: 'our-partners', component: OurPartnersComponent},
     ]},
-    {path: 'orders', component: InitOrderComponent, canActivate: [IsLoginGuard]},
-    {path: 'orders/:type', component: InitOrderComponent, canActivate: [IsLoginGuard]},
+    {path: 'orders', component: InitOrderComponent, canActivate: [IsLoginGuard], children:[
+            {path: ':cleanerId/:type', component: InitOrderTypeComponent, canActivate: [IsLoginGuard]},
+        ]},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
       {path: '', component: MyProfileComponent},
       {path: 'account', component: MyAccountComponent},

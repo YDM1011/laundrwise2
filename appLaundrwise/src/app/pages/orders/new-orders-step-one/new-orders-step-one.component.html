@@ -1,13 +1,16 @@
 <div class="order-list">
     <div class="order-list-container">
         <div class="order-list__box">
+            <ng-container *ngIf="chooseCompany">
             <ng-container *ngFor="let item of chooseCompany.category">
-                <a routerLinkActive="active" [routerLink]="['/orders/'+ item.name | lowercase ]" class="order-list__box-item">
+                <a routerLinkActive="active" [routerLink]="['/orders/'+selected+'/'+ item.name | lowercase ]"
+                   class="order-list__box-item">
                     <app-img [img]="item.icon"></app-img>
                     <span class="title">
                     {{item.name}}
                 </span>
                 </a>
+            </ng-container>
             </ng-container>
         </div>
     </div>
@@ -23,16 +26,6 @@
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>
 
-<div class="order">
-    <div class="order-container">
-        <div class="order__box">
-            <ng-container  *ngFor="let item of product">
-                <app-order-item class="order__box-item" [obj]="item"
-                                (onDelete)="orderItemRemove($event)"
-                                (onAdd)="orderItemAdd($event)"></app-order-item>
-            </ng-container>
-        </div>
-    </div>
-</div>
 

@@ -7,6 +7,8 @@ export interface OrderProduct {
     createdBy: string
     count: number
     totalPrice: number
+
+    map?(param: (ord) => any): void;
 }
 
 export class OrderProductObj implements OrderProduct {

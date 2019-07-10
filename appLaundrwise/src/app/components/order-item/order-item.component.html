@@ -1,22 +1,52 @@
-<div class="img">
-  <img src="../assets/images/order-item.png" alt="order items">
-</div>
-<div class="description">
-  <div class="name">{{obj.name}}</div>
-  <p class="describe">{{obj.description}}</p>
-</div>
-<div class="buttons">
-  <div class="counts">
-    <div class="counts__btn">
-      <img src="../assets/images/minus.svg" (click)="decrement()" alt="">
+
+
+<ng-container *ngIf="obj.productId">
+
+  <div class="img">
+    <img src="../assets/images/order-item.png" alt="order items">
+  </div>
+  <div class="description">
+    <div class="name">it is Product {{obj.name}}</div>
+    <p class="describe">{{obj.description}}</p>
+  </div>
+  <div class="buttons">
+    <div class="counts">
+      <div class="counts__btn">
+        <img src="../assets/images/minus.svg" (click)="decrement()" alt="">
+      </div>
+      <div class="count">{{obj.count}}</div>
+      <div class="counts__btn">
+        <img src="../assets/images/plus.svg" (click)="increment()" alt="">
+      </div>
     </div>
-    <div class="count">{{obj.count}}</div>
-    <div class="counts__btn">
-      <img src="../assets/images/plus.svg" (click)="increment()" alt="">
+    <div class="price">
+      <div class="price__item">{{obj.totalPrice}}</div>
+      <div class="price__usd">$</div>
     </div>
   </div>
-  <div class="price">
-    <div class="price__item">{{obj.totalPrice}}</div>
-    <div class="price__usd">$</div>
+</ng-container>
+
+<ng-container *ngIf="!obj.productId">
+  <div class="img">
+    <img src="../assets/images/order-item.png" alt="order items">
   </div>
-</div>
+  <div class="description">
+    <div class="name">{{obj.name}}</div>
+    <p class="describe">{{obj.description}}</p>
+  </div>
+  <div class="buttons">
+    <div class="counts">
+      <div class="counts__btn">
+        <img src="../assets/images/minus.svg" (click)="decrement()" alt="">
+      </div>
+      <div class="count">{{obj.count}}</div>
+      <div class="counts__btn">
+        <img src="../assets/images/plus.svg" (click)="increment()" alt="">
+      </div>
+    </div>
+    <div class="price">
+      <div class="price__item">{{obj.totalPrice}}</div>
+      <div class="price__usd">$</div>
+    </div>
+  </div>
+</ng-container>

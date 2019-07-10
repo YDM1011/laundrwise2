@@ -88,6 +88,7 @@ import {CollaboratorsComponent} from './pages/profile/collaborators/collaborator
 import { DashboardProfileComponent } from './pages/profile/dashboard-profile/dashboard-profile.component';
 import { CollaboratorsItemComponent } from './components/collaborators-item/collaborators-item.component';
 import { SelectCompanyComponent } from './components/select-company/select-company.component';
+import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-type/init-order-type.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -165,7 +166,8 @@ import { SelectCompanyComponent } from './components/select-company/select-compa
     DashboardComponent,
     DashboardProfileComponent,
     CollaboratorsItemComponent,
-    SelectCompanyComponent
+    SelectCompanyComponent,
+    InitOrderTypeComponent
   ],
   imports: [
     BrowserModule,

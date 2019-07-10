@@ -15,6 +15,7 @@ module.exports = function (req, res, next) {
           if (err) {
               return res.serverError("Token error");
           }else{
+
               Client.findOne({login: data.login })
                   .exec((err, info)=>{
                       if (err) return next(err);

@@ -21,6 +21,7 @@ export class SelectCompanyComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges() {
+    console.log(this.cityandcountry)
     if (this.allCleaner) {
       this.company = this.allCleaner;
     } else {
