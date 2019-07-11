@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {AuthService} from '../../../auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-orders-step-two',
@@ -8,9 +9,10 @@ import {AuthService} from '../../../auth.service';
 })
 export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
   public me;
-  public basketArray: [];
+  public basketArray = [];
   public instruction: string;
   constructor(
+      private router: Router,
       private auth: AuthService
   ) {}
 
@@ -20,10 +22,11 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
         this.me = v;
       }
     });
-    this.auth.getBasketGroup.subscribe((v: any) => {
-      this.basketArray = v;
-      console.log(this.basketArray);
-    });
+    // this.auth.getBasketGroup.subscribe((v: any) => {
+    //   this.basketArray = v;
+    //   console.log(this.basketArray);
+    // });
+    //   this.router.navigate([`/orders`]);
   }
   ngOnChanges() {
   }

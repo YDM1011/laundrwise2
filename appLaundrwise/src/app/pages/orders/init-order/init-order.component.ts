@@ -29,10 +29,10 @@ export class InitOrderComponent implements OnInit, OnChanges {
     }
     ngOnChanges() {}
     getChooseCompany(value) {
-        this.chooseCompany = value;
+        this.chooseCompany = Object.assign({},value) ;
     }
     getAllCompany(value) {
-        this.allCompany = value;
+        this.allCompany = Object.assign([],value);
     }
     outputArray(value) {
         // this.basketOrder = value;

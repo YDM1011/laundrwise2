@@ -49,6 +49,7 @@ export class NewOrdersStepSeroComponent implements OnInit {
     this.sendChooseCompany.emit(e);
   }
   allCompany(e) {
+    console.log(e)
     this.sendAllCompany.emit(e);
   }
   next() {

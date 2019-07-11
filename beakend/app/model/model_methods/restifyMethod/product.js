@@ -22,7 +22,7 @@ const readStep = async (req,res,next,backendApp) => {
 
 module.exports.preSave = async (req, res, next, backendApp) => {
     try {
-        console.log(req.body)
+        console.log(req.body);
         if (req.body) {
             // let user = await checkUser(req, res, backendApp).catch(e => {return res.notFound(e)});
             // if (user) {

@@ -7,7 +7,9 @@
                                   (stepOutput)="step = $event"></app-new-orders-step-sero>
     </ng-container>
     <ng-container *ngIf="step == 1 && chooseCompany && allCompany">
-        <app-new-orders-step-one [chooseCompany]="chooseCompany" [allCompany]="allCompany" (outputArray)="outputArray($event)"></app-new-orders-step-one>
+        <app-new-orders-step-one [chooseCompany]="chooseCompany" [allCompany]="allCompany"
+                                 (totalPrice)="mainTotalPrice = $event" #orders
+                                 (outputArray)="outputArray($event)"></app-new-orders-step-one>
     </ng-container>
     <ng-container *ngIf="step==2">
         <app-new-orders-step-two></app-new-orders-step-two>
@@ -16,5 +18,7 @@
         <app-new-orders-step-three></app-new-orders-step-three>
     </ng-container>
     <!--<ng-container *ngIf="step==-->
-    <app-order-footer *ngIf="step > 0 && step < 4" [mainTotalPrice]="basketOrder" class="totalprice"></app-order-footer>
+    <app-order-footer *ngIf="step > 0 && step < 4"
+                      [(step)]="step" [mainTotalPrice]="mainTotalPrice"
+                      class="totalprice"></app-order-footer>
 </div>

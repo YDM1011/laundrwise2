@@ -3,13 +3,13 @@
         <div class="order-list__box">
             <ng-container *ngIf="chooseCompany">
             <ng-container *ngFor="let item of chooseCompany.category">
-                <a routerLinkActive="active" [routerLink]="['/orders/'+selected+'/'+ item.name | lowercase ]"
+                <button (click)="type = item.name"
                    class="order-list__box-item">
                     <app-img [img]="item.icon"></app-img>
                     <span class="title">
                     {{item.name}}
                 </span>
-                </a>
+                </button>
             </ng-container>
             </ng-container>
         </div>
@@ -26,6 +26,7 @@
         </div>
     </div>
 </div>
-<router-outlet></router-outlet>
-
+<app-init-order-type
+        (totalPrice)="totalPrice.emit($event)"
+        [params]="dataParams"></app-init-order-type>
 

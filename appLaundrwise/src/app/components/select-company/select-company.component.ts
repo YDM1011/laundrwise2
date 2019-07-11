@@ -12,30 +12,33 @@ export class SelectCompanyComponent implements OnInit, OnChanges {
   @Input() cityandcountry;
   @Input() allCleaner;
   @Input() curentCompany;
-  public company: any;
+  public company: any = [];
   public isOpenC: boolean = false;
   constructor(
       private crud: CrudService
   ) { }
 
   ngOnInit() {
+      if (this.allCleaner) {
+          this.company = this.allCleaner;
+      }
   }
   ngOnChanges() {
-    console.log(this.cityandcountry)
+      console.log(this.allCleaner);
     if (this.allCleaner) {
       this.company = this.allCleaner;
     } else {
       const populate = JSON.stringify({path: 'category', skip: 0, limit: 0});
       const query = JSON.stringify({city: this.cityandcountry.city, country: this.cityandcountry.country});
       this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((v: any) => {
-        this.company = [];
         this.company = v;
-        console.log(this.company);
+
       });
     }
   }
   companyChange(e) {
     this.curentCompany = e;
+      console.log(this.curentCompany);
     this.curentCompanyEmit.emit(this.curentCompany);
     this.allCompany.emit(this.company);
     this.isOpenC = !this.isOpenC;

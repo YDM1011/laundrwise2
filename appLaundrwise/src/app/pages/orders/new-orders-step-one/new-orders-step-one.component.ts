@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
 import {CrudService} from "../../../crud.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrderProduct, OrderProductObj} from "./orderProduct";
@@ -10,18 +10,19 @@ import {AuthService} from "../../../auth.service";
   styleUrls: ['./new-orders-step-one.component.css']
 })
 export class NewOrdersStepOneComponent implements OnInit, OnChanges {
-  public selected = '';
   public defoultCategoryRouter = '';
+  public dataParams = {cleanerId:'',type:''};
+
   @Input() chooseCompany;
   @Input() allCompany;
   @Output() totalPrice: EventEmitter<any> = new EventEmitter();
   @Output() outputArray: EventEmitter<any> = new EventEmitter();
-  public category: any[];
+  // public category: any[];
 
-  public allCleaners: any[];
+  // public allCleaners: any[];
 
   // public orderArray: Array<any> = [];
-  public totalPriceArray: number = 0;
+  // public totalPriceArray: number = 0;
 
   constructor(
       private router: Router,
@@ -31,16 +32,30 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    this.selected = this.chooseCompany._id;
-    this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
-    this.router.navigate([`/orders/${this.selected}/${this.defoultCategoryRouter}`]);
+    if(this.chooseCompany){
+        this.dataParams.cleanerId = this.chooseCompany._id;
+        this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
+        this.dataParams.type = this.defoultCategoryRouter;
+        // this.router.navigate([`/orders/${this.selected}/${this.defoultCategoryRouter}`]);
+    }
+
+    //
 
     // this.auth.getBasketGroup.subscribe((v: any) => {
     //   this.orderArray = v;
     // });
   }
+  ngOnDestroy(){
+
+  }
   companyChange(e) {
-    // this.chooseCompany = e;
+    let prop={}
+    this.chooseCompany = e;
+    prop['cleanerId'] = this.chooseCompany._id;
+    this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
+    prop['type'] = this.defoultCategoryRouter;
+    this.dataParams = prop;
+
     // this.selected = this.chooseCompany._id;
     // this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
     // this.router.navigate(['/orders/' + this.defoultCategoryRouter]);

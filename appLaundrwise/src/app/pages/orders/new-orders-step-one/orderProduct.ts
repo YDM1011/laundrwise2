@@ -7,6 +7,7 @@ export interface OrderProduct {
     createdBy: string
     count: number
     totalPrice: number
+    _id?: string
 
     map?(param: (ord) => any): void;
 }
