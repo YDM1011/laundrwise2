@@ -3,10 +3,13 @@
     <div class="order__box">
       <!--{{order | json}}-->
       <!--{{order.length}}-->
-      <ng-container  *ngFor="let item of order">
+      <ng-container *ngFor="let item of order">
         <app-order-item class="order__box-item" [obj]="item"
                         (onDelete)="orderItemRemove($event, item)"
-                        (onAdd)="orderItemAdd($event, item)"></app-order-item>
+                        (onDeleteProd)="orderItemRemoveProd($event, item)"
+                        (onAdd)="orderItemAdd($event, item)"
+                        (onUpdate)="orderItemUpdate($event, item)"
+        ></app-order-item>
       </ng-container>
     </div>
   </div>

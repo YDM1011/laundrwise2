@@ -1,8 +1,6 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {AuthService} from '../../../auth.service';
 import {CrudService} from '../../../crud.service';
-import {StepZero, StepZeroObj} from "../new-orders-step-sero/stepZero";
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-init-order',

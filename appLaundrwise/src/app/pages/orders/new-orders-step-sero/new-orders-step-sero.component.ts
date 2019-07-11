@@ -47,12 +47,14 @@ export class NewOrdersStepSeroComponent implements OnInit {
   companyChange(e) {
     // this.auth.setStep(this.step += 1);
     this.sendChooseCompany.emit(e);
+    // this.stepOutput.emit(1);
+
   }
   allCompany(e) {
     console.log(e)
     this.sendAllCompany.emit(e);
   }
   next() {
-      this.stepOutput.emit(1)
+      this.stepOutput.emit(1);
   }
 }

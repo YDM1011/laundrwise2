@@ -77,7 +77,7 @@ const routes: Routes = [
         {path: 'become-our-service', component: BecomeOurServiceComponent},
         {path: 'our-partners', component: OurPartnersComponent},
     ]},
-    {path: 'orders', component: InitOrderComponent, canActivate: [IsLoginGuard], children:[
+    {path: 'orders', component: InitOrderComponent, canActivate: [IsLoginGuard], children: [
             {path: ':cleanerId/:type', component: InitOrderTypeComponent, canActivate: [IsLoginGuard]},
         ]},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [

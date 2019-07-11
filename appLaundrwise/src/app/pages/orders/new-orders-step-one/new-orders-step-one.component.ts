@@ -9,9 +9,12 @@ import {AuthService} from "../../../auth.service";
   templateUrl: './new-orders-step-one.component.html',
   styleUrls: ['./new-orders-step-one.component.css']
 })
-export class NewOrdersStepOneComponent implements OnInit, OnChanges {
+export class NewOrdersStepOneComponent implements OnInit, OnChanges, OnDestroy {
   public defoultCategoryRouter = '';
-  public dataParams = {cleanerId:'',type:''};
+  public dataParams: any =  {
+    cleanerId: '',
+    type: ''
+  };
 
   @Input() chooseCompany;
   @Input() allCompany;
@@ -32,24 +35,20 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    if(this.chooseCompany){
+    if (this.chooseCompany) {
         this.dataParams.cleanerId = this.chooseCompany._id;
         this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
         this.dataParams.type = this.defoultCategoryRouter;
         // this.router.navigate([`/orders/${this.selected}/${this.defoultCategoryRouter}`]);
     }
 
-    //
-
     // this.auth.getBasketGroup.subscribe((v: any) => {
     //   this.orderArray = v;
     // });
   }
-  ngOnDestroy(){
-
-  }
+  ngOnDestroy() {}
   companyChange(e) {
-    let prop={}
+    const prop = {};
     this.chooseCompany = e;
     prop['cleanerId'] = this.chooseCompany._id;
     this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
@@ -62,6 +61,13 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
     // this.auth.setBasketGroup(this.orderArray);
+  }
+
+  changeCategory(v) {
+    const prop = {};
+    prop['cleanerId'] = this.chooseCompany._id;
+    prop['type'] = v;
+    this.dataParams = prop;
   }
 
 }

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ILocation} from "./location";
 import {CrudService} from "../../../../crud.service";
-import {LoginpopupComponent} from "../../../../components/loginpopup/loginpopup.component";
-import {DialogSettingLocationComponent} from "../../../../components/dialog-setting-location/dialog-setting-location.component";
-import {MatDialog} from "@angular/material";
 
 @Component({
   selector: 'app-add-country',
@@ -19,7 +16,6 @@ export class AddCountryComponent implements OnInit {
 
   constructor(
       private crud: CrudService,
-      public dialog: MatDialog
   ) { }
 
   ngOnInit() {

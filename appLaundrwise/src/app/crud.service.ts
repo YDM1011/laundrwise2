@@ -82,6 +82,20 @@ export class CrudService {
             });
         });
     }
+    deleteOrder(api, id = null, ogjAfterDel: any = null, isUpdate: any = false) {
+        return new Promise((resolve, reject) => {
+            this.http.delete(`${this.api}${api}/${id ? id : ''}`).subscribe(data => {
+                resolve(data);
+                if (isUpdate && ogjAfterDel) {
+                    isUpdate.map(property => {
+                        this.update(property, ogjAfterDel, 'delete');
+                    });
+                }
+            }, error => {
+                reject(error);
+            });
+        });
+    }
     update(property, data, type = null) {
         if (typeof this.DB[this.api + property] === 'object') {
             if (type === 'delete') {

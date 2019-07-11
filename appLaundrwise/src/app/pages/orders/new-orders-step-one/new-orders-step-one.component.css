@@ -18,3 +18,17 @@
 /*.mat-form-field-appearance-legacy .mat-form-field-underline{*/
 /*    height: 0!important;*/
 /*}*/
+.order-list__box-item{
+    background: #13AAFF;
+    font-family: Montserrat-Bold, sans-serif;
+    color: #333333;
+    border:none;
+    cursor: pointer;
+    transition: all .3s;
+}
+.order-list__box-item:hover{
+    background: #fff;
+}
+.order-list__box-item .active {
+    background: #fff;
+}

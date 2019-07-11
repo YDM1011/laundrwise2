@@ -6,7 +6,7 @@ import {CrudService} from "../../../../crud.service";
   templateUrl: './application-settings.component.html',
   styleUrls: ['./application-settings.component.scss']
 })
-export class ApplicationSettingsComponent implements OnInit {
+export class ApplicationSettingsComponent implements OnInit, OnChanges {
   public checked: boolean = false;
   public checkedDef: boolean = false;
   public showSave:boolean = false;
@@ -20,12 +20,9 @@ export class ApplicationSettingsComponent implements OnInit {
       this.checked = v;
     });
   }
-  validate() {
-    if (this.checked !== this.checkedDef) {
-      this.showSave = true;
-    } else {
-      this.showSave = false;
-    }
+
+  ngOnChanges() {
   }
+
 
 }

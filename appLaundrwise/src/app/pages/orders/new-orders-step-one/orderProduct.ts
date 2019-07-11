@@ -21,6 +21,7 @@ export class OrderProductObj implements OrderProduct {
     public createdBy: string = '';
     public count: number = 0;
     public totalPrice: number = 0;
+    public _id: string = '';
 
     constructor() {
         return {
@@ -31,7 +32,8 @@ export class OrderProductObj implements OrderProduct {
             categoryOwner: this.categoryOwner,
             createdBy: this.createdBy,
             count: this.count,
-            totalPrice: this.totalPrice
+            totalPrice: this.totalPrice,
+            _id: this._id
         };
     }
 }

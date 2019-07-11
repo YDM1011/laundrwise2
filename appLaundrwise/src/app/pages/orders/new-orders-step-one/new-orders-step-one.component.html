@@ -2,15 +2,15 @@
     <div class="order-list-container">
         <div class="order-list__box">
             <ng-container *ngIf="chooseCompany">
-            <ng-container *ngFor="let item of chooseCompany.category">
-                <button (click)="type = item.name"
-                   class="order-list__box-item">
-                    <app-img [img]="item.icon"></app-img>
-                    <span class="title">
-                    {{item.name}}
-                </span>
-                </button>
-            </ng-container>
+                <ng-container *ngFor="let item of chooseCompany.category">
+                    <button (click)="changeCategory(item.name)"
+                       class="order-list__box-item" [class.active]="dataParams.type === item.name">
+                        <app-img [img]="item.icon"></app-img>
+                        <span class="title">
+                            {{item.name}}
+                        </span>
+                    </button>
+                </ng-container>
             </ng-container>
         </div>
     </div>
@@ -22,11 +22,13 @@
             <span class="name">Cleaner name</span>
             <app-select-company [allCleaner]="allCompany"
                                 [curentCompany]="chooseCompany"
-                                (curentCompanyEmit)="companyChange($event)" ></app-select-company>
+                                (curentCompanyEmit)="companyChange($event)">
+            </app-select-company>
         </div>
     </div>
 </div>
 <app-init-order-type
         (totalPrice)="totalPrice.emit($event)"
-        [params]="dataParams"></app-init-order-type>
+        [params]="dataParams">
+</app-init-order-type>
 

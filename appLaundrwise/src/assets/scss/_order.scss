@@ -24,9 +24,10 @@
         }
         .title{
           display: none;
-          color: #000;
+          color: #333;
           margin-top: 10px;
           font-weight: bold;
+          font-size: 14px;
         }
         &:hover{
           background: #fff;
@@ -34,7 +35,7 @@
             fill: #000;
           }
           .title{
-            color: #000;
+            color: #333;
           }
         }
         &.active{
@@ -43,7 +44,7 @@
             fill: #000;
           }
           .title{
-            color: #000;
+            color: #333;
           }
         }
       }
@@ -61,7 +62,7 @@
   &__box{
     display: flex;
     flex-direction: column;
-    padding: 10px 0;
+    padding: 0;
     position: relative;
     .name{
       margin: 10px 0 15px;
@@ -175,7 +176,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 22px;
+    padding:0 22px;
     &-result{
       color: #fff;
       font-weight: 600;
@@ -485,11 +486,11 @@
   }
   .cleaner{
     &__box{
-      padding: 20px 0 20px 30px;
+      padding: 0 0 0 30px;
       flex-direction: row;
       align-items: center;
       .name{
-        margin: 0 25px 0 0;
+        margin: 0 25px 25px 0;
       }
     }
   }

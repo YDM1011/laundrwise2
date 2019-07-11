@@ -1,7 +1,4 @@
-
-
 <ng-container *ngIf="obj.productId">
-
   <div class="img">
     <img src="../assets/images/order-item.png" alt="order items">
   </div>
@@ -12,11 +9,11 @@
   <div class="buttons">
     <div class="counts">
       <div class="counts__btn">
-        <img src="../assets/images/minus.svg" (click)="decrement()" alt="">
+        <img src="../assets/images/minus.svg" (click)="decrementProduct()" alt="">
       </div>
       <div class="count">{{obj.count}}</div>
       <div class="counts__btn">
-        <img src="../assets/images/plus.svg" (click)="increment()" alt="">
+        <img src="../assets/images/plus.svg" (click)="incrementProduct()" alt="">
       </div>
     </div>
     <div class="price">
