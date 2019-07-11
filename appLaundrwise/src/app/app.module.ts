@@ -88,6 +88,7 @@ import {CollaboratorsComponent} from './pages/profile/collaborators/collaborator
 import { DashboardProfileComponent } from './pages/profile/dashboard-profile/dashboard-profile.component';
 import { CollaboratorsItemComponent } from './components/collaborators-item/collaborators-item.component';
 import { SelectCompanyComponent } from './components/select-company/select-company.component';
+import { ApplicationSettingsComponent } from './pages/admin/setting/application-settings/application-settings.component';
 import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-type/init-order-type.component';
 @NgModule({
   declarations: [
@@ -167,7 +168,9 @@ import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-typ
     DashboardProfileComponent,
     CollaboratorsItemComponent,
     SelectCompanyComponent,
-    InitOrderTypeComponent
+    InitOrderTypeComponent,
+    SelectCompanyComponent,
+    ApplicationSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -187,7 +190,7 @@ import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-typ
       DialogComponent,
       SuperManagerFormComponent,
       CategoryIncludedComponent,
-      DialogComponent,
+      DialogComponent
   ],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]

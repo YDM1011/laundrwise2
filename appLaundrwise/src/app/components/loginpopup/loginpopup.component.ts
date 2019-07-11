@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {ErrorStateMatcher, MatDialogRef} from '@angular/material';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -19,7 +19,6 @@ export class MyErrorStateMatcher2 implements ErrorStateMatcher {
   styleUrls: ['./loginpopup.component.scss']
 })
 export class LoginpopupComponent implements OnInit {
-
   myForm: FormGroup;
   matcher2 = new MyErrorStateMatcher2();
   constructor(
@@ -27,7 +26,6 @@ export class LoginpopupComponent implements OnInit {
       private api: CrudService,
       private cookieService: CookieService,
       private auth: AuthService,
-      private location: Location,
       public dialogRef: MatDialogRef<LoginpopupComponent>
   ) { }
   emailFormControl = new FormControl('', [
@@ -41,6 +39,7 @@ export class LoginpopupComponent implements OnInit {
 
   ngOnInit() {
   }
+
   closeDialog() {
     this.dialogRef.close();
   }

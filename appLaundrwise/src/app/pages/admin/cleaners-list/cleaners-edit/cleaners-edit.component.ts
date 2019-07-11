@@ -13,6 +13,7 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     public cleaner: Cleaner = new CleanerObj();
     public initDataPost: Cleaner = new CleanerObj();
     public isBlok: boolean = false;
+    public cityandcountry: any;
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -61,7 +62,11 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     formCheck() {
         this.btnBlok(this.validate());
     }
-
+    countryChange(e) {
+        if (e) {
+            this.cityandcountry = e;
+        }
+    }
     userSubmit() {
         this.crud.post('cleaner', this.cleaner, this.id, ['cleaner'] ).then( ( v: any ) => {
             this.initDataPost = v;

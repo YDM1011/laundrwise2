@@ -15,11 +15,13 @@ export class DialogComponent  implements OnInit, OnChanges {
   public multiple;
   public files: Set<File> = new Set();
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>, public uploadService: UploadService) {
+  constructor(
+      public dialogRef: MatDialogRef<DialogComponent>,
+      public uploadService: UploadService) {
   }
 
   ngOnInit() {
-    this.uploadService.onMultiple.subscribe(v=>{
+    this.uploadService.onMultiple.subscribe(v => {
       this.multiple = v;
     })
   }

@@ -10,7 +10,7 @@
 </div>
 
 <div class="custom-select" *ngIf="isShowCity && location">
-  <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.country : null || locData.city || 'City'}}</p>
+  <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.city : null || locData.city || 'City'}}</p>
   <ul *ngIf="isOpen" class="option-wrap">
 <!--    <li (click)="cityChange('location')">City</li>-->
     <li *ngFor="let item of location.city" (click)="cityChange(item)">

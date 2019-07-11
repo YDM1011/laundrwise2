@@ -6,19 +6,12 @@
 <form (submit)="addPost()" class="cleaner-form">
   <label>
     <span>Name</span>
-    <input type="text" [(ngModel)]="delivery.name" name="title">
+    <input type="text" placeholder="Name" [(ngModel)]="delivery.name" name="title">
   </label>
-  <label>
-    <span>Country</span>
-    <input type="text" [(ngModel)]="delivery.country" name="title">
-  </label>
-  <label>
-    <span>City</span>
-    <input type="text" [(ngModel)]="delivery.city" name="title">
-  </label>
+  <app-select-location (data)="countryChange($event)"></app-select-location>
   <label>
     <span>Address</span>
-    <input type="text" [(ngModel)]="delivery.address" name="title">
+    <input type="text" placeholder="Address" [(ngModel)]="delivery.address" name="title">
   </label>
   <button class="send" type="submit">Add Cleaners</button>
 </form>
