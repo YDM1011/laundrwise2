@@ -49,9 +49,11 @@ const schema = new Schema({
     strict: true,
 });
 
-schema.post('remove', (doc,next)=>{
+schema.post('findOneAndRemove', (doc,next)=>{
+    let inc = doc.price*(0-doc.count);
+    console.log("test",inc);
     mongoose.model('Basket')
-        .findOneAndUpdate({_id:doc.basketOwner},{$pull:{products:doc._id}})
+        .findOneAndUpdate({_id:doc.basketOwner},{$pull:{products:doc._id}, $inc: {totalPrice:inc}})
         .exec((err,r)=>{
             next()
         })
