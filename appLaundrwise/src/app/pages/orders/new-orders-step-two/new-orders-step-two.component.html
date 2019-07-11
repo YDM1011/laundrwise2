@@ -30,42 +30,59 @@
                             Time
                         </div>
                     </div>
-
+                    <div class="order-step__box-contain-time">
+                        <div class="item-date collection">
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="dp1" [min]="minDate" placeholder="Input disabled" disabled>
+                                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                                <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="item-date delivery">
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="dp2" [min]="minDate" placeholder="Input disabled" disabled>
+                                <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                                <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="order-step__box boxright">
-                <div class="order-step__box-item">
-                    <div class="order-step__box-headline">
-                        <div class="title">items</div>
-                        <div class="cleaner-logo">
-                            Name company
-                        </div>
-                    </div>
-                    <ng-container *ngIf="basketArray">
-                        <div class="paragraph">
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                        </div>
-                        <div class="elements">
-                            <ng-container *ngFor="let item of basketArray">
-                                <div class="elements__item">
-                                    <app-img [img]="item.images"></app-img>
-                                    <div class="count">{{item.count}}x</div>
-                                    <div class="title">{{item.name}}</div>
-                                    <div class="price">{{item.totalPrice}}$</div>
-                                    <img src="../assets/images/cancel.svg" class="cancel" alt="">
+                <ng-container *ngIf="basketArray">
+                    <ng-container *ngFor="let item of basketArray">
+                        <div class="order-step__box-item">
+                            <div class="order-step__box-headline">
+                                <div class="title">items</div>
+                                <div class="cleaner-logo">
+<!--                                    {{item.cleanerOwner.name}}-->
                                 </div>
-                            </ng-container>
+                            </div>
+                            <div class="paragraph">
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                            </div>
+                            <div class="elements">
+                                <ng-container *ngFor="let prod of item.products">
+                                    <div class="elements__item">
+                                        <app-img [img]="prod.images"></app-img>
+                                        <div class="count">{{prod.count}}x</div>
+                                        <div class="title">{{prod.name}}</div>
+                                        <div class="price">{{prod.price * prod.count}}$</div>
+                                        <img src="../assets/images/cancel.svg" (click)="removeProd(prod._id, item.cleanerOwner._id)" class="cancel" alt="">
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <form action="">
+                                <label for="">
+                                    <textarea name="" placeholder="Clearning instructions (optional)"></textarea>
+                                </label>
+                            </form>
                         </div>
-                        <form action="">
-                            <label for="">
-                                <textarea name="" placeholder="Clearning instructions (optional)"></textarea>
-                            </label>
-                        </form>
                     </ng-container>
-                </div>
 <!--                <div class="order-add-btn">-->
 <!--                    <a [routerLink]="'/orders'" class="order-add">+ add</a>-->
 <!--                </div>-->
+                </ng-container>
             </div>
         </div>
     </div>

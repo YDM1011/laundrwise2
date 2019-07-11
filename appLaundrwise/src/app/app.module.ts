@@ -170,7 +170,7 @@ import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-typ
     SelectCompanyComponent,
     InitOrderTypeComponent,
     SelectCompanyComponent,
-    ApplicationSettingsComponent
+    ApplicationSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -192,6 +192,7 @@ import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-typ
       CategoryIncludedComponent,
       DialogComponent
   ],
+  exports: [],
   providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
