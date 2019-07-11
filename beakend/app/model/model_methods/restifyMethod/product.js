@@ -12,9 +12,55 @@ const readStep = async (req,res,next,backendApp) => {
     })
 };
 
-// module.exports.preUpdate = async (req,res,next, backendApp) => {
+module.exports.preUpdate = async (req,res,next, backendApp) => {
+    const Product = backendApp.mongoose.model('Product');
+    const Basket = backendApp.mongoose.model('Basket');
+    try {
+        Product.findById(req.params.id)
+            .exec((e,r)=>{
+                if (e) return res.serverError(e);
+                if (!r) return res.notFound('Not found!');
+                if (r) {
+                    let inc = r.price*(req.body.count-r.count);
+                    Basket.findOneAndUpdate({
+                        "createdBy.userId": req.user.id,
+                        _id: req.body.basketOwner,
+                        status: 0
+                    }, { $inc: {totalPrice:inc} }, {new:true})
+                        .exec((e,r)=>{
+                            if (e) return res.serverError(e);
+                            if (!r) return res.notFound('Not found!');
+                            if (r) {next()};
+                        })
+                };
+            });
+    } catch(e) {
+        res.notFound("Can't be update")
+    }
+};
+
+// module.exports.PreDel = async (req,res,next, backendApp) => {
+//     const Product = backendApp.mongoose.model('Product');
+//     const Basket = backendApp.mongoose.model('Basket');
 //     try {
-//         next()
+//         Product.findById(req.params.id)
+//             .exec((e,r)=>{
+//                 if (e) return res.serverError(e);
+//                 if (!r) return res.notFound('Not found!');
+//                 if (r) {
+//                     let inc = r.price*(0-r.count);
+//                     Basket.findOneAndUpdate({
+//                         "createdBy.userId": req.user.id,
+//                         products:{$in:req.params.id},
+//                         status: 0
+//                     }, { $inc: {totalPrice:inc} }, {new:true})
+//                         .exec((e,r)=>{
+//                             if (e) return res.serverError(e);
+//                             if (!r) return res.notFound('Not found!');
+//                             if (r) {next()};
+//                         })
+//                 };
+//             });
 //     } catch(e) {
 //         res.notFound("Can't be update")
 //     }
@@ -31,6 +77,7 @@ module.exports.preSave = async (req, res, next, backendApp) => {
                 let product = await createProduct(req.body, backendApp).catch(e => {return res.notFound(e)});
                 let basket = await checkAndInitBasket(req, backendApp, product).catch(e => {return res.notFound(e)});
                 await setBasketToProduct(product, backendApp, basket).catch(e => {return res.notFound(e)});
+                product.basketOwner = basket._id;
                 res.ok(product);
             // }
             // console.log(manager, "maneger");
@@ -46,7 +93,7 @@ const checkAndInitBasket = (req, backendApp, product) => {
     return new Promise ((rs,rj)=>{
         Basket.findOne({
             "createdBy.userId": req.user.id,
-            cleanerOwner: req.body.cleaner,
+            cleanerOwner: req.body.cleanerOwner,
             status: 0
         }).exec((e,r)=>{
             if (e) return rj(e);
@@ -54,7 +101,8 @@ const checkAndInitBasket = (req, backendApp, product) => {
                 let data = {
                     'createdBy.userId': req.user._id,
                     products: [product._id],
-                    cleanerOwner: product.cleaner,
+                    cleanerOwner: req.body.cleanerOwner,
+                    totalPrice: product.count*product.price,
                     status: 0
                 };
                 Basket.create(data, (e,r)=>{
@@ -66,9 +114,9 @@ const checkAndInitBasket = (req, backendApp, product) => {
             if (r) {
                 Basket.findOneAndUpdate({
                     "createdBy.userId": req.user.id,
-                    cleanerOwner: req.body.cleaner,
+                    cleanerOwner: req.body.cleanerOwner,
                     status: 0
-                }, {$push:{products:product._id}}, {new:true})
+                }, {$push:{products:product._id}, $inc: {totalPrice:product.count*product.price}}, {new:true})
                     .exec((e,r)=>{
                         if (e) return rj(e);
                         if (!r) return rj('Not found!');

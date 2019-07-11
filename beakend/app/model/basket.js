@@ -14,6 +14,7 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Cleaner"
     },
+    totalPrice: {type: Number, default: 0},
     status: Number,
     date: {type: Date, default: new Date()}
 },{

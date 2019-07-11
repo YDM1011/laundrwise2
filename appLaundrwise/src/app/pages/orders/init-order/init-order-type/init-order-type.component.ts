@@ -45,6 +45,7 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
               if (v[ord._id]) {
                   ord['count'] = v[ord._id].count;
                   ord['productId'] = v[ord._id]._id;
+                  ord['basketOwner'] = v[ord._id].basketOwner;
                   ord['totalPrice'] = v[ord._id].price * v[ord._id].count;
                   this.product[ord._id] = ord;
               }
@@ -69,9 +70,11 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
       value.cleanerOwner = this.cleanerId;
       this.prod = Object.assign({}, value);
       this.prod['currentOrder'] = this.prod._id;
+      console.log(this.prod);
       delete this.prod._id;
       this.crud.post('product', this.prod).then((v: any) => {
           order['productId'] = v._id;
+          order['basketOwner'] = v.basketOwner;
       });
       this.calcTotalPrice();
       console.log(this.productlist);
@@ -84,6 +87,9 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
       value.cleanerOwner = this.cleanerId;
       this.prod = Object.assign({}, value);
       this.prod['currentOrder'] = this.prod._id;
+      // console.log(this.prod, this.product, order, value);
+      this.prod['basketOwner'] = order.basketOwner;
+
       delete this.prod._id;
       this.crud.post(`product/${this.prod.productId}`, this.prod).then((v: any) => {
           order['productId'] = v._id;
