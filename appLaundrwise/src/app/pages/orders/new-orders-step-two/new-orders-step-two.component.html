@@ -50,7 +50,7 @@
             </div>
             <div class="order-step__box boxright">
                 <ng-container *ngIf="basketArray">
-                    <ng-container *ngFor="let item of basketArray">
+                    <ng-container *ngFor="let item of basketArray; let index = index">
                         <div class="order-step__box-item">
                             <div class="order-step__box-headline">
                                 <div class="title">items</div>
@@ -68,7 +68,7 @@
                                         <div class="count">{{prod.count}}x</div>
                                         <div class="title">{{prod.name}}</div>
                                         <div class="price">{{prod.price * prod.count}}$</div>
-                                        <img src="../assets/images/cancel.svg" (click)="removeProd(prod._id, item.cleanerOwner._id)" class="cancel" alt="">
+                                        <img src="../assets/images/cancel.svg" (click)="removeProd(prod._id, index)" class="cancel" alt="">
                                     </div>
                                 </ng-container>
                             </div>

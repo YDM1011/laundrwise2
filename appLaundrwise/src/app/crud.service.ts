@@ -85,7 +85,7 @@ export class CrudService {
     deleteOrder(api, id = null, ogjAfterDel: any = null, isUpdate: any = false) {
         return new Promise((resolve, reject) => {
             this.http.delete(`${this.api}${api}/${id ? id : ''}`).subscribe(data => {
-                resolve(data);
+                resolve(data || true);
                 if (isUpdate && ogjAfterDel) {
                     isUpdate.map(property => {
                         this.update(property, ogjAfterDel, 'delete');

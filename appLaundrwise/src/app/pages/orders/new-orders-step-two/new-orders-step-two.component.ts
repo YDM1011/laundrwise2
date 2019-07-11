@@ -2,7 +2,6 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {AuthService} from '../../../auth.service';
 import {Router} from "@angular/router";
 import {CrudService} from "../../../crud.service";
-import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {MatDatepickerInputEvent} from "@angular/material";
 
 @Component({
@@ -19,7 +18,6 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
       private router: Router,
       private auth: AuthService,
       private crud: CrudService,
-      private calendar: NgbCalendar
   ) {}
 
   ngOnInit() {
@@ -38,17 +36,20 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
   }
   getBasket() {
     const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name'}, {path: 'products'}]);
-    const query = JSON.stringify({'createdBy.userId': this.me._id});
+    const query = JSON.stringify({'createdBy.userId': this.me._id, cleanerOwner:{$exists:true}});
     this.crud.getNoCache(`basket?query=${query}&populate=${populate}`).then((v: any) => {
       this.basketArray = v;
     });
   }
-  removeProd(prod, cleaner) {
-    console.log(prod);
-    this.crud.deleteOrder(`product`, prod._id).then((v: any) => {
-      const indexCleaner = this.crud.find('_id', cleaner, this.basketArray);
-      const index = this.crud.find('_id', prod, this.basketArray[indexCleaner].products);
-      this.basketArray[indexCleaner].product.splice(index, 1);
+  removeProd(prodId, i) {
+    console.log(prodId);
+    this.crud.deleteOrder(`product`, prodId).then((v: any) => {
+      console.log("URA!", i);
+      const indexCleaner = i
+        console.log("URA!",this.basketArray[indexCleaner], this.basketArray, indexCleaner);
+      const index = this.crud.find('_id', prodId, this.basketArray[indexCleaner].products);
+      console.log(index, indexCleaner, this.basketArray[indexCleaner].products)
+      this.basketArray[indexCleaner].products.splice(index, 1);
     });
   }
 }
