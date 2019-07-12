@@ -51,14 +51,14 @@ export class AuthService {
   }
 
   bascketOrder(order) {
-      let obj = {
-          basket:[],
-          orderInfo:''
+      const obj = {
+          basket: [],
+          orderInfo: ''
       };
-      order.baskets.map(basket=>{
-          obj.basket.push(basket._id)
+      order.baskets.map(basket => {
+          obj.basket.push(basket);
       });
-      obj.orderInfo = Object.assign({},order.orderInfo);
+      obj.orderInfo = Object.assign({}, order.orderInfo);
       this.order.next( obj );
   }
 }

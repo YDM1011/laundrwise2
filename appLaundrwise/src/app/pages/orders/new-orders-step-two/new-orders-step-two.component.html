@@ -20,7 +20,7 @@
                         </label>
                         <label for="instructions">
                             <span>Delivery Instructions</span>
-                            <textarea name="instructions" id="instructions" placeholder="Delivery instructions (optional)" [(ngModel)]="instruction"></textarea>
+                            <textarea name="instructions" id="instructions" placeholder="Delivery instructions (optional)" [(ngModel)]="instruction" (keyup)="auth.bascketOrder(order)"></textarea>
                         </label>
                     </form>
                 </div>
@@ -42,11 +42,11 @@
                             </mat-form-field>
                             <div class="time-box">
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime1" [ngxTimepicker]="fullTime" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime1" (click)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime" [format]="24"  readonly>
                                     <ngx-material-timepicker #fullTime></ngx-material-timepicker>
                                 </div> -
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime2" [ngxTimepicker]="fullTime1" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime2" (change)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime1" [format]="24"  readonly>
                                     <ngx-material-timepicker #fullTime1></ngx-material-timepicker>
                                 </div>
                             </div>
@@ -56,18 +56,18 @@
                                 Delivery Time
                             </div>
                             <mat-form-field>
-                                <input matInput [matDatepicker]="dp2" [(ngModel)]="dataDelivery" [min]="minDateDelivery" disabled>
+                                <input matInput [matDatepicker]="dp2" [(ngModel)]="dataDelivery" (dataChange)="auth.bascketOrder(order)" [min]="minDateDelivery" disabled>
                                 <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
                                 <mat-datepicker #dp2 disabled="false"></mat-datepicker>
                             </mat-form-field>
 
                             <div class="time-box">
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime1" [ngxTimepicker]="fullTime3" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime1" (change)="EndDateColectionChange($event)" [ngxTimepicker]="fullTime3" [format]="24"  readonly>
                                     <ngx-material-timepicker #fullTime3></ngx-material-timepicker>
                                 </div> -
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime2" [ngxTimepicker]="fullTime4" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime2" (change)="EndDateColectionChange($event)" [ngxTimepicker]="fullTime4" [format]="24"  readonly>
                                     <ngx-material-timepicker #fullTime4></ngx-material-timepicker>
                                 </div>
                             </div>
@@ -76,13 +76,14 @@
                 </div>
             </div>
             <div class="order-step__box boxright">
+                <ng-container *ngIf="basketArray.length === 0">
+                    <div class="order-add-btn">
+                        <span class="order-add" (click)="goBack()">Make order</span>
+                    </div>
+                </ng-container>
                 <ng-container *ngIf="basketArray">
                     <ng-container *ngFor="let item of basketArray; let index = index">
-                        <ng-container *ngIf="item.products.length === 0">
-                            <div class="order-add-btn">
-                                <span class="order-add" (click)="goBack()">Make order</span>
-                            </div>
-                        </ng-container>
+                        
                         <ng-container *ngIf="item.products.length > 0">
                             <div class="order-step__box-item">
                                 <div class="order-step__box-headline">
@@ -105,11 +106,8 @@
                                         </div>
                                     </ng-container>
                                 </div>
-                                <form action="">
-                                    <label for="">
-	                                    <textarea name="instruction-{{item._id}}" [(ngModel)]="item.instruction" placeholder="Clearning instructions (optional)"></textarea>
-                                    </label>
-                                </form>
+                                <textarea name="instruction-{{item._id}}" [(ngModel)]="item.instruction" (keyup)="auth.bascketOrder(order)" placeholder="Clearning instructions (optional)"></textarea>
+                                
                             </div>
                         </ng-container>
                     </ng-container>

@@ -1,10 +1,10 @@
 const fs = require('fs');
 module.exports = function (backendApp, router) {
 
-    router.get('/totalPrice', [backendApp.middlewares.isLoggedIn], async function (req, res, next) {
+    router.get('/totalPrice/:status', [backendApp.middlewares.isLoggedIn], async function (req, res, next) {
         const Basket = backendApp.mongoose.model('Basket');
         try {
-            Basket.find({"createdBy.userId":req.user._id, cleanerOwner:{$exists:true}})
+            Basket.find({"createdBy.itemId":req.user._id, status:req.params.status, cleanerOwner:{$exists:true}})
                 .exec((e,r)=>{
                     if (e) return res.serverError(e);
                     if (!r) return res.notFound('Not found!');

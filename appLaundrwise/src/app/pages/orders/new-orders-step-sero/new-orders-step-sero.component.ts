@@ -33,12 +33,7 @@ export class NewOrdersStepSeroComponent implements OnInit {
       private auth: AuthService,
       private crud: CrudService
   ) { }
-  ngOnInit() {
-    // this.auth.getStep.subscribe(( v: number ) => {
-    //     this.step = v;
-    // });
-
-  }
+  ngOnInit() {}
   countryChange(e) {
     this.disableCompany = new FormControl(false);
     this.step1Completed = true;

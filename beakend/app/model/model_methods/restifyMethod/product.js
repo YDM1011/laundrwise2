@@ -23,7 +23,7 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
                 if (r) {
                     let inc = r.price*(req.body.count-r.count);
                     Basket.findOneAndUpdate({
-                        "createdBy.userId": req.user.id,
+                        "createdBy.itemId": req.user.id,
                         _id: req.body.basketOwner,
                         status: 0
                     }, { $inc: {totalPrice:inc} }, {new:true})
@@ -92,14 +92,14 @@ const checkAndInitBasket = (req, backendApp, product) => {
     const Basket = backendApp.mongoose.model('Basket');
     return new Promise ((rs,rj)=>{
         Basket.findOne({
-            "createdBy.userId": req.user.id,
+            "createdBy.itemId": req.user.id,
             cleanerOwner: req.body.cleanerOwner,
             status: 0
         }).exec((e,r)=>{
             if (e) return rj(e);
             if (!r){
                 let data = {
-                    'createdBy.userId': req.user._id,
+                    'createdBy.itemId': req.user._id,
                     products: [product._id],
                     cleanerOwner: req.body.cleanerOwner,
                     totalPrice: product.count*product.price,
@@ -113,7 +113,7 @@ const checkAndInitBasket = (req, backendApp, product) => {
             }
             if (r) {
                 Basket.findOneAndUpdate({
-                    "createdBy.userId": req.user.id,
+                    "createdBy.itemId": req.user.id,
                     cleanerOwner: req.body.cleanerOwner,
                     status: 0
                 }, {$push:{products:product._id}, $inc: {totalPrice:product.count*product.price}}, {new:true})

@@ -24,10 +24,11 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
   public collectionTime2: string;
   public dataColection: any = this.minDate;
   public minDateDelivery = new Date(this.dataColection.getFullYear(), this.dataColection.getMonth(), this.dataColection.getDate() + 1);
-
   public deliveryTime1: string;
   public deliveryTime2: string;
   public dataDelivery: any = this.minDateDelivery;
+  public deliveryInstruciton: string;
+
   constructor(
       private router: Router,
       private auth: AuthService,
@@ -39,8 +40,13 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
       if (v) {
         this.me = Object.assign({}, v);
         this.me['instruction'] = '';
-        this.me['dp1'] = new Date();
-        this.me['dp2'] = new Date();
+        this.me['dpc'] = this.dataColection;
+        this.me['dpd'] = this.dataDelivery;
+        this.me['timeColection1'] = this.collectionTime1;
+        this.me['timeColection2'] = this.collectionTime2;
+        this.me['deliveryTime1'] = this.deliveryTime1;
+        this.me['deliveryTime2'] = this.deliveryTime2;
+        this.me['deliveryInstruction'] = this.deliveryInstruciton;
       }
     });
     this.getBasket();
@@ -56,10 +62,11 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
       }
     }
     this.minDateDelivery = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+    this.auth.bascketOrder(this.order);
   }
   getBasket() {
-    const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name'}, {path: 'products'}]);
-    const query = JSON.stringify({'createdBy.userId': this.me._id, cleanerOwner:{$exists:true}});
+    const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+    const query = JSON.stringify({'createdBy.itemId': this.me._id, cleanerOwner: { $exists: true }, status: 0});
     this.crud.getNoCache(`basket?query=${query}&populate=${populate}`).then((v: any) => {
       this.basketArray = v;
       this.order = {
@@ -74,6 +81,7 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
     this.crud.deleteOrder(`product`, prodId).then((v: any) => {
       const index = this.crud.find('_id', prodId, this.basketArray[i].products);
       this.basketArray[i].products.splice(index, 1);
+      this.auth.bascketOrder(this.order);
     });
   }
   goBack() {

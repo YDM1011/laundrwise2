@@ -315,6 +315,18 @@
         }
       }
     }
+    textarea{
+      font-family: $regular;
+      font-weight: 500;
+      line-height: 17px;
+      padding: 10px 16px;
+      margin: 10px 0 20px;
+      border: 1px solid #D9D9D9;
+      border-radius: 36px;
+      height: 80px;
+      resize: none;
+      width: 100%;
+    }
     form{
       display: flex;
       flex-direction: column;
