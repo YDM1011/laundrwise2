@@ -6,8 +6,11 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class AuthService {
-    private updat = new BehaviorSubject<any>(null);
-    public onUpDate = this.updat.asObservable();
+  private updateTotalPrice = new BehaviorSubject<any>(null);
+  public onTotalPrice = this.updateTotalPrice.asObservable();
+
+  private updat = new BehaviorSubject<any>(null);
+  public onUpDate = this.updat.asObservable();
 
   private step = new BehaviorSubject<number>(0);
   public getStep = this.step.asObservable();
@@ -34,6 +37,9 @@ export class AuthService {
     }
   }
 
+  totalUpdate(data) {
+    this.updateTotalPrice.next(data);
+  }
   setUser(data) {
     this.updat.next(data);
   }
@@ -44,7 +50,7 @@ export class AuthService {
     this.basketGroup.next(data);
   }
 
-  bascketOrder(order){
+  bascketOrder(order) {
       let obj = {
           basket:[],
           orderInfo:''

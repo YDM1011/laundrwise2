@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../auth.service";
+import {CrudService} from "../../crud.service";
 
 @Component({
   selector: 'app-order-footer',
@@ -7,29 +8,36 @@ import {AuthService} from "../../auth.service";
   styleUrls: ['./order-footer.component.scss']
 })
 export class OrderFooterComponent implements OnInit, OnChanges {
-  @Input() mainTotalPrice;
+  public mainTotalPrice: number;
   @Input() step;
   @Output() stepChange = new EventEmitter();
   // public sum = 0;
   public order: any = null;
   public isValidOrder:boolean = false;
-  public link: string = '/orders';
+  public orderArray;
+  public link = '/orders';
   public btns = ['', 'Your basket', 'Confirm order', 'Finish'];
   constructor(
-      private auth: AuthService
+      private auth: AuthService,
+      private crud: CrudService
   ) { }
 
   ngOnInit() {
-    // this.clone(this.mainTotalPrice);
-    // this.outputArray(this.orderArray);
       if (this.step === 3) {
           this.link = '/profile';
       }
-      this.auth.onOrderConfirm.subscribe((v:any)=>{
+      this.auth.onTotalPrice.subscribe(( v: any ) => {
+        if (v) {
+          this.crud.getNoCache('totalPrice').then((value: any) => {
+            this.mainTotalPrice = value.totalPrice;
+          });
+        }
+      });
+      this.auth.onOrderConfirm.subscribe((v:any) => {
         if (v) {
           console.log(v)
             this.order = v
-            if (this.order.basket.length==0 ||
+            if (this.order.basket.length == 0 ||
                 !this.order.orderInfo.address1 ||
                 !this.order.orderInfo.dp1 ||
                 !this.order.orderInfo.dp2){
@@ -38,7 +46,7 @@ export class OrderFooterComponent implements OnInit, OnChanges {
                 this.isValidOrder = true
             }
         }
-      })
+      });
   }
   ngOnChanges() {
     console.log(this.order)
@@ -53,28 +61,10 @@ export class OrderFooterComponent implements OnInit, OnChanges {
           }
       // }
   }
-  // clone(arr) {
-  //   if (!arr) return;
-  //   if (arr.length === 0) return;
-  //   this.orderArray = [];
-  //   arr.map(obj => {
-  //     this.orderArray.push(Object.assign({}, obj));
-  //   });
-  // }
-  // outputArray(value) {
-  //   if (!value) return;
-  //   let sum = 0;
-  //   console.log(value);
-  //   value.forEach(v => {
-  //     sum += v.totalPrice;
-  //   });
-  //   this.sum = sum;
-  //   console.log(this.sum);
-  // }
 
   decrementStep() {
     this.step -= 1;
-    this.stepChange.emit(this.step)
+    this.stepChange.emit(this.step);
   }
 
   incrementStep() {
@@ -83,7 +73,7 @@ export class OrderFooterComponent implements OnInit, OnChanges {
     // }
     // this.auth.setStep(this.step += 1);
     this.step += 1;
-    this.stepChange.emit(this.step)
+    this.stepChange.emit(this.step);
   }
 
 }

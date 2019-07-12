@@ -20,7 +20,7 @@
                         </label>
                         <label for="instructions">
                             <span>Delivery Instructions</span>
-                            <textarea type="text" name="instructions" id="instructions" [(ngModel)]="instruction"></textarea>
+                            <textarea name="instructions" id="instructions" placeholder="Delivery instructions (optional)" [(ngModel)]="instruction"></textarea>
                         </label>
                     </form>
                 </div>
@@ -32,18 +32,45 @@
                     </div>
                     <div class="order-step__box-contain-time">
                         <div class="item-date collection">
+                            <div class="headline-date">
+                                Collection Time
+                            </div>
                             <mat-form-field>
-                                <input matInput [matDatepicker]="dp1" [min]="minDate" placeholder="Input disabled" disabled>
+                                <input matInput [matDatepicker]="dp1" [(ngModel)]="dataColection" [min]="minDate" (dateChange)="EndDateColectionChange($event)" readonly>
                                 <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                                 <mat-datepicker #dp1 disabled="false"></mat-datepicker>
                             </mat-form-field>
+                            <div class="time-box">
+                                <div class="time-item">
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime1" [ngxTimepicker]="fullTime" [format]="24"  readonly>
+                                    <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                                </div> -
+                                <div class="time-item">
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime2" [ngxTimepicker]="fullTime1" [format]="24"  readonly>
+                                    <ngx-material-timepicker #fullTime1></ngx-material-timepicker>
+                                </div>
+                            </div>
                         </div>
                         <div class="item-date delivery">
+                            <div class="headline-date">
+                                Delivery Time
+                            </div>
                             <mat-form-field>
-                                <input matInput [matDatepicker]="dp2" [min]="minDate" placeholder="Input disabled" disabled>
+                                <input matInput [matDatepicker]="dp2" [(ngModel)]="dataDelivery" [min]="minDateDelivery" disabled>
                                 <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
                                 <mat-datepicker #dp2 disabled="false"></mat-datepicker>
                             </mat-form-field>
+
+                            <div class="time-box">
+                                <div class="time-item">
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime1" [ngxTimepicker]="fullTime3" [format]="24"  readonly>
+                                    <ngx-material-timepicker #fullTime3></ngx-material-timepicker>
+                                </div> -
+                                <div class="time-item">
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime2" [ngxTimepicker]="fullTime4" [format]="24"  readonly>
+                                    <ngx-material-timepicker #fullTime4></ngx-material-timepicker>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,37 +78,41 @@
             <div class="order-step__box boxright">
                 <ng-container *ngIf="basketArray">
                     <ng-container *ngFor="let item of basketArray; let index = index">
-                        <div class="order-step__box-item">
-                            <div class="order-step__box-headline">
-                                <div class="title">items</div>
-                                <div class="cleaner-logo">
-<!--                                    {{item.cleanerOwner.name}}-->
-                                </div>
+                        <ng-container *ngIf="item.products.length === 0">
+                            <div class="order-add-btn">
+                                <span class="order-add" (click)="goBack()">Make order</span>
                             </div>
-                            <div class="paragraph">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                            </div>
-                            <div class="elements">
-                                <ng-container *ngFor="let prod of item.products">
-                                    <div class="elements__item">
-                                        <app-img [img]="prod.images"></app-img>
-                                        <div class="count">{{prod.count}}x</div>
-                                        <div class="title">{{prod.name}}</div>
-                                        <div class="price">{{prod.price * prod.count}}$</div>
-                                        <img src="../assets/images/cancel.svg" (click)="removeProd(prod._id, index)" class="cancel" alt="">
+                        </ng-container>
+                        <ng-container *ngIf="item.products.length > 0">
+                            <div class="order-step__box-item">
+                                <div class="order-step__box-headline">
+                                    <div class="title">items</div>
+                                    <div class="cleaner-logo">
+                                        {{item.cleanerOwner.name}}
                                     </div>
-                                </ng-container>
+                                </div>
+                                <div class="paragraph">
+                                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                                </div>
+                                <div class="elements">
+                                    <ng-container *ngFor="let prod of item.products">
+                                        <div class="elements__item">
+                                            <app-img [img]="prod.images"></app-img>
+                                            <div class="count">{{prod.count}}x</div>
+                                            <div class="title">{{prod.name}}</div>
+                                            <div class="price">{{prod.price * prod.count}}$</div>
+                                            <img src="../assets/images/cancel.svg" (click)="removeProd(prod._id, index)" class="cancel" alt="">
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <form action="">
+                                    <label for="">
+	                                    <textarea name="instruction-{{item._id}}" [(ngModel)]="item.instruction" placeholder="Clearning instructions (optional)"></textarea>
+                                    </label>
+                                </form>
                             </div>
-                            <!--<form action="">-->
-                                <!--<label for="">-->
-                                <!--</label>-->
-                            <!--</form>-->
-                            <textarea name="instruction-{{item._id}}" [(ngModel)]="item.instruction" placeholder="Clearning instructions (optional)"></textarea>
-                        </div>
+                        </ng-container>
                     </ng-container>
-<!--                <div class="order-add-btn">-->
-<!--                    <a [routerLink]="'/orders'" class="order-add">+ add</a>-->
-<!--                </div>-->
                 </ng-container>
             </div>
         </div>

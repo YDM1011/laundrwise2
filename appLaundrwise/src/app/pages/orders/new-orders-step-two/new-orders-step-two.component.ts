@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 import {AuthService} from '../../../auth.service';
 import {Router} from "@angular/router";
 import {CrudService} from "../../../crud.service";
-import {MatDatepickerInputEvent} from "@angular/material";
 
 @Component({
   selector: 'app-new-orders-step-two',
@@ -10,14 +9,25 @@ import {MatDatepickerInputEvent} from "@angular/material";
   styleUrls: ['./new-orders-step-two.component.css']
 })
 export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
+  @Output() public stepOutput2: EventEmitter<any> = new EventEmitter();
   public me;
   public order;
   public basketArray = [];
   public instruction: string;
-  minDate = new Date();
-    // var a = 1000*60*60*24
+  public minDate = new Date();
+
+  // var a = 1000*60*60*24
     // new Date(new Date().getTime()+a)
   // @Output() onOrder = new EventEmitter()
+
+  public collectionTime1: string;
+  public collectionTime2: string;
+  public dataColection: any = this.minDate;
+  public minDateDelivery = new Date(this.dataColection.getFullYear(), this.dataColection.getMonth(), this.dataColection.getDate() + 1);
+
+  public deliveryTime1: string;
+  public deliveryTime2: string;
+  public dataDelivery: any = this.minDateDelivery;
   constructor(
       private router: Router,
       private auth: AuthService,
@@ -27,7 +37,7 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.auth.onUpDate.subscribe((v: any) => {
       if (v) {
-        this.me = Object.assign({},v);
+        this.me = Object.assign({}, v);
         this.me['instruction'] = '';
         this.me['dp1'] = new Date();
         this.me['dp2'] = new Date();
@@ -36,12 +46,16 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
     this.getBasket();
   }
   ngOnChanges() {
-    console.log(this.order)
+    console.log(this.order);
   }
-  events: string[] = [];
-
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${type}: ${event.value}`);
+  EndDateColectionChange(v) {
+    const date = new Date(v.value);
+    if (this.minDateDelivery) {
+      if (this.minDateDelivery.getDate() < date.getDate()) {
+        this.dataDelivery = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+      }
+    }
+    this.minDateDelivery = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
   }
   getBasket() {
     const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name'}, {path: 'products'}]);
@@ -57,13 +71,12 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
     });
   }
   removeProd(prodId, i) {
-    console.log(prodId);
     this.crud.deleteOrder(`product`, prodId).then((v: any) => {
-      console.log("URA!", i);
-      const indexCleaner = i
-      console.log("URA!",this.basketArray[indexCleaner], this.basketArray, indexCleaner);
-      const index = this.crud.find('_id', prodId, this.basketArray[indexCleaner].products);
-      this.basketArray[indexCleaner].products.splice(index, 1);
+      const index = this.crud.find('_id', prodId, this.basketArray[i].products);
+      this.basketArray[i].products.splice(index, 1);
     });
+  }
+  goBack() {
+    this.stepOutput2.emit(1);
   }
 }

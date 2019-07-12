@@ -136,7 +136,7 @@
   }
 }
 
-header{
+.header-top{
   .navigation{
     display: flex;
     justify-content: space-between;
@@ -655,7 +655,7 @@ footer{
 }
 
 @media (min-width: 768px) {
-  header{
+  .header-top{
     .navigation{
       padding: 20px 40px;
       &__logo{
@@ -867,7 +867,7 @@ footer{
 }
 
 @media (min-width: 1024px) {
-  header{
+  .header-top{
     .navigation{
       padding: 25px 16px;
       &__logo{
@@ -1056,7 +1056,7 @@ footer{
 
 
 @media (min-width: 1200px) {
-  header{
+  .header-top{
     .navigation{
       padding: 25px 0;
       &__logo{

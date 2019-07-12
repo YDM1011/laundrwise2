@@ -8,29 +8,22 @@ import {CrudService} from '../../../crud.service';
   styleUrls: ['./init-order.component.scss']
 })
 export class InitOrderComponent implements OnInit, OnChanges {
-    public mainTotalPrice: number;
     public basketOrder = [];
     public step = 0;
     public chooseCompany;
     public allCompany;
-    // public stepZero: StepZero = new StepZeroObj();
     constructor(
         private auth: AuthService,
         private crud: CrudService
-    ) {
-
-    }
+    ) {}
     ngOnInit() {
-      // this.auth.getStep.subscribe(( v: any ) => {
-      //     this.step = v;
-      // });
     }
     ngOnChanges() {}
     getChooseCompany(value) {
-        this.chooseCompany = Object.assign({},value) ;
+        this.chooseCompany = Object.assign({}, value) ;
     }
     getAllCompany(value) {
-        this.allCompany = Object.assign([],value);
+        this.allCompany = Object.assign([], value);
     }
     outputArray(value) {
         // this.basketOrder = value;

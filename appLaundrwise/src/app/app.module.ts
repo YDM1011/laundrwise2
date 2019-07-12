@@ -90,6 +90,7 @@ import { CollaboratorsItemComponent } from './components/collaborators-item/coll
 import { SelectCompanyComponent } from './components/select-company/select-company.component';
 import { ApplicationSettingsComponent } from './pages/admin/setting/application-settings/application-settings.component';
 import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-type/init-order-type.component';
+import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 @NgModule({
   declarations: [
     AppComponent,
@@ -180,6 +181,7 @@ import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-typ
     MatNativeDateModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxMaterialTimepickerModule,
     HttpClientModule,
     WebsocketModule.config({
         url: environment.ws

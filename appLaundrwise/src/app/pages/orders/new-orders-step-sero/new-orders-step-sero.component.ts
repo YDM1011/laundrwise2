@@ -26,6 +26,7 @@ export class NewOrdersStepSeroComponent implements OnInit {
   @Output() public stepOutput: EventEmitter<any> = new EventEmitter();
   public outputObj: StepZero = new StepZeroObj();
   public allCleaners: any;
+  public ifCompany: boolean = false;
 
   constructor(
       private router: Router,
@@ -45,14 +46,11 @@ export class NewOrdersStepSeroComponent implements OnInit {
     this.outputObj.city = e.city;
   }
   companyChange(e) {
-    // this.auth.setStep(this.step += 1);
     this.sendChooseCompany.emit(e);
-    // this.stepOutput.emit(1);
-
   }
   allCompany(e) {
-    console.log(e)
     this.sendAllCompany.emit(e);
+    this.ifCompany = true;
   }
   next() {
       this.stepOutput.emit(1);

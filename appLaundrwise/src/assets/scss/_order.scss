@@ -258,7 +258,63 @@
         }
       }
     }
-
+    .order-step__box-contain-time{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .item-date{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        border: 1px solid #D9D9D9;
+        border-radius: 36px;
+        padding: 16px;
+        margin: 10px auto;
+        mat-form-field{
+          margin: 0 auto;
+          width: 120px;
+          font-size: 18px;
+          position: relative;
+          input{
+            color: #000;
+          }
+          mat-datepicker{
+            position: absolute;
+            width: 100%;
+          }
+        }
+        .time-box{
+          margin: 5px auto;
+          padding: 8px 10px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          border: 1px solid #D9D9D9;
+          border-radius: 30px;
+          .time-item{
+            input{
+              border: none;
+              width: 60px;
+            }
+            .time-input{
+              text-align: center;
+              font-family: Montserrat-Light, sans-serif;
+              font-weight: 300;
+              font-size: 16px;
+              line-height: 22px;
+              text-transform: capitalize;
+            }
+          }
+        }
+        .headline-date{
+          font-family: $light;
+          color: $main-blue;
+          text-align: center;
+          margin-bottom: -10px;
+        }
+      }
+    }
     form{
       display: flex;
       flex-direction: column;
@@ -470,6 +526,23 @@
   }
 }
 
+@media (min-width: 520px) {
+  .order-step{
+    padding-bottom: 200px;
+    &__box{
+      .order-step__box-contain-time{
+        flex-direction: row;
+        justify-content: space-between;
+        .item-date{
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          max-width: 220px;
+        }
+      }
+    }
+  }
+}
 @media (min-width: 768px) {
   .order-list{
     &-container{
@@ -520,6 +593,21 @@
       padding: 0 24px;
     }
     &__box{
+      &-time{
+        .order-step__box-contain-time{
+          flex-direction: row;
+          justify-content:space-between;
+          .item-date{
+            width: 100%;
+            max-width: 100%;
+            min-width: 48%;
+            border: 1px solid #D9D9D9;
+            border-radius: 36px;
+            padding: 16px;
+            margin: 10px 5px;
+          }
+        }
+      }
       &-headline{
         .title{
         }
@@ -604,9 +692,9 @@
 }
 
 @media (min-width: 992px) {
-  .order-class{
-    padding-top: 90px;
-  }
+  //.order-class{
+  //  padding-top: 90px;
+  //}
   .order-list{
     &-container{
       .order-list__box{

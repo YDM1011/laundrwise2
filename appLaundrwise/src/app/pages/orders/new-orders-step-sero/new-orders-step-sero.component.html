@@ -1,27 +1,30 @@
 <mat-vertical-stepper #stepper class="stepper"  id="stepper" [linear]="true">
-  <ng-template matStepperIcon="edit">
-    <mat-icon>done</mat-icon>
-  </ng-template>
-  <mat-step [completed]="step1Completed">
-      <ng-template matStepLabel>Fill out your country</ng-template>
-
-      <app-select-location
-              (data)="countryChange($event)"></app-select-location>
-      <div>
-          <button mat-button matStepperNext (click)="canOpen = true">Next</button>
-      </div>
-  </mat-step>
-
-  <mat-step>
-      <ng-template matStepLabel>Fill out company</ng-template>
-        <ng-container *ngIf="canOpen">
-          <app-select-company *ngIf="outputObj.city && outputObj.country"
+    <ng-template matStepperIcon="edit">
+        <mat-icon>done</mat-icon>
+    </ng-template>
+    <mat-step [completed]="step1Completed">
+        <ng-template matStepLabel><div (click)="canOpen = false">Fill out your country</div></ng-template>
+        <div class="location">
+            <app-select-location
+                    (data)="countryChange($event)"></app-select-location>
+            <div>
+                <button mat-button matStepperNext (click)="canOpen = true">Next</button>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+          <div (click)="canOpen = true">Fill out company</div>
+      </ng-template>
+      <ng-container *ngIf="canOpen">
+          <div class="company">
+              <app-select-company *ngIf="outputObj.city && outputObj.country"
                   (curentCompanyEmit)="companyChange($event)" (allCompany)="allCompany($event)"  [cityandcountry]="outputObj"></app-select-company>
-        </ng-container>
-        <div>
-            <button mat-button matStepperPrevious (click)="canOpen = false">Back</button>
-            <button mat-button (click)="next()">Next</button>
           </div>
-
-  </mat-step>
+      </ng-container>
+            <div>
+               <button mat-button matStepperPrevious (click)="canOpen = false">Back</button>
+               <button mat-button (click)="next()" *ngIf="ifCompany">Next</button>
+            </div>
+    </mat-step>
 </mat-vertical-stepper>

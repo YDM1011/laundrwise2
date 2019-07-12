@@ -27,11 +27,10 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-      // this.route.params.subscribe((params: any) => {
       console.log(this.params);
       this.cleanerId = this.params.cleanerId;
       this.getOrders(this.params.type);
-      // });
+      this.auth.totalUpdate(true);
   }
   ngOnChanges(changes: SimpleChanges): void {
           this.cleanerId = this.params.cleanerId;
@@ -51,7 +50,6 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
               }
             });
       });
-      this.calcTotalPrice();
   }
 
   getOrders(prod) {
@@ -76,12 +74,7 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
           order['productId'] = v._id;
           order['basketOwner'] = v.basketOwner;
       });
-      this.calcTotalPrice();
-      console.log(this.productlist);
-      console.log(this.prod);
-      /** */
-
-       /** */
+      this.auth.totalUpdate(true);
   }
   orderItemUpdate(value, order) {
       value.cleanerOwner = this.cleanerId;
@@ -93,11 +86,8 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
       delete this.prod._id;
       this.crud.post(`product/${this.prod.productId}`, this.prod).then((v: any) => {
           order['productId'] = v._id;
-          this.calcTotalPrice();
       });
-      /** */
-
-       /** */
+      this.auth.totalUpdate(true);
   }
 
   orderItemRemove(value, order) {
@@ -109,9 +99,8 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
       if (value.count === 0) {
           this.productlist.splice(index, 1);
       }
-      this.calcTotalPrice();
+      this.auth.totalUpdate(true);
   }
-
     orderItemRemoveProd(value, order) {
         value.cleanerOwner = this.cleanerId;
         this.prod = Object.assign({}, value);
@@ -119,17 +108,7 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
         delete this.prod._id;
         this.crud.deleteOrder(`product`, this.prod.productId).then((v: any) => {
             delete order.productId;
-            console.log(v);
-            this.calcTotalPrice();
+            this.auth.totalUpdate(true);
         });
-  }
-
-  calcTotalPrice() {
-    let price = 0;
-    console.log(this.product);
-    for (var prop in this.product) {
-        price += this.product[prop].count * this.product[prop].price;
-    }
-    this.totalPrice.emit(price);
   }
 }
