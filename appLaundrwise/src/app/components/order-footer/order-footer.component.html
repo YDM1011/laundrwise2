@@ -6,8 +6,16 @@
     <div class="buttons">
       <div class="basket">
         <span (click)="decrementStep()">Back</span>
-        <a [routerLink]="link" (click)="incrementStep()">{{btns[step]}}</a>
+        <ng-container *ngIf="order && step==2 && isValidOrder; else next">
+          <button>btn {{btns[step]}}</button>
+        </ng-container>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #next>
+  <ng-container *ngIf="step != 2">
+    <a (click)="incrementStep()">{{btns[step]}}</a>
+  </ng-container>
+</ng-template>

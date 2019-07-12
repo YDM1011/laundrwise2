@@ -11,7 +11,8 @@ export class OrderFooterComponent implements OnInit, OnChanges {
   @Input() step;
   @Output() stepChange = new EventEmitter();
   // public sum = 0;
-  public orderArray;
+  public order: any = null;
+  public isValidOrder:boolean = false;
   public link: string = '/orders';
   public btns = ['', 'Your basket', 'Confirm order', 'Finish'];
   constructor(
@@ -24,13 +25,33 @@ export class OrderFooterComponent implements OnInit, OnChanges {
       if (this.step === 3) {
           this.link = '/profile';
       }
+      this.auth.onOrderConfirm.subscribe((v:any)=>{
+        if (v) {
+          console.log(v)
+            this.order = v
+            if (this.order.basket.length==0 ||
+                !this.order.orderInfo.address1 ||
+                !this.order.orderInfo.dp1 ||
+                !this.order.orderInfo.dp2){
+                this.isValidOrder = false
+            } else {
+                this.isValidOrder = true
+            }
+        }
+      })
   }
   ngOnChanges() {
-    // console.log('changes', this.mainTotalPrice);
-    // if (this.mainTotalPrice) {
-    //   this.clone(this.mainTotalPrice);
-    //   this.outputArray(this.orderArray);
-    // }
+    console.log(this.order)
+      // if ( ) {
+          if (this.order && (this.order.basket.length == 0 ||
+              !this.order.orderInfo.address1 ||
+              !this.order.orderInfo.dp1 ||
+              !this.order.orderInfo.dp2)) {
+              this.isValidOrder = false
+          } else {
+              this.isValidOrder = true
+          }
+      // }
   }
   // clone(arr) {
   //   if (!arr) return;

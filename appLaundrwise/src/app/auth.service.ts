@@ -12,6 +12,9 @@ export class AuthService {
   private step = new BehaviorSubject<number>(0);
   public getStep = this.step.asObservable();
 
+  private order = new BehaviorSubject<any>(null);
+  public onOrderConfirm = this.order.asObservable();
+
   private basketGroup = new BehaviorSubject<any>(null);
   public getBasketGroup = this.basketGroup.asObservable();
 
@@ -39,5 +42,17 @@ export class AuthService {
   }
   setBasketGroup(data) {
     this.basketGroup.next(data);
+  }
+
+  bascketOrder(order){
+      let obj = {
+          basket:[],
+          orderInfo:''
+      };
+      order.baskets.map(basket=>{
+          obj.basket.push(basket._id)
+      });
+      obj.orderInfo = Object.assign({},order.orderInfo);
+      this.order.next( obj );
   }
 }

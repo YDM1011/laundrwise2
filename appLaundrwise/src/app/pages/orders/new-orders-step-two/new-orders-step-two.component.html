@@ -11,12 +11,12 @@
                     <form action="">
                         <label>
                             <span>Address 1</span>
-                            <input type="text" name="address1" [(ngModel)]="me.address1">
+                            <input type="text" name="address1" [(ngModel)]="me.address1" (keyup)="auth.bascketOrder(order)">
                         </label>
 
                         <label>
                             <span>Address 2</span>
-                            <input type="text" name="address2" [(ngModel)]="me.address2">
+                            <input type="text" name="address2" [(ngModel)]="me.address2" (keyup)="auth.bascketOrder(order)">
                         </label>
                         <label for="instructions">
                             <span>Delivery Instructions</span>
@@ -72,11 +72,11 @@
                                     </div>
                                 </ng-container>
                             </div>
-                            <form action="">
-                                <label for="">
-                                    <textarea name="" placeholder="Clearning instructions (optional)"></textarea>
-                                </label>
-                            </form>
+                            <!--<form action="">-->
+                                <!--<label for="">-->
+                                <!--</label>-->
+                            <!--</form>-->
+                            <textarea name="instruction-{{item._id}}" [(ngModel)]="item.instruction" placeholder="Clearning instructions (optional)"></textarea>
                         </div>
                     </ng-container>
 <!--                <div class="order-add-btn">-->

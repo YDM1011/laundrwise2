@@ -28,6 +28,7 @@ module.exports = (backendApp, socket = null, data = null) => {
                     });
                     return
                 }
+                /** All user's requests and send response to 1 client of all requests */
                 wss[to].forEach(ws=>{
                     ws.send(JSON.stringify({
                         event: event,

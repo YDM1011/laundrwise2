@@ -15,6 +15,7 @@ const schema = new Schema({
         ref: "Cleaner"
     },
     totalPrice: {type: Number, default: 0},
+    instruction: String,
     status: Number,
     date: {type: Date, default: new Date()}
 },{
