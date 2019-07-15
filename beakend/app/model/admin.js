@@ -8,7 +8,10 @@ const schem = new Schema({
     token: String,
     verify: {type: Boolean, default: false},
     data: {type: Date, default: new Date()},
-    socket: []
+    setting: {
+            type: Schema.Types.ObjectId,
+            ref: "Setting"
+        },
 },{
     toJSON: {
         transform: function (doc, ret) {
