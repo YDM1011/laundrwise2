@@ -39,7 +39,7 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
     this.auth.onUpDate.subscribe((v: any) => {
       if (v) {
         this.me = Object.assign({}, v);
-        this.me['instruction'] = '';
+        this.me['instruction'] = this.instruction;
         this.me['dpc'] = this.dataColection;
         this.me['dpd'] = this.dataDelivery;
         this.me['timeColection1'] = this.collectionTime1;
@@ -81,6 +81,7 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
     this.crud.deleteOrder(`product`, prodId).then((v: any) => {
       const index = this.crud.find('_id', prodId, this.basketArray[i].products);
       this.basketArray[i].products.splice(index, 1);
+      this.basketArray.splice(i, 1);
       this.auth.bascketOrder(this.order);
     });
   }

@@ -83,7 +83,6 @@
                 </ng-container>
                 <ng-container *ngIf="basketArray">
                     <ng-container *ngFor="let item of basketArray; let index = index">
-                        
                         <ng-container *ngIf="item.products.length > 0">
                             <div class="order-step__box-item">
                                 <div class="order-step__box-headline">
@@ -107,7 +106,6 @@
                                     </ng-container>
                                 </div>
                                 <textarea name="instruction-{{item._id}}" [(ngModel)]="item.instruction" (keyup)="auth.bascketOrder(order)" placeholder="Clearning instructions (optional)"></textarea>
-                                
                             </div>
                         </ng-container>
                     </ng-container>

@@ -91,6 +91,7 @@ import { SelectCompanyComponent } from './components/select-company/select-compa
 import { ApplicationSettingsComponent } from './pages/admin/setting/application-settings/application-settings.component';
 import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-type/init-order-type.component';
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
+import { ProfileOrderComponent } from './components/profile-order/profile-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -172,6 +173,7 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
     InitOrderTypeComponent,
     SelectCompanyComponent,
     ApplicationSettingsComponent,
+    ProfileOrderComponent,
   ],
   imports: [
     BrowserModule,

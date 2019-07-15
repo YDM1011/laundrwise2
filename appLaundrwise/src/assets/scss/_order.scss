@@ -221,6 +221,7 @@
           display: inline-block;
           background: #fff;
           border-radius: 20px;
+          cursor: pointer;
         }
         span{
             margin-right: 25px;
@@ -437,6 +438,7 @@
         padding: 7px 25px;
         border-radius: 20px;
         text-align: center;
+        cursor: pointer;
         &:hover{
           transition: all .2s;
           transform: scale(1.02);
