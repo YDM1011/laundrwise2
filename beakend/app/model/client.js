@@ -20,6 +20,10 @@ const schem = new Schema({
     basketListCount: Number,
     token: String,
     role: String,
+    loger:{
+        type: Schema.Types.ObjectId,
+        ref: "ActionLog"
+    },
     data: {type: Date, default: new Date()}
 },{
     toJSON: {

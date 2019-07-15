@@ -21,7 +21,7 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
                 if (e) return res.serverError(e);
                 if (!r) return res.notFound('Not found!');
                 if (r) {
-                    let inc = r.price*(req.body.count-r.count);
+                    let inc = r.price*(req.body.count - r.count);
                     Basket.findOneAndUpdate({
                         "createdBy.itemId": req.user.id,
                         _id: req.body.basketOwner,

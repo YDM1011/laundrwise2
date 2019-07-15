@@ -14,6 +14,18 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Cleaner"
     },
+    managerCleanerOwner: {
+        type: Schema.Types.ObjectId,
+        ref: "Client"
+    },
+    deliveryOwner: {
+        type: Schema.Types.ObjectId,
+        ref: "Delivery"
+    },
+    managerDeliveryOwner: {
+        type: Schema.Types.ObjectId,
+        ref: "Client"
+    },
     totalPrice: {type: Number, default: 0},
     instruction: String,
     status: Number,

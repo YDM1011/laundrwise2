@@ -1,4 +1,4 @@
-module.exports = (data, backendApp) => {
+module.exports = (req, backendApp) => {
     return new Promise((rs,rj)=>{
         const error = 'Role is invalid';
         const client = backendApp.mongoose.model('Client');
@@ -8,7 +8,6 @@ module.exports = (data, backendApp) => {
             if (r) return rs(r);
         };
 
-        client.findOne({_id:req.user._id, role:data.role}).exec(action);
+        client.findOne({_id:req.user._id, role:req.body.role}).exec(action);
     });
 };
-
