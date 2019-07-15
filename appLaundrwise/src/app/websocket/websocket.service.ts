@@ -135,7 +135,7 @@ export class WebsocketService implements IWebsocketService, OnDestroy {
     /*
     * on message to server
     * */
-    public send(event: string, to: string, data: any = {}): void {
+    public send(event: string, to: any, data: any = {}): void {
         if (event && this.isConnected) {
             this.websocket$.next(<any>JSON.stringify({ event, to, data }));
         } else {

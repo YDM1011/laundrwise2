@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../auth.service";
 import {CrudService} from "../../crud.service";
+import {WS} from "../../websocket/websocket.events";
+import {WebsocketService} from "../../websocket";
 
 @Component({
   selector: 'app-order-footer',
@@ -11,7 +13,6 @@ export class OrderFooterComponent implements OnInit, OnChanges {
   public mainTotalPrice: number;
   @Input() step;
   @Output() stepChange = new EventEmitter();
-  // public sum = 0;
   public order: any = null;
   public isValidOrder:boolean = false;
   public orderArray;
@@ -19,7 +20,8 @@ export class OrderFooterComponent implements OnInit, OnChanges {
   public btns = ['', 'Your basket', 'Confirm order', 'Finish'];
   constructor(
       private auth: AuthService,
-      private crud: CrudService
+      private crud: CrudService,
+      private wsService: WebsocketService
   ) { }
 
   ngOnInit() {
@@ -28,39 +30,73 @@ export class OrderFooterComponent implements OnInit, OnChanges {
       }
       this.auth.onTotalPrice.subscribe(( v: any ) => {
         if (v) {
-          this.crud.getNoCache('totalPrice').then((value: any) => {
+          this.crud.getNoCache('totalPrice/0').then((value: any) => {
             this.mainTotalPrice = value.totalPrice;
           });
         }
       });
-      this.auth.onOrderConfirm.subscribe((v:any) => {
+      this.auth.onOrderConfirm.subscribe((v: any) => {
         if (v) {
-          console.log(v)
-            this.order = v
-            if (this.order.basket.length == 0 ||
+          console.log(v);
+            this.order = v;
+            if (this.order.basket.length === 0 ||
                 !this.order.orderInfo.address1 ||
-                !this.order.orderInfo.dp1 ||
-                !this.order.orderInfo.dp2){
-                this.isValidOrder = false
+                !this.order.orderInfo.dpd ||
+                !this.order.orderInfo.dpc) {
+                this.isValidOrder = false;
             } else {
-                this.isValidOrder = true
+                this.isValidOrder = true;
             }
         }
       });
   }
   ngOnChanges() {
-    console.log(this.order)
-      // if ( ) {
-          if (this.order && (this.order.basket.length == 0 ||
-              !this.order.orderInfo.address1 ||
-              !this.order.orderInfo.dp1 ||
-              !this.order.orderInfo.dp2)) {
-              this.isValidOrder = false
-          } else {
-              this.isValidOrder = true
-          }
-      // }
+    console.log(this.order);
+    if (this.order && (this.order.basket.length === 0 ||
+      !this.order.orderInfo.address1 ||
+      !this.order.orderInfo.dpd ||
+      !this.order.orderInfo.dpc)) {
+      this.isValidOrder = false;
+    } else {
+      this.isValidOrder = true;
+    }
   }
+    doConfirm() {
+        const basket = [];
+        this.order.basket.map(it => {
+            basket.push(it._id);
+        });
+        const obj = {
+            baskets: basket,
+            status: Number,
+            dpc: this.order.orderInfo.dpc,
+            dpd: this.order.orderInfo.dpd,
+            timeColection1: this.order.orderInfo.timeColection1,
+            timeColection2: this.order.orderInfo.timeColection2,
+            deliveryTime1: this.order.orderInfo.deliveryTime1,
+            deliveryTime2: this.order.orderInfo.deliveryTime2,
+            deliveryInstruction: this.order.orderInfo.deliveryInstruciton,
+            instruction: this.order.orderInfo.instruction,
+            address1: this.order.orderInfo.address1,
+            address2: this.order.orderInfo.address2,
+            firstName: this.order.orderInfo.firstName,
+            lastName: this.order.orderInfo.lastName,
+            email: this.order.orderInfo.email,
+            cityCode: this.order.orderInfo.cityCode,
+            country: this.order.orderInfo.country,
+            mobile: this.order.orderInfo.mobile,
+        };
+        this.crud.post('basketGroup', obj).then((v: any) => {
+        // this.crud.post('basket' )
+        this.order.basket.forEach(bskt => {
+            this.crud.post(`basket`, {status: 1}, bskt._id).then((update: any) => {
+                if (update) {
+                    this.wsService.send(WS.SEND.CONFIRM_ORDER, {superManager: bskt.cleanerOwner.superManager},  { data: v });
+                }
+            });
+        });
+        });
+    }
 
   decrementStep() {
     this.step -= 1;

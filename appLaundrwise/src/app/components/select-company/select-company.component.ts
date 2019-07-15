@@ -32,13 +32,11 @@ export class SelectCompanyComponent implements OnInit, OnChanges {
       const query = JSON.stringify({city: this.cityandcountry.city, country: this.cityandcountry.country});
       this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((v: any) => {
         this.company = v;
-
       });
     }
   }
   companyChange(e) {
     this.curentCompany = e;
-      console.log(this.curentCompany);
     this.curentCompanyEmit.emit(this.curentCompany);
     this.allCompany.emit(this.company);
     this.isOpenC = !this.isOpenC;

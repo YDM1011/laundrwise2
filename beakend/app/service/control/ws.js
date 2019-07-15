@@ -29,12 +29,12 @@ module.exports = (backendApp, socket = null, data = null) => {
                     return
                 }
                 /** All user's requests and send response to 1 client of all requests */
-                wss[to].forEach(ws=>{
+                wss[to] ? wss[to].forEach(ws=>{
                     ws.send(JSON.stringify({
                         event: event,
                         data: data
                     }));
-                })
+                }) : '';
             };
             const send = (event, data) => {
                 if (res.to == 'admin'){
@@ -47,6 +47,7 @@ module.exports = (backendApp, socket = null, data = null) => {
                     sendTo(res.to, event, data);
                 }
             };
+            console.log(wsEvent,res.event);
             wsEvent[res.event](data, send);
 
             // let wsController = require('../wsEvents/wsControler')();

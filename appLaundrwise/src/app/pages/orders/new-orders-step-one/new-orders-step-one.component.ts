@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
 import {CrudService} from "../../../crud.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {OrderProduct, OrderProductObj} from "./orderProduct";
 import {AuthService} from "../../../auth.service";
 
 @Component({
@@ -20,13 +19,6 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges, OnDestroy {
   @Input() allCompany;
   @Output() totalPrice: EventEmitter<any> = new EventEmitter();
   @Output() outputArray: EventEmitter<any> = new EventEmitter();
-  // public category: any[];
-
-  // public allCleaners: any[];
-
-  // public orderArray: Array<any> = [];
-  // public totalPriceArray: number = 0;
-
   constructor(
       private router: Router,
       private route: ActivatedRoute,
@@ -35,18 +27,15 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log(this.chooseCompany, this.allCompany)
     if (this.chooseCompany) {
         this.dataParams.cleanerId = this.chooseCompany._id;
         this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
         this.dataParams.type = this.defoultCategoryRouter;
-        // this.router.navigate([`/orders/${this.selected}/${this.defoultCategoryRouter}`]);
     }
-
-    // this.auth.getBasketGroup.subscribe((v: any) => {
-    //   this.orderArray = v;
-    // });
   }
   ngOnDestroy() {}
+  ngOnChanges() {}
   companyChange(e) {
     const prop = {};
     this.chooseCompany = e;
@@ -54,13 +43,6 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges, OnDestroy {
     this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
     prop['type'] = this.defoultCategoryRouter;
     this.dataParams = prop;
-
-    // this.selected = this.chooseCompany._id;
-    // this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
-    // this.router.navigate(['/orders/' + this.defoultCategoryRouter]);
-  }
-  ngOnChanges() {
-    // this.auth.setBasketGroup(this.orderArray);
   }
 
   changeCategory(v) {
