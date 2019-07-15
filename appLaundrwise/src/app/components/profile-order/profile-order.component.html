@@ -10,7 +10,7 @@
         </div>
       </mat-panel-title>
       <mat-panel-description>
-        <div class="date">
+        <div class="date" *ngIf="obj.dataDelivery && obj.dataColection">
             <span class="from">
               {{obj.dataColection}}
             </span>
