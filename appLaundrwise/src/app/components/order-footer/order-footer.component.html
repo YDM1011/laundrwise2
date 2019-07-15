@@ -7,7 +7,7 @@
       <div class="basket">
         <span (click)="decrementStep()">Back</span>
         <ng-container *ngIf="order && step==2 && isValidOrder; else next">
-          <button (click)="doConfirm()">btn {{btns[step]}}</button>
+          <a (click)="doConfirm()">{{btns[step]}}</a>
         </ng-container>
       </div>
     </div>

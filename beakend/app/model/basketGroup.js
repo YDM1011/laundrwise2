@@ -18,7 +18,6 @@ const schema = new Schema({
     deliveryTime1: Number,
     deliveryTime2: Number,
     deliveryInstruction: String,
-    instruction: String,
     address1: String,
     address2: String,
     firstName: String,

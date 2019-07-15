@@ -5,66 +5,68 @@ import {WS} from "../../websocket/websocket.events";
 import {WebsocketService} from "../../websocket";
 
 @Component({
-  selector: 'app-order-footer',
-  templateUrl: './order-footer.component.html',
-  styleUrls: ['./order-footer.component.scss']
+    selector: 'app-order-footer',
+    templateUrl: './order-footer.component.html',
+    styleUrls: ['./order-footer.component.scss']
 })
 export class OrderFooterComponent implements OnInit, OnChanges {
-  public mainTotalPrice: number;
-  @Input() step;
-  @Output() stepChange = new EventEmitter();
-  public order: any = null;
-  public isValidOrder:boolean = false;
-  public orderArray;
-  public link = '/orders';
-  public btns = ['', 'Your basket', 'Confirm order', 'Finish'];
-  constructor(
-      private auth: AuthService,
-      private crud: CrudService,
-      private wsService: WebsocketService
-  ) { }
+    public mainTotalPrice: number;
+    @Input() step;
+    @Output() stepChange = new EventEmitter();
+    public order: any = null;
+    public isValidOrder:boolean = false;
+    public orderArray;
+    public link = '/orders';
+    public btns = ['', 'Your basket', 'Confirm order', 'Finish'];
+    constructor(
+        private auth: AuthService,
+        private crud: CrudService,
+        private wsService: WebsocketService
+    ) { }
 
-  ngOnInit() {
-      if (this.step === 3) {
-          this.link = '/profile';
-      }
-      this.auth.onTotalPrice.subscribe(( v: any ) => {
-        if (v) {
-          this.crud.getNoCache('totalPrice/0').then((value: any) => {
-            this.mainTotalPrice = value.totalPrice;
-          });
+    ngOnInit() {
+        if (this.step === 3) {
+            this.link = '/profile';
         }
-      });
-      this.auth.onOrderConfirm.subscribe((v: any) => {
-        if (v) {
-          console.log(v);
-            this.order = v;
-            if (this.order.basket.length === 0 ||
-                !this.order.orderInfo.address1 ||
-                !this.order.orderInfo.dpd ||
-                !this.order.orderInfo.dpc) {
-                this.isValidOrder = false;
-            } else {
-                this.isValidOrder = true;
+        this.auth.onTotalPrice.subscribe(( v: any ) => {
+            if (v) {
+                this.crud.getNoCache('totalPrice/0').then((value: any) => {
+                    this.mainTotalPrice = value.totalPrice;
+                });
             }
-        }
-      });
-  }
-  ngOnChanges() {
-    console.log(this.order);
-    if (this.order && (this.order.basket.length === 0 ||
-      !this.order.orderInfo.address1 ||
-      !this.order.orderInfo.dpd ||
-      !this.order.orderInfo.dpc)) {
-      this.isValidOrder = false;
-    } else {
-      this.isValidOrder = true;
+        });
+        this.auth.onOrderConfirm.subscribe((v: any) => {
+            if (v) {
+                console.log(v);
+                this.order = v;
+                if (this.order.basket.length === 0 ||
+                    !this.order.orderInfo.address1 ||
+                    !this.order.orderInfo.dpd ||
+                    !this.order.orderInfo.dpc) {
+                    this.isValidOrder = false;
+                } else {
+                    this.isValidOrder = true;
+                }
+            }
+        });
     }
-  }
+    ngOnChanges() {
+        console.log(this.order);
+        if (this.order && (this.order.basket.length === 0 ||
+            !this.order.orderInfo.address1 ||
+            !this.order.orderInfo.dpd ||
+            !this.order.orderInfo.dpc)) {
+            this.isValidOrder = false;
+        } else {
+            this.isValidOrder = true;
+        }
+    }
     doConfirm() {
         const basket = [];
+        const ObjBasket  = {};
         this.order.basket.map(it => {
             basket.push(it._id);
+            ObjBasket[it._id] = it;
         });
         const obj = {
             baskets: basket,
@@ -87,29 +89,29 @@ export class OrderFooterComponent implements OnInit, OnChanges {
             mobile: this.order.orderInfo.mobile,
         };
         this.crud.post('basketGroup', obj).then((v: any) => {
-        // this.crud.post('basket' )
-        this.order.basket.forEach(bskt => {
-            this.crud.post(`basket`, {status: 1}, bskt._id).then((update: any) => {
-                if (update) {
-                    this.wsService.send(WS.SEND.CONFIRM_ORDER, {superManager: bskt.cleanerOwner.superManager},  { data: v });
-                }
+            // this.crud.post('basket' )
+            this.order.basket.forEach(bskt => {
+                this.crud.post('basket', {status: 1, instruction: ObjBasket[bskt._id].instruction}, bskt._id).then((update: any) => {
+                    if (update) {
+                        this.wsService.send(WS.SEND.CONFIRM_ORDER, {superManager: bskt.cleanerOwner.superManager},  { data: v });
+                    }
+                });
             });
-        });
         });
     }
 
-  decrementStep() {
-    this.step -= 1;
-    this.stepChange.emit(this.step);
-  }
+    decrementStep() {
+        this.step -= 1;
+        this.stepChange.emit(this.step);
+    }
 
-  incrementStep() {
-    // if (this.step === 3) {
-    //   this.auth.setStep(0);
-    // }
-    // this.auth.setStep(this.step += 1);
-    this.step += 1;
-    this.stepChange.emit(this.step);
-  }
+    incrementStep() {
+        // if (this.step === 3) {
+        //   this.auth.setStep(0);
+        // }
+        // this.auth.setStep(this.step += 1);
+        this.step += 1;
+        this.stepChange.emit(this.step);
+    }
 
 }

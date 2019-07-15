@@ -1,0 +1,88 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <div class="status">
+          <div class="status__lamp active"></div>
+          <div class="status__title">
+            Waiting
+          </div>
+        </div>
+      </mat-panel-title>
+      <mat-panel-description>
+        <div class="date">
+            <span class="from">
+              {{obj.dataColection}}
+            </span>
+          -
+          <span class="to">
+              {{obj.dataDelivery}}
+          </span>
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="orders-box">
+      <div class="order__item">
+        <div class="order__body">
+          <div class="items__box">
+              <div class="item">
+                <div class="item__headline">
+                  <div class="title">
+                    Items
+                  </div>
+                  <div class="company">
+                    <span class="name">{{obj.cleanerOwner.name}}</span>
+                  </div>
+                </div>
+                <div class="item__element" *ngFor="let prod of obj.products">
+<!--                  <img src="./assets/images/{{prod.images}}" alt="{{prod.name}}">-->
+                  <app-img [img]="prod.images"></app-img>
+                  <div class="count">{{prod.count}}x</div>
+                  <div class="name">{{prod.name}}</div>
+                  <div class="price">{{prod.price}}$</div>
+                </div>
+              </div>
+            <div class="total__price">
+              {{obj.totalPrice}}
+            </div>
+          </div>
+          <div class="time">
+            <div class="time__headline">
+              Times
+            </div>
+            <div class="time__box">
+              <div class="time__element">
+                <div class="status active"></div>
+                <div class="date">
+                  Sunday, May 9
+                </div>
+                <div class="times">
+                  <div class="from">22:00</div>
+                  -
+                  <div class="to">22:00</div>
+                </div>
+                <div class="address">
+                  Address street 5 b
+                </div>
+              </div>
+              <div class="time__element">
+                <div class="status waiting"></div>
+                <div class="date">
+                  Sunday, May 9
+                </div>
+                <div class="times">
+                  <div class="from">22:00</div>
+                  -
+                  <div class="to">22:00</div>
+                </div>
+                <div class="address">
+                  Address street 5 b
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

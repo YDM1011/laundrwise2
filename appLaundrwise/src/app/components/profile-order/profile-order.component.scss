@@ -1,0 +1,6 @@
+mat-expansion-panel{
+  margin-bottom: 25px;
+}
+.mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing{
+  margin-bottom: 25px!important;
+}
