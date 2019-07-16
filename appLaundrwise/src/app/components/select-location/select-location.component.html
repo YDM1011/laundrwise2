@@ -9,6 +9,11 @@
   </ul>
 </div>
 
+<span class="title" *ngIf="(!isShowCity || !location) && defLocation && defLocation.city">City</span>
+<div class="custom-select" *ngIf="(!isShowCity || !location) && defLocation && defLocation.city">
+  <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.city : null || locData.city || 'City'}}</p>
+</div>
+
 <span class="title" *ngIf="isShowCity && location">City</span>
 <div class="custom-select" *ngIf="isShowCity && location">
   <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.city : null || locData.city || 'City'}}</p>
@@ -18,5 +23,4 @@
     </li>
   </ul>
 </div>
-
 <div class="glass" *ngIf="isOpenC || isOpen" (click)="isOpen= false; isOpenC=false"></div>

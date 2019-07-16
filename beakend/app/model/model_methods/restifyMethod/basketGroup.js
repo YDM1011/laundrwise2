@@ -1,7 +1,7 @@
 // module.exports.preSave = async (req,res,next, backendApp) => {
 //     try {
 //         if (req.body.basketGroup.baskets.length>0) {
-//             const user = await backendApp.service.checkrole(req.body, backendApp).catch(e=>{return res.notFound(e)});
+//             const user = await backendApp.service.checkrole(req, backendApp).catch(e=>{return res.notFound(e)});
 //             if (user){
 //                 const products = await asyncCreator(req.body.basketGroup.baskets.products);
 //                 req.body.basketGroup.baskets.products = products;

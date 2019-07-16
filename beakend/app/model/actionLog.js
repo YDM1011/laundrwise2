@@ -1,21 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const schem = new Schema({
-    name: {type: String, unique: true, required: [true, "Category Name is required and unique"]},
-    icon: {type: String, required: [true, "Categori's icon is required"]},
-    product: [{
+const schema = new Schema({
+    owner: {
         type: Schema.Types.ObjectId,
-        ref: "Order"
-    }],
-    cleaner: [{
+        ref: "Client"
+    },
+    cleaner:{
         type: Schema.Types.ObjectId,
         ref: "Cleaner"
+    },
+    orders: [{
+        type: Schema.Types.ObjectId,
+        ref: "Basket"
     }],
-    createdBy: {itemId:{
-            type: Schema.Types.ObjectId,
-            ref: "Client"
-        }},
+    ordersCount: {type: Number, default: 0},
+
+    ordersOpen: [{
+        type: Schema.Types.ObjectId,
+        ref: "Basket"
+    }],
+    ordersOpenCount: {type: Number, default: 0},
+    updated: {type: Date, default: new Date()},
     date: {type: Date, default: new Date()}
 },{
     toJSON: {
@@ -28,10 +34,13 @@ const schem = new Schema({
         transform: function (doc, ret) {
             delete ret.pass;
             delete ret.token;
-        }
+        },
+        virtuals: true,
     },
     createRestApi: true,
     strict: true,
 
 });
-mongoose.model('Category', schem);
+
+mongoose.model('ActionLog', schema);
+
