@@ -10,7 +10,7 @@
   My account
 </a>
 <a [routerLink]="'/profile/statistic'" class="navigation-page__item" routerLinkActive="active"
-   *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery'">
+   *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery' || user.role === 'managerDelivery' || user.role === 'managerCleaner'">
     Statistic
 </a>
 <a [routerLink]="'/profile/bonuses'" class="navigation-page__item" routerLinkActive="active"

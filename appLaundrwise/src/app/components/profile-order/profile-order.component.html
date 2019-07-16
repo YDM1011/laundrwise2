@@ -2,11 +2,8 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <div class="status">
-          <div class="status__lamp active"></div>
-          <div class="status__title">
-            Waiting
-          </div>
+        <div class="status" [innerHTML]="obj.status | status | safeHTML">
+        
         </div>
       </mat-panel-title>
       <mat-panel-description>
@@ -35,7 +32,6 @@
                   </div>
                 </div>
                 <div class="item__element" *ngFor="let prod of obj.products">
-<!--                  <img src="./assets/images/{{prod.images}}" alt="{{prod.name}}">-->
                   <app-img [img]="prod.images"></app-img>
                   <div class="count">{{prod.count}}x</div>
                   <div class="name">{{prod.name}}</div>
@@ -62,7 +58,7 @@
                   <div class="to">22:00</div>
                 </div>
                 <div class="address">
-                  Address street 5 b
+                    {{obj.address1}}
                 </div>
               </div>
               <div class="time__element">
@@ -76,7 +72,7 @@
                   <div class="to">22:00</div>
                 </div>
                 <div class="address">
-                  Address street 5 b
+                  {{obj.address2 === obj.address1 ? obj.address1 : obj.address2}}
                 </div>
               </div>
             </div>

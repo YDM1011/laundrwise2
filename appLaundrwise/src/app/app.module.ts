@@ -92,6 +92,8 @@ import { ApplicationSettingsComponent } from './pages/admin/setting/application-
 import { InitOrderTypeComponent } from './pages/orders/init-order/init-order-type/init-order-type.component';
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import { ProfileOrderComponent } from './components/profile-order/profile-order.component';
+import { StatusPipe } from './pipe/status.pipe';
+import { SafeHTMLPipe } from './pipe/safe-html.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -174,6 +176,8 @@ import { ProfileOrderComponent } from './components/profile-order/profile-order.
     SelectCompanyComponent,
     ApplicationSettingsComponent,
     ProfileOrderComponent,
+    StatusPipe,
+    SafeHTMLPipe,
   ],
   imports: [
     BrowserModule,

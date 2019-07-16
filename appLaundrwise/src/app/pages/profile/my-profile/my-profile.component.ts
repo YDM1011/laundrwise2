@@ -9,7 +9,7 @@ import {CrudService} from "../../../crud.service";
 })
 export class MyProfileComponent implements OnInit {
   public user: any;
-  public allOrders: any;
+  public allOrdersUser: any;
   constructor(
       private auth: AuthService,
       private crud: CrudService
@@ -20,10 +20,20 @@ export class MyProfileComponent implements OnInit {
         this.user = v;
       }
     });
-    const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
-    const query = JSON.stringify({'createdBy.itemId': this.user._id, cleanerOwner: { $exists: true }, status: {$ne: 0}});
-    this.crud.getNoCache(`basket?query=${query}&populate=${populate}`).then((v: any) => {
-      this.allOrders = v;
-    });
+    if (this.user.role === 'client' || !this.user.role) {
+      const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+      const query = JSON.stringify({'createdBy.itemId': this.user._id, cleanerOwner: { $exists: true }, status: {$ne: 0}});
+      this.crud.getNoCache(`basket?query=${query}&populate=${populate}`).then((v: any) => {
+        this.allOrdersUser = v;
+      });
+    }
+    if (this.user.role === 'superManagerCleaner') {
+      const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+      const query = JSON.stringify({'createdBy.itemId': this.user._id, cleanerOwner: { $exists: true }, status: {$ne: 0}});
+      this.crud.getNoCache(`basket?query=${query}&populate=${populate}`).then((v: any) => {
+        // this.allOrdersUser = v;
+        console.log(v)
+      });
+    }
   }
 }

@@ -27,7 +27,6 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log(this.chooseCompany, this.allCompany)
     if (this.chooseCompany) {
         this.dataParams.cleanerId = this.chooseCompany._id;
         this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();

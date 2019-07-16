@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../../auth.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-thanks',
@@ -8,13 +7,13 @@ import {AuthService} from '../../../auth.service';
 })
 export class ThanksComponent implements OnInit {
   public step: number;
-  constructor(
-      private auth: AuthService,
-  ) { }
+  @Output() public stepOutput3: EventEmitter<any> = new EventEmitter();
+
+  constructor() { }
 
   ngOnInit() {
   }
   closeOrder() {
-    this.auth.setStep(0);
+    this.stepOutput3.emit(1);
   }
 }

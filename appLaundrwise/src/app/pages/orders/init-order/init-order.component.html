@@ -15,7 +15,8 @@
         <app-new-orders-step-two (stepOutput2)="step = $event"></app-new-orders-step-two>
     </ng-container>
     <ng-container *ngIf="step==3">
-        <app-new-orders-step-three></app-new-orders-step-three>
+        <app-thanks (stepOutput3)="step = $event"></app-thanks>
+<!-- <app-new-orders-step-three></app-new-orders-step-three>-->
     </ng-container>
     <!--<ng-container *ngIf="step==-->
     <app-order-footer *ngIf="step > 0 && step < 4"

@@ -97,6 +97,8 @@ export class OrderFooterComponent implements OnInit, OnChanges {
                     }
                 });
             });
+            this.step += 1;
+            this.stepChange.emit(this.step);
         });
     }
 

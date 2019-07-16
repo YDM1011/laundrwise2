@@ -1,14 +1,21 @@
 <ng-container>
-    <div class="orders" *ngIf="allOrders">
+    <div class="orders" *ngIf="allOrdersUser && !user.role === 'superManagerCleaner'">
+        <h2>
+            Orders
+        </h2>
+        <ng-container *ngFor="let item of allOrdersUser">
+            <app-profile-order [obj]="item"></app-profile-order>
+        </ng-container>
+    </div>
+    <div class="orders" *ngIf="allOrdersUser && !user.role">
         <h2>
             All orders
         </h2>
-        <ng-container *ngFor="let item of allOrders">
+        <ng-container *ngFor="let item of allOrdersUser">
             <app-profile-order [obj]="item"></app-profile-order>
         </ng-container>
-
     </div>
-    <ng-container *ngIf="!allOrders">
+    <ng-container *ngIf="!allOrdersUser && !user.role">
         <div class="non-orders">
             Now you don't have orders
             <a [routerLink]="'/orders'" *ngIf="!user.role">Make order</a>
@@ -141,5 +148,4 @@
             </div>
         </div>
     </ng-container>
-
 </ng-container>
