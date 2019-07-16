@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../../auth.service";
-import {CrudService} from "../../../crud.service";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-init-layout',
@@ -11,14 +10,18 @@ export class InitLayoutComponent implements OnInit {
 
 
   constructor(
-      private auth: AuthService,
-      private crud: CrudService
+      private router: Router
   ) {
 
   }
 
   ngOnInit() {
-
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 
 }

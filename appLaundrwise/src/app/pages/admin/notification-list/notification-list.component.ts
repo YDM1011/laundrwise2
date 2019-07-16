@@ -30,20 +30,28 @@ export class NotificationListComponent implements OnInit, OnChanges {
       this.notification$ = this.wsService.on(WS.ON.ON_NOTIFICATION);
       this.notification$.subscribe(v => {
           if(JSON.parse(v).data.data === this.id)
-          this.getNotificationList(JSON.parse(v).data.data)
+          this.getNotificationList(JSON.parse(v).data.data);
+          this.playAudio();
       });
   }
   ngOnChanges() {
       this.id = this.route.snapshot.paramMap.get('id');
       this.getNotificationList(this.id);
   }
-  getNotificationList(entity){
+  getNotificationList(entity) {
     let query = JSON.stringify({
         isNotRead: true,
         entity: entity
     });
-    this.crud.getNoCache('adminNotification', '', `?query=${query}`).then((v:any)=>{
-        this.notifications = v
-    })
-  }
+    this.crud.getNoCache('adminNotification', '', `?query=${query}`).then((v: any) => {
+        this.notifications = v;
+    });
+    }
+
+    playAudio() {
+        const audio = new Audio();
+        audio.src = '../../../assets/audio/alert.mp3';
+        audio.load();
+        audio.play();
+    }
 }

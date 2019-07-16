@@ -11,5 +11,10 @@ public date =  new Date().getFullYear();
 
   ngOnInit() {
   }
-
+  playAudio() {
+    const audio = new Audio();
+    audio.src = '../../../assets/audio/alert.mp3';
+    audio.load();
+    audio.play();
+  }
 }
