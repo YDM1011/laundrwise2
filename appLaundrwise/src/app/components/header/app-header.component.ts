@@ -52,6 +52,7 @@ export class AppHeaderComponent implements OnInit {
   logout() {
     this.crud.post('logout', {}).then((value: any) => {
         this.router.navigate(['/']);
+        this.auth.setUser(null);
         if ( this.isopen ) {
             this.isopen = !this.isopen;
         } else {

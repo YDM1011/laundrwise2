@@ -14,7 +14,7 @@ export class OrderFooterComponent implements OnInit, OnChanges {
     @Input() step;
     @Output() stepChange = new EventEmitter();
     public order: any = null;
-    public isValidOrder:boolean = false;
+    public isValidOrder: boolean = false;
     public orderArray;
     public link = '/orders';
     public btns = ['', 'Your basket', 'Confirm order', 'Finish'];
@@ -37,7 +37,6 @@ export class OrderFooterComponent implements OnInit, OnChanges {
         });
         this.auth.onOrderConfirm.subscribe((v: any) => {
             if (v) {
-                console.log(v);
                 this.order = v;
                 if (this.order.basket.length === 0 ||
                     !this.order.orderInfo.address1 ||
@@ -68,9 +67,11 @@ export class OrderFooterComponent implements OnInit, OnChanges {
             basket.push(it._id);
             ObjBasket[it._id] = it;
         });
-        const obj = {
-            baskets: basket,
-            status: Number,
+        const basketGroup = {
+            baskets: basket
+        };
+        const objBasket = {
+            status: 1,
             dpc: this.order.orderInfo.dpc,
             dpd: this.order.orderInfo.dpd,
             timeColection1: this.order.orderInfo.timeColection1,
@@ -88,10 +89,9 @@ export class OrderFooterComponent implements OnInit, OnChanges {
             country: this.order.orderInfo.country,
             mobile: this.order.orderInfo.mobile,
         };
-        this.crud.post('basketGroup', obj).then((v: any) => {
-            // this.crud.post('basket' )
+        this.crud.post('basketGroup', basketGroup).then((v: any) => {
             this.order.basket.forEach(bskt => {
-                this.crud.post('basket', {status: 1, instruction: ObjBasket[bskt._id].instruction}, bskt._id).then((update: any) => {
+                this.crud.post('basket', objBasket, bskt._id).then((update: any) => {
                     if (update) {
                         this.wsService.send(WS.SEND.CONFIRM_ORDER, {superManager: bskt.cleanerOwner.superManager},  { data: v });
                     }
@@ -108,10 +108,6 @@ export class OrderFooterComponent implements OnInit, OnChanges {
     }
 
     incrementStep() {
-        // if (this.step === 3) {
-        //   this.auth.setStep(0);
-        // }
-        // this.auth.setStep(this.step += 1);
         this.step += 1;
         this.stepChange.emit(this.step);
     }

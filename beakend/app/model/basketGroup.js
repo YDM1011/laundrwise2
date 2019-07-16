@@ -9,23 +9,7 @@ const schema = new Schema({
     baskets: [{
         type: Schema.Types.ObjectId,
         ref: "Basket"
-    }],
-    status: Number,
-    dpc: Date,
-    dpd: Date,
-    timeColection1: Number,
-    timeColection2: Number,
-    deliveryTime1: Number,
-    deliveryTime2: Number,
-    deliveryInstruction: String,
-    address1: String,
-    address2: String,
-    firstName: String,
-    lastName: String,
-    email: String,
-    cityCode: String,
-    country: String,
-    mobile: String,
+    }]
 },{
     toJSON: {
         transform: function (doc, ret) {

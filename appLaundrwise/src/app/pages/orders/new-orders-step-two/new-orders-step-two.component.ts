@@ -81,7 +81,9 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
     this.crud.deleteOrder(`product`, prodId).then((v: any) => {
       const index = this.crud.find('_id', prodId, this.basketArray[i].products);
       this.basketArray[i].products.splice(index, 1);
-      this.basketArray.splice(i, 1);
+      if (this.basketArray[i].products.length === 0) {
+        this.basketArray.splice(i, 1);
+      }
       this.auth.bascketOrder(this.order);
     });
   }
