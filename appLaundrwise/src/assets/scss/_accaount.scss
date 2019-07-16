@@ -228,14 +228,14 @@
     &.active{
       background: #04DE41;
     }
-    &.waiting{
+    &.inprogress{
       background: #FF9A37;
     }
     &.done{
       background: #C4C4C4;
     }
-    &.deleted{
-      background: #C4C4C4;
+    &.confirm{
+      background: #13AAFF;
     }
   }
   &__title{

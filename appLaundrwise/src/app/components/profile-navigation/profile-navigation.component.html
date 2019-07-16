@@ -13,10 +13,10 @@
    *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery' || user.role === 'managerDelivery' || user.role === 'managerCleaner'">
     Statistic
 </a>
-<a [routerLink]="'/profile/bonuses'" class="navigation-page__item" routerLinkActive="active"
-   *ngIf="!user.role">
-  Bonuses and sales
-</a>
+<!--<a [routerLink]="'/profile/bonuses'" class="navigation-page__item" routerLinkActive="active"-->
+<!--   *ngIf="!user.role">-->
+<!--  Bonuses and sales-->
+<!--</a>-->
 <a [routerLink]="'/profile/collaborators'" class="navigation-page__item" routerLinkActive="active"
        *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery'">
   Collaborators

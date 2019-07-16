@@ -11,7 +11,6 @@ export class ProfileOrderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.role);
   }
 
 }

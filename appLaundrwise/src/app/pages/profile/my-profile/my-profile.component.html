@@ -15,7 +15,7 @@
             <app-profile-order [obj]="item" [role]="user.role"></app-profile-order>
         </ng-container>
     </div>
-    <ng-container *ngIf="allOrdersManager.length === 0 && user.role === 'superManagerCleaner' || user.role === 'ManagerCleaner'">
+    <ng-container *ngIf="allOrdersManager.length === 0 && user.role === 'superManagerCleaner' || user.role === 'managerCleaner'">
         <div class="non-orders">
             Now you don't have orders
         </div>

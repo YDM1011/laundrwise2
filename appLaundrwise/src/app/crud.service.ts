@@ -54,6 +54,17 @@ export class CrudService {
         });
     }
 
+    logout(api, obj) {
+        return new Promise((resolve, reject) => {
+          this.http.post(`${this.api}${api}`, obj).subscribe(data => {
+           resolve(data);
+           this.DB = {};
+          }, error => {
+            reject(error);
+          });
+        });
+    }
+
     delete(api, id = null, ogjAfterDel: any = null, isUpdate: any = false) {
         return new Promise((resolve, reject) => {
             Swal.fire({
