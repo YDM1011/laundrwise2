@@ -34,6 +34,7 @@ module.exports.preSave = async (req, res, next, backendApp) => {
         res.notFound("Can't be create")
     }
 };
+
 module.exports.preRead = async (req,res,next, backendApp) => {
     const Setting = backendApp.mongoose.model('Setting');
     await isLoggedIn(req,res,backendApp);

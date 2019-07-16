@@ -3,23 +3,142 @@ module.exports.preRead = async (req,res,next, backendApp) => {
 };
 
 module.exports.preUpdate = async (req,res,next, backendApp) => {
-    try {
+    // try {
         switch (parseInt(req.body.status)){
             case 0: return next();
             case 1: return next();
-            case 2:
-
-                let superManeger = await checkRole(req, backendApp).catch(e=>{return res.notFound(e)});
-                console.log('!!!!!!', superManeger)
-                if (superManeger && (superManeger.role == req.body.role)) return res.badRequest();
-                let cleaner = await getCleaner(superManeger).catch(e=>{return res.notFound(e)});
-                await validate(req,res,cleaner,backendApp).catch(e=>{return res.notFound(e)});
-                let update = await updateBasketByCleaner(req,cleaner).catch(e=>{return res.notFound(e)});
-                return res.ok(update);
+            // case 2:
+            //     let superManeger = await checkRole(req, backendApp).catch(e=>{return res.notFound(e)});
+            //     if (superManeger && (superManeger.role == req.body.role)) return res.badRequest();
+            //     // await assign(req,res,next, backendApp, superManeger._id);
+            //     return next();
         }
-    } catch(e) {
-        res.notFound("Can't be update")
+    // } catch(e) {
+    //     res.notFound("Can't be update")
+    // }
+};
+
+module.exports.postUpdate = async (req, res, next, backendApp) => {
+
+    let basket = req.erm.result;
+    if (basket.status == 1) {
+        // let asgn = await assign(req,res,next, backendApp, basket.cleanerOwner);
+        let cleaner = await getCleaner(basket.cleanerOwner).catch(e=>{return rj(e)});
+        let valid = await validate(req,res,cleaner,backendApp).catch(e=>{return res.ok(basket)});
+
+        let obj = {
+            cleaner:basket.cleanerOwner,
+            $push:{orders:basket._id, ordersOpen:basket._id},
+            $inc: {ordersCount:1, ordersOpenCount:1},
+            updated: new Date(),
+        };
+        await ActionLogUpdate(req.body.managerCleanerOwner, obj, backendApp, next);
+        if (!valid) return next()
+        let dataBasket = await updateBasketByCleaner(req, basket.cleanerOwner);
+        res.ok(dataBasket);
     }
+};
+
+const assign =  (req,res,next, backendApp, superManeger)=>{
+   return new Promise(async (rs,rj)=>{
+       let cleaner = await getCleaner(superManeger).catch(e=>{return rj(e)});
+       await validate(req,res,cleaner,backendApp).catch(e=>{return rj(e)});
+       let update = await updateBasketByCleaner(req,cleaner).catch(e=>{return rj(e)});
+       rs()
+   })
+    // return next();
+};
+
+const getCleaner = async superManeger => {
+    const Cleaner = backendApp.mongoose.model('Cleaner');
+    return new Promise((rs,rj)=>{
+        Cleaner.findOne({$or: [{superManager: superManeger},{_id: superManeger}]})
+            .exec((e,r)=>{
+                if (e) return rj(e);
+                if (!r) return rj('not found');
+                if (r) return rs(r);
+            })
+    })
+};
+const updateBasketByCleaner = async (req,cleaner) => {
+    const Basket = backendApp.mongoose.model('Basket');
+    req.body.status = 2;
+    return new Promise((rs,rj)=>{
+        Basket.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
+            .exec((e,r)=>{
+                console.log("Update basket", e, r);
+                if (e) return rj(e);
+                if (!r) return rj('not found');
+                if (r) return rs(r);
+            })
+    })
+};
+const validate = (req,res,cleaner,backendApp)=>{
+    return new Promise((rs,rj)=>{
+        const d = req.body;
+        if (d.managerCleanerOwner) {
+            /** try find auto asign if settings cleaner's set do auto */
+            // res.notFound('Manager was not assigned!');
+            rs(false)
+        } else if (cleaner.autoAssign) {
+            backendApp.mongoose.model('ActionLog')
+                .findOne({cleaner:cleaner._id})
+                .select('ordersOpenCount _id owner')
+                .exec((e,r)=>{
+                    if (e) return rj(e);
+                    if (!r) return rj('not found');
+                    if (r) {
+                        searchLess(res,r,cleaner,backendApp,minCountOfLog=>{
+                            let loger = minCountOfLog ? minCountOfLog.owner || r.owner : r.owner;
+                            req.body.managerCleanerOwner = loger;
+                            rs(true)
+                        })
+                    }
+                });
+            /** find clients/manager with low orders */
+        } else {
+            console("is Handle")
+            rj('Manager was not assigned!');
+        }
+    })
+};
+const ActionLogUpdate = (id, data, backendApp)=>{
+    return new Promise((rs,rj)=>{
+        backendApp.mongoose.model('ActionLog')
+            .findOneAndUpdate({owner:id}, data).exec((e,r)=> {
+            if (e) return rj(e);
+            if (!r) return rj('not found');
+            if (r) return rs(r);
+        })
+    })
+};
+let triger = null;
+const searchLess = (res,log,cleaner,backendApp,next)=>{
+    backendApp.mongoose.model('ActionLog')
+        .findOne({cleaner:cleaner._id, ordersOpenCount: { $lt: log.ordersOpenCount } })
+        .select('ordersOpenCount _id owner')
+        .exec((e,r)=>{
+            if (e) return res.serverError(e);
+            if (!r) next(triger);
+            if (r) {
+                triger = Object.assign({},r);
+                searchLess(r,cleaner,backendApp,next)
+            }
+        });
+};
+
+const checkRole = (req, backendApp) => {
+    return new Promise((rs,rj)=>{
+        const error = 'Role is invalid';
+        const client = backendApp.mongoose.model('Client');
+        const action = (e,r) => {
+            if (e) return rj(error);
+            if (!r) return rj(error);
+            if (r) return rs(r);
+        };
+        console.log()
+        client.findOne({_id:req.user._id}).exec(action);
+    });
 };
 
 // module.exports.PreDel = async (req,res,next, backendApp) => {
@@ -48,84 +167,3 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
 //         res.notFound("Can't be update")
 //     }
 // };
-
-const getCleaner = async superManeger => {
-    const Cleaner = backendApp.mongoose.model('Cleaner');
-    return new Promise((rs,rj)=>{
-        Cleaner.findOne({superManager: superManeger._id})
-            .exec((e,r)=>{
-                if (e) return rj(e);
-                if (!r) return rj('not found');
-                if (r) return rs(r);
-            })
-    })
-};
-const updateBasketByCleaner = async (req,cleaner) => {
-    const Basket = backendApp.mongoose.model('Basket');
-    return new Promise((rs,rj)=>{
-        Basket.findOneAndUpdate({cleanerOwner: cleaner._id}, req.body, {new:true})
-            .exec((e,r)=>{
-                if (e) return rj(e);
-                if (!r) return rj('not found');
-                if (r) return rs(r);
-            })
-    })
-};
-const validate = (req,res,cleaner,backendApp)=>{
-    return new Promise((rs,rj)=>{
-        const d = req.body;
-        if (d.managerCleanerOwner) {
-            /** try find auto asign if settings cleaner's set do auto */
-            // res.notFound('Manager was not assigned!');
-            rs()
-        } else if (cleaner.autoAssign) {
-            backendApp.mongoose.model('ActionLog')
-                .findOne({cleaner:cleaner._id})
-                .select('ordersOpenCount _id')
-                .exec((e,r)=>{
-                    if (e) return rj(e);
-                    if (!r) return rj('not found');
-                    if (r) {
-                        searchLess(res,log,cleaner,backendApp,minCountOfLog=>{
-                            let loger = minCountOfLog || r;
-                            req.body.managerCleanerOwner = loger._id;
-                            rs()
-                        })
-                    }
-                });
-            /** find clients/manager with low orders */
-        } else {
-            rj('Manager was not assigned!');
-        }
-    })
-};
-
-let triger = null;
-const searchLess = (res,log,cleaner,backendApp,next)=>{
-
-    backendApp.mongoose.model('ActionLog')
-        .findOne({cleaner:cleaner._id, ordersOpenCount: { $lt: log.ordersOpenCount } })
-        .select('ordersOpenCount _id')
-        .exec((e,r)=>{
-            if (e) return res.serverError(e);
-            if (!r) next(triger);
-            if (r) {
-                triger = r;
-                searchLess(r,cleaner,backendApp,next)
-            }
-        });
-};
-
-const checkRole = (req, backendApp) => {
-    return new Promise((rs,rj)=>{
-        const error = 'Role is invalid';
-        const client = backendApp.mongoose.model('Client');
-        const action = (e,r) => {
-            if (e) return rj(error);
-            if (!r) return rj(error);
-            if (r) return rs(r);
-        };
-        console.log()
-        client.findOne({_id:req.user._id}).exec(action);
-    });
-};
