@@ -103,7 +103,8 @@ const checkAndInitBasket = (req, backendApp, product) => {
                     products: [product._id],
                     cleanerOwner: req.body.cleanerOwner,
                     totalPrice: product.count*product.price,
-                    status: 0
+                    status: 0,
+                    date: new Date()
                 };
                 Basket.create(data, (e,r)=>{
                     if (e) return rj(e);
