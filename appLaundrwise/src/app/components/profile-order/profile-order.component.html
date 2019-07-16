@@ -95,7 +95,7 @@
                 </div>
               </div>
             </div>
-            <div class="buttons-box" *ngIf="role !== 'client' && role ">
+            <div class="buttons-box" *ngIf="role === 'managerCleaner' || role === 'superManagerCleaner'">
               <button class="accept" *ngIf="obj.status === 1">Accept</button>
               <button class="cancel">Cancel</button>
             </div>

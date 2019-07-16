@@ -1,13 +1,24 @@
 <ng-container>
+
+<!--super manager-->
     <div class="orders" *ngIf="allOrdersManager && user.role === 'superManagerCleaner'">
         <h2>
             Orders
         </h2>
         <ng-container *ngFor="let item of allOrdersManager">
-            <app-profile-order [obj]="item"></app-profile-order>
+            <app-profile-order [obj]="item" [role]="user.role"></app-profile-order>
         </ng-container>
     </div>
-    <div class="orders" *ngIf="allOrdersUser && user.role === 'client' || !user.role ">
+    
+    <ng-container *ngIf="allOrdersManager.length === 0 && user.role === 'superManagerCleaner' && user.role === 'managerCleaner' ">
+        <div class="non-orders">
+            Now you don't have orders
+        </div>
+    </ng-container>
+<!-- end super manager-->
+
+<!--    user-->
+    <div class="orders" *ngIf="allOrdersUser.length > 0 && user.role === 'client' || !user.role ">
         <h2>
             All orders
         </h2>
@@ -15,15 +26,11 @@
             <app-profile-order [obj]="item" [role]="user.role"></app-profile-order>
         </ng-container>
     </div>
-    <ng-container *ngIf="allOrdersManager.length === 0 && user.role === 'superManagerCleaner' || user.role === 'managerCleaner'">
+    
+    <ng-container *ngIf="!allOrdersUser || allOrdersUser.length === 0 && user.role === 'client'">
         <div class="non-orders">
             Now you don't have orders
-        </div>
-    </ng-container>
-    <ng-container *ngIf="!allOrdersUser">
-        <div class="non-orders">
-            Now you don't have orders
-            <a [routerLink]="'/orders'" *ngIf="!user.role">Make order</a>
+            <a [routerLink]="'/orders'">Make order</a>
         </div>
         <div class="benefits" *ngIf="!user.role">
             <h2>
@@ -153,4 +160,6 @@
             </div>
         </div>
     </ng-container>
+<!--    end user-->
+
 </ng-container>

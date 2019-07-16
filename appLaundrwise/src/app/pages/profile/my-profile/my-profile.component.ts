@@ -36,6 +36,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
               const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id});
               this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&sort={"date": "-1"}`).then((basket: any) => {
                 this.allOrdersManager = basket;
+                console.log(this.allOrdersManager)
               });
             }
           });
