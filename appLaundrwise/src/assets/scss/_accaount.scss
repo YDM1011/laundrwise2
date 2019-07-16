@@ -222,6 +222,9 @@
     border-radius: 50%;
     margin-right: 8px;
     background: #C4C4C4;
+    &.closed{
+      background: #de001a;
+    }
     &.active{
       background: #04DE41;
     }
@@ -229,6 +232,9 @@
       background: #FF9A37;
     }
     &.done{
+      background: #C4C4C4;
+    }
+    &.deleted{
       background: #C4C4C4;
     }
   }
@@ -242,8 +248,8 @@
   margin: 0 5% 0 auto;
   span{
     font-weight: 300;
-    font-size: 11px;
-    line-height: 13px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 .orders{
@@ -271,6 +277,9 @@
         .items__box{
           width: 100%;
           padding: 10px;
+          .info-item{
+            margin-top: 35px;
+          }
           .item{
             width: 100%;
             margin: 10px 0 20px;
@@ -295,6 +304,15 @@
                   object-fit: cover;
                   height: 15px;
                 }
+              }
+            }
+            .info-block{
+              display: flex;
+              flex-direction: column;
+              div{
+                margin: 3px;
+                font-family: Montserrat-Light, sans-serif;
+                font-size: 14px;
               }
             }
             &__element{
@@ -355,29 +373,29 @@
             margin-top: 10px;
           }
           &__box{
-            border-right: 1px dashed #D9D9D9;
+            //border-right: 1px dashed #D9D9D9;
             .time__element{
               padding: 20px 0;
               position: relative;
-              .status{
-                display: block;
-                border-radius: 50%;
-                width: 11px;
-                height: 11px;
-                background: #C4C4C4;
-                position: absolute;
-                right: -6px;
-
-                &.active{
-                  background: #04DE41;
-                }
-                &.waiting{
-                  background: #FF9A37;
-                }
-                &.done{
-                  background: #C4C4C4;
-                }
-              }
+              //.status{
+              //  display: block;
+              //  border-radius: 50%;
+              //  width: 11px;
+              //  height: 11px;
+              //  background: #C4C4C4;
+              //  position: absolute;
+              //  right: -6px;
+              //
+              //  &.active{
+              //    background: #04DE41;
+              //  }
+              //  &.waiting{
+              //    background: #FF9A37;
+              //  }
+              //  &.done{
+              //    background: #C4C4C4;
+              //  }
+              //}
               .date{
                 font-family: $medium;
                 font-weight: 500;
@@ -395,6 +413,33 @@
                   line-height: 13px;
                   font-weight: 300;
                 }
+              }
+            }
+          }
+          .buttons-box{
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            align-items: center;
+            button{
+              border-radius: 25px;
+              padding: 8px 36px;
+              font-family: Montserrat-Medium,sans-serif;
+              font-size: 16px;
+              margin-bottom: 10px;
+              cursor: pointer;
+              border: none;
+              min-width: 150px;
+              &.accept{
+                background: $main-blue!important;
+                color: #fff!important;
+              }
+              &.cancel{
+                background: #fff;
+                color: #333;
+                border-radius: 25px;
+                padding: 8px 28px;
+                border: 1px solid #D9D9D9;
               }
             }
           }
@@ -871,6 +916,9 @@
                 .price{
                 }
               }
+            }
+            .info-item{
+              margin-top: 25px;
             }
             .total__price{
               font-size: 20px;

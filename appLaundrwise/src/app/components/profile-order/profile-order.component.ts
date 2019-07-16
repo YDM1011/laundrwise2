@@ -7,10 +7,11 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ProfileOrderComponent implements OnInit {
   @Input() obj;
+  @Input() role;
   constructor() { }
 
   ngOnInit() {
-    console.log(this.obj.products)
+    console.log(this.role);
   }
 
 }

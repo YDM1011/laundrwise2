@@ -27,8 +27,22 @@ const schema = new Schema({
         ref: "Client"
     },
     totalPrice: {type: Number, default: 0},
-    instruction: String,
     status: Number,
+    dpc: Date,
+    dpd: Date,
+    timeColection1: Number,
+    timeColection2: Number,
+    deliveryTime1: Number,
+    deliveryTime2: Number,
+    deliveryInstruction: String,
+    address1: String,
+    address2: String,
+    firstName: String,
+    lastName: String,
+    email: String,
+    cityCode: String,
+    country: String,
+    mobile: String,
     date: {type: Date, default: new Date()}
 },{
     toJSON: {

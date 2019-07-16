@@ -2,18 +2,16 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <div class="status" [innerHTML]="obj.status | status | safeHTML">
-        
-        </div>
+        <div class="status" [innerHTML]="obj.status | status | safeHTML"></div>
       </mat-panel-title>
       <mat-panel-description>
-        <div class="date" *ngIf="obj.dataDelivery && obj.dataColection">
+        <div class="date" *ngIf="obj.dpc && obj.dpd">
             <span class="from">
-              {{obj.dataColection}}
+              {{obj.dpc | date: 'd.MM.yy'}}
             </span>
           -
           <span class="to">
-              {{obj.dataDelivery}}
+              {{obj.dpd | date: 'd.MM.yy'}}
           </span>
         </div>
       </mat-panel-description>
@@ -38,8 +36,29 @@
                   <div class="price">{{prod.price}}$</div>
                 </div>
               </div>
+              <div class="item info-item" *ngIf="role !== 'client'">
+                <div class="item__headline">
+                  <div class="title">
+                    Information
+                  </div>
+                </div>
+                <div class="info-block">
+                  <div *ngIf="obj.mobile">
+                    Tel: {{obj.mobile}}
+                  </div>
+                  <div *ngIf="obj.email">
+                    email: {{obj.email}}
+                  </div>
+                  <div *ngIf="obj.instruction && role === 'managerCleaner' || role === 'superManagerCleaner'">
+                    Instruction: {{obj.instruction}}
+                  </div>
+                  <div *ngIf="obj.instruction && role === 'managerDelivery' || role === 'superManagerDelivery'">
+                    Instruction: {{obj.deliveryInstruciton}}
+                  </div>
+                </div>
+              </div>
             <div class="total__price">
-              {{obj.totalPrice}}
+              {{obj.totalPrice}}$
             </div>
           </div>
           <div class="time">
@@ -50,9 +69,9 @@
               <div class="time__element">
                 <div class="status active"></div>
                 <div class="date">
-                  Sunday, May 9
+                  {{obj.dpc | date: 'EEEE, MMMM d'}}
                 </div>
-                <div class="times">
+                <div class="times" *ngIf="obj.dataColection">
                   <div class="from">22:00</div>
                   -
                   <div class="to">22:00</div>
@@ -64,17 +83,21 @@
               <div class="time__element">
                 <div class="status waiting"></div>
                 <div class="date">
-                  Sunday, May 9
+                  {{obj.dpd | date: 'EEEE, MMMM d'}}
                 </div>
-                <div class="times">
+                <div class="times" *ngIf="obj.dataDelivery">
                   <div class="from">22:00</div>
                   -
                   <div class="to">22:00</div>
                 </div>
                 <div class="address">
-                  {{obj.address2 === obj.address1 ? obj.address1 : obj.address2}}
+                  {{obj.address1 !== obj.address2 ? obj.address2 : obj.address1}}
                 </div>
               </div>
+            </div>
+            <div class="buttons-box" *ngIf="role !== 'client'">
+              <button class="accept" *ngIf="obj.status === 1">Accept</button>
+              <button class="cancel">Cancel</button>
             </div>
           </div>
         </div>

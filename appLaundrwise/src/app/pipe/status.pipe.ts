@@ -10,19 +10,15 @@ export class StatusPipe implements PipeTransform {
     // let res = un know value ${value};
     value = parseInt(value);
     switch (value) {
-      case 1: res = '<div class="status__lamp waiting"></div><div class="status__title">Waiting</div>';
+      case 1: res = '<div class="status__lamp active"></div><div class="status__title">Active</div>';
           break;
-      case 2: res = '<span class="label label-primary-light">Підтверджене</span>';
+      case 2: res = '<div class="status__lamp active"></div><div class="status__title">Confirm</div>';
           break;
-      case 3: res = '<span class="label label-warning">Очікується оплата</span>';
+      case 3: res = '<div class="status__lamp active"></div><div class="status__title">In progress</div>';
           break;
-      case 4: res = '<span class="label label-success">Оплачене</span>';
+      case 4: res = '<div class="status__lamp done"></div><div class="status__title">Done</div>';
           break;
-      case 5: res = '<span class="label label-info">Змінене оператором</span>';
-          break;
-      case 6: res = '<span class="label label-default">Виконано</span>';
-          break;
-      case 7: res = '<span class="label label-danger">Відмінене</span>';
+      case 5: res = '<div class="status__lamp closed"></div><div class="status__title">Closed</div>';
           break;
       default: break;
     }
