@@ -248,8 +248,8 @@
   margin: 0 5% 0 auto;
   span{
     font-weight: 300;
-    font-size: 11px;
-    line-height: 13px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 .orders{
@@ -278,7 +278,7 @@
           width: 100%;
           padding: 10px;
           .info-item{
-            margin-top: 25px;
+            margin-top: 35px;
           }
           .item{
             width: 100%;
@@ -429,6 +429,7 @@
               margin-bottom: 10px;
               cursor: pointer;
               border: none;
+              min-width: 150px;
               &.accept{
                 background: $main-blue!important;
                 color: #fff!important;
@@ -915,6 +916,9 @@
                 .price{
                 }
               }
+            }
+            .info-item{
+              margin-top: 25px;
             }
             .total__price{
               font-size: 20px;
