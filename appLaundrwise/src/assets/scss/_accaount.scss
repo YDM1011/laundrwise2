@@ -222,6 +222,9 @@
     border-radius: 50%;
     margin-right: 8px;
     background: #C4C4C4;
+    &.closed{
+      background: #de001a;
+    }
     &.active{
       background: #04DE41;
     }
@@ -229,6 +232,9 @@
       background: #FF9A37;
     }
     &.done{
+      background: #C4C4C4;
+    }
+    &.deleted{
       background: #C4C4C4;
     }
   }
