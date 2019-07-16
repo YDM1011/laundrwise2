@@ -9,10 +9,7 @@
 <a [routerLink]="'/profile/account'" class="navigation-page__item" routerLinkActive="active">
   My account
 </a>
-<a [routerLink]="'/profile/statistic'" class="navigation-page__item" routerLinkActive="active"
-   *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery' || user.role === 'managerDelivery' || user.role === 'managerCleaner'">
-    Statistic
-</a>
+
 <!--<a [routerLink]="'/profile/bonuses'" class="navigation-page__item" routerLinkActive="active"-->
 <!--   *ngIf="!user.role">-->
 <!--  Bonuses and sales-->
@@ -20,6 +17,10 @@
 <a [routerLink]="'/profile/collaborators'" class="navigation-page__item" routerLinkActive="active"
        *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery'">
   Collaborators
+</a>
+<a [routerLink]="'/profile/setting'" class="navigation-page__item" routerLinkActive="active"
+   *ngIf="user.role === 'superManagerCleaner'">
+  Setting
 </a>
 <a [routerLink]="'/profile/write-to-admin'" class="writeadmin">
   Write administration

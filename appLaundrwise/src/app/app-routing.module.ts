@@ -84,7 +84,7 @@ const routes: Routes = [
       {path: 'bonuses', component: BonusComponent},
       {path: 'collaborators', component: CollaboratorsComponent},
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'statistic', component: StatisticComponent},
+      {path: 'setting', component: StatisticComponent},
       {path: 'write-to-admin', component: WriteToAdminComponent},
       {path: '', redirectTo: 'profile', pathMatch: 'full'},
     ]},

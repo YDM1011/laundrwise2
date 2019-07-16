@@ -1,3 +1,9 @@
-<p>
-  statistic works!
-</p>
+<div>
+  <mat-slide-toggle
+          class="example-margin"
+          [color]="'#13aaff'"
+          [checked]="autoAssign" [(ngModel)]="autoAssign" (change)="update()">
+    Set automation asign orders to managers!
+  </mat-slide-toggle>
+
+</div>
