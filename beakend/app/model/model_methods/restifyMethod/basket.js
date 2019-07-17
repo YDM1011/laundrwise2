@@ -91,9 +91,11 @@ const validate = (req,res,cleaner,backendApp)=>{
                         searchLess(req,res,r,cleaner,backendApp,()=>{
                             let loger;
                             if (req.ActionLog && req.ActionLog.triger){
-                                loger = req.ActionLog.triger ? req.ActionLog.triger.owner || r.owner : r.owner;
+                                loger = req.ActionLog.triger.owner;
+                            }else{
+                                loger = r.owner
                             }
-                            req.body.managerCleanerOwner = loger;
+                            req.body.managerCleanerOwner = loger ;
                             rs(true)
                         })
                     }

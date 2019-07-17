@@ -75,10 +75,10 @@
 
 <app-is-app-download></app-is-app-download>
 
-<section class="blog" id="blog">
+<section class="blog" id="blog" *ngIf="arrayPost.length > 0">
     <h2>Blog</h2>
     <div class="blog__container">
-        <ng-container *ngIf="arrayPost.length > 0">
+        <ng-container>
             <app-blog-post  *ngFor="let item of arrayPost" [itemPost]="item"></app-blog-post>
         </ng-container>
     </div>

@@ -9,15 +9,15 @@
         <div class="company-description">
           <span class="name">{{obj.cleanerOwner.name}}</span>
         </div>
-        <div class="date-description" *ngIf="obj.dpc && obj.dpd">
+        <div class="date-description" *ngIf="obj.dataCollection && obj.dataDelivery">
             <span class="from">
-              {{obj.dpc | date: 'd.MM.yy'}}
+              {{obj.dataCollection | date: 'd.MM.yy'}}
             </span>
           <span class="text-el">
             -
           </span>
           <span class="to">
-              {{obj.dpd | date: 'd.MM.yy'}}
+              {{obj.dataDelivery | date: 'd.MM.yy'}}
           </span>
         </div>
       </mat-panel-description>
@@ -55,8 +55,8 @@
                   <div *ngIf="obj.instruction">
                     Instruction: {{obj.instruction}}
                   </div>
-                  <div *ngIf="obj.instruction && role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery' ">
-                    Instruction Delivery: {{obj.deliveryInstruciton}}
+                  <div *ngIf="obj.deliveryInstruction && role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery' ">
+                    Instruction Delivery: {{obj.deliveryInstruction}}
                   </div>
                 </div>
               </div>
@@ -70,28 +70,28 @@
             </div>
             <div class="time__box">
               <div class="time__element">
-                <div class="status active"></div>
+<!--                <div class="status active"></div>-->
                 <div class="date">
-                  {{obj.dpc | date: 'EEEE, MMMM d'}}
+                  {{obj.dataCollection | date: 'EEEE, MMMM d'}}
                 </div>
-                <div class="times" *ngIf="obj.dataColection">
-                  <div class="from">22:00</div>
+                <div class="times" *ngIf="obj.dataCollection">
+                  <div class="from">{{obj.collectionTime1}}</div>
                   -
-                  <div class="to">22:00</div>
+                  <div class="to">{{obj.collectionTime2}}</div>
                 </div>
                 <div class="address">
                     {{obj.address1}}
                 </div>
               </div>
               <div class="time__element">
-                <div class="status waiting"></div>
+<!--                <div class="status waiting"></div>-->
                 <div class="date">
-                  {{obj.dpd | date: 'EEEE, MMMM d'}}
+                  {{obj.dataDelivery | date: 'EEEE, MMMM d'}}
                 </div>
-                <div class="times" *ngIf="obj.dataDelivery">
-                  <div class="from">22:00</div>
+                <div class="times" *ngIf="obj.deliveryTime1 && obj.deliveryTime2">
+                  <div class="from">{{obj.deliveryTime1}}</div>
                   -
-                  <div class="to">22:00</div>
+                  <div class="to">{{obj.deliveryTime2}}</div>
                 </div>
                 <div class="address">
                   {{obj.address1}}

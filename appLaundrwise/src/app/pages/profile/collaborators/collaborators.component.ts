@@ -27,14 +27,14 @@ export class CollaboratorsComponent implements OnInit {
           superManager: this.user._id
         });
         const populate = JSON.stringify({path: 'managers', skip: 0, limit: 0});
-
-        this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((v: any) => {
-          this.cleaner = v[0];
-          this.initManager = v[0].managers;
+        this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((clen: any) => {
+          if (clen[0] && clen[0].managers.length > 0) {
+            this.cleaner = clen[0];
+            this.initManager = Object.assign([], clen[0].managers);
+          }
         });
       }
     });
-
   }
 
   addCollaborators() {

@@ -8,7 +8,7 @@
     </p>
     <form #form1="ngForm" (submit)="formSend()">
       <mat-form-field appearance="outline">
-        <mat-label>Name*</mat-label>
+<!--        <mat-label>Name*</mat-label>-->
         <input matInput placeholder="Name" [formControl]="nameFormControl"
                [errorStateMatcher]="matcher" [(ngModel)]="form.name" name="name">
         <mat-error *ngIf="nameFormControl.hasError('required')">
@@ -17,7 +17,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Email*</mat-label>
+<!--        <mat-label>Email*</mat-label>-->
         <input matInput placeholder="Email" [formControl]="emailFormControl"
                [errorStateMatcher]="matcher" [(ngModel)]="form.email" name="email">
         <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -26,7 +26,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Mobile*</mat-label>
+<!--        <mat-label>Mobile*</mat-label>-->
         <input matInput placeholder="Mobile" [formControl]="mobileFormControl"
                [errorStateMatcher]="matcher" [(ngModel)]="form.mobile" name="mobile">
         <mat-error *ngIf="mobileFormControl.hasError('required')">
@@ -35,7 +35,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Message*</mat-label>
+<!--        <mat-label>Message*</mat-label>-->
         <textarea matInput placeholder="Message" [formControl]="mesFormControl"
                   [errorStateMatcher]="matcher" [(ngModel)]="form.mes"  name="mes"></textarea>
         <mat-error *ngIf="mesFormControl.hasError('required')">

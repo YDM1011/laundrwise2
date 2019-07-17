@@ -11,7 +11,7 @@
                     <form action="">
                         <label>
                             <span>City</span>
-                            <input type="text" name="cityCode" [(ngModel)]="me.cityCode" (keyup)="auth.bascketOrder(order)" disabled>
+                            <input type="text" name="cityCode" [(ngModel)]="me.city" (keyup)="auth.bascketOrder(order)" disabled>
                         </label>
                         <label>
                             <span>Address 1</span>
@@ -39,7 +39,7 @@
                                 Collection Time
                             </div>
                             <mat-form-field>
-                                <input matInput [matDatepicker]="dp1" [(ngModel)]="me.dataColection" [min]="minDate" (dateChange)="EndDateColectionChange($event)" readonly>
+                                <input matInput [matDatepicker]="dp1" [(ngModel)]="me.dataCollection" [min]="minDate" (dateChange)="EndDateColectionChange($event)" readonly>
                                 <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                                 <mat-datepicker #dp1 disabled="false"></mat-datepicker>
                             </mat-form-field>

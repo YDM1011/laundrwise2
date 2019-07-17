@@ -42,7 +42,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
         }
         if (this.user.role === 'managerCleaner') {
-          console.log(this.user);
+          // console.log(this.user);
           // const query = JSON.stringify({'superManager': this.user._id});
           // this.crud.getNoCache(`cleaner?query=${query}`).then((cleaner: any) => {
           //   this.cleaner = cleaner[0];

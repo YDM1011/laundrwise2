@@ -15,9 +15,11 @@ export class ApplicationSettingsComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.crud.get('setting').then((v: any) => {
-      this.checkedDef = v;
-      this.checked = v.isAppBlock;
+    this.crud.getNoCache('setting').then((v: any) => {
+      if (v) {
+        this.checkedDef = v.isAppBlock;
+        this.checked = v.isAppBlock;
+      }
     });
   }
 
@@ -26,7 +28,7 @@ export class ApplicationSettingsComponent implements OnInit, OnChanges {
   }
 
   save() {
-    this.crud.post('setting', {isAppBlock:this.checked})
+    this.crud.post('setting', {isAppBlock: this.checked});
   }
 
 
