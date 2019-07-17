@@ -32,5 +32,4 @@
     <input type="submit" class="send" value="Save" *ngIf="isBlok">
   </form>
 </ng-container>
-
-<app-category-list [iframe]="true" (onCategory)="pullCategory($event)" [useCategory]="cleaner.category"></app-category-list>
+<app-category-list (onCategory)="pullCategory($event)" [cleanerId]="id"></app-category-list>

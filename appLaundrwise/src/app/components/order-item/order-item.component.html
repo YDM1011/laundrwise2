@@ -1,6 +1,6 @@
 <ng-container *ngIf="obj.productId">
   <div class="img">
-    <img src="../assets/images/order-item.png" alt="order items">
+    <app-img [img]="obj.images"></app-img>
   </div>
   <div class="description">
     <div class="name">it is Product {{obj.name}}</div>
@@ -25,7 +25,7 @@
 
 <ng-container *ngIf="!obj.productId">
   <div class="img">
-    <img src="../assets/images/order-item.png" alt="order items">
+    <app-img [img]="obj.images"></app-img>
   </div>
   <div class="description">
     <div class="name">{{obj.name}}</div>

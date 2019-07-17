@@ -12,45 +12,43 @@ export class CategoryListComponent implements OnInit, OnChanges {
     public dataSource = new MatTableDataSource();
     public displayedColumns: string[] = ['count', 'select', 'name', 'date', 'edit', 'del'];
     public category: Category[];
-    @Input() iframe = false;
-    @Input() useCategory = null;
+    @Input() cleanerId;
     @Output() onCategory = new EventEmitter();
     constructor(
         private crud: CrudService
     ) { }
 
     ngOnInit() {
-        if (this.iframe) {
-            this.displayedColumns = ['count', 'select', 'name', 'date'];
-        } else {
-            this.displayedColumns = ['count', 'name', 'date', 'edit', 'del'];
-        }
-        this.crud.get('category').then((v: any) => {
+        this.displayedColumns = ['count', 'name', 'date', 'edit', 'del'];
+        let query = JSON.stringify({
+            cleaner: this.cleanerId
+        });
+        this.crud.getNoCache('category', '', `?query=${query}`).then((v: any) => {
             this.category = v;
-            if (this.iframe && this.useCategory) {
-                this.category.map((item: any) => {
-                    if (this.useCategory.indexOf(item._id) > -1) {
-                        item.checked = true;
-                    } else {
-                        item.checked = false;
-                    }
-                });
-            }
+            // if (this.iframe && this.useCategory) {
+            //     this.category.map((item: any) => {
+            //         if (this.useCategory.indexOf(item._id) > -1) {
+            //             item.checked = true;
+            //         } else {
+            //             item.checked = false;
+            //         }
+            //     });
+            // }
             this.dataSource = new MatTableDataSource(this.category);
         });
     }
 
     ngOnChanges() {
-        if (this.iframe && this.useCategory, this.category) {
-            this.category.map((item: any) => {
-                if (this.useCategory.indexOf(item._id) > -1) {
-                    item.checked = true;
-                } else {
-                    item.checked = false;
-                }
-            });
-            this.dataSource = new MatTableDataSource(this.category);
-        }
+        // if (this.iframe && this.useCategory, this.category) {
+        //     this.category.map((item: any) => {
+        //         if (this.useCategory.indexOf(item._id) > -1) {
+        //             item.checked = true;
+        //         } else {
+        //             item.checked = false;
+        //         }
+        //     });
+        //     this.dataSource = new MatTableDataSource(this.category);
+        // }
     }
 
     deletItem(elem) {
@@ -61,13 +59,7 @@ export class CategoryListComponent implements OnInit, OnChanges {
     }
 
     pushCategory() {
-        let arr = [];
-        this.category.map(item => {
-            if (item.checked) {
-                arr.push(item);
-            }
-        });
-        this.onCategory.emit(arr);
+        this.onCategory.emit(this.category);
     }
 
 }

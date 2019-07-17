@@ -8,10 +8,10 @@ const schem = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Order"
     }],
-    cleaner: [{
+    cleaner: {
         type: Schema.Types.ObjectId,
         ref: "Cleaner"
-    }],
+    },
     createdBy: {itemId:{
             type: Schema.Types.ObjectId,
             ref: "Client"
@@ -34,4 +34,25 @@ const schem = new Schema({
     strict: true,
 
 });
+
+schem.post('save', (doc,next)=>{
+    mongoose.model('Cleaner')
+        .findOneAndUpdate({_id:doc.cleaner}, {$push:{category: doc._id}}, {new:true})
+        .exec((e,r)=>{
+            if (e) return next(e);
+            if (!r) return next();
+            if (r) return next()
+        })
+});
+schem.post('findOneAndRemove', (doc,next)=>{
+    console.log('post Delete' + doc)
+    mongoose.model('Cleaner')
+        .findOneAndUpdate({_id:doc.cleaner}, {$pull:{category: doc._id}}, {new:true})
+        .exec((e,r)=>{
+            if (e) return next(e);
+            if (!r) return next();
+            if (r) return next()
+        })
+});
+
 mongoose.model('Category', schem);

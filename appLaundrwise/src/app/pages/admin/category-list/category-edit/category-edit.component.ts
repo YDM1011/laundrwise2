@@ -13,7 +13,6 @@ import Swal from "sweetalert2";
 })
 
 export class CategoryEditComponent implements OnInit {
-    @Input() iframe = false;
     public id;
     public category: Category = new CategoryObj();
     public initDataPost: Category = new CategoryObj();
@@ -30,11 +29,7 @@ export class CategoryEditComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        if (this.iframe) {
-            this.displayedColumns = ['name', 'date'];
-        } else {
-            this.displayedColumns = ['name', 'date', 'edit', 'del'];
-        }
+        this.displayedColumns = ['name', 'date'];
         this.id = this.route.snapshot.paramMap.get('id');
         const populate = JSON.stringify({path: 'product', skip: 0, limit: 0});
         const query = JSON.stringify({_id: this.id});
