@@ -27,7 +27,6 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-      console.log(this.params);
       this.cleanerId = this.params.cleanerId;
       this.getOrders(this.params.type);
       this.auth.totalUpdate(true);
@@ -35,7 +34,6 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
           this.cleanerId = this.params.cleanerId;
           this.getOrders(this.params.type);
-          console.log(this.params);
   }
 
   getProductByCleanerId() {
@@ -68,7 +66,6 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
       value.cleanerOwner = this.cleanerId;
       this.prod = Object.assign({}, value);
       this.prod['currentOrder'] = this.prod._id;
-      console.log(this.prod);
       delete this.prod._id;
       this.crud.post('product', this.prod).then((v: any) => {
           order['productId'] = v._id;
@@ -81,9 +78,7 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
       value.cleanerOwner = this.cleanerId;
       this.prod = Object.assign({}, value);
       this.prod['currentOrder'] = this.prod._id;
-      // console.log(this.prod, this.product, order, value);
       this.prod['basketOwner'] = order.basketOwner;
-
       delete this.prod._id;
       this.crud.post(`product/${this.prod.productId}`, this.prod).then((v: any) => {
           order['productId'] = v._id;

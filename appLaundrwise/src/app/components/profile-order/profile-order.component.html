@@ -74,7 +74,7 @@
                 <div class="date">
                   {{obj.dataCollection | date: 'EEEE, MMMM d'}}
                 </div>
-                <div class="times" *ngIf="obj.dataCollection">
+                <div class="times" *ngIf="obj.collectionTime1 && obj.collectionTime2">
                   <div class="from">{{obj.collectionTime1}}</div>
                   -
                   <div class="to">{{obj.collectionTime2}}</div>
@@ -100,7 +100,8 @@
             </div>
             <div class="buttons-box" *ngIf="role === 'managerCleaner' || role === 'superManagerCleaner'">
               <button class="accept" *ngIf="obj.status === 1">Accept</button>
-              <button class="cancel">Cancel</button>
+              <button class="accept" *ngIf="obj.status === 2">Accept</button>
+              <button class="cancel" *ngIf="role === 'superManagerCleaner'">Cancel</button>
             </div>
           </div>
         </div>

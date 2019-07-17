@@ -17,7 +17,6 @@ export class ProfileComponent implements OnInit {
         this.auth.onUpDate.subscribe(( v: any ) => {
             if (v) {
                 this.user = v;
-                console.log(this.user.role);
                 this.userName = Object(v).firstName + ' ' + Object(v).lastName;
             }
         });
