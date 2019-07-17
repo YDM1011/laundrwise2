@@ -88,8 +88,11 @@ const validate = (req,res,cleaner,backendApp)=>{
                     if (e) return rj(e);
                     if (!r) return rj('not found');
                     if (r) {
-                        searchLess(res,r,cleaner,backendApp,minCountOfLog=>{
-                            let loger = minCountOfLog ? minCountOfLog.owner || r.owner : r.owner;
+                        searchLess(req,res,r,cleaner,backendApp,()=>{
+                            let loger;
+                            if (req.ActionLog && req.ActionLog.triger){
+                                loger = req.ActionLog.triger ? req.ActionLog.triger.owner || r.owner : r.owner;
+                            }
                             req.body.managerCleanerOwner = loger;
                             rs(true)
                         })
@@ -113,22 +116,20 @@ const ActionLogUpdate = (id, data, backendApp)=>{
     })
 };
 
-let triger = null;
-const searchLess = (res,log,cleaner,backendApp,next)=>{
+const searchLess = (req,res,log,cleaner,backendApp,next)=>{
     backendApp.mongoose.model('ActionLog')
         .findOne({cleaner:cleaner._id, ordersOpenCount: { $lt: log.ordersOpenCount } })
         .select('ordersOpenCount _id owner')
         .exec((e,r)=>{
             if (e) return res.serverError(e);
-            if (!r) next(triger);
+            if (!r) next();
             if (r) {
-                triger = Object.assign({},r);
-                console.log("triger",triger);
-                searchLess(res,r,cleaner,backendApp,next)
+                req['ActionLog'] = {triger: r};
+                console.log("triger",req.ActionLog.triger);
+                searchLess(req,res,r,cleaner,backendApp,next)
             }
         });
 };
-
 const checkRole = (req, backendApp) => {
     return new Promise((rs,rj)=>{
         const error = 'Role is invalid';
@@ -138,7 +139,7 @@ const checkRole = (req, backendApp) => {
             if (!r) return rj(error);
             if (r) return rs(r);
         };
-        console.log()
+        console.log();
         client.findOne({_id:req.user._id}).exec(action);
     });
 };

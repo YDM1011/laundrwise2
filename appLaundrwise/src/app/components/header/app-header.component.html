@@ -49,7 +49,7 @@
       </nav>
       <a [routerLink]="'/orders'" class="color nav-btn" *ngIf="!me || me && me.role === 'client' || !me.role">Make order</a>
       <a *ngIf="!islogin" (click)="openLoginDialog()" class="nav-btn">Log in</a>
-      <a *ngIf="islogin && me" class="nav-btn" [matMenuTriggerFor]="menu">
+      <a *ngIf="islogin && me" class="nav-btn name" [matMenuTriggerFor]="menu">
         {{name}}
       </a>
       <mat-menu class="dropmenu" #menu="matMenu" xPosition="before">

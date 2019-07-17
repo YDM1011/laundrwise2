@@ -23,6 +23,7 @@ export class CleanersEditComponent implements OnInit, OnChanges {
     ngOnInit() {
         this.id = this.route.snapshot.paramMap.get('id');
 
+
         this.crud.getNoCache('cleaner', this.id).then((v: any) => {
             this.initDataPost = v;
             this.cleaner = Object.assign({}, v);
