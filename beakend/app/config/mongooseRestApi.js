@@ -114,7 +114,9 @@ module.exports = function (backendApp) {
 };
 
 const parseFileName = str =>{
-    return str.match(/\/?([^:\/\s]+)((\/\w+)*\/)([a-zA-Z]\w+)?/i)[4]
+    // return str.match(/\/?([^:\/\s]+)((\/\w+)*\/)([a-zA-Z]\w+)?/i)[4]
+    let strRout = str.split('.js')[0];
+    return strRout ? strRout.split('model/')[1] : ''
 };
 
 
