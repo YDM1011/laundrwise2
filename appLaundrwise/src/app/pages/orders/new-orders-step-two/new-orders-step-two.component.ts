@@ -11,7 +11,7 @@ import {CrudService} from "../../../crud.service";
 export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
   @Output() public stepOutput2: EventEmitter<any> = new EventEmitter();
   public me;
-  public order;
+  public order: any = {};
   public basketArray = [];
   public instruction: string;
   public minDate = new Date();
@@ -40,10 +40,10 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
       if (v) {
         this.me = Object.assign({}, v);
         this.me['instruction'] = this.instruction;
-        this.me['dpc'] = this.dataColection;
-        this.me['dpd'] = this.dataDelivery;
-        this.me['timeColection1'] = this.collectionTime1;
-        this.me['timeColection2'] = this.collectionTime2;
+        this.me['dataColection'] = this.dataColection;
+        this.me['dataDelivery'] = this.dataDelivery;
+        this.me['collectionTime1'] = this.collectionTime1;
+        this.me['collectionTime2'] = this.collectionTime2;
         this.me['deliveryTime1'] = this.deliveryTime1;
         this.me['deliveryTime2'] = this.deliveryTime2;
         this.me['deliveryInstruction'] = this.deliveryInstruciton;
@@ -52,7 +52,6 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
     this.getBasket();
   }
   ngOnChanges() {
-    console.log(this.order);
   }
   EndDateColectionChange(v) {
     const date = new Date(v.value);
@@ -74,7 +73,6 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
         orderInfo: this.me
       };
       this.auth.bascketOrder(this.order);
-      // this.onOrder.emit(obj)
     });
   }
   removeProd(prodId, i) {

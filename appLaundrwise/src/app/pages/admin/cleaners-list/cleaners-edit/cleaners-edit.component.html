@@ -11,18 +11,11 @@
       </span>
       <input type="text" name="name" [(ngModel)]="cleaner.name">
     </label>
-    <label>
-      <span class="title">
-          country
-      </span>
-      <input type="text" name="country" [(ngModel)]="cleaner.country">
-    </label>
-    <label>
-      <span class="title">
-          city
-      </span>
-      <input type="text" name="city" [(ngModel)]="cleaner.city">
-    </label>
+    <app-select-location
+            [defLocation]="cleaner"
+            (data)="cleaner.country=$event.country;
+                    cleaner.city=$event.city; formCheck()">
+    </app-select-location>
     <label>
       <span class="title">
           address

@@ -29,8 +29,6 @@ export class DeliveryEditComponent implements OnInit {
         });
     }
 
-    ngOnChanges() {}
-
     validate() {
         let isTrue = false;
         for (const key in this.delivery) {

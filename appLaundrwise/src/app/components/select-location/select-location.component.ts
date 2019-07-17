@@ -16,6 +16,7 @@ export class SelectLocationComponent implements OnInit {
   public locData: any = {country: 'Country', city: ''};
   @Output() data = new EventEmitter();
   @Input() defLocation;
+  @Input() signup;
   constructor(
       private crud: CrudService
   ) { }

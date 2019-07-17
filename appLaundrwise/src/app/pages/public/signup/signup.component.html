@@ -39,24 +39,25 @@
         Email is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+    <app-select-location (data)="countryChange($event)" [signup]="true"></app-select-location>
 
-    <mat-form-field class="signup-input" appearance="outline">
-      <mat-label>Country</mat-label>
-      <input matInput placeholder="Country" [formControl]="countryFormControl"
-             [errorStateMatcher]="matcher2">
-      <mat-error *ngIf="countryFormControl.hasError('required')">
-         Country is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+<!--    <mat-form-field class="signup-input" appearance="outline">-->
+<!--      <mat-label>Country</mat-label>-->
+<!--      <input matInput placeholder="Country" [formControl]="countryFormControl"-->
+<!--             [errorStateMatcher]="matcher2">-->
+<!--      <mat-error *ngIf="countryFormControl.hasError('required')">-->
+<!--         Country is <strong>required</strong>-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
 
-    <mat-form-field class="signup-input" appearance="outline">
-      <mat-label>City</mat-label>
-      <input matInput placeholder="City" [formControl]="cityFormControl"
-             [errorStateMatcher]="matcher2">
-      <mat-error *ngIf="cityFormControl.hasError('required')">
-        City is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+<!--    <mat-form-field class="signup-input" appearance="outline">-->
+<!--      <mat-label>City</mat-label>-->
+<!--      <input matInput placeholder="City" [formControl]="cityFormControl"-->
+<!--             [errorStateMatcher]="matcher2">-->
+<!--      <mat-error *ngIf="cityFormControl.hasError('required')">-->
+<!--        City is <strong>required</strong>-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
 
     <mat-form-field class="signup-input" appearance="outline">
       <mat-label>Address1</mat-label>

@@ -28,6 +28,7 @@ export class MyErrorStateMatcher2 implements ErrorStateMatcher {
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  public cityandcountry:any;
   myForm: FormGroup;
   matcher = new MyErrorStateMatcher();
   matcher2 = new MyErrorStateMatcher2();
@@ -75,6 +76,12 @@ export class SignupComponent implements OnInit {
     const confirmPass = group.controls.password2FormControl.value;
     return pass === confirmPass ? null : { notSame: true };
   }
+  countryChange(e) {
+    if (e) {
+      this.cityandcountry = e;
+      console.log(this.cityandcountry);
+    }
+  }
   signUp(e) {
     e.preventDefault();
     const apiUrl = 'signup';
@@ -86,8 +93,8 @@ export class SignupComponent implements OnInit {
       mobile: this.phoneFormControl.value,
       address1: this.addressFormControl.value,
       address2: this.address2FormControl.value,
-      country: this.countryFormControl.value,
-      city: this.cityFormControl.value,
+      country: this.cityandcountry.country,
+      city: this.cityandcountry.city,
       pass: this.myForm.value.passwordFormControl,
       role: 'client',
     };

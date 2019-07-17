@@ -1,6 +1,9 @@
-<span class="title">Country</span>
+<span class="title" *ngIf="!signup">Country</span>
 <div class="custom-select">
-  <p class="selected" (click)="isOpenC = !isOpenC">{{defLocation ? defLocation.country : null || location.country || 'Country'}}</p>
+  <p class="selected" *ngIf="defLocation && location.country === 'Country'" (click)="isOpenC = !isOpenC">{{defLocation.country  || 'Country'}}</p>
+  <p class="selected" *ngIf="!defLocation && location.country === 'Country'" (click)="isOpenC = !isOpenC">{{location.country  || 'Country'}}</p>
+  <p class="selected" *ngIf="!defLocation && location.country !== 'Country'" (click)="isOpenC = !isOpenC">{{location.country  || 'Country'}}</p>
+  <p class="selected" *ngIf="defLocation && location.country !== 'Country'" (click)="isOpenC = !isOpenC">{{location.country  || 'Country'}}</p>
   <ul *ngIf="isOpenC" class="option-wrap">
 <!--    <li (click)="countryChange('location')">Country</li>-->
     <li *ngFor="let item of locations" (click)="countryChange(item)">
@@ -14,7 +17,7 @@
   <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.city : null || locData.city || 'City'}}</p>
 </div>
 
-<span class="title" *ngIf="isShowCity && location">City</span>
+<span class="title" *ngIf="isShowCity && location && !signup">City</span>
 <div class="custom-select" *ngIf="isShowCity && location">
   <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.city : null || locData.city || 'City'}}</p>
   <ul *ngIf="isOpen" class="option-wrap">

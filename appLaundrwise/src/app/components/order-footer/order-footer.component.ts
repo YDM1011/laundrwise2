@@ -36,13 +36,13 @@ export class OrderFooterComponent implements OnInit, OnChanges {
             }
         });
         this.auth.onOrderConfirm.subscribe((v: any) => {
-            console.log(v)
             if (v) {
                 this.order = v;
+                console.log(this.order);
                 if (this.order.basket.length === 0 ||
                     !this.order.orderInfo.address1 ||
-                    !this.order.orderInfo.dpd ||
-                    !this.order.orderInfo.dpc) {
+                    !this.order.orderInfo.dataColection ||
+                    !this.order.orderInfo.dataDelivery) {
                     this.isValidOrder = false;
                 } else {
                     this.isValidOrder = true;
@@ -53,8 +53,8 @@ export class OrderFooterComponent implements OnInit, OnChanges {
     ngOnChanges() {
         if (this.order && (this.order.basket.length === 0 ||
             !this.order.orderInfo.address1 ||
-            !this.order.orderInfo.dpd ||
-            !this.order.orderInfo.dpc)) {
+            !this.order.orderInfo.dataColection ||
+            !this.order.orderInfo.dataDelivery)) {
             this.isValidOrder = false;
         } else {
             this.isValidOrder = true;

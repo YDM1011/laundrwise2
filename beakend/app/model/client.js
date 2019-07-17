@@ -16,6 +16,7 @@ const schem = new Schema({
     address2: String,
     country: {type: String},
     cityCode: {type: String},
+    city: {type: String},
     basketList: [],
     basketListCount: Number,
     token: String,

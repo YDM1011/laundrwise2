@@ -24,7 +24,6 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
-        console.log(v);
         this.userId = v._id;
         this.initDataProfile = v;
         this.authAccount = Object.assign({}, v);
@@ -64,6 +63,7 @@ export class MyAccountComponent implements OnInit {
   }
   addressSubmit() {
       this.crud.post('client', this.authAccount, this.userId ).then( ( v: any ) => {
+          console.log(v)
           this.addressedit = false;
           this.auth.setUser(v);
       }).catch(e => {

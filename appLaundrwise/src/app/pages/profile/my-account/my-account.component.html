@@ -50,18 +50,23 @@
             <span>{{initDataProfile.address2}}</span>
         </div>
         <form action="" (ngSubmit)="addressSubmit()" class="active" *ngIf="addressedit" (keyup)="formCheck()">
-            <label>
-                <span class="title">
-                    Country
-                </span>
-                <input type="text" name="country" placeholder="Country" [(ngModel)]="authAccount.country">
-            </label>
-            <label>
-                <span class="title">
-                    City
-                </span>
-                <input type="text" name="city" placeholder="City" [(ngModel)]="authAccount.city">
-            </label>
+            <app-select-location
+                    [defLocation]="authAccount"
+                    (data)="authAccount.country=$event.country;
+                    authAccount.city=$event.city; formCheck()">
+            </app-select-location>
+<!--            <label>-->
+<!--                <span class="title">-->
+<!--                    Country-->
+<!--                </span>-->
+<!--                <input type="text" name="country" placeholder="Country" [(ngModel)]="authAccount.country">-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                <span class="title">-->
+<!--                    City-->
+<!--                </span>-->
+<!--                <input type="text" name="cityCode" placeholder="City" [(ngModel)]="authAccount.cityCode">-->
+<!--            </label>-->
             <label>
                 <span class="title">
                     Address1

@@ -10,6 +10,10 @@
                     </div>
                     <form action="">
                         <label>
+                            <span>City</span>
+                            <input type="text" name="cityCode" [(ngModel)]="me.cityCode" (keyup)="auth.bascketOrder(order)" disabled>
+                        </label>
+                        <label>
                             <span>Address 1</span>
                             <input type="text" name="address1" [(ngModel)]="me.address1" (keyup)="auth.bascketOrder(order)">
                         </label>
@@ -19,7 +23,7 @@
 <!--                        </label>-->
                         <label for="instructions">
                             <span>Delivery Instructions</span>
-                            <textarea name="instructions" id="instructions" placeholder="Delivery instructions (optional)" [(ngModel)]="instruction" (keyup)="auth.bascketOrder(order)"></textarea>
+                            <textarea name="instructions" id="instructions" placeholder="Delivery instructions (optional)" [(ngModel)]="me.deliveryInstruciton" (keyup)="auth.bascketOrder(order)"></textarea>
                         </label>
                     </form>
                 </div>
@@ -35,17 +39,17 @@
                                 Collection Time
                             </div>
                             <mat-form-field>
-                                <input matInput [matDatepicker]="dp1" [(ngModel)]="dataColection" [min]="minDate" (dateChange)="EndDateColectionChange($event)" readonly>
+                                <input matInput [matDatepicker]="dp1" [(ngModel)]="me.dataColection" [min]="minDate" (dateChange)="EndDateColectionChange($event)" readonly>
                                 <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                                 <mat-datepicker #dp1 disabled="false"></mat-datepicker>
                             </mat-form-field>
                             <div class="time-box">
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime1" (click)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="me.collectionTime1" (dataChange)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime" [format]="24">
                                     <ngx-material-timepicker #fullTime></ngx-material-timepicker>
                                 </div> -
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime2" (click)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime1" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="me.collectionTime2" (dataChange)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime1" [format]="24">
                                     <ngx-material-timepicker #fullTime1></ngx-material-timepicker>
                                 </div>
                             </div>
@@ -55,18 +59,18 @@
                                 Delivery Time
                             </div>
                             <mat-form-field>
-                                <input matInput [matDatepicker]="dp2" [(ngModel)]="dataDelivery" (dataChange)="auth.bascketOrder(order)" [min]="minDateDelivery" disabled>
+                                <input matInput [matDatepicker]="dp2" [(ngModel)]="me.dataDelivery" (dataChange)="auth.bascketOrder(order)" [min]="minDateDelivery" disabled>
                                 <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
                                 <mat-datepicker #dp2 disabled="false"></mat-datepicker>
                             </mat-form-field>
 
                             <div class="time-box">
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime1" (click)="EndDateColectionChange($event)" [ngxTimepicker]="fullTime3" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="me.deliveryTime1" (dataChange)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime3" [format]="24">
                                     <ngx-material-timepicker #fullTime3></ngx-material-timepicker>
                                 </div> -
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime2" (click)="EndDateColectionChange($event)" [ngxTimepicker]="fullTime4" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="me.deliveryTime2" (dataChange)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime4" [format]="24">
                                     <ngx-material-timepicker #fullTime4></ngx-material-timepicker>
                                 </div>
                             </div>
@@ -104,7 +108,7 @@
                                         </div>
                                     </ng-container>
                                 </div>
-                                <textarea name="instruction-{{item._id}}" [(ngModel)]="item.instruction" (keyup)="auth.bascketOrder(order)" placeholder="Clearning instructions (optional)"></textarea>
+                                <textarea name="instruction-{{item._id}}" [(ngModel)]="me.instruction" (keyup)="auth.bascketOrder(order)" placeholder="Clearning instructions (optional)"></textarea>
                             </div>
                         </ng-container>
                     </ng-container>

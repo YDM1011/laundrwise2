@@ -39,7 +39,7 @@
                   <div class="price">{{prod.price}}$</div>
                 </div>
               </div>
-              <div class="item info-item" *ngIf="role !== 'client'">
+              <div class="item info-item">
                 <div class="item__headline">
                   <div class="title">
                     Information
@@ -55,7 +55,7 @@
                   <div *ngIf="obj.instruction">
                     Instruction: {{obj.instruction}}
                   </div>
-                  <div *ngIf="obj.instruction && role === 'managerDelivery' || role === 'superManagerDelivery'">
+                  <div *ngIf="obj.instruction && role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery' ">
                     Instruction Delivery: {{obj.deliveryInstruciton}}
                   </div>
                 </div>
