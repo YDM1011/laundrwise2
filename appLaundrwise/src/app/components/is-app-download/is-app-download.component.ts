@@ -13,8 +13,8 @@ export class IsAppDownloadComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.crud.get('isCanAppDownload').then(v => {
-      this.isshow = Boolean(v);
+    this.crud.get('setting').then((v: any) => {
+      this.isshow = v.isAppBlock;
     }).catch(e => {});
   }
 

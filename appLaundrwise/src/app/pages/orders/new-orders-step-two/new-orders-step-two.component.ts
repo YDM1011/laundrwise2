@@ -22,8 +22,8 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
 
   public collectionTime1: string;
   public collectionTime2: string;
-  public dataColection: any = this.minDate;
-  public minDateDelivery = new Date(this.dataColection.getFullYear(), this.dataColection.getMonth(), this.dataColection.getDate() + 1);
+  public dataCollection: any = this.minDate;
+  public minDateDelivery = new Date(this.dataCollection.getFullYear(), this.dataCollection.getMonth(), this.dataCollection.getDate() + 1);
   public deliveryTime1: string;
   public deliveryTime2: string;
   public dataDelivery: any = this.minDateDelivery;
@@ -40,7 +40,7 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
       if (v) {
         this.me = Object.assign({}, v);
         this.me['instruction'] = this.instruction;
-        this.me['dataColection'] = this.dataColection;
+        this.me['dataCollection'] = this.dataCollection;
         this.me['dataDelivery'] = this.dataDelivery;
         this.me['collectionTime1'] = this.collectionTime1;
         this.me['collectionTime2'] = this.collectionTime2;
@@ -61,6 +61,7 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
       }
     }
     this.minDateDelivery = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+    this.me.dataDelivery = this.minDateDelivery;
     this.auth.bascketOrder(this.order);
   }
   getBasket() {

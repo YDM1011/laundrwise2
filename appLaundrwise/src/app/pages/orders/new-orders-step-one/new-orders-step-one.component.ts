@@ -27,7 +27,7 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges, OnDestroy {
   ) {}
 
   ngOnInit() {
-    if (this.chooseCompany) {
+    if (this.chooseCompany && this.chooseCompany.category.length > 0) {
         this.dataParams.cleanerId = this.chooseCompany._id;
         this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
         this.dataParams.type = this.defoultCategoryRouter;
@@ -36,12 +36,14 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy() {}
   ngOnChanges() {}
   companyChange(e) {
-    const prop = {};
-    this.chooseCompany = e;
-    prop['cleanerId'] = this.chooseCompany._id;
-    this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
-    prop['type'] = this.defoultCategoryRouter;
-    this.dataParams = prop;
+    if (e.category.length > 0) {
+      const prop = {};
+      this.chooseCompany = e;
+      prop['cleanerId'] = this.chooseCompany._id;
+      this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
+      prop['type'] = this.defoultCategoryRouter;
+      this.dataParams = prop;
+    }
   }
 
   changeCategory(v) {

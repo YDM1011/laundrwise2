@@ -41,7 +41,7 @@ export class OrderFooterComponent implements OnInit, OnChanges {
                 console.log(this.order);
                 if (this.order.basket.length === 0 ||
                     !this.order.orderInfo.address1 ||
-                    !this.order.orderInfo.dataColection ||
+                    !this.order.orderInfo.dataCollection ||
                     !this.order.orderInfo.dataDelivery) {
                     this.isValidOrder = false;
                 } else {
@@ -53,7 +53,7 @@ export class OrderFooterComponent implements OnInit, OnChanges {
     ngOnChanges() {
         if (this.order && (this.order.basket.length === 0 ||
             !this.order.orderInfo.address1 ||
-            !this.order.orderInfo.dataColection ||
+            !this.order.orderInfo.dataCollection ||
             !this.order.orderInfo.dataDelivery)) {
             this.isValidOrder = false;
         } else {
@@ -72,10 +72,10 @@ export class OrderFooterComponent implements OnInit, OnChanges {
         };
         const objBasket = {
             status: 1,
-            dpc: this.order.orderInfo.dpc,
-            dpd: this.order.orderInfo.dpd,
-            timeColection1: this.order.orderInfo.timeColection1,
-            timeColection2: this.order.orderInfo.timeColection2,
+            dataCollection: this.order.orderInfo.dataCollection,
+            dataDelivery: this.order.orderInfo.dataDelivery,
+            collectionTime1: this.order.orderInfo.collectionTime1,
+            collectionTime2: this.order.orderInfo.collectionTime2,
             deliveryTime1: this.order.orderInfo.deliveryTime1,
             deliveryTime2: this.order.orderInfo.deliveryTime2,
             deliveryInstruction: this.order.orderInfo.deliveryInstruciton,
