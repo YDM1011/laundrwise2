@@ -5,6 +5,10 @@
 </div>
 <form (submit)="addPost()" class="cleaner-form">
   <label>
+    <span>Logo</span>
+    <app-upload style="margin-bottom: 10px" (onFs)="fsData($event)" [multiple]="false"></app-upload>
+  </label>
+  <label>
     <span>Name</span>
     <input type="text" placeholder="Name" [(ngModel)]="cleaner.name" name="title">
   </label>

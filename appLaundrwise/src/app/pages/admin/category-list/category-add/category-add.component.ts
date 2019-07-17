@@ -27,7 +27,7 @@ export class CategoryAddComponent implements OnInit {
         this.category['cleaner'] = this.cleanerId;
         this.category.name = this.category.name.toLowerCase();
         this.crud.post('category', this.category, null, ['category']).then(v => {
-            this.router.navigate(['/admin/category']);
+            this.router.navigate(['/admin/cleaners']);
         });
     }
     fsData(data) {

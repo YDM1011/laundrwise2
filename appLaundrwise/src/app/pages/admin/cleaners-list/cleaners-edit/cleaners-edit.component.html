@@ -3,8 +3,17 @@
     Edit Cleaner
   </div>
 </div>
-<ng-container *ngIf="cleaner">
+<ng-container *ngIf="cleaner && loaded">
   <form (submit)="userSubmit()" class="active cleaner-form" (keyup)="formCheck()">
+    <label>
+      <span>Logo</span>
+      <app-upload style="margin-bottom: 10px" *ngIf="!cleaner.images" (onFs)="fsData($event)" [multiple]="false"></app-upload>
+    </label>
+    {{cleaner.images}}
+    <ng-container  class="images" *ngIf="cleaner.images">
+      <app-img [img]="cleaner.images"></app-img>
+      <button type="button" (click)="removeImg()" class="remove-img">remove img</button>
+    </ng-container>
     <label>
       <span class="title">
           Name

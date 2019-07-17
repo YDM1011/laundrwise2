@@ -85,7 +85,7 @@ export class CategoryEditComponent implements OnInit {
         this.crud.post('category', this.category, this.id, ['category'] ).then( ( v: any ) => {
             this.initDataPost = v;
             this.category = Object.assign({}, v);
-            this.router.navigate(['/admin/category']);
+            this.router.navigate(['/admin/cleaners']);
         }).catch(e => {
 
         });

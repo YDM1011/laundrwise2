@@ -18,7 +18,7 @@
         <input type="text" name="des" [(ngModel)]="product.des">
     </label>
 
-      <app-upload style="margin-bottom: 10px" *ngIf="remImg" (onFs)="fsData($event)" [multiple]="true"></app-upload>
+      <app-upload style="margin-bottom: 10px" *ngIf="remImg" (onFs)="fsData($event)" [multiple]="false"></app-upload>
 
       <ng-container  class="images" *ngIf="!remImg">
           <app-img [img]="product.images"></app-img>

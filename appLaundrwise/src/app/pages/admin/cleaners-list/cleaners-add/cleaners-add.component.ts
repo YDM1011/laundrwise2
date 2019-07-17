@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CrudService} from "../../../../crud.service";
 import {Cleaner, CleanerObj} from "../cleaner";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-cleaners-add',
@@ -11,7 +12,7 @@ import {Router} from "@angular/router";
 export class CleanersAddComponent implements OnInit {
     public cityandcountry: any;
     public cleaner: Cleaner = new CleanerObj();
-
+    public remImg: boolean = false;
     constructor(
         private router: Router,
         private crud: CrudService
@@ -39,5 +40,9 @@ export class CleanersAddComponent implements OnInit {
     pullCategory(elems) {
         this.cleaner.category = this.crud.arrObjToArrId(elems);
         console.log(this.crud.arrObjToArrId(elems));
+    }
+
+    fsData(data) {
+        this.cleaner.images = data.file;
     }
 }

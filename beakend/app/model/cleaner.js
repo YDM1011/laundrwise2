@@ -6,6 +6,7 @@ const schem = new Schema({
     country: {type: String, required: [true, "Cleaner country is required"]},
     city: {type: String, required: [true, "Cleaner city is required"]},
     address: {type: String, required: [true, "Cleaner address is required"]},
+    images: {type: String},
     category: [{
         type: Schema.Types.ObjectId,
         ref: "Category"
