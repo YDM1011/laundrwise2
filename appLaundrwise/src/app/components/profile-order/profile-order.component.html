@@ -1,15 +1,21 @@
 <mat-accordion>
   <mat-expansion-panel>
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header class="panel-headline">
       <mat-panel-title>
         <div class="status" [innerHTML]="obj.status | status | safeHTML"></div>
       </mat-panel-title>
       <mat-panel-description>
-        <div class="date" *ngIf="obj.dpc && obj.dpd">
+        <div class="empty"></div>
+        <div class="company-description">
+          <span class="name">{{obj.cleanerOwner.name}}</span>
+        </div>
+        <div class="date-description" *ngIf="obj.dpc && obj.dpd">
             <span class="from">
               {{obj.dpc | date: 'd.MM.yy'}}
             </span>
-          -
+          <span class="text-el">
+            -
+          </span>
           <span class="to">
               {{obj.dpd | date: 'd.MM.yy'}}
           </span>
@@ -24,9 +30,6 @@
                 <div class="item__headline">
                   <div class="title">
                     Items
-                  </div>
-                  <div class="company">
-                    <span class="name">{{obj.cleanerOwner.name}}</span>
                   </div>
                 </div>
                 <div class="item__element" *ngFor="let prod of obj.products">
@@ -47,13 +50,13 @@
                     Tel: {{obj.mobile}}
                   </div>
                   <div *ngIf="obj.email">
-                    email: {{obj.email}}
+                    Email: {{obj.email}}
                   </div>
-                  <div *ngIf="obj.instruction && role === 'managerCleaner' || role === 'superManagerCleaner'">
+                  <div *ngIf="obj.instruction">
                     Instruction: {{obj.instruction}}
                   </div>
                   <div *ngIf="obj.instruction && role === 'managerDelivery' || role === 'superManagerDelivery'">
-                    Instruction: {{obj.deliveryInstruciton}}
+                    Instruction Delivery: {{obj.deliveryInstruciton}}
                   </div>
                 </div>
               </div>
@@ -91,7 +94,7 @@
                   <div class="to">22:00</div>
                 </div>
                 <div class="address">
-                  {{obj.address1 !== obj.address2 ? obj.address2 : obj.address1}}
+                  {{obj.address1}}
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormNotification, FormNotificationObj} from './form-notification';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
@@ -29,7 +29,7 @@ export class FormNotificationComponent implements OnInit {
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() entity: string = '';
-
+  @ViewChild('form1', null) form1;
   public form: FormNotification = new FormNotificationObj();
 
   constructor(
@@ -39,7 +39,7 @@ export class FormNotificationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-        this.form['entity'] = this.entity;
+      this.form['entity'] = this.entity;
       this.auth.onUpDate.subscribe(( v: any ) => {
           if (v) {
             this.form = new FormNotificationObj(v);
@@ -54,19 +54,23 @@ export class FormNotificationComponent implements OnInit {
   }
 
   formSend() {
-    let obj:any = this.getFormData();
+    const obj: any = this.getFormData();
     console.log(obj);
-    if (!obj) return Swal.fire('Something broken', '', 'error');
-
-    this.crud.post('adminNotification', obj).then((value) => {
-        this.wsService.send(WS.SEND.NOTIFICATION, 'admin',  { data: obj.entity });
-        Swal.fire('Success', 'Message sended', 'success');
-        this.formClear();
-    });
+    if (!obj.mes) {
+        return Swal.fire('Something broken', '', 'error')
+    } else {
+        this.crud.post('adminNotification', obj).then((value) => {
+            this.wsService.send(WS.SEND.NOTIFICATION, 'admin',  { data: obj.entity });
+            Swal.fire('Success', 'Message sended', 'success');
+            this.formClear();
+        });
+    }
   }
 
   formClear() {
       this.form.mes = '';
+      this.form1.resetForm();
+      this.mesFormControl.reset();
   }
 
 }

@@ -6,7 +6,7 @@
     <p *ngIf="description">
       Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula.
     </p>
-    <form (submit)="formSend()">
+    <form #form1="ngForm" (submit)="formSend()">
       <mat-form-field appearance="outline">
         <mat-label>Name*</mat-label>
         <input matInput placeholder="Name" [formControl]="nameFormControl"
@@ -37,7 +37,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Message*</mat-label>
         <textarea matInput placeholder="Message" [formControl]="mesFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)]="form.mes" name="mes"></textarea>
+                  [errorStateMatcher]="matcher" [(ngModel)]="form.mes"  name="mes"></textarea>
         <mat-error *ngIf="mesFormControl.hasError('required')">
           Message is <strong>required</strong>
         </mat-error>

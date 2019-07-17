@@ -5,50 +5,22 @@
 </div>
 
 <section class="blog" id="blog">
-    <div class="blog__container" data-jplist-group="blogs">
-        <a [routerLink]="'/blog/'+id" class="blog__container-item">
-            <div class="img">
-                <img src="../assets/images/blog.jpeg" alt="">
-            </div>
-            <div class="title">Something</div>
-            <div class="date">01/05/19</div>
-            <div class="description">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </div>
-        </a>
-        <a [routerLink]="'/blog/'+id" class="blog__container-item">
-            <div class="img">
-                <img src="../assets/images/blog.jpeg" alt="">
-            </div>
-            <div class="title">Something</div>
-            <div class="date">01/05/19</div>
-            <div class="description">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </div>
-        </a>
-        <a [routerLink]="'/blog/'+id"  class="blog__container-item">
-            <div class="img">
-                <img src="../assets/images/blog.jpeg" alt="">
-            </div>
-            <div class="title">Something</div>
-            <div class="date">01/05/19</div>
-            <div class="description">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </div>
-        </a>
-        <a [routerLink]="'/blog/'+id"  class="blog__container-item">
-            <div class="img">
-                <img src="../assets/images/blog.jpeg" alt="">
-            </div>
-            <div class="title">Something</div>
-            <div class="date">01/05/19</div>
-            <div class="description">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </div>
-        </a>
-    </div>
+    <ng-container *ngIf="allBlogs.length === 0 || !allBlogs">
+        <div class="blog__container">
+            <p class="sorry">
+                Right now we don't have any blogs
+            </p>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="allBlogs.length > 0">
+        <div class="blog__container" data-jplist-group="blogs">
+            <ng-container  *ngFor="let item of allBlogs">
+                <app-blog-post [itemPost]="item"></app-blog-post>
+            </ng-container>
+        </div>
+    </ng-container>
 
-    <div class="more">
+    <div class="more" *ngIf="allBlogs.length > 8">
         <div class="more-btn">
             <img src="../assets/images/more.svg" alt="">
             <div class="text">

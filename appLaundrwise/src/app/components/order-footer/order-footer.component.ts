@@ -36,6 +36,7 @@ export class OrderFooterComponent implements OnInit, OnChanges {
             }
         });
         this.auth.onOrderConfirm.subscribe((v: any) => {
+            console.log(v)
             if (v) {
                 this.order = v;
                 if (this.order.basket.length === 0 ||
@@ -50,7 +51,6 @@ export class OrderFooterComponent implements OnInit, OnChanges {
         });
     }
     ngOnChanges() {
-        console.log(this.order);
         if (this.order && (this.order.basket.length === 0 ||
             !this.order.orderInfo.address1 ||
             !this.order.orderInfo.dpd ||

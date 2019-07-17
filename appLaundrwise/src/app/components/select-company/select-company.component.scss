@@ -12,30 +12,35 @@
   position: relative;
   font-family: Montserrat-Regular, sans-serif;
   font-weight: 500;
-  padding: 10px 16px;
   margin: 0 0 20px;
   border: 1px solid #D9D9D9;
   border-radius: 36px;
+  min-width: 240px;
   p{
     margin: 0;
     font-size: 12px;
     line-height: 17px;
+    padding: 10px 16px;
   }
   ul{
     border-radius: 14px;
     border: 1px solid #D9D9D9;
-    padding: 10px 0;
+    padding: 5px 0;
+    margin: 5px auto;
     overflow-x: hidden;
     max-height: 130px;
     li{
       list-style: none;
-      padding: 10px 25px;
+      padding: 10px 16px;
       cursor: pointer;
       &:hover{
         background: #f3f3f3;
       }
     }
   }
+}
+.selected {
+  cursor: pointer;
 }
 .option-wrap{
   position: absolute;

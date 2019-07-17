@@ -53,17 +53,24 @@ body{
   box-shadow: 0 0 20px rgba(54, 81, 103, 0.3);
 }
 
-//body{
-//  padding-top: 90px;
-//}
-
-//@media (max-width: 768px) {
-  //padding-top: 60px;
-//}
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-  color: #00B7FF!important;
+  color: #00B7FF;
 }
-
+.mat-form-field-appearance-outline .mat-form-field-outline-thick{
+  color: #00B7FF;
+}
 app-my-profile{
   width: 100%;
+}
+
+app-init-layout{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+app-cleaners, app-blogs{
+  margin: 0 0 auto;
 }

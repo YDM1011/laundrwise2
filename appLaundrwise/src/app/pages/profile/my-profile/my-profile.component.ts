@@ -11,6 +11,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
   public user: any;
   public cleaner: any;
   public allOrdersUser: any = [];
+  public allOrdersSuperManager: any = [];
   public allOrdersManager: any = [];
   constructor(
       private auth: AuthService,
@@ -33,13 +34,26 @@ export class MyProfileComponent implements OnInit, OnChanges {
             this.cleaner = cleaner[0];
             if (cleaner[0]) {
               const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
-              const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id});
+              const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id, status: {$ne: 0}});
               this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&sort={"date": "-1"}`).then((basket: any) => {
-                this.allOrdersManager = basket;
-                console.log(this.allOrdersManager)
+                this.allOrdersSuperManager = basket;
               });
             }
           });
+        }
+        if (this.user.role === 'managerCleaner') {
+          console.log(this.user);
+          // const query = JSON.stringify({'superManager': this.user._id});
+          // this.crud.getNoCache(`cleaner?query=${query}`).then((cleaner: any) => {
+          //   this.cleaner = cleaner[0];
+          //   if (cleaner[0]) {
+          //     const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+          //     const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id});
+          //     this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&sort={"date": "-1"}`).then((basket: any) => {
+          //       this.allOrdersSuperManager = basket;
+          //     });
+          //   }
+          // });
         }
       }
     });

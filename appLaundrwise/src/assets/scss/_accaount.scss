@@ -252,6 +252,34 @@
     line-height: 17px;
   }
 }
+.panel-headline{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.company-description{
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  font-family: Montserrat-Light, sans-serif;
+  font-size: 14px;
+  padding: 0 7px;
+  span{
+
+  }
+}
+.date-description{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  span{
+    font-size: 12px;
+  }
+  .text-el{
+    line-height: 3px;
+  }
+}
 .orders{
   width: 100%;
   h2{
@@ -362,14 +390,14 @@
           }
         }
         .time{
-          padding: 20px;
+          //padding: 20px;
           &__headline{
             font-size: 14px;
             line-height: 17px;
             text-transform: uppercase;
             border-bottom: 1px solid #D9D9D9;
             padding: 5px;
-            width: 80%;
+            width: 100%;
             margin-top: 10px;
           }
           &__box{
@@ -773,6 +801,14 @@
 
 
 @media (min-width: 768px) {
+  .date-description{
+    flex-direction: row;
+    .text-el{
+      padding: 0 3px;
+    }
+  }
+  .company-description{
+  }
   .account-container{
     padding: 0 40px;
   }

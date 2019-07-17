@@ -13,11 +13,10 @@
                             <span>Address 1</span>
                             <input type="text" name="address1" [(ngModel)]="me.address1" (keyup)="auth.bascketOrder(order)">
                         </label>
-
-                        <label>
-                            <span>Address 2</span>
-                            <input type="text" name="address2" [(ngModel)]="me.address2" (keyup)="auth.bascketOrder(order)">
-                        </label>
+<!--                        <label>-->
+<!--                            <span>Address 2</span>-->
+<!--                            <input type="text" name="address2" [(ngModel)]="me.address2" (keyup)="auth.bascketOrder(order)">-->
+<!--                        </label>-->
                         <label for="instructions">
                             <span>Delivery Instructions</span>
                             <textarea name="instructions" id="instructions" placeholder="Delivery instructions (optional)" [(ngModel)]="instruction" (keyup)="auth.bascketOrder(order)"></textarea>
@@ -46,7 +45,7 @@
                                     <ngx-material-timepicker #fullTime></ngx-material-timepicker>
                                 </div> -
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime2" (change)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime1" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="collectionTime2" (click)="auth.bascketOrder(order)" [ngxTimepicker]="fullTime1" [format]="24"  readonly>
                                     <ngx-material-timepicker #fullTime1></ngx-material-timepicker>
                                 </div>
                             </div>
@@ -63,11 +62,11 @@
 
                             <div class="time-box">
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime1" (change)="EndDateColectionChange($event)" [ngxTimepicker]="fullTime3" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime1" (click)="EndDateColectionChange($event)" [ngxTimepicker]="fullTime3" [format]="24"  readonly>
                                     <ngx-material-timepicker #fullTime3></ngx-material-timepicker>
                                 </div> -
                                 <div class="time-item">
-                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime2" (change)="EndDateColectionChange($event)" [ngxTimepicker]="fullTime4" [format]="24"  readonly>
+                                    <input class="time-input" placeholder="00:00" aria-label="24hr format" [(ngModel)]="deliveryTime2" (click)="EndDateColectionChange($event)" [ngxTimepicker]="fullTime4" [format]="24"  readonly>
                                     <ngx-material-timepicker #fullTime4></ngx-material-timepicker>
                                 </div>
                             </div>

@@ -12,8 +12,8 @@ export class SelectLocationComponent implements OnInit {
   public isShowCity: boolean = false;
   public isOpenC: boolean = false;
   public isOpen: boolean = false;
-  public location: ILocation = {country: 'country', city: []};
-  public locData: any = {country: 'country', city: ''};
+  public location: ILocation = {country: 'Country', city: []};
+  public locData: any = {country: 'Country', city: ''};
   @Output() data = new EventEmitter();
   @Input() defLocation;
   constructor(
@@ -28,7 +28,7 @@ export class SelectLocationComponent implements OnInit {
 
   validate(e) {
     if (e) {
-      if (e !== 'country') return true;
+      if (e !== 'Country') return true;
     }
     return false;
   }

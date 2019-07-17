@@ -4,120 +4,30 @@
   </div>
 </div>
 <section class="blog" id="blog">
-  <div class="blog__container" data-jplist-group="blogs">
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
+    <ng-container *ngIf="allCleaners.length === 0 || !allCleaners">
+        <div class="blog__container">
+            <p class="sorry">
+                Right now we don't have any cleaners
+            </p>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="allCleaners.length > 0">
+      <div class="blog__container" data-jplist-group="blogs">
+          <a href="" class="blog__container-item" *ngFor="let item of allCleaners">
+              <div class="img">
+                  <!--          <img src="../assets/images/blog.jpeg" alt="">-->
+                  <app-img [img]="item.images"></app-img>
+              </div>
+              <div class="title">{{item.name}}</div>
+              <div class="date">{{item.date | date: 'dd/MM/yy'}}</div>
+              <div class="description" *ngIf="item.description">
+                  {{item.description}}
+              </div>
+          </a>
       </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-    <a href="" class="blog__container-item">
-      <div class="img">
-        <img src="../assets/images/blog.jpeg" alt="">
-      </div>
-      <div class="title">Something</div>
-      <div class="date">01/05/19</div>
-      <div class="description">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-      </div>
-    </a>
-  </div>
+  </ng-container>
 
-  <div class="more">
+  <div class="more" *ngIf="allCleaners.length > 8">
     <div class="more-btn">
       <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M8.96283 17.9628C4.02055 17.9628 0 13.9422 0 8.99994C0 4.05766 4.02055 0.0371094 8.96283 0.0371094C13.9051 0.0371094 17.9257 4.05823 17.9257 8.99994C17.9257 9.28275 17.6965 9.51246 17.4131 9.51246C17.1303 9.51246 16.9006 9.28333 16.9006 8.99994C16.9006 4.6227 13.3395 1.061 8.96225 1.061C4.58444 1.061 1.02332 4.6227 1.02332 8.99994C1.02332 13.3772 4.58444 16.9383 8.96225 16.9383C11.7627 16.9383 14.3859 15.4371 15.8086 13.0211C15.9523 12.7769 16.2663 12.6967 16.5099 12.8398C16.7534 12.983 16.8342 13.2969 16.6917 13.5411C15.0866 16.2682 12.1246 17.9628 8.96283 17.9628Z" fill="#13AAFF"/>

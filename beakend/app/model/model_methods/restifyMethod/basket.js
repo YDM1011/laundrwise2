@@ -112,6 +112,7 @@ const ActionLogUpdate = (id, data, backendApp)=>{
         })
     })
 };
+
 let triger = null;
 const searchLess = (res,log,cleaner,backendApp,next)=>{
     backendApp.mongoose.model('ActionLog')
@@ -122,7 +123,8 @@ const searchLess = (res,log,cleaner,backendApp,next)=>{
             if (!r) next(triger);
             if (r) {
                 triger = Object.assign({},r);
-                searchLess(r,cleaner,backendApp,next)
+                console.log("triger",triger);
+                searchLess(res,r,cleaner,backendApp,next)
             }
         });
 };
