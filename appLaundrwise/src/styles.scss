@@ -59,6 +59,17 @@ body{
 .mat-form-field-appearance-outline .mat-form-field-outline-thick{
   color: #00B7FF;
 }
+
+.mat-form-field-appearance-outline .mat-form-field-outline-start{
+  position: absolute!important;
+  border-radius: 25px!important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-end{
+  border-radius: 25px!important;
+}
 app-my-profile{
   width: 100%;
 }
