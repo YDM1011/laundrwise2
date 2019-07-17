@@ -31,7 +31,7 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
 
   constructor(
       private router: Router,
-      private auth: AuthService,
+      public auth: AuthService,
       private crud: CrudService,
   ) {}
 
