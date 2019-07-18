@@ -1,22 +1,20 @@
-<ng-container>
+<app-loading *ngIf="!loading"></app-loading>
+<ng-container *ngIf="loading">
 
 <!--super manager-->
     <div class="orders" *ngIf="allOrdersSuperManager && user.role === 'superManagerCleaner'">
         <h2>
             Orders
         </h2>
-        <ng-container *ngFor="let item of allOrdersSuperManager">
-            <app-profile-order [obj]="item" [role]="user.role"></app-profile-order>
-        </ng-container>
-    </div>
-    
-    <ng-container *ngIf="allOrdersSuperManager.length === 0 && user.role === 'superManagerCleaner'">
-        <div class="non-orders">
-            Now you don't have orders
+        <div class="panel-orders">
+            <a routerLinkActive="active" [routerLink]="'all'" class="panel-item">All orders({{countOrders.all}})</a>
+            <a routerLinkActive="active" [routerLink]="'new'" class="panel-item">New orders({{countOrders.new}})</a>
+            <a routerLinkActive="active" [routerLink]="'waiting'" class="panel-item">Waiting orders({{countOrders.waiting}})</a>
+            <a routerLinkActive="active" [routerLink]="'done'" class="panel-item">Done orders({{countOrders.done}})</a>
         </div>
-    </ng-container>
+        <router-outlet></router-outlet>
+    </div>
 <!-- end super manager-->
-
 
 <!--manager-->
     <div class="orders" *ngIf="allOrdersManager && user.role === 'managerCleaner'">

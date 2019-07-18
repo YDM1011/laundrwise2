@@ -99,17 +99,11 @@
               </div>
             </div>
             <div class="buttons-box" *ngIf="role === 'managerCleaner' || role === 'superManagerCleaner'">
-              <button class="accept" *ngIf="obj.status === 1 && role === 'superManagerCleaner'" [matMenuTriggerFor]="managers">Assign</button>
+              <button class="accept" *ngIf="obj.status === 1 && role === 'superManagerCleaner'" (click)="openModal()">Assign</button>
               <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner'">Choose Delivery</button>
               <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner'">In progress</button>
               <button class="accept" *ngIf="obj.status === 3 && role === 'managerCleaner'">Done</button>
               <button class="cancel" *ngIf="role === 'superManagerCleaner'">Cancel</button>
-    
-                <mat-menu #managers="matMenu">
-                    <button mat-menu-item>Item 1</button>
-                    <button mat-menu-item>Item 2</button>
-                </mat-menu>
-              
             </div>
           </div>
         </div>
@@ -118,11 +112,20 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-
 <div class="modal-assign" *ngIf="modal">
-    <div class="close">
+    <div class="modal-block">
         <div class="main-block">
-            <h2>modal block</h2>
+            <h2>Assign order to manager</h2>
+            <div class="block">
+                <mat-radio-group class="buttons" aria-label="Select an option" [(ngModel)]="managerChoose">
+                    <mat-radio-button class="buttons-item" *ngFor="let item of cleaner" value="{{item._id}}">{{item.login}}</mat-radio-button>
+                </mat-radio-group>
+                <div class="block-btn">
+                    <button class="cancel" (click)="openModal()">Close</button>
+                    <button class="accept" [class.active]="managerChoose" (click)="assigneToManager()">Assign</button>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="removeModal" (click)="openModal()"></div>
 </div>
