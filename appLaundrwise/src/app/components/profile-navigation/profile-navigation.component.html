@@ -1,5 +1,5 @@
 <a [routerLink]="'/profile/dashboard'" class="navigation-page__item" routerLinkActive="active"
-   *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery'">
+   *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery' || user.role === 'managerDelivery' || user.role === 'managerCleaner'">
   Dashboard
 </a>
 <a [routerLink]="'/profile'" class="navigation-page__item" routerLinkActive="active"
@@ -9,7 +9,6 @@
 <a [routerLink]="'/profile/account'" class="navigation-page__item" routerLinkActive="active">
   My account
 </a>
-
 <!--<a [routerLink]="'/profile/bonuses'" class="navigation-page__item" routerLinkActive="active"-->
 <!--   *ngIf="!user.role">-->
 <!--  Bonuses and sales-->
