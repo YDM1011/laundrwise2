@@ -5,7 +5,9 @@
   <div class="infoedit">
     <div class="infoedit__box" *ngIf= "initManager">
       <ng-container *ngFor="let item of initManager">
+        <ng-container *ngIf="item">
         <app-collaborators-item [obj]="item" [idCleaner]="cleaner._id"></app-collaborators-item>
+        </ng-container>
       </ng-container>
     </div>
         <div class="infoedit__box" *ngIf="newColabIf">

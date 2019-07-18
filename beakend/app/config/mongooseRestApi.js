@@ -89,6 +89,7 @@ module.exports = function (backendApp) {
         console.log("Schema", schem, req.erm.model.modelName);
         if (schem) {
             try {
+                console.log("DELEEEET")
                 schem.PreDel(req, res, next, backendApp);
             } catch (e) {
                 next()

@@ -16,6 +16,9 @@ export class MyAccountComponent implements OnInit {
   public authAccount: AuthAccount = new AuthAccountObj();
   public initDataProfile: AuthAccount = new AuthAccountObj();
 
+  public cleaner:any;
+  public initCleaner:any;
+  public isSMC: boolean = false;
   constructor(
       public crud: CrudService,
       public auth: AuthService
@@ -27,6 +30,12 @@ export class MyAccountComponent implements OnInit {
         this.userId = v._id;
         this.initDataProfile = v;
         this.authAccount = Object.assign({}, v);
+        if (this.authAccount.role == 'superManagerCleaner' ){
+            this.getCleaner(this.userId);
+            this.isSMC = true
+        } else {
+            this.isSMC = false
+        }
       }
     });
   }
@@ -39,10 +48,17 @@ export class MyAccountComponent implements OnInit {
     this.addressedit = !this.addressedit;
   }
 
-  validate() {
+  // validate() {
+  //   let isTrue = false;
+  //   for (let key in this.authAccount) {
+  //     if (this.initDataProfile[key] !== this.authAccount[key]) isTrue = true;
+  //   }
+  //   return isTrue;
+  // }
+  validate(def, initial) {
     let isTrue = false;
-    for (let key in this.authAccount) {
-      if (this.initDataProfile[key] !== this.authAccount[key]) isTrue = true;
+    for (let key in initial) {
+      if (def[key] !== initial[key]) isTrue = true;
     }
     return isTrue;
   }
@@ -50,8 +66,8 @@ export class MyAccountComponent implements OnInit {
   btnBlok(is) {
     this.isBlok = is;
   }
-  formCheck() {
-    this.btnBlok(this.validate());
+  formCheck(def = this.initDataProfile, initial = this.authAccount) {
+    this.btnBlok(this.validate(def, initial));
   }
   userSubmit() {
     this.crud.post('client', this.authAccount, this.userId ).then( ( v: any ) => {
@@ -69,5 +85,26 @@ export class MyAccountComponent implements OnInit {
       }).catch(e => {
 
       });
+  }
+  cleanerSubmit() {
+      this.crud.post('cleaner', this.initCleaner, this.initCleaner._id ).then( ( v: any ) => {
+          this.addressedit = false;
+          this.cleaner = v;
+          this.initCleaner = Object.assign({}, this.cleaner);
+      }).catch(e => {
+
+      });
+  }
+
+  getCleaner(managerId){
+    let query = JSON.stringify({
+        superManager: managerId
+    });
+    this.crud.getNoCache('cleaner', '', `?query=${query}`).then((v:any)=>{
+      if(v){
+        this.cleaner = v[0];
+        this.initCleaner = Object.assign({}, this.cleaner);
+      }
+    })
   }
 }

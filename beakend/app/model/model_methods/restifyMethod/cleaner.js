@@ -43,7 +43,7 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
                             .exec((e1,r1)=>{
                                 if(e1) return res.serverError(e1);
                                 if(!r1) return res.badRequest();
-                                if(r1) return res.ok(r);
+                                if(r1) return res.ok(r1);
                             });
                         backendApp.mongoose.model('ActionLog')
                             .findOneAndUpdate({owner:manager._id}, {cleaner:r._id}, {new:true})

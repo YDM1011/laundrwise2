@@ -24,6 +24,9 @@ const schem = new Schema({
             ref: "Client"
         }},
     autoAssign: {type:Boolean, default: false},
+    fs: String,
+    inst: String,
+    yt: String,
     date: {type: Date, default: new Date()}
 },{
     toJSON: {

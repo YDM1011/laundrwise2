@@ -52,6 +52,9 @@ schem.post('findOneAndRemove', (doc,next)=>{
                 next()
             })
     }
+    // if (doc.role === 'superManagerCleaner'){
+
+    // }
 });
 
 require("./model_methods/object/client")(schem);

@@ -1,8 +1,12 @@
+<ng-container *ngIf="obj">
 <div class="infoedit__headline">
   <div class="name">Manager</div>
-  <span class="edit" (click)="editManager()">
-    {{manadgerEdit ? 'Cancel' : 'Edit'}}
-  </span>
+    <div>
+        <span class="edit" (click)="editManager()">
+            {{manadgerEdit ? 'Cancel' : 'Edit'}}
+        </span>
+        <span class="remove-collaborator" (click)="removeCollaborator()">Remove</span>
+    </div>
 </div>
 <div class="information">
   <span>First name: {{obj.firstName}}</span>
@@ -35,6 +39,6 @@
           </span>
     <input type="text" name="email" [(ngModel)]="collaborator.pass">
   </label>
-  <button class="remove-collaborator" (click)="removeCollaborator()">Remove</button>
   <input type="submit" class="save" value="Save" *ngIf="isBlok">
 </form>
+</ng-container>

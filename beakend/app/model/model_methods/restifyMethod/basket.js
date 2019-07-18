@@ -7,6 +7,7 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
         switch (parseInt(req.body.status)){
             case 0: return next();
             case 1: return next();
+            case 2: return next();
             // case 2:
             //     let superManeger = await checkRole(req, backendApp).catch(e=>{return res.notFound(e)});
             //     if (superManeger && (superManeger.role == req.body.role)) return res.badRequest();
@@ -21,7 +22,7 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
 module.exports.postUpdate = async (req, res, next, backendApp) => {
 
     let basket = req.erm.result;
-    if (basket.status == 1) {
+    if (basket.status == 1 || basket.status == 2) {
         // let asgn = await assign(req,res,next, backendApp, basket.cleanerOwner);
         let cleaner = await getCleaner(basket.cleanerOwner).catch(e=>{return rj(e)});
         let valid = await validate(req,res,cleaner,backendApp).catch(e=>{return res.ok(basket)});
@@ -33,7 +34,7 @@ module.exports.postUpdate = async (req, res, next, backendApp) => {
             updated: new Date(),
         };
         await ActionLogUpdate(req.body.managerCleanerOwner, obj, backendApp, next);
-        if (!valid) return next()
+        if (!valid) return next();
         let dataBasket = await updateBasketByCleaner(req, basket.cleanerOwner);
         res.ok(dataBasket);
     }
@@ -102,7 +103,7 @@ const validate = (req,res,cleaner,backendApp)=>{
                 });
             /** find clients/manager with low orders */
         } else {
-            console("is Handle")
+            console.log("is Handle")
             rj('Manager was not assigned!');
         }
     })

@@ -1,85 +1,128 @@
 <div class="infoedit">
     <h2>My account</h2>
     <div class="infoedit__box">
-        <div class="infoedit__headline">
-            <div class="name">General</div>
-            <span class="edit" (click)="editUser()">edit</span>
-        </div>
-        <div class="information" *ngIf="!useredit">
-            <span>{{initDataProfile.firstName}}</span>
-            <span>{{initDataProfile.lastName}}</span>
-            <span>{{initDataProfile.mobile}}</span>
-            <span>{{initDataProfile.email}}</span>
-        </div>
-        <form action="" (submit)="userSubmit()" class="active" *ngIf="useredit" (keyup)="formCheck()">
-            <label>
-                <span class="title">
-                    First Name
-                </span>
-                <input type="text" name="firstName" [(ngModel)]="authAccount.firstName">
-            </label>
-            <label>
-                <span class="title">
-                    Last Name
-                </span>
-                <input type="text" name="lastName" [(ngModel)]="authAccount.lastName">
-            </label>
-            <label>
-                <span class="title">
-                    Phone number
-                </span>
-                <input type="text" name="mobile" [(ngModel)]="authAccount.mobile">
-            </label>
-            <label>
-                <span class="title">
-                    Email
-                </span>
-                <input type="text" name="email" [(ngModel)]="authAccount.email">
-            </label>
-            <input type="submit" class="save" value="Save" *ngIf="isBlok">
-        </form>
-
-        <div class="infoedit__headline">
-            <div class="name">Adress</div>
-            <span class="edit" (click)="editAddress()">edit</span>
-        </div>
-        <div class="information" *ngIf="!addressedit">
-            <span>{{initDataProfile.country}}</span>
-            <span>{{initDataProfile.city}}</span>
-            <span>{{initDataProfile.address1}}</span>
-            <span>{{initDataProfile.address2}}</span>
-        </div>
-        <form action="" (ngSubmit)="addressSubmit()" class="active" *ngIf="addressedit" (keyup)="formCheck()">
-            <app-select-location
-                    [defLocation]="authAccount"
-                    (data)="authAccount.country=$event.country;
+            <div class="infoedit__headline">
+                <div class="name">
+                    <ng-container>General</ng-container>
+                    <ng-container *ngIf="isSMC">Owner</ng-container>
+                </div>
+                <span class="edit" (click)="editUser()">edit</span>
+            </div>
+            <div class="information" *ngIf="!useredit">
+                <span>{{initDataProfile.login}}</span>
+                <span>{{initDataProfile.firstName}}</span>
+                <span>{{initDataProfile.lastName}}</span>
+                <span>{{initDataProfile.mobile}}</span>
+                <span>{{initDataProfile.email}}</span>
+            </div>
+            <form action="" (submit)="userSubmit()" class="active" *ngIf="useredit" (keyup)="formCheck()">
+                <label>
+                    <span class="title">
+                        First Name
+                    </span>
+                    <input type="text" name="firstName" [(ngModel)]="authAccount.firstName">
+                </label>
+                <label>
+                    <span class="title">
+                        Last Name
+                    </span>
+                    <input type="text" name="lastName" [(ngModel)]="authAccount.lastName">
+                </label>
+                <label>
+                    <span class="title">
+                        Phone number
+                    </span>
+                    <input type="text" name="mobile" [(ngModel)]="authAccount.mobile">
+                </label>
+                <label>
+                    <span class="title">
+                        Email
+                    </span>
+                    <input type="text" name="email" [(ngModel)]="authAccount.email">
+                </label>
+                <input type="submit" class="save" value="Save" *ngIf="isBlok">
+            </form>
+        <ng-container *ngIf="!isSMC">
+            <div class="infoedit__headline">
+                <div class="name">Adress</div>
+                <span class="edit" (click)="editAddress()">edit</span>
+            </div>
+            <div class="information" *ngIf="!addressedit">
+                <span>{{initDataProfile.country}}</span>
+                <span>{{initDataProfile.city}}</span>
+                <span>{{initDataProfile.address1}}</span>
+                <span>{{initDataProfile.address2}}</span>
+            </div>
+            <form action="" (ngSubmit)="addressSubmit()" class="active" *ngIf="addressedit" (keyup)="formCheck()">
+                <app-select-location
+                        [defLocation]="authAccount"
+                        (data)="authAccount.country=$event.country;
                     authAccount.city=$event.city; formCheck()">
-            </app-select-location>
-<!--            <label>-->
-<!--                <span class="title">-->
-<!--                    Country-->
-<!--                </span>-->
-<!--                <input type="text" name="country" placeholder="Country" [(ngModel)]="authAccount.country">-->
-<!--            </label>-->
-<!--            <label>-->
-<!--                <span class="title">-->
-<!--                    City-->
-<!--                </span>-->
-<!--                <input type="text" name="cityCode" placeholder="City" [(ngModel)]="authAccount.cityCode">-->
-<!--            </label>-->
-            <label>
+                </app-select-location>
+                <label>
                 <span class="title">
                     Address1
                 </span>
-                <input type="text" name="address1" placeholder="Address1" [(ngModel)]="authAccount.address1">
-            </label>
-            <label>
+                    <input type="text" name="address1" placeholder="Address1" [(ngModel)]="authAccount.address1">
+                </label>
+                <label>
                 <span class="title">
                     Address2
                 </span>
-                <input type="text" name="address2" placeholder="Address2" [(ngModel)]="authAccount.address2">
-            </label>
-            <input type="submit" class="save" value="Save" *ngIf="isBlok">
-        </form>
+                    <input type="text" name="address2" placeholder="Address2" [(ngModel)]="authAccount.address2">
+                </label>
+                <input type="submit" class="save" value="Save" *ngIf="isBlok">
+            </form>
+        </ng-container>
+        <ng-container *ngIf="isSMC && cleaner">
+            <div class="infoedit__headline">
+                <div class="name">Company</div>
+                <span class="edit" (click)="editAddress()">edit</span>
+            </div>
+            <div class="information" *ngIf="!addressedit">
+                <span>{{cleaner.name}}</span>
+                <span>{{cleaner.country}}</span>
+                <span>{{cleaner.city}}</span>
+                <span>{{cleaner.address}}</span>
+            </div>
+            <form action="" (ngSubmit)="cleanerSubmit()" class="active" *ngIf="addressedit" (keyup)="formCheck(cleaner, initCleaner)">
+                <label>
+                    <span class="title">
+                        Name
+                    </span>
+                    <input type="text" name="name" placeholder="Name" [(ngModel)]="initCleaner.name">
+                </label>
+                <app-select-location
+                        [defLocation]="initCleaner"
+                        (data)="initCleaner.country=$event.country;
+                    initCleaner.city=$event.city; formCheck(cleaner, initCleaner)">
+                </app-select-location>
+                <label>
+                    <span class="title">
+                        Address
+                    </span>
+                    <input type="text" name="address" placeholder="Address" [(ngModel)]="initCleaner.address">
+                </label>
+                <label>
+                    <span class="title">
+                        Facebook
+                    </span>
+                    <input type="text" name="fs" placeholder="Facebook link" [(ngModel)]="initCleaner.fs">
+                </label>
+                <label>
+                    <span class="title">
+                        Instagram
+                    </span>
+                    <input type="text" name="inst" placeholder="Instagram link" [(ngModel)]="initCleaner.inst">
+                </label>
+                <label>
+                    <span class="title">
+                        YouTube
+                    </span>
+                    <input type="text" name="yt" placeholder="YouTube link" [(ngModel)]="initCleaner.yt">
+                </label>
+                <input type="submit" class="save" value="Save" *ngIf="isBlok">
+            </form>
+        </ng-container>
     </div>
 </div>
