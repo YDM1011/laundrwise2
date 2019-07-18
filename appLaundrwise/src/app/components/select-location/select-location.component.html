@@ -19,7 +19,8 @@
 
 <span class="title" *ngIf="isShowCity && location && !signup">City</span>
 <div class="custom-select" *ngIf="isShowCity && location">
-  <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.city : null || locData.city || 'City'}}</p>
+  <p class="selected" (click)="isOpen = !isOpen">{{defLocation.city ? defLocation.city : null || locData.city || 'City'}}</p>
+<!--  <p class="selected" (click)="isOpen = !isOpen">{{defLocation ? defLocation.city : 'City'}}</p>-->
   <ul *ngIf="isOpen" class="option-wrap">
     <li *ngFor="let item of location.city" (click)="cityChange(item)">
       {{item}}

@@ -41,7 +41,6 @@ export class SelectLocationComponent implements OnInit {
     } else {
       this.isShowCity = false;
     }
-    // console.log(this.validate(data), data);
     this.locData['country'] = data.country;
     this.location = Object.assign({}, data);
   }
@@ -50,6 +49,5 @@ export class SelectLocationComponent implements OnInit {
       this.isOpen = false;
       this.locData['city'] = e;
       this.data.emit(this.locData);
-      // console.log(this.location.country, e);
   }
 }
