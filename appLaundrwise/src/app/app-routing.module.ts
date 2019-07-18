@@ -12,9 +12,6 @@ import {
   IndexComponent,
   MyAccountComponent,
   MyProfileComponent,
-  NewOrdersStepOneComponent,
-  NewOrdersStepThreeComponent,
-  NewOrdersStepTwoComponent,
   NotFoundComponent,
   OffersComponent,
   OurPartnersComponent,
@@ -55,6 +52,10 @@ import {NotificationListComponent} from './pages/admin/notification-list/notific
 import {StatisticComponent} from './pages/profile/statistic/statistic.component';
 import {CollaboratorsComponent} from "./pages/profile/collaborators/collaborators.component";
 import {InitOrderTypeComponent} from "./pages/orders/init-order/init-order-type/init-order-type.component";
+import {AllComponent} from "./pages/profile/my-profile/all/all.component";
+import {NewComponent} from "./pages/profile/my-profile/new/new.component";
+import {WaitingComponent} from "./pages/profile/my-profile/waiting/waiting.component";
+import {DoneComponent} from "./pages/profile/my-profile/done/done.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -78,7 +79,13 @@ const routes: Routes = [
             {path: ':cleanerId/:type', component: InitOrderTypeComponent, canActivate: [IsLoginGuard]},
         ]},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
-      {path: '', component: MyProfileComponent},
+      {path: '', component: MyProfileComponent, children: [
+              {path: 'all', component: AllComponent},
+              {path: 'new', component: NewComponent},
+              {path: 'waiting', component: WaitingComponent},
+              {path: 'done', component: DoneComponent},
+          ]},
+
       {path: 'account', component: MyAccountComponent},
       {path: 'payment', component: PaymentComponent},
       {path: 'bonuses', component: BonusComponent},

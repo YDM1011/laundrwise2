@@ -94,6 +94,11 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import { ProfileOrderComponent } from './components/profile-order/profile-order.component';
 import { StatusPipe } from './pipe/status.pipe';
 import { SafeHTMLPipe } from './pipe/safe-html.pipe';
+import { AllComponent } from './pages/profile/my-profile/all/all.component';
+import { NewComponent } from './pages/profile/my-profile/new/new.component';
+import { WaitingComponent } from './pages/profile/my-profile/waiting/waiting.component';
+import { DoneComponent } from './pages/profile/my-profile/done/done.component';
+import { LoadingComponent } from './components/loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -178,6 +183,11 @@ import { SafeHTMLPipe } from './pipe/safe-html.pipe';
     ProfileOrderComponent,
     StatusPipe,
     SafeHTMLPipe,
+    AllComponent,
+    NewComponent,
+    WaitingComponent,
+    DoneComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
