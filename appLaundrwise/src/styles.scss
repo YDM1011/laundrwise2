@@ -39,7 +39,10 @@ body{
 .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple){
   background: rgba(35, 133, 255, 0.2);
 }
-
+mat-dialog-container.mat-dialog-container{
+  height: calc(100% + 30px);
+  max-height: 90vh;
+}
 .mat-sort-header-container{
   justify-content: center;
 }

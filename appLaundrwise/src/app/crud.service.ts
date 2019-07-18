@@ -43,10 +43,12 @@ export class CrudService {
         return new Promise((resolve, reject) => {
           this.http.post(`${this.api}${api}${id ? '/' + id : ''}`, obj).subscribe(data => {
            resolve(data);
+              Swal.fire('Success', '', 'success')
            if (isUpdate) {
                isUpdate.map(property => {
                    this.update(property, obj, id);
                });
+
            }
           }, error => {
             reject(error);

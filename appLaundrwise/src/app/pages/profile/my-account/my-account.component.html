@@ -6,7 +6,8 @@
                     <ng-container>General</ng-container>
                     <ng-container *ngIf="isSMC">Owner</ng-container>
                 </div>
-                <span class="edit" (click)="editUser()">edit</span>
+                <span class="edit" (click)="editUser()" *ngIf="!useredit">Edit</span>
+                <span class="edit" (click)="editUser()" *ngIf="useredit">Cancel</span>
             </div>
             <div class="information" *ngIf="!useredit">
                 <span>{{initDataProfile.login}}</span>
@@ -45,7 +46,8 @@
         <ng-container *ngIf="!isSMC">
             <div class="infoedit__headline">
                 <div class="name">Adress</div>
-                <span class="edit" (click)="editAddress()">edit</span>
+                <span class="edit" (click)="editAddress()" *ngIf="!addressedit">Edit</span>
+                <span class="edit" (click)="editAddress()" *ngIf="addressedit">Cancel</span>
             </div>
             <div class="information" *ngIf="!addressedit">
                 <span>{{initDataProfile.country}}</span>
@@ -77,7 +79,8 @@
         <ng-container *ngIf="isSMC && cleaner">
             <div class="infoedit__headline">
                 <div class="name">Company</div>
-                <span class="edit" (click)="editAddress()">edit</span>
+                <span class="edit" (click)="editAddress()" *ngIf="!addressedit">Edit</span>
+                <span class="edit" (click)="editAddress()" *ngIf="addressedit">Cancel</span>
             </div>
             <div class="information" *ngIf="!addressedit">
                 <span>{{cleaner.name}}</span>
