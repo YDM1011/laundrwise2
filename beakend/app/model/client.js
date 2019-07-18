@@ -44,5 +44,15 @@ const schem = new Schema({
     strict: true,
 
 });
+
+schem.post('findOneAndRemove', (doc,next)=>{
+    if (doc.role === 'managerCleaner' || doc.role === 'managerDelivery') {
+        mongoose.model('ActionLog')
+            .findOneAndRemove({owner:doc._id}, (err,r)=>{
+                next()
+            })
+    }
+});
+
 require("./model_methods/object/client")(schem);
 mongoose.model('Client', schem);
