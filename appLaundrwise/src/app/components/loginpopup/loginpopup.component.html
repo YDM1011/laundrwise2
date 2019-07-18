@@ -7,8 +7,8 @@
   </p>
   <form action="" (ngSubmit)="signin($event)">
     <mat-form-field class="signup-input" appearance="outline">
-<!--      <mat-label>Email</mat-label>-->
-      <input matInput placeholder="Email" [formControl]="emailFormControl"
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="emailFormControl"
              [errorStateMatcher]="matcher2">
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Please enter a valid email address
@@ -19,8 +19,8 @@
     </mat-form-field>
 
     <mat-form-field class="signup-input" appearance="outline">
-<!--      <mat-label>Password</mat-label>-->
-      <input autocomplete="off" required matInput placeholder="Password" type="password"
+      <mat-label>Password</mat-label>
+      <input autocomplete="off" required matInput type="password"
              [errorStateMatcher]="matcher2" [formControl]="passwordFormControl">
       <mat-error *ngIf="passwordFormControl.hasError('required')">
         Please enter your newpassword
