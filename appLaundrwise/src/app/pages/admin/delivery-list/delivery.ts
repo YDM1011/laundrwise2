@@ -7,6 +7,7 @@ export interface Delivery {
     product: string[]
     category: string[]
     date: string
+    images: string
 }
 
 export class DeliveryObj implements Delivery {
@@ -18,6 +19,7 @@ export class DeliveryObj implements Delivery {
     public product = []
     public category = []
     public date: string = ''
+    public images: string = ''
 
     constructor() {
         return {
@@ -28,7 +30,8 @@ export class DeliveryObj implements Delivery {
             address: this.address,
             product: this.product,
             category: this.category,
-            date: this.date
+            date: this.date,
+            images: this.images
         }
     }
 }

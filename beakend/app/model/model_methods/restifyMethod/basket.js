@@ -8,6 +8,11 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
             case 0: return next();
             case 1: return next();
             case 2: return next();
+            case 3: return next();
+            case 4: return next();
+            case 5: return next();
+            case 6: return next();
+
             // case 2:
             //     let superManeger = await checkRole(req, backendApp).catch(e=>{return res.notFound(e)});
             //     if (superManeger && (superManeger.role == req.body.role)) return res.badRequest();
