@@ -1,0 +1,12 @@
+<app-loading *ngIf="!loading"></app-loading>
+<ng-container *ngIf="loading">
+  <ng-container *ngFor="let item of allOrdersSuperManager">
+    <app-profile-order [obj]="item" [role]="user.role" [cleaner]="cleaner.managers"></app-profile-order>
+  </ng-container>
+  
+  <ng-container *ngIf="allOrdersSuperManager.length === 0">
+    <div class="non-orders">
+      Now you don't have Done orders
+    </div>
+  </ng-container>
+</ng-container>
