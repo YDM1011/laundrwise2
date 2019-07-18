@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ProfileOrderComponent implements OnInit {
   @Input() obj;
   @Input() role;
+  public modal = false;
   constructor() { }
 
   ngOnInit() {

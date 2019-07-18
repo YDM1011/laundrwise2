@@ -27,7 +27,8 @@
         width: 100%;
         color: #000;
         font-family: Montserrat-Regular, sans-serif;
-        border-radius: 36px;
+        padding-left: 5px;
+        line-height: 17px;
       }
       mat-form-field{
         width: 100%;
@@ -35,6 +36,7 @@
       textarea{
         height: 80px;
         resize: none;
+        line-height: 17px;
       }
       .send{
         background: #13AAFF;
