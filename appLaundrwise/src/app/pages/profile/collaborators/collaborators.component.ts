@@ -13,7 +13,7 @@ export class CollaboratorsComponent implements OnInit {
   public newColabIf: boolean = false;
   public user: any;
   public cleaner;
-  public initManager: [];
+  public initManager: any[];
   constructor(
       private crud: CrudService,
       private auth: AuthService,
@@ -40,8 +40,10 @@ export class CollaboratorsComponent implements OnInit {
   addCollaborators() {
     this.newColab.role = 'managerCleaner';
     delete this.newColab._id;
-    this.crud.post('cleaner', {manager: this.newColab}, this.cleaner._id, ['cleaner']).then(v => {
+    this.crud.post('cleaner', {manager: this.newColab}, this.cleaner._id, ['cleaner']).then((v:any) => {
       this.newColab = new NewCollaboratorObj();
+      this.initManager.push(v);
+
       this.newColabIfFunc();
     });
   }

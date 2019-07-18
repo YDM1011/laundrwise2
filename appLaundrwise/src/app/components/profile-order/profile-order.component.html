@@ -52,10 +52,10 @@
                   <div *ngIf="obj.email">
                     Email: {{obj.email}}
                   </div>
-                  <div *ngIf="obj.instruction">
+                  <div *ngIf="obj.instruction && (role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery')">
                     Instruction: {{obj.instruction}}
                   </div>
-                  <div *ngIf="obj.deliveryInstruction && role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery' ">
+                  <div *ngIf="obj.deliveryInstruction && (role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery')">
                     Instruction Delivery: {{obj.deliveryInstruction}}
                   </div>
                 </div>
