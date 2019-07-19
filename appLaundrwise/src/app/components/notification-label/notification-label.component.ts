@@ -16,7 +16,6 @@ export class NotificationLabelComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.count)
   }
 
 }

@@ -11,14 +11,11 @@ import {CrudService} from "../../../crud.service";
   styleUrls: ['./new-orders-step-sero.component.scss']
 })
 export class NewOrdersStepSeroComponent implements OnInit {
-  // public country = 'location';
   public company = '';
-  // public city = 'company';
   public step: number;
   public step1Completed: boolean = false;
   public canOpen: boolean = false;
   public step2Completed: boolean = false;
-  // public step3Completed: boolean = false;
   public disableCity = new FormControl(true);
   public disableCompany = new FormControl(true);
   @Output() public sendChooseCompany: EventEmitter<any> = new EventEmitter();

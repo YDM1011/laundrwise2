@@ -67,7 +67,7 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
       this.prod = Object.assign({}, value);
       this.prod['currentOrder'] = this.prod._id;
       delete this.prod._id;
-      this.crud.post('product', this.prod).then((v: any) => {
+      this.crud.post('product', this.prod, null, false, false).then((v: any) => {
           order['productId'] = v._id;
           order['basketOwner'] = v.basketOwner;
           this.auth.totalUpdate(true);
@@ -80,7 +80,7 @@ export class InitOrderTypeComponent implements OnInit, OnChanges {
       this.prod['currentOrder'] = this.prod._id;
       this.prod['basketOwner'] = order.basketOwner;
       delete this.prod._id;
-      this.crud.post(`product/${this.prod.productId}`, this.prod).then((v: any) => {
+      this.crud.post(`product/${this.prod.productId}`, this.prod, null, false, false).then((v: any) => {
           order['productId'] = v._id;
           this.auth.totalUpdate(true);
       });

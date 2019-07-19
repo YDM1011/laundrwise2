@@ -50,7 +50,7 @@ export class LoginpopupComponent implements OnInit {
       email: this.emailFormControl.value,
       pass: this.passwordFormControl.value,
     };
-    this.api.post('signin', signin).then((value: any) => {
+    this.api.post('signin', signin, null, false, false).then((value: any) => {
           this.dialogRef.close();
           if (this.auth.isAuth()) {
               this.router.navigate(['/profile']);

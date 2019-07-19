@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {CrudService} from "../../../../crud.service";
 import {AuthService} from "../../../../auth.service";
 
@@ -7,7 +7,7 @@ import {AuthService} from "../../../../auth.service";
   templateUrl: './new.component.html',
   styleUrls: ['./new.component.scss']
 })
-export class NewComponent implements OnInit {
+export class NewComponent implements OnInit, OnChanges {
   public user;
   public cleaner: any;
   public allOrdersSuperManager: any = [];
@@ -39,6 +39,8 @@ export class NewComponent implements OnInit {
         }
       }
     });
+  }
+  ngOnChanges() {
   }
 
 }

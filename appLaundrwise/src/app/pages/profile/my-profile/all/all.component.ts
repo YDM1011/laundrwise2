@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CrudService} from "../../../../crud.service";
 import {AuthService} from "../../../../auth.service";
+import {WS} from "../../../../websocket/websocket.events";
+import {WebsocketService} from "../../../../websocket";
 
 @Component({
   selector: 'app-all',
@@ -8,16 +10,25 @@ import {AuthService} from "../../../../auth.service";
   styleUrls: ['./all.component.scss']
 })
 export class AllComponent implements OnInit {
+  public notification$: any;
+  public updateNotificationList: any;
   public user;
   public cleaner: any;
   public allOrdersSuperManager: any = [];
   public loading: boolean = false;
   constructor(
       private crud: CrudService,
-      private auth: AuthService
+      private auth: AuthService,
+      private wsService: WebsocketService
   ) { }
 
   ngOnInit() {
+
+    this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+    this.notification$.subscribe(v => {
+      this.updateNotificationList(JSON.parse(v).data.data);
+      console.log(this.updateNotificationList);
+    });
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
         this.user = v;
