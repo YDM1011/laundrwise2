@@ -2,6 +2,8 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth.service";
 import {CrudService} from "../../../crud.service";
 import {Router} from "@angular/router";
+import {WebsocketService} from "../../../websocket";
+import {WS} from "../../../websocket/websocket.events";
 
 @Component({
   selector: 'app-my-profile',
@@ -9,6 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./my-profile.component.scss']
 })
 export class MyProfileComponent implements OnInit, OnChanges {
+  public notification$;
   public user: any;
   public cleaner: any;
   public allOrdersUser: any = [];
@@ -27,9 +30,17 @@ export class MyProfileComponent implements OnInit, OnChanges {
       private auth: AuthService,
       private crud: CrudService,
       private router: Router,
+      private wsService: WebsocketService
   ) { }
   ngOnInit() {
-    this.auth.onUpDate.subscribe(( v: any ) => {
+      this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+
+      this.notification$.subscribe(v => {
+
+          console.log(v)
+      });
+
+      this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
         this.user = v;
         if (this.user.role === 'client' || !this.user.role) {

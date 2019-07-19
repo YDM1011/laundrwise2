@@ -12,7 +12,7 @@ module.exports = (backendApp, socket = null, data = null) => {
     wss.on('connection', async (ws, req) => {
         let tokenData = parseCookieHeader(req.headers.cookie);
         let userData = await checkToken(backendApp, tokenData).catch(e=>{console.error(e)});
-
+        console.log("connected",userData)
         saveConnect(userData, wss, ws);
 
         backendApp.events.callWS.on('event',(event)=>{
@@ -55,6 +55,7 @@ module.exports = (backendApp, socket = null, data = null) => {
         ws.on('message', (event) => {
             const data = JSON.parse(event);
             const res = JSON.parse(data);
+
             const sendTo = (to, event, data) => {
                 if (!to) {
                     wss[userData._id].forEach(ws=>{
@@ -66,6 +67,7 @@ module.exports = (backendApp, socket = null, data = null) => {
                     return
                 }
                 /** All user's requests and send response to 1 client of all requests */
+                console.log(to);
                 wss[to] ? wss[to].forEach(ws=>{
                     ws.send(JSON.stringify({
                         event: event,

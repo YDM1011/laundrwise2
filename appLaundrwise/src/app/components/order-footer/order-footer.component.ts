@@ -93,7 +93,7 @@ export class OrderFooterComponent implements OnInit, OnChanges {
             this.order.basket.forEach(bskt => {
                 this.crud.post('basket', objBasket, bskt._id).then((update: any) => {
                     if (update) {
-                        this.wsService.send(WS.SEND.CONFIRM_ORDER, {superManager: bskt.cleanerOwner.superManager},  { data: v });
+                        this.wsService.send(WS.SEND.CONFIRM_ORDER, bskt.cleanerOwner.superManager,  { data: bskt._id });
                     }
                 });
             });
