@@ -15,13 +15,15 @@ const readStep = async (req,res,next,backendApp) => {
 module.exports.preUpdate = async (req,res,next, backendApp) => {
     const Product = backendApp.mongoose.model('Product');
     const Basket = backendApp.mongoose.model('Basket');
+    delete req.body.price;
+    req.percentage = await getSettings(req,backendApp).catch(e => {return res.notFound(e)});
     try {
         Product.findById(req.params.id)
             .exec((e,r)=>{
                 if (e) return res.serverError(e);
                 if (!r) return res.notFound('Not found!');
                 if (r) {
-                    let inc = r.price*(req.body.count - r.count);
+                    let inc = parsePrice((r.price)*(req.body.count - r.count));
                     Basket.findOneAndUpdate({
                         "createdBy.itemId": req.user.id,
                         _id: req.body.basketOwner,
@@ -39,42 +41,16 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
     }
 };
 
-// module.exports.PreDel = async (req,res,next, backendApp) => {
-//     const Product = backendApp.mongoose.model('Product');
-//     const Basket = backendApp.mongoose.model('Basket');
-//     try {
-//         Product.findById(req.params.id)
-//             .exec((e,r)=>{
-//                 if (e) return res.serverError(e);
-//                 if (!r) return res.notFound('Not found!');
-//                 if (r) {
-//                     let inc = r.price*(0-r.count);
-//                     Basket.findOneAndUpdate({
-//                         "createdBy.userId": req.user.id,
-//                         products:{$in:req.params.id},
-//                         status: 0
-//                     }, { $inc: {totalPrice:inc} }, {new:true})
-//                         .exec((e,r)=>{
-//                             if (e) return res.serverError(e);
-//                             if (!r) return res.notFound('Not found!');
-//                             if (r) {next()};
-//                         })
-//                 };
-//             });
-//     } catch(e) {
-//         res.notFound("Can't be update")
-//     }
-// };
 
 module.exports.preSave = async (req, res, next, backendApp) => {
-    try {
-        console.log(req.body);
+    req.percentage = await getSettings(req,backendApp).catch(e => {return res.notFound(e)});
+    // try {
         if (req.body) {
             // let user = await checkUser(req, res, backendApp).catch(e => {return res.notFound(e)});
             // if (user) {
                 req.body['createdBy'] = {itemId:req.user._id};
                 // console.log(req.body, user, req.user)
-                let product = await createProduct(req.body, backendApp).catch(e => {return res.notFound(e)});
+                let product = await createProduct(req, backendApp).catch(e => {return res.notFound(e)});
                 let basket = await checkAndInitBasket(req, backendApp, product).catch(e => {return res.notFound(e)});
                 await setBasketToProduct(product, backendApp, basket).catch(e => {return res.notFound(e)});
                 product.basketOwner = basket._id;
@@ -84,9 +60,9 @@ module.exports.preSave = async (req, res, next, backendApp) => {
         } else {
             next()
         }
-    } catch(e) {
-        res.notFound("Can't be create")
-    }
+    // } catch(e) {
+    //     res.notFound("Can't be create")
+    // }
 };
 const checkAndInitBasket = (req, backendApp, product) => {
     const Basket = backendApp.mongoose.model('Basket');
@@ -102,7 +78,7 @@ const checkAndInitBasket = (req, backendApp, product) => {
                     'createdBy.itemId': req.user._id,
                     products: [product._id],
                     cleanerOwner: req.body.cleanerOwner,
-                    totalPrice: product.count*product.price,
+                    totalPrice: parsePrice(product.count*(product.price)),
                     status: 0,
                     date: new Date()
                 };
@@ -117,7 +93,7 @@ const checkAndInitBasket = (req, backendApp, product) => {
                     "createdBy.itemId": req.user.id,
                     cleanerOwner: req.body.cleanerOwner,
                     status: 0
-                }, {$push:{products:product._id}, $inc: {totalPrice:product.count*product.price}}, {new:true})
+                }, {$push:{products:product._id}, $inc: {totalPrice:parsePrice(product.count*product.price)}}, {new:true})
                     .exec((e,r)=>{
                         if (e) return rj(e);
                         if (!r) return rj('Not found!');
@@ -128,14 +104,22 @@ const checkAndInitBasket = (req, backendApp, product) => {
     })
 };
 
-const createProduct = (data,backendApp) => {
+const createProduct = (req,backendApp) => {
+    let data = req.body;
     const Product = backendApp.mongoose.model('Product');
+    const Order = backendApp.mongoose.model('Order');
     return new Promise((rs,rj)=>{
-        Product.create(data,(e,r)=>{
-            if (e) return rj(e);
-            if (!r) return rj("One of product is invalid!");
-            if (r) return rs(r)
-        });
+        Order.findOne({_id:data.currentOrder})
+            .exec((e0,r0)=>{
+                if (e0) return rj(e0);
+                if (!r0) return rj("One of product is invalid!");
+                data.price = parsePrice(r0.price*req.percentage);
+                Product.create(data,(e,r)=>{
+                    if (e) return rj(e);
+                    if (!r) return rj("One of product is invalid!");
+                    if (r) return rs(r)
+                });
+            })
     })
 };
 
@@ -157,4 +141,31 @@ const checkUser = (req,res,backendApp)=>{
             rs(e)
         })
     })
+};
+
+const getSettings = (req,backendApp) => {
+    const Setting = backendApp.mongoose.model('Setting');
+    return new Promise((rs,rj)=>{
+        Setting.findOne({})
+            .exec((e,r)=>{
+                console.log(e,r,"tew")
+                if (e) return rj(e);
+                if (!r) return rs({percentage: 1});
+                if (r){
+                    if(r.percentage || (r.percentage == 0)){
+                        rs (r.percentage = r.percentage/100 + 1);
+                    }else{
+                        r['percentage'] = 1;
+                        console.log(r)
+                        return rs(r)
+                    }
+                }
+            });
+    })
+};
+
+const parsePrice = price => {
+    price = String(price)
+    price =parseFloat(price.split('.')[1] ?  parseInt(price)+'.'+price.split('.')[1].slice(0,2) : price);
+    return price
 };

@@ -7,6 +7,7 @@ const schema = new Schema({
             ref: "Client"
         }},
     isAppBlock: Boolean,
+    percentage: Number,
     owner: {
             type: Schema.Types.ObjectId,
             ref: "Admin"

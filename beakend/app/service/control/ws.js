@@ -15,6 +15,43 @@ module.exports = (backendApp, socket = null, data = null) => {
 
         saveConnect(userData, wss, ws);
 
+        backendApp.events.callWS.on('event',(event)=>{
+            const data = JSON.parse(event);
+            const res = JSON.parse(data);
+            const sendTo = (to, event, data) => {
+                if (!to) {
+                    wss[userData._id].forEach(ws=>{
+                        ws.send(JSON.stringify({
+                            event: event,
+                            data: "ok!!"
+                        }));
+                    });
+                    return
+                }
+                /** All user's requests and send response to 1 client of all requests */
+                console.log(wss[to]);
+                wss[to] ? wss[to].forEach(ws=>{
+                    ws.send(JSON.stringify({
+                        event: event,
+                        data: data
+                    }));
+                }) : '';
+            };
+            const send = (event, data) => {
+                if (res.to == 'admin'){
+                    backendApp.mongoose.model('Admin').findOne({}).exec((e,r)=>{
+                        if (r) {
+                            sendTo(r._id, event, data);
+                        }
+                    })
+                } else {
+                    sendTo(res.to, event, data);
+                }
+            };
+            console.log(wsEvent,res.event);
+            wsEvent[res.event](data, send);
+        })
+
         ws.on('message', (event) => {
             const data = JSON.parse(event);
             const res = JSON.parse(data);

@@ -12,7 +12,6 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
             case 4: return next();
             case 5: return next();
             case 6: return next();
-
             // case 2:
             //     let superManeger = await checkRole(req, backendApp).catch(e=>{return res.notFound(e)});
             //     if (superManeger && (superManeger.role == req.body.role)) return res.badRequest();
@@ -27,7 +26,7 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
 module.exports.postUpdate = async (req, res, next, backendApp) => {
 
     let basket = req.erm.result;
-    if (basket.status == 1 || basket.status == 2) {
+    if ((basket.status == 1 || basket.status == 2) && !basket.deliveryOwner) {
         // let asgn = await assign(req,res,next, backendApp, basket.cleanerOwner);
         let cleaner = await getCleaner(basket.cleanerOwner).catch(e=>{return rj(e)});
         let valid = await validate(req,res,cleaner,backendApp).catch(e=>{return res.ok(basket)});
@@ -42,6 +41,10 @@ module.exports.postUpdate = async (req, res, next, backendApp) => {
         if (!valid) return next();
         let dataBasket = await updateBasketByCleaner(req, basket.cleanerOwner);
         res.ok(dataBasket);
+    } else if (basket.status == 2 && basket.deliveryOwner){
+        next()
+    } else {
+        next()
     }
 };
 

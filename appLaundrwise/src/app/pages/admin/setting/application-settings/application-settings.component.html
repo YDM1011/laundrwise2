@@ -1,5 +1,11 @@
+<ng-container *ngIf="setting">
 <div class="app-checkbox">
-  <mat-checkbox [(ngModel)]="checked">Banner application on website</mat-checkbox>
-  <br>
+  <mat-checkbox [(ngModel)]="setting.checked">Banner application on website</mat-checkbox>
+  <!--<br>-->
   <button (click)="save()" class="simple-blue">Save</button>
 </div>
+<div>
+  percentage <input type="number" [(ngModel)]="setting.percentage">
+  <button (click)="save()" class="simple-blue">Save</button>
+</div>
+</ng-container>

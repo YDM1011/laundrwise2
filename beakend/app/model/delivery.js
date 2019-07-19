@@ -18,6 +18,7 @@ const schem = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Client"
         }},
+    autoAssign: {type:Boolean, default: false},
     date: {type: Date, default: new Date()}
 },{
     toJSON: {

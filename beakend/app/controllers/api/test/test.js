@@ -1,11 +1,11 @@
 const fs = require('fs');
 module.exports = function (backendApp, router) {
 
-    router.post('/', [], async function (req, res, next) {
-        let arr = [{name:'test'},{name:'test2'}];
-        let r = await asyncForEach(arr, createBasket, backendApp);
-        console.log('presend', r)
-        res.ok(r)
+    router.get('/', [], async function (req, res, next) {
+        let data = JSON.stringify(JSON.stringify({event: 'form-notification', to:'admin', data:{data:"faq"}}));
+        console.log(data)
+        backendApp.events.callWS.emit('event',data)
+        res.ok("ok")
     });
 };
 const convertation = b64string =>{

@@ -39,7 +39,7 @@ module.exports.preRead = async (req,res,next, backendApp) => {
     console.log('PREREAD')
     const Setting = backendApp.mongoose.model('Setting');
     await isLoggedIn(req,res,backendApp);
-    Setting.findOne({owner:req.user._id})
+    Setting.findOne({})
         .exec((e,r)=>{
             console.log('PREREAD', r)
             if (e) return res.serverError(e);

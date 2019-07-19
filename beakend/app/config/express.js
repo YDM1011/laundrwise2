@@ -58,12 +58,17 @@ const init = (app, config) =>{
         }
     });
     app.use(require("../../app/responces"));
+    const EventEmitter = require('events');
+    class Emitter extends EventEmitter {}
     let backendApp = {
         app: app,
         config: config,
         mongoose: mongoose,
         express: express,
-        service: {}
+        service: {},
+        events: {
+            callWS: new Emitter()
+        }
     };
     global.backendApp = backendApp;
     backendApp.middlewares = require('../middlewares')(backendApp, config);
