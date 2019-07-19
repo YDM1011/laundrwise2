@@ -27,16 +27,22 @@ export class NewOrdersStepOneComponent implements OnInit, OnChanges, OnDestroy {
   ) {}
 
   ngOnInit() {
-    if (this.chooseCompany && this.chooseCompany.category.length > 0) {
+    if (this.chooseCompany && this.chooseCompany.category && this.chooseCompany.category.length > 0) {
         this.dataParams.cleanerId = this.chooseCompany._id;
         this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
         this.dataParams.type = this.defoultCategoryRouter;
     }
   }
   ngOnDestroy() {}
-  ngOnChanges() {}
+  ngOnChanges() {
+      if (this.chooseCompany && this.chooseCompany.category && this.chooseCompany.category.length > 0) {
+          this.dataParams.cleanerId = this.chooseCompany._id;
+          this.defoultCategoryRouter =  this.chooseCompany.category[0].name.toLowerCase();
+          this.dataParams.type = this.defoultCategoryRouter;
+      }
+  }
   companyChange(e) {
-    if (e.category.length > 0) {
+    if (e.category && e.category.length > 0) {
       const prop = {};
       this.chooseCompany = e;
       prop['cleanerId'] = this.chooseCompany._id;

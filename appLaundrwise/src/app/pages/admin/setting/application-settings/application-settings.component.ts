@@ -25,7 +25,8 @@ export class ApplicationSettingsComponent implements OnInit, OnChanges {
 
   }
 
-  save() {
+  save(e) {
+    e.preventDefault();
     this.crud.post('setting', this.setting);
   }
 

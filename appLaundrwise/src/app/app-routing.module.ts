@@ -80,11 +80,12 @@ const routes: Routes = [
         ]},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
       {path: '', component: MyProfileComponent, children: [
+              {path: '', component: MyProfileComponent},
               {path: 'all', component: AllComponent},
               {path: 'new', component: NewComponent},
               {path: 'waiting', component: WaitingComponent},
               {path: 'done', component: DoneComponent},
-          ]},
+      ]},
 
       {path: 'account', component: MyAccountComponent},
       {path: 'payment', component: PaymentComponent},

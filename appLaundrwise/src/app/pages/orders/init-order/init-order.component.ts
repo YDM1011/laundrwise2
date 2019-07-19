@@ -1,4 +1,5 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
+import {AuthService} from "../../../auth.service";
 
 @Component({
   selector: 'app-init-order',
@@ -7,17 +8,31 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 })
 export class InitOrderComponent implements OnInit, OnChanges {
     public basketOrder = [];
-    public step = 0;
+    public step = 1;
     public chooseCompany;
     public allCompany;
-    constructor() {}
+    constructor(
+        private auth:AuthService
+    ) {}
     ngOnInit() {
+        // subscribe me
+        // get
+        // subscribe for allCompany
+        this.auth.onCleaners.subscribe((v:any)=>{
+        console.log(v)
+            if(v){
+                this.allCompany = Object.assign({}, v) ;
+                this.chooseCompany = Object.assign({}, this.allCompany[0]);
+            }
+        })
     }
     ngOnChanges() {}
     getChooseCompany(value) {
+        if (!value) return;
         this.chooseCompany = Object.assign({}, value) ;
     }
     getAllCompany(value) {
+        if (!value) return;
         this.allCompany = Object.assign([], value);
     }
 }

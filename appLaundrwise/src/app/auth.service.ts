@@ -16,7 +16,10 @@ export class AuthService {
   public getStep = this.step.asObservable();
 
   private order = new BehaviorSubject<any>(null);
-  public onOrderConfirm = this.order.asObservable();
+  public onOrderConfirm = this.order.asObservable()
+
+  private cleaners = new BehaviorSubject<any>(null);
+  public onCleaners = this.cleaners.asObservable();
 
   private basketGroup = new BehaviorSubject<any>(null);
   public getBasketGroup = this.basketGroup.asObservable();
@@ -61,4 +64,7 @@ export class AuthService {
       obj.orderInfo = Object.assign({}, order.orderInfo);
       this.order.next( obj );
   }
+    setCompany(data){
+      this.cleaners.next(data)
+    }
 }

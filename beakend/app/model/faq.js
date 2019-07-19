@@ -2,24 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    createdBy: {itemId:{
-            type: Schema.Types.ObjectId,
-            ref: "Client"
-        }},
-    isAppBlock: Boolean,
-    percentage: Number,
-    name: String,
-    email: String,
-    mobile: String,
-    fb: String,
-    yt: String,
-    inst: String,
-    des: String,
-    metaDes: String,
+    question: String,
+    answer: String,
     owner: {
-            type: Schema.Types.ObjectId,
-            ref: "Admin"
-        },
+        type: Schema.Types.ObjectId,
+        ref: "Admin"
+    },
     date: {type: Date, default: new Date()}
 },{
     toJSON: {
@@ -37,7 +25,8 @@ const schema = new Schema({
     },
     createRestApi: true,
     strict: true,
+
 });
 
-mongoose.model('Setting', schema);
+mongoose.model('Faq', schema);
 

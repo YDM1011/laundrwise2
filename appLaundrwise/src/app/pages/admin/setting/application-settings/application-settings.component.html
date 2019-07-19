@@ -1,11 +1,37 @@
 <ng-container *ngIf="setting">
-<div class="app-checkbox">
-  <mat-checkbox [(ngModel)]="setting.checked">Banner application on website</mat-checkbox>
-  <!--<br>-->
-  <button (click)="save()" class="simple-blue">Save</button>
-</div>
-<div>
-  percentage <input type="number" [(ngModel)]="setting.percentage">
-  <button (click)="save()" class="simple-blue">Save</button>
-</div>
+  <div class="admin-login">
+    <form (submit)="save($event)">
+      <div class="app-checkbox">
+        <mat-checkbox name="checked" [(ngModel)]="setting.checked">Banner application on website</mat-checkbox>
+        <!--<br>-->
+      </div>
+      <div>
+        Percentage <input type="number" name="percentage" [(ngModel)]="setting.percentage">
+      </div>
+      <div>
+        Platform's name <input type="text" name="name" [(ngModel)]="setting.name" >
+      </div>
+      <div>
+        Admin's email <input type="text" name="email" [(ngModel)]="setting.email">
+      </div>
+      <div>
+        Mobile's email <input type="text" name="mobile" [(ngModel)]="setting.mobile">
+      </div>
+      <div>
+        Facebook <input type="text" name="fb" [(ngModel)]="setting.fb">
+      </div>
+      <div>
+        Instagram <input type="text" name="inst" [(ngModel)]="setting.inst">
+      </div>
+      <div>
+        YouTube <input type="text" name="yt" [(ngModel)]="setting.yt">
+      </div>
+      <div>
+        Description <textarea name="des" [(ngModel)]="setting.des"></textarea>
+      </div>
+      <div class="right">
+        <button type="submit" class="simple-blue">Save</button>
+      </div>
+    </form>
+  </div>
 </ng-container>
