@@ -22,7 +22,7 @@
             Orders
         </h2>
         <ng-container *ngFor="let item of allOrdersManager">
-            <app-profile-order [obj]="item" [role]="user.role"></app-profile-order>
+            <app-profile-order [obj]="item" [role]="user.role" [delivery]="allDelivery"></app-profile-order>
         </ng-container>
     </div>
     

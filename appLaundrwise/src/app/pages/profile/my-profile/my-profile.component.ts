@@ -15,6 +15,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
   public allOrdersSuperManager: any = [];
   public allOrdersManager: any = [];
   public managers: any = [];
+  public allDelivery: any = [];
   public countOrders = {
     all: 0,
     new: 0,
@@ -47,13 +48,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
             this.cleaner = cleaner[0];
             this.getCount(this.cleaner._id);
             this.loading = true;
-            // if (cleaner[0]) {
-            //   const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
-            //   const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id, status: {$ne: 0}});
-            //   this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&sort={"date": "-1"}`).then((basket: any) => {
-            //     this.allOrdersSuperManager = basket;
-            //   });
-            // }
+            this.getDelivery();
           });
         }
         if (this.user.role === 'managerCleaner') {
@@ -61,15 +56,18 @@ export class MyProfileComponent implements OnInit, OnChanges {
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
             this.allOrdersManager = log.ordersOpen;
             this.loading = true;
+            this.getDelivery();
           });
         }
       }
     });
   }
   ngOnChanges() {
-    if (this.user.role === 'superManagerCleaner') {
-      this.router.navigate(['/profile/all']);
-    }
+  }
+  getDelivery() {
+    this.crud.get('delivery').then((v: any) => {
+      this.allDelivery = v;
+    });
   }
   getCount(id) {
     this.crud.get(`basket/count?query={"cleanerOwner":"${id}"}&select=_id`).then((v: any) => {
