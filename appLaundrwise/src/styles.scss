@@ -55,7 +55,9 @@ mat-dialog-container.mat-dialog-container{
   z-index: 2;
   box-shadow: 0 0 20px rgba(54, 81, 103, 0.3);
 }
-
+th.mat-header-cell{
+  text-align: center!important;
+}
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
   color: #00B7FF;
 }

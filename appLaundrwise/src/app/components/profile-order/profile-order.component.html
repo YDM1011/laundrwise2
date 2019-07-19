@@ -1,148 +1,150 @@
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header class="panel-headline">
-      <mat-panel-title>
-        <div class="status" [innerHTML]="obj.status | status | safeHTML"></div>
-      </mat-panel-title>
-      <mat-panel-description>
-        <div class="empty"></div>
-        <div class="company-description">
-          <span class="name">{{obj.cleanerOwner.name}}</span>
-        </div>
-        <div class="date-description" *ngIf="obj.dataCollection && obj.dataDelivery">
-            <span class="from">
-              {{obj.dataCollection | date: 'd.MM.yy'}}
-            </span>
-          <span class="text-el">
-            -
-          </span>
-          <span class="to">
-              {{obj.dataDelivery | date: 'd.MM.yy'}}
-          </span>
-        </div>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div class="orders-box">
-      <div class="order__item">
-        <div class="order__body">
-          <div class="items__box">
-              <div class="item">
-                <div class="item__headline">
-                  <div class="title">
-                    Items
+<ng-container *ngIf="obj">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="panel-headline">
+          <mat-panel-title>
+            <div class="status" [innerHTML]="obj.status | status | safeHTML"></div>
+          </mat-panel-title>
+          <mat-panel-description>
+            <div class="empty"></div>
+            <div class="company-description">
+              <span class="name">{{obj.cleanerOwner.name}}</span>
+            </div>
+            <div class="date-description" *ngIf="obj.dataCollection && obj.dataDelivery">
+                <span class="from">
+                  {{obj.dataCollection | date: 'd.MM.yy'}}
+                </span>
+              <span class="text-el">
+                -
+              </span>
+              <span class="to">
+                  {{obj.dataDelivery | date: 'd.MM.yy'}}
+              </span>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="orders-box">
+          <div class="order__item">
+            <div class="order__body">
+              <div class="items__box">
+                  <div class="item">
+                    <div class="item__headline">
+                      <div class="title">
+                        Items
+                      </div>
+                    </div>
+                    <div class="item__element" *ngFor="let prod of obj.products">
+                      <app-img [img]="prod.images"></app-img>
+                      <div class="count">{{prod.count}}x</div>
+                      <div class="name">{{prod.name}}</div>
+                      <div class="price">{{prod.price}}$</div>
+                    </div>
                   </div>
-                </div>
-                <div class="item__element" *ngFor="let prod of obj.products">
-                  <app-img [img]="prod.images"></app-img>
-                  <div class="count">{{prod.count}}x</div>
-                  <div class="name">{{prod.name}}</div>
-                  <div class="price">{{prod.price}}$</div>
+                  <div class="item info-item">
+                    <div class="item__headline">
+                      <div class="title">
+                        Information
+                      </div>
+                    </div>
+                    <div class="info-block">
+                      <div *ngIf="obj.mobile">
+                        Tel: {{obj.mobile}}
+                      </div>
+                      <div *ngIf="obj.email">
+                        Email: {{obj.email}}
+                      </div>
+                      <div *ngIf="obj.instruction && (role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery')">
+                        Instruction: {{obj.instruction}}
+                      </div>
+                      <div *ngIf="obj.deliveryInstruction && (role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery')">
+                        Instruction Delivery: {{obj.deliveryInstruction}}
+                      </div>
+                    </div>
+                  </div>
+                <div class="total__price">
+                  {{obj.totalPrice}}$
                 </div>
               </div>
-              <div class="item info-item">
-                <div class="item__headline">
-                  <div class="title">
-                    Information
+              <div class="time">
+                <div class="time__headline">
+                  Times
+                </div>
+                <div class="time__box">
+                  <div class="time__element">
+    <!--                <div class="status active"></div>-->
+                    <div class="date">
+                      {{obj.dataCollection | date: 'EEEE, MMMM d'}}
+                    </div>
+                    <div class="times" *ngIf="obj.collectionTime1 && obj.collectionTime2">
+                      <div class="from">{{obj.collectionTime1}}</div>
+                      -
+                      <div class="to">{{obj.collectionTime2}}</div>
+                    </div>
+                    <div class="address">
+                        {{obj.address1}}
+                    </div>
+                  </div>
+                  <div class="time__element">
+    <!--                <div class="status waiting"></div>-->
+                    <div class="date">
+                      {{obj.dataDelivery | date: 'EEEE, MMMM d'}}
+                    </div>
+                    <div class="times" *ngIf="obj.deliveryTime1 && obj.deliveryTime2">
+                      <div class="from">{{obj.deliveryTime1}}</div>
+                      -
+                      <div class="to">{{obj.deliveryTime2}}</div>
+                    </div>
+                    <div class="address">
+                      {{obj.address1}}
+                    </div>
                   </div>
                 </div>
-                <div class="info-block">
-                  <div *ngIf="obj.mobile">
-                    Tel: {{obj.mobile}}
-                  </div>
-                  <div *ngIf="obj.email">
-                    Email: {{obj.email}}
-                  </div>
-                  <div *ngIf="obj.instruction && (role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery')">
-                    Instruction: {{obj.instruction}}
-                  </div>
-                  <div *ngIf="obj.deliveryInstruction && (role === 'client' || role === 'superManagerDelivery' || role === 'managerDelivery')">
-                    Instruction Delivery: {{obj.deliveryInstruction}}
-                  </div>
+                <div class="buttons-box" *ngIf="role === 'managerCleaner' || role === 'superManagerCleaner'">
+                  <button class="accept" *ngIf="obj.status === 1 && role === 'superManagerCleaner'" (click)="openModal()">Assign</button>
+                  <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner'&& !obj.deliveryOwner" (click)="openModalSuperDelivery()">Choose Delivery</button>
+                  <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner' && obj.deliveryOwner">In progress</button>
+                  <button class="accept" *ngIf="obj.status === 3 && role === 'managerCleaner'">Done</button>
+                  <button class="cancel" *ngIf="role === 'superManagerCleaner'">Cancel</button>
                 </div>
               </div>
-            <div class="total__price">
-              {{obj.totalPrice}}$
             </div>
           </div>
-          <div class="time">
-            <div class="time__headline">
-              Times
-            </div>
-            <div class="time__box">
-              <div class="time__element">
-<!--                <div class="status active"></div>-->
-                <div class="date">
-                  {{obj.dataCollection | date: 'EEEE, MMMM d'}}
-                </div>
-                <div class="times" *ngIf="obj.collectionTime1 && obj.collectionTime2">
-                  <div class="from">{{obj.collectionTime1}}</div>
-                  -
-                  <div class="to">{{obj.collectionTime2}}</div>
-                </div>
-                <div class="address">
-                    {{obj.address1}}
-                </div>
-              </div>
-              <div class="time__element">
-<!--                <div class="status waiting"></div>-->
-                <div class="date">
-                  {{obj.dataDelivery | date: 'EEEE, MMMM d'}}
-                </div>
-                <div class="times" *ngIf="obj.deliveryTime1 && obj.deliveryTime2">
-                  <div class="from">{{obj.deliveryTime1}}</div>
-                  -
-                  <div class="to">{{obj.deliveryTime2}}</div>
-                </div>
-                <div class="address">
-                  {{obj.address1}}
-                </div>
-              </div>
-            </div>
-            <div class="buttons-box" *ngIf="role === 'managerCleaner' || role === 'superManagerCleaner'">
-              <button class="accept" *ngIf="obj.status === 1 && role === 'superManagerCleaner'" (click)="openModal()">Assign</button>
-              <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner'" (click)="openModalSuperDelivery()">Choose Delivery</button>
-              <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner'">In progress</button>
-              <button class="accept" *ngIf="obj.status === 3 && role === 'managerCleaner'">Done</button>
-              <button class="cancel" *ngIf="role === 'superManagerCleaner'">Cancel</button>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
-
-<div class="modal-assign" *ngIf="modal">
-    <div class="modal-block">
-        <div class="main-block">
-            <h2>Assign order to manager</h2>
-            <div class="block">
-                <mat-radio-group class="buttons" aria-label="Select an option" [(ngModel)]="managerChoose" *ngIf="cleaner.length > 0">
-                    <mat-radio-button class="buttons-item" *ngFor="let item of cleaner" value="{{item._id}}">{{item.login}}</mat-radio-button>
-                </mat-radio-group>
-                <div class="block-btn">
-                    <button class="cancel" (click)="openModal()">Close</button>
-                    <button class="accept" [class.active]="managerChoose" (click)="assigneToManager()">Assign</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+    
+    <div class="modal-assign" *ngIf="modal">
+        <div class="modal-block">
+            <div class="main-block">
+                <h2>Assign order to manager</h2>
+                <div class="block">
+                    <mat-radio-group class="buttons" aria-label="Select an option" [(ngModel)]="managerChoose" *ngIf="cleaner.length > 0">
+                        <mat-radio-button class="buttons-item" *ngFor="let item of cleaner" value="{{item._id}}">{{item.login}}</mat-radio-button>
+                    </mat-radio-group>
+                    <div class="block-btn">
+                        <button class="cancel" (click)="openModal()">Close</button>
+                        <button class="accept" [class.active]="managerChoose" (click)="assigneToManager()">Assign</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="removeModal" (click)="openModal()"></div>
     </div>
-    <div class="removeModal" (click)="openModal()"></div>
-</div>
-<div class="modal-assign" *ngIf="modalSuperDelivery">
-    <div class="modal-block">
-        <div class="main-block">
-            <h2>Assign order to delivery</h2>
-            <div class="block">
-                <mat-radio-group class="buttons" aria-label="Select an option" [(ngModel)]="deliverySuperChoose" *ngIf="delivery.length > 0">
-                    <mat-radio-button class="buttons-item" *ngFor="let item of delivery" value="{{item._id}}">{{item.name}}</mat-radio-button>
-                </mat-radio-group>
-                <div class="block-btn">
-                    <button class="cancel" (click)="openModalSuperDelivery()">Close</button>
-                    <button class="accept" [class.active]="deliverySuperChoose" (click)="assigneToSuperDelivery()">Assign</button>
+    <div class="modal-assign" *ngIf="modalSuperDelivery">
+        <div class="modal-block">
+            <div class="main-block">
+                <h2>Assign order to delivery</h2>
+                <div class="block">
+                    <mat-radio-group class="buttons" aria-label="Select an option" [(ngModel)]="deliverySuperChoose" *ngIf="delivery.length > 0">
+                        <mat-radio-button class="buttons-item" *ngFor="let item of delivery" value="{{item._id}}">{{item.name}}</mat-radio-button>
+                    </mat-radio-group>
+                    <div class="block-btn">
+                        <button class="cancel" (click)="openModalSuperDelivery()">Close</button>
+                        <button class="accept" [class.active]="deliverySuperChoose" (click)="assigneToSuperDelivery()">Assign</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="removeModal" (click)="openModalSuperDelivery()"></div>
     </div>
-    <div class="removeModal" (click)="openModalSuperDelivery()"></div>
-</div>
+</ng-container>

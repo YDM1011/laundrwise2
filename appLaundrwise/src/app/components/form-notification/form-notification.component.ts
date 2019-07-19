@@ -59,7 +59,7 @@ export class FormNotificationComponent implements OnInit {
     if (!obj.mes) {
         return Swal.fire('Something broken', '', 'error')
     } else {
-        this.crud.post('adminNotification', obj).then((value) => {
+        this.crud.post('adminNotification', obj, null, false, false).then((value) => {
             this.wsService.send(WS.SEND.NOTIFICATION, 'admin',  { data: obj.entity });
             Swal.fire('Success', 'Message sended', 'success');
             this.formClear();

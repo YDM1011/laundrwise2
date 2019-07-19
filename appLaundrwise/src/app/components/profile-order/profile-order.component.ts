@@ -26,12 +26,13 @@ export class ProfileOrderComponent implements OnInit {
       status: 2,
       managerCleanerOwner: this.managerChoose
     };
-    this.crud.post('basket', obj, this.obj._id).then((v: any) => {
+    this.crud.post('basket', obj, this.obj._id, false, false).then((v: any) => {
       this.openModal();
+      this.obj = null;
     });
   }
   assigneToSuperDelivery() {
-    this.crud.post('basket', {deliveryOwner: this.deliverySuperChoose, status: 2}, this.obj._id).then((v: any) => {
+    this.crud.post('basket', {deliveryOwner: this.deliverySuperChoose, status: 2}, this.obj._id, false, false).then((v: any) => {
       this.openModalSuperDelivery();
     });
   }

@@ -2,6 +2,8 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth.service";
 import {CrudService} from "../../../crud.service";
 import {Router} from "@angular/router";
+import {WebsocketService} from "../../../websocket";
+import {WS} from "../../../websocket/websocket.events";
 
 @Component({
   selector: 'app-my-profile',
@@ -9,6 +11,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./my-profile.component.scss']
 })
 export class MyProfileComponent implements OnInit, OnChanges {
+  public notification$: any;
+  public updateNotificationList: any;
   public user: any;
   public cleaner: any;
   public allOrdersUser: any = [];
@@ -27,8 +31,14 @@ export class MyProfileComponent implements OnInit, OnChanges {
       private auth: AuthService,
       private crud: CrudService,
       private router: Router,
+      private wsService: WebsocketService
   ) { }
   ngOnInit() {
+    this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+    this.notification$.subscribe(v => {
+      this.updateNotificationList(JSON.parse(v).data.data);
+      console.log(this.updateNotificationList);
+    });
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
         this.user = v;
@@ -52,9 +62,9 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
         }
         if (this.user.role === 'managerCleaner') {
-          const populate = JSON.stringify({path: 'ordersOpen', populate: {path: 'products'}});
+          const populate = JSON.stringify({path: 'orders', populate: {path: 'products'}});
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
-            this.allOrdersManager = log.ordersOpen;
+            this.allOrdersManager = log.orders;
             this.loading = true;
             this.getDelivery();
           });
