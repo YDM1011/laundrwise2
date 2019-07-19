@@ -10,6 +10,10 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Cleaner"
     },
+    delivery:{
+        type: Schema.Types.ObjectId,
+        ref: "Delivery"
+    },
     orders: [{
         type: Schema.Types.ObjectId,
         ref: "Basket"

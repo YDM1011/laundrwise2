@@ -7,9 +7,8 @@ import {CrudService} from "../../../../crud.service";
   styleUrls: ['./application-settings.component.scss']
 })
 export class ApplicationSettingsComponent implements OnInit, OnChanges {
-  public checked: boolean = false;
-  public checkedDef: any;
   public showSave:boolean = false;
+  public setting:any;
   constructor(
       private crud: CrudService
   ) { }
@@ -17,8 +16,7 @@ export class ApplicationSettingsComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.crud.getNoCache('setting').then((v: any) => {
       if (v) {
-        this.checkedDef = v.isAppBlock;
-        this.checked = v.isAppBlock;
+        this.setting = v;
       }
     });
   }
@@ -28,7 +26,7 @@ export class ApplicationSettingsComponent implements OnInit, OnChanges {
   }
 
   save() {
-    this.crud.post('setting', {isAppBlock: this.checked});
+    this.crud.post('setting', this.setting);
   }
 
 

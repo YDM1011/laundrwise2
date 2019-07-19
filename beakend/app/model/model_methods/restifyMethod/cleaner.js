@@ -27,12 +27,13 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
             req.body = {superManager: manager._id};
             next()
         }
-        if (req.body.manager.role === 'managerCleaner') {
+        if (req.body.manager.role === 'managerCleaner' || req.body.manager.role === 'managerDelivery') {
             manager = await createManeger(req, backendApp).catch(e=>{return res.notFound(e)});
             log = await actionLogCreate(manager._id,backendApp);
             if (!manager || !log) return res.badRequest('Bad request!');
             req.body = {$push:{managers: manager._id}};
-            backendApp.mongoose.model('Cleaner')
+            let model = req.body.manager.role === 'managerCleaner' ? 'Cleaner' : 'Delivery';
+            backendApp.mongoose.model(model)
                 .findOneAndUpdate({_id:req.params.id}, req.body, {new:true})
                 .exec((e,r)=>{
                     if(e) return res.serverError(e);
@@ -45,8 +46,9 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
                                 if(!r1) return res.badRequest();
                                 if(r1) return res.ok(r1);
                             });
+                        let data = model === 'Cleaner' ? {cleaner:r._id} : {delivery:r._id}
                         backendApp.mongoose.model('ActionLog')
-                            .findOneAndUpdate({owner:manager._id}, {cleaner:r._id}, {new:true})
+                            .findOneAndUpdate({owner:manager._id}, data, {new:true})
                             .exec((e2,r2)=>{})
                     }
                 });

@@ -42,6 +42,20 @@ schema.post('save', (doc,next)=>{
         })
 });
 
+schema.post('find', (doc,next)=>{
+    console.log("URAAAAAAAAAAAAAAA", doc)
+    const Setting = backendApp.mongoose.model('Setting');
+    Setting.findOne({})
+        .exec((e,r)=>{
+            if (r){
+                doc.map(it=>{
+                    if(r.percentage || (r.percentage == 0)) it.price = ((r.percentage*it.price)/100) +  it.price;
+                });
+                next()
+            }
+        });
+});
+
 schema.post('remove', (doc) => {
     console.log(doc)
     mongoose.model('Category')
