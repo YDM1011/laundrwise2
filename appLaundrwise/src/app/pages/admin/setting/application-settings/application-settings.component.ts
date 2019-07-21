@@ -7,8 +7,8 @@ import {CrudService} from "../../../../crud.service";
   styleUrls: ['./application-settings.component.scss']
 })
 export class ApplicationSettingsComponent implements OnInit, OnChanges {
-  public showSave:boolean = false;
-  public setting:any;
+  public showSave: boolean = false;
+  public setting: any;
   constructor(
       private crud: CrudService
   ) { }
@@ -27,7 +27,7 @@ export class ApplicationSettingsComponent implements OnInit, OnChanges {
 
   save(e) {
     e.preventDefault();
-    this.crud.post('setting', this.setting);
+    this.crud.post('setting', this.setting, this.setting._id);
   }
 
 

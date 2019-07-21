@@ -30,8 +30,15 @@ export class MyProfileComponent implements OnInit, OnChanges {
       private auth: AuthService,
       private crud: CrudService,
       private router: Router,
+      private wsService: WebsocketService
   ) { }
   ngOnInit() {
+      this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+
+      this.notification$.subscribe(v => {
+          console.log(v)
+      });
+
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
         this.user = v;
@@ -55,9 +62,9 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
         }
         if (this.user.role === 'managerCleaner') {
-          const populate = JSON.stringify({path: 'ordersOpen', populate: {path: 'products'}});
+          const populate = JSON.stringify({path: 'orders', populate: {path: 'products'}});
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
-            this.allOrdersManager = log.ordersOpen;
+            this.allOrdersManager = log.orders;
             this.loading = true;
             this.getDelivery();
           });

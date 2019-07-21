@@ -19,7 +19,6 @@ export class OrderItemComponent implements OnInit, OnChanges {
     this.obj['totalPrice'] = typeof this.obj['totalPrice'] === 'number' ? this.obj.totalPrice : this.obj.price;
   }
   ngOnChanges() {
-    // console.log(this.obj.currentOrder)
   }
 
   decrement() {

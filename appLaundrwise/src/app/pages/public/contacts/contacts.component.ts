@@ -21,7 +21,7 @@ export class ContactsComponent implements OnInit {
     this.auth.onSettings.subscribe((v: any) => {
         if (!v) return;
         this.cleanerData = v;
-    })
+    });
     this.crud.get('post?query={}&skip=0&limit=3&sort={"date":-1}', ).then((value: any) => {
       this.arrayPost = value;
     }).catch(e => {});
