@@ -36,12 +36,10 @@ module.exports.preSave = async (req, res, next, backendApp) => {
 };
 
 module.exports.preRead = async (req,res,next, backendApp) => {
-    console.log('PREREAD')
     const Setting = backendApp.mongoose.model('Setting');
-    await isLoggedIn(req,res,backendApp);
+    // await isLoggedIn(req,res,backendApp);
     Setting.findOne({})
         .exec((e,r)=>{
-            console.log('PREREAD', r)
             if (e) return res.serverError(e);
             if (!r) return res.badRequest('Not valid setting');
             if (r) return res.ok(r);

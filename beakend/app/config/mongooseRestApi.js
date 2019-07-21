@@ -41,10 +41,8 @@ module.exports = function (backendApp) {
 
     function schemaPreRead (req, res, next) {
         let schem = restFunction[String(req.erm.model.modelName.toLowerCase())];
-        console.log("Schema", schem, req.erm.model.modelName);
         if (schem) {
             try {
-                console.log("ok")
                 schem.preRead(req, res, next, backendApp);
             } catch (e) {
                 next()

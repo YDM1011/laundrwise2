@@ -4,7 +4,7 @@ const path = require('path'),
 module.exports = {
   root: rootPath,
   app: {
-    name: 'Escort'
+    name: 'Laundrwise'
   },
   port: process.env.PORT || 3000,
   db: 'mongodb://localhost:27017',

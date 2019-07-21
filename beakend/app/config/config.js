@@ -13,7 +13,7 @@ var config = {
 var envConfig = config[env] ? config[env] : config.development;
 
 module.exports = _.extend({
-  instanceCreatedAt: "escort",
+  instanceCreatedAt: "laundrwise",
   NODE_ENV: env,
   IS_PRODUCTION: env === "production",
   RC_VERSION: process.env.RC_VERSION || "1.0.0"
