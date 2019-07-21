@@ -24,7 +24,7 @@ module.exports = function (req, res, next) {
                       } else {
                           req.user = info.toObject();
                           bodyModyfi(req);
-                          tryAsAdmin(req, res, next)
+                          tryAsAdmin(req, res, next);
                       }
 
                   });
@@ -38,18 +38,22 @@ module.exports = function (req, res, next) {
 const tryAsAdmin = (req,res,next) => {
     const jwt = require('jsonwebtoken');
     const protect = req.cookies['adminToken'] || req.jwt.token;
-    if(!protect){
+    if(!protect && !req.user){
         return res.forbidden("forbidden12");
     }
     const connect = protect.split(" ");
     jwt.verify(connect[0], config.jwtSecret, (err,data)=>{
         if (err) {
-            return res.serverError("Token error");
+            if (!req.user) return res.serverError("Token error");
+            return next()
         }else{
             Admin.findOne({login: data.login })
                 .exec((err, infoA)=>{
                     if (err) return next(err);
-                    if (!infoA) return res.forbidden("forbidden3");
+                    if (!infoA){
+                        if (!req.user) return res.forbidden("forbidden3");
+                        return next()
+                    }
                     req.user = infoA.toObject();
                     req.isAdmin = true;
                     bodyModyfi(req);
