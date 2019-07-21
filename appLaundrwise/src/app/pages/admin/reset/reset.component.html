@@ -1,0 +1,13 @@
+<div class="admin-login">
+  <div class="admin-login__box">
+    <h3>Reset</h3>
+    <form (submit)="doReset()">
+      <input type="text" [(ngModel)]="adminReset.reset" placeholder="Login" name="reset">
+      <button type="submit">Reset</button>
+    </form>
+    <div class="login-box-btn">
+      <a [routerLink]="'/admin/login'" class="create-admin1">Login</a>
+      <a [routerLink]="'/admin/create'" class="create-admin2">Create admin panel?</a>
+    </div>
+  </div>
+</div>
