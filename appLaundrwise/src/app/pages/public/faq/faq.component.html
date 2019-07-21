@@ -6,34 +6,16 @@
 
 <div class="content">
     <div class="accordion-box">
-        <mat-accordion class="accordion__item">
+        <mat-accordion class="accordion__item" *ngFor="let f of faqs">
             <mat-expansion-panel class="accordion-item">
                 <mat-expansion-panel-header class="accordion-header" collapsedHeight="*" expandedHeight="*">
                     <mat-panel-title class="question">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos magni necessitatibus neque officia, repellat sequi.
+                        {{f.question}}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p class="ansver">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta fugit laboriosam omnis quibusdam quos? Ab blanditiis commodi est eveniet excepturi facere magni modi molestiae nam nostrum pariatur quas quibusdam quidem quo, quod sequi vero. Culpa impedit quibusdam quidem recusandae! Autem eaque et incidunt laborum mollitia natus pariatur, perspiciatis porro voluptate!</p>
-            </mat-expansion-panel>
-        </mat-accordion>
-        <mat-accordion class="accordion__item">
-            <mat-expansion-panel class="accordion-item">
-                <mat-expansion-panel-header class="accordion-header" collapsedHeight="*" expandedHeight="*">
-                    <mat-panel-title class="question">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos magni necessitatibus neque officia, repellat sequi.
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <p class="ansver">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta fugit laboriosam omnis quibusdam quos? Ab blanditiis commodi est eveniet excepturi facere magni modi molestiae nam nostrum pariatur quas quibusdam quidem quo, quod sequi vero. Culpa impedit quibusdam quidem recusandae! Autem eaque et incidunt laborum mollitia natus pariatur, perspiciatis porro voluptate!</p>
-            </mat-expansion-panel>
-        </mat-accordion>
-        <mat-accordion class="accordion__item">
-            <mat-expansion-panel class="accordion-item">
-                <mat-expansion-panel-header class="accordion-header" collapsedHeight="*" expandedHeight="*">
-                    <mat-panel-title class="question">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <p class="ansver">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta fugit laboriosam omnis quibusdam quos? Ab blanditiis commodi est eveniet excepturi facere magni modi molestiae nam nostrum pariatur quas quibusdam quidem quo, quod sequi vero. Culpa impedit quibusdam quidem recusandae! Autem eaque et incidunt laborum mollitia natus pariatur, perspiciatis porro voluptate!</p>
+                <p class="ansver">
+                    {{f.answer}}
+                </p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CrudService} from "../../../crud.service";
 
 @Component({
   selector: 'app-faq',
@@ -6,10 +7,18 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./faq.component.css']
 })
 export class FaqComponent implements OnInit {
-  constructor() {
+  public faqs;
+  constructor(
+      private crud: CrudService
+  ) {
   }
 
   ngOnInit() {
+      this.crud.getNoCache('faq').then((v: any) => {
+          if (v) {
+              this.faqs = v;
+          }
+      });
   }
 
 

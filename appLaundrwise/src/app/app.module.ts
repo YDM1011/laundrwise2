@@ -99,6 +99,7 @@ import { NewComponent } from './pages/profile/my-profile/new/new.component';
 import { WaitingComponent } from './pages/profile/my-profile/waiting/waiting.component';
 import { DoneComponent } from './pages/profile/my-profile/done/done.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -188,6 +189,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     WaitingComponent,
     DoneComponent,
     LoadingComponent,
+    FaqAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,9 @@ export class AuthService {
   private basketGroup = new BehaviorSubject<any>(null);
   public getBasketGroup = this.basketGroup.asObservable();
 
+  private settings = new BehaviorSubject<any>(null);
+  public onSettings = this.settings.asObservable();
+
   constructor(private cookieService: CookieService) { }
   isAuth() {
     if (this.cookieService.get('userId')) {
@@ -64,7 +67,10 @@ export class AuthService {
       obj.orderInfo = Object.assign({}, order.orderInfo);
       this.order.next( obj );
   }
-    setCompany(data){
-      this.cleaners.next(data)
-    }
+  setCompany(data){
+    this.cleaners.next(data)
+  }
+  setSettings(data){
+      this.settings.next(data)
+  }
 }

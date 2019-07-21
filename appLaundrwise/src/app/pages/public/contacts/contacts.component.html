@@ -6,10 +6,11 @@
     </div>
 </div>
 
+<ng-container *ngIf="cleanerData">
 
 <div class="content">
     <p class="contact-paragraph">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        {{cleanerData.des}}
     </p>
 </div>
 
@@ -17,25 +18,27 @@
     <div class="contact-box">
         <div class="left">
             <div class="left-box">
-                <p class="contact-item">
+                <p class="contact-item" *ngIf="cleanerData.email ||
+                cleanerData.name ||
+                cleanerData.mobile ">
                     Some information about Us
                 </p>
-                <p class="contact-item">
-                    Company "Laundrwise"
+                <p class="contact-item" *ngIf="cleanerData.name">
+                    Company "{{cleanerData.name}}"
                 </p>
-                <p class="contact-item">
-                    Email: <a href="mailto:info@laundrwise.com">info@laundrwise.com</a>
+                <p class="contact-item" *ngIf="cleanerData.email">
+                    Email: <a href="mailto:{{cleanerData.email}}">{{cleanerData.email}}</a>
                 </p>
-                <p class="contact-item">
-                    Phone: <a href="tel: 555 555 555">555 555 555</a>
+                <p class="contact-item" *ngIf="cleanerData.mobile">
+                    Phone: <a href="tel:{{cleanerData.mobile}}">{{cleanerData.mobile}}</a>
                 </p>
                 <div class="buttons">
-                    <a href="" class="buttons__item">
+                    <a href="{{cleanerData.fb}}" class="buttons__item" *ngIf="cleanerData.fb">
                         <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18.6667 0.666016C8.37391 0.666016 0 9.03992 0 19.3327C0 29.6247 8.37391 37.9993 18.6667 37.9993C28.9587 37.9993 37.3333 29.6247 37.3333 19.3327C37.3333 9.03992 28.9602 0.666016 18.6667 0.666016ZM23.3089 19.9898H20.272C20.272 24.8419 20.272 30.8142 20.272 30.8142H15.7719C15.7719 30.8142 15.7719 24.8997 15.7719 19.9898H13.6327V16.1642H15.7719V13.6897C15.7719 11.9174 16.614 9.1482 20.3133 9.1482L23.648 9.16098V12.8746C23.648 12.8746 21.6216 12.8746 21.2276 12.8746C20.8336 12.8746 20.2735 13.0716 20.2735 13.9167V16.1649H23.7021L23.3089 19.9898Z" fill="#13AAFF"/>
                         </svg>
                     </a>
-                    <a href="" class="buttons__item">
+                    <a href="{{cleanerData.inst}}" class="buttons__item" *ngIf="cleanerData.inst">
                         <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
                                 <path d="M22.5731 19.3327C22.5731 21.306 20.9735 22.9056 19.0002 22.9056C17.0269 22.9056 15.4272 21.306 15.4272 19.3327C15.4272 17.3594 17.0269 15.7598 19.0002 15.7598C20.9735 15.7598 22.5731 17.3594 22.5731 19.3327Z" fill="#13AAFF"/>
@@ -49,7 +52,7 @@
                             </defs>
                         </svg>
                     </a>
-                    <a href="" class="buttons__item">
+                    <a href="{{cleanerData.yt}}" class="buttons__item" *ngIf="cleanerData.yt">
                         <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
                                 <path d="M17.0083 22.8302L23.0803 19.3331L17.0083 15.8359V22.8302Z" fill="#13AAFF"/>
@@ -73,6 +76,7 @@
     </div>
 </div>
 
+</ng-container>
 <app-is-app-download></app-is-app-download>
 
 <section class="blog" id="blog" *ngIf="arrayPost.length > 0">

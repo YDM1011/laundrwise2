@@ -3,6 +3,7 @@ import {WS} from "./websocket/websocket.events";
 import {CrudService} from "./crud.service";
 import {MatDialog} from "@angular/material";
 import {WebsocketService} from "./websocket";
+import {AuthService} from "./auth.service";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements  OnInit{
   public notification$;
   constructor(
     private crud: CrudService,
+    private auth: AuthService,
     public dialog: MatDialog,
     private wsService: WebsocketService
   ) {}
@@ -22,6 +24,11 @@ export class AppComponent implements  OnInit{
       this.notification$ = this.wsService.on(WS.ON.ON_NOTIFICATION);
       this.notification$.subscribe(v => {
           console.log(v);
+      });
+      this.crud.getNoCache('setting').then((v: any) => {
+          if (v) {
+              this.auth.setSettings(v);
+          }
       });
   }
 }

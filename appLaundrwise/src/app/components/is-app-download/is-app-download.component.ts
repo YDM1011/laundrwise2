@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CrudService} from "../../crud.service";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-is-app-download',
@@ -9,13 +10,14 @@ import {CrudService} from "../../crud.service";
 export class IsAppDownloadComponent implements OnInit {
   public isshow = false;
   constructor(
-      private crud: CrudService
+      private auth: AuthService
   ) { }
 
   ngOnInit() {
-    this.crud.get('setting').then((v: any) => {
+    this.auth.onSettings.subscribe((v: any) => {
+      if (!v) return;
       this.isshow = v.isAppBlock;
-    }).catch(e => {});
+    })
   }
 
 }

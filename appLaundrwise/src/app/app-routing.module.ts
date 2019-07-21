@@ -56,6 +56,7 @@ import {AllComponent} from "./pages/profile/my-profile/all/all.component";
 import {NewComponent} from "./pages/profile/my-profile/new/new.component";
 import {WaitingComponent} from "./pages/profile/my-profile/waiting/waiting.component";
 import {DoneComponent} from "./pages/profile/my-profile/done/done.component";
+import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -99,6 +100,7 @@ const routes: Routes = [
     {path: 'admin', component: AdminComponent , children: [
         {path: 'dashboard', component: DashboardComponent, canActivate: [AdminLoginedGuard]},
         {path: 'posts', component: PostComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'faq', component: FaqAdminComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-add', component: PostAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'post-edit/:id', component: PostEditComponent, canActivate: [AdminLoginedGuard]},
         {path: 'category', component: CategoryListComponent, canActivate: [AdminLoginedGuard]},
