@@ -39,7 +39,7 @@ export class AdminHeaderComponent implements OnInit, OnChanges {
   ngOnChanges() {}
 
   logout() {
-    this.crud.post('adminLogout', {}).then((v: any) => {
+    this.crud.post('adminLogout', {}, null, false, false).then((v: any) => {
         this.router.navigate(['/']);
         }).catch(error => {});
   }

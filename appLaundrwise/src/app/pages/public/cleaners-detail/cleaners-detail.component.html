@@ -1,81 +1,88 @@
-
 <div class="headline headline-contacts">
   <div class="headline-title">
-    <h3>Servis cleaners</h3>
+    <h3 *ngIf="cleaner && cleaner.name">{{cleaner.name}}</h3>
   </div>
 </div>
 
-<div class="content">
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et libero, quibusdam similique temporibus voluptas voluptate. Nihil, quisquam, ratione? Ducimus earum maxime tenetur. Adipisci at eaque eum, fuga neque odio perspiciatis quasi quos recusandae voluptatum. Accusamus aliquam autem beatae culpa dicta eaque earum eius est facilis fuga, in inventore iure labore laudantium minima nesciunt non obcaecati quasi quidem quis reiciendis repellendus repudiandae suscipit tenetur ut veniam veritatis voluptates! Accusantium aliquam dolor, dolorem excepturi facere incidunt ipsa molestiae quaerat repellendus rerum temporibus.
-  </p>
-</div>
+<!--<div class="content">-->
+<!--  <p>-->
+<!--    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et libero, quibusdam similique temporibus voluptas voluptate. Nihil, quisquam, ratione? Ducimus earum maxime tenetur. Adipisci at eaque eum, fuga neque odio perspiciatis quasi quos recusandae voluptatum. Accusamus aliquam autem beatae culpa dicta eaque earum eius est facilis fuga, in inventore iure labore laudantium minima nesciunt non obcaecati quasi quidem quis reiciendis repellendus repudiandae suscipit tenetur ut veniam veritatis voluptates! Accusantium aliquam dolor, dolorem excepturi facere incidunt ipsa molestiae quaerat repellendus rerum temporibus.-->
+<!--  </p>-->
+<!--</div>-->
 
-<div class="content">
+<div class="content" *ngIf="cleaner">
   <div class="content__element">
     <div class="content__element-box content__element-reverse">
-      <div class="title">
-        Aliquam erat volutpat
+      <div class="title" *ngIf="cleaner.name">
+        {{cleaner.name}}
       </div>
-      <div class="paragraph">
-        Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
-        Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+      <div class="paragraph" *ngIf="cleaner.country">
+        Country: {{cleaner.country}}
+      </div>
+      <div class="paragraph" *ngIf="cleaner.city">
+        City: {{cleaner.city}}
+      </div>
+      <div class="paragraph" *ngIf="cleaner.address">
+        Address: {{cleaner.address}}
+      </div>
+      <div class="paragraph" *ngIf="cleaner.des">
+        {{cleaner.des}}
       </div>
     </div>
-    <img src="../assets/images/content.jpg" alt="">
+    <app-img *ngIf="cleaner.images" [img]="cleaner.images"></app-img>
   </div>
 </div>
 
-<div class="content">
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem consequuntur cupiditate dolor dolores ex expedita incidunt ipsam libero obcaecati odio perferendis porro quasi, quos, reiciendis sit suscipit temporibus unde. Aliquam aliquid assumenda consequuntur fugit hic iste minus porro provident quis quisquam, recusandae repellat tempore temporibus? Animi aspernatur atque cumque doloremque eveniet incidunt laboriosam non omnis optio pariatur possimus quae quaerat, reiciendis repellendus saepe sapiente sit! A autem dolorem dolorum eius laudantium libero, quae ratione ullam unde voluptatum.
-  </p>
-</div>
+<!--<div class="content">-->
+<!--  <p>-->
+<!--    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem consequuntur cupiditate dolor dolores ex expedita incidunt ipsam libero obcaecati odio perferendis porro quasi, quos, reiciendis sit suscipit temporibus unde. Aliquam aliquid assumenda consequuntur fugit hic iste minus porro provident quis quisquam, recusandae repellat tempore temporibus? Animi aspernatur atque cumque doloremque eveniet incidunt laboriosam non omnis optio pariatur possimus quae quaerat, reiciendis repellendus saepe sapiente sit! A autem dolorem dolorum eius laudantium libero, quae ratione ullam unde voluptatum.-->
+<!--  </p>-->
+<!--</div>-->
 
-<div class="content">
-  <div class="video">
-    <div class="play" id="play">
-      <svg width="96" height="96" viewBox="0 0 157 157" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M146.469 39.2575C124.796 1.71818 76.7923 -11.1445 39.256 10.5328C1.7166 32.2031 -11.1466 80.2047 10.5307 117.743C32.201 155.282 80.2031 168.147 117.74 146.471C155.28 124.794 168.149 76.7944 146.469 39.2575ZM109.893 132.873C79.8662 150.215 41.461 139.924 24.1237 109.891C6.7825 79.8643 17.0768 41.4596 47.1048 24.1258C77.1338 6.78458 115.537 17.0744 132.875 47.1063C150.214 77.1378 139.923 115.535 109.893 132.873ZM106.754 75.3107L65.6563 51.3414C61.9111 49.1549 58.8902 50.903 58.9112 55.2351L59.1217 102.812C59.1407 107.143 62.1985 108.906 65.9547 106.736L106.738 83.19C110.491 81.0245 110.499 77.4973 106.754 75.3107Z" fill="#E5E5E5"/>
-      </svg>
-    </div>
-    <div class="pause" id="pause">
-      <img src="../assets/images/pause-button-outline.svg" height="96" width="96" alt="">
-    </div>
-    <video src="../assets/images/video.mp4" id="video">
-      <source src="../assets/images/video.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
+<!--<div class="content">-->
+<!--  <div class="video">-->
+<!--    <div class="play" id="play">-->
+<!--      <svg width="96" height="96" viewBox="0 0 157 157" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--        <path d="M146.469 39.2575C124.796 1.71818 76.7923 -11.1445 39.256 10.5328C1.7166 32.2031 -11.1466 80.2047 10.5307 117.743C32.201 155.282 80.2031 168.147 117.74 146.471C155.28 124.794 168.149 76.7944 146.469 39.2575ZM109.893 132.873C79.8662 150.215 41.461 139.924 24.1237 109.891C6.7825 79.8643 17.0768 41.4596 47.1048 24.1258C77.1338 6.78458 115.537 17.0744 132.875 47.1063C150.214 77.1378 139.923 115.535 109.893 132.873ZM106.754 75.3107L65.6563 51.3414C61.9111 49.1549 58.8902 50.903 58.9112 55.2351L59.1217 102.812C59.1407 107.143 62.1985 108.906 65.9547 106.736L106.738 83.19C110.491 81.0245 110.499 77.4973 106.754 75.3107Z" fill="#E5E5E5"/>-->
+<!--      </svg>-->
+<!--    </div>-->
+<!--    <div class="pause" id="pause">-->
+<!--      <img src="../assets/images/pause-button-outline.svg" height="96" width="96" alt="">-->
+<!--    </div>-->
+<!--    <video src="../assets/images/video.mp4" id="video">-->
+<!--      <source src="../assets/images/video.mp4" type="video/mp4">-->
+<!--    </video>-->
+<!--  </div>-->
+<!--</div>-->
 
-<div class="content">
-  <div class="ourclients" style="margin-bottom: 50px">
-    <h2>Out Clients</h2>
-    <div class="ourclients-container">
-      <div class="ourclients-container__item">
-        <img src="../assets/images/logo.svg" alt="">
-      </div>
-      <div class="ourclients-container__item">
-        <img src="../assets/images/logo.svg" alt="">
-      </div>
-      <div class="ourclients-container__item">
-        <img src="../assets/images/logo.svg" alt="">
-      </div>
-      <div class="ourclients-container__item">
-        <img src="../assets/images/logo.svg" alt="">
-      </div>
-      <div class="ourclients-container__item">
-        <img src="../assets/images/logo.svg" alt="">
-      </div>
-      <div class="ourclients-container__item">
-        <img src="../assets/images/logo.svg" alt="">
-      </div>
-      <div class="ourclients-container__item">
-        <img src="../assets/images/logo.svg" alt="">
-      </div>
-      <div class="ourclients-container__item">
-        <img src="../assets/images/logo.svg" alt="">
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="content">-->
+<!--  <div class="ourclients" style="margin-bottom: 50px">-->
+<!--    <h2>Out Clients</h2>-->
+<!--    <div class="ourclients-container">-->
+<!--      <div class="ourclients-container__item">-->
+<!--        <img src="../assets/images/logo.svg" alt="">-->
+<!--      </div>-->
+<!--      <div class="ourclients-container__item">-->
+<!--        <img src="../assets/images/logo.svg" alt="">-->
+<!--      </div>-->
+<!--      <div class="ourclients-container__item">-->
+<!--        <img src="../assets/images/logo.svg" alt="">-->
+<!--      </div>-->
+<!--      <div class="ourclients-container__item">-->
+<!--        <img src="../assets/images/logo.svg" alt="">-->
+<!--      </div>-->
+<!--      <div class="ourclients-container__item">-->
+<!--        <img src="../assets/images/logo.svg" alt="">-->
+<!--      </div>-->
+<!--      <div class="ourclients-container__item">-->
+<!--        <img src="../assets/images/logo.svg" alt="">-->
+<!--      </div>-->
+<!--      <div class="ourclients-container__item">-->
+<!--        <img src="../assets/images/logo.svg" alt="">-->
+<!--      </div>-->
+<!--      <div class="ourclients-container__item">-->
+<!--        <img src="../assets/images/logo.svg" alt="">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

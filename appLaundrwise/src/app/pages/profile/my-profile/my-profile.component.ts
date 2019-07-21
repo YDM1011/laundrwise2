@@ -51,14 +51,14 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
         }
         if (this.user.role === 'superManagerCleaner') {
-          this.router.navigate(['/profile/all']);
+          // this.router.navigate(['/profile/all']);
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((cleaner: any) => {
             this.cleaner = cleaner[0];
             this.getCount(this.cleaner._id);
-            this.loading = true;
             this.getDelivery();
+            this.loading = true;
           });
         }
         if (this.user.role === 'managerCleaner') {

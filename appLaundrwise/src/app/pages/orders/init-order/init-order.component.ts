@@ -12,19 +12,20 @@ export class InitOrderComponent implements OnInit, OnChanges {
     public chooseCompany;
     public allCompany;
     constructor(
-        private auth:AuthService
+        private auth: AuthService
     ) {}
     ngOnInit() {
         // subscribe me
         // get
         // subscribe for allCompany
-        this.auth.onCleaners.subscribe((v:any)=>{
-        console.log(v)
-            if(v){
+        this.auth.onCleaners.subscribe((v: any) => {
+            if (v && v.length > 0) {
                 this.allCompany = Object.assign({}, v) ;
                 this.chooseCompany = Object.assign({}, this.allCompany[0]);
+            } else {
+                this.step = 0;
             }
-        })
+        });
     }
     ngOnChanges() {}
     getChooseCompany(value) {

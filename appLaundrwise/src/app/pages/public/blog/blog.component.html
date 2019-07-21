@@ -1,23 +1,24 @@
 <div class="headline headline-about">
     <div class="headline-title">
-        <h3>{{post ? post.title : "Article title"}}</h3>
+        <h3 *ngIf="post">{{post.title}}</h3>
     </div>
 </div>
 <div class="content">
     <!--    <p>-->
     <!--        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
     <!--    </p>-->
-    <div class="content__element" *ngIf="post">
-        <!--        <img src="../assets/images/content.jpg" alt="">-->
-        <app-img *ngIf="post.images.length > 0" [img]="post.images[0]"></app-img>
-        <div class="content__element-box">
-            <!--            <div class="title">-->
-            <!--                Aliquam erat volutpat-->
-            <!--            </div>-->
-            <div class="paragraph" *ngIf="post.text">
-                {{post.text}}
+    <div class="content__element">
+        <ng-container  *ngIf="post">
+            <app-img *ngIf="post.images.length > 0" [img]="post.images[0]"></app-img>
+            <div class="content__element-box">
+                <!--            <div class="title">-->
+                <!--                Aliquam erat volutpat-->
+                <!--            </div>-->
+                <div class="paragraph" *ngIf="post.text">
+                    {{post.text}}
+                </div>
             </div>
-        </div>
+        </ng-container>
     </div>
 </div>
 

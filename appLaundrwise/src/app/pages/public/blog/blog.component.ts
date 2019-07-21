@@ -20,7 +20,6 @@ export class BlogComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
       this.id = this.route.snapshot.paramMap.get('id');
-      console.log(this.id)
       this.crud.getNoCache(`post/${this.id}`).then((v: any) => {
         this.post = Object.assign({}, v);
       });

@@ -1,4 +1,4 @@
-<a href="blog/{{itemPost._id}}" class="blog__container-item">
+<a [routerLink]="'/blogs/'+itemPost._id" class="blog__container-item">
   <div class="img">
     <app-img [img]="itemPost.images[0]"></app-img>
   </div>

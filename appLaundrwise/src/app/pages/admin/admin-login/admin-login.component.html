@@ -6,6 +6,9 @@
             <input type="text" [(ngModel)]="adminAuth.pass" placeholder="Password" name="pass">
             <button type="submit">login</button>
         </form>
-        <a [routerLink]="'/admin/create'" class="create-admin">Create admin panel?</a>
+        <div class="login-box-btn">
+            <a [routerLink]="'/admin/reset'" class="create-admin">Reset password*</a>
+            <a [routerLink]="'/admin/create'" class="create-admin2">Create admin panel?</a>
+        </div>
     </div>
 </div>

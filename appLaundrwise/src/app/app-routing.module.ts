@@ -57,6 +57,7 @@ import {NewComponent} from "./pages/profile/my-profile/new/new.component";
 import {WaitingComponent} from "./pages/profile/my-profile/waiting/waiting.component";
 import {DoneComponent} from "./pages/profile/my-profile/done/done.component";
 import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
+import {ResetComponent} from "./pages/admin/reset/reset.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -67,10 +68,10 @@ const routes: Routes = [
         {path: 'about-us', component: AboutUsComponent},
         {path: 'how-it-works', component: HowItWorksComponent},
         {path: 'blogs', component: BlogsComponent},
-        {path: 'blog/:id', component: BlogComponent},
+        {path: 'blogs/:id', component: BlogComponent},
         {path: 'faq', component: FaqComponent},
         {path: 'cleaners', component: CleanersComponent},
-        {path: 'cleaners/:id', component: CleanersDetailComponent},
+        {path: 'cleaner/:id', component: CleanersDetailComponent},
         {path: 'contacts', component: ContactsComponent},
         {path: 'offers', component: OffersComponent},
         {path: 'become-our-service', component: BecomeOurServiceComponent},
@@ -81,7 +82,7 @@ const routes: Routes = [
         ]},
     {path: 'profile', component: ProfileComponent, canActivate: [IsLoginGuard], children: [
       {path: '', component: MyProfileComponent, children: [
-              {path: '', component: MyProfileComponent},
+              {path: '', component: AllComponent},
               {path: 'all', component: AllComponent},
               {path: 'new', component: NewComponent},
               {path: 'waiting', component: WaitingComponent},
@@ -119,6 +120,7 @@ const routes: Routes = [
         {path: 'notification/:id', component: NotificationListComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
+    {path: 'admin/reset', component: ResetComponent, canActivate: [AdminLogoutGuard]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},
     {path: 'admin/create', component: AdminCreateComponent, canActivate: [AdminLogoutGuard]},
     {path: '**', component: NotFoundComponent}
