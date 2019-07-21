@@ -54,6 +54,7 @@ const tryAsAdmin = (req,res,next) => {
                         if (!req.user) return res.forbidden("forbidden3");
                         return next()
                     }
+                    if (req.user) return next()
                     req.user = infoA.toObject();
                     req.isAdmin = true;
                     bodyModyfi(req);

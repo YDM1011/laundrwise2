@@ -49,6 +49,7 @@ module.exports.preSave = async (req, res, next, backendApp) => {
         if (req.body) {
             // let user = await checkUser(req, res, backendApp).catch(e => {return res.notFound(e)});
             // if (user) {
+            console.log(req.user._id)
                 req.body['createdBy'] = {itemId:req.user._id};
                 // console.log(req.body, user, req.user)
                 let product = await createProduct(req, backendApp).catch(e => {return res.notFound(e)});
