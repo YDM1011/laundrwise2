@@ -21,7 +21,7 @@ export class CleanersListComponent implements OnInit {
 
     ngOnInit() {
         const query = JSON.stringify({path: 'superManager', skip: 0, limit: 0});
-        this.crud.get(`cleaner?populate=${query}`).then((v: any) => {
+        this.crud.getNoCache(`cleaner?populate=${query}`).then((v: any) => {
             this.cleaner = v;
             this.dataSource = new MatTableDataSource(this.cleaner);
         });

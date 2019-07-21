@@ -28,12 +28,10 @@ export class AppHeaderComponent implements OnInit {
               this.islogin = this.auth.isAuth();
               this.me = v;
               this.name = this.me.firstName[0] + this.me.lastName[0];
-
               const populate = JSON.stringify({path: 'category', skip: 0, limit: 0});
               const query = JSON.stringify({city: this.me.city, country: this.me.country});
-              this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((v: any) => {
-                  // this.company = v;
-                  this.auth.setCompany(v)
+              this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((company: any) => {
+                  this.auth.setCompany(company);
               });
           }
       });

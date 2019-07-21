@@ -16,14 +16,16 @@
 
 }
 
-.admin-login__box .create-admin{
+.admin-login__box .create-admin, .admin-login__box .create-admin2{
     display: inline-block;
     margin: 20px 0 0 auto;
     color: #000;
     float: right;
     cursor: pointer;
 }
-
+.admin-login__box .create-admin2{
+    margin: 5px 0 0 auto;
+}
 .admin-login h3{
     text-transform: uppercase;
     text-align: center;
@@ -55,4 +57,10 @@
     background: #00B7FF;
     color: #fff;
     cursor: pointer;
+}
+.login-box-btn{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
 }

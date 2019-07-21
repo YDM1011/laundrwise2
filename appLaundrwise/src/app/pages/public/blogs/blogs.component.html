@@ -20,8 +20,8 @@
         </div>
     </ng-container>
 
-    <div class="more" *ngIf="allBlogs.length > 8">
-        <div class="more-btn">
+    <div class="more" *ngIf="allBlogs && allBlogs.length > 8">
+        <div class="more-btn" (click)="loadMore()">
             <img src="../assets/images/more.svg" alt="">
             <div class="text">
                 More

@@ -67,10 +67,10 @@ export class AuthService {
       obj.orderInfo = Object.assign({}, order.orderInfo);
       this.order.next( obj );
   }
-  setCompany(data){
-    this.cleaners.next(data)
+  setCompany(data) {
+    this.cleaners.next(data);
   }
-  setSettings(data){
-      this.settings.next(data)
+  setSettings(data) {
+      this.settings.next(data);
   }
 }

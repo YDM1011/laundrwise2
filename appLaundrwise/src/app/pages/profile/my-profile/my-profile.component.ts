@@ -30,8 +30,15 @@ export class MyProfileComponent implements OnInit, OnChanges {
       private auth: AuthService,
       private crud: CrudService,
       private router: Router,
+      private wsService: WebsocketService
   ) { }
   ngOnInit() {
+      this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+
+      this.notification$.subscribe(v => {
+          console.log(v)
+      });
+
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
         this.user = v;
@@ -44,20 +51,20 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
         }
         if (this.user.role === 'superManagerCleaner') {
-          this.router.navigate(['/profile/all']);
+          // this.router.navigate(['/profile/all']);
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((cleaner: any) => {
             this.cleaner = cleaner[0];
             this.getCount(this.cleaner._id);
-            this.loading = true;
             this.getDelivery();
+            this.loading = true;
           });
         }
         if (this.user.role === 'managerCleaner') {
-          const populate = JSON.stringify({path: 'ordersOpen', populate: {path: 'products'}});
+          const populate = JSON.stringify({path: 'orders', populate: {path: 'products'}});
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
-            this.allOrdersManager = log.ordersOpen;
+            this.allOrdersManager = log.orders;
             this.loading = true;
             this.getDelivery();
           });

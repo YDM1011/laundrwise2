@@ -104,7 +104,7 @@
                   <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner'&& !obj.deliveryOwner" (click)="openModalSuperDelivery()">Choose Delivery</button>
                   <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner' && obj.deliveryOwner">In progress</button>
                   <button class="accept" *ngIf="obj.status === 3 && role === 'managerCleaner'">Done</button>
-                  <button class="cancel" *ngIf="role === 'superManagerCleaner'">Cancel</button>
+                  <button class="close" *ngIf="role === 'superManagerCleaner'">Cancel</button>
                 </div>
               </div>
             </div>

@@ -38,7 +38,6 @@ export class OrderFooterComponent implements OnInit, OnChanges {
         this.auth.onOrderConfirm.subscribe((v: any) => {
             if (v) {
                 this.order = v;
-                console.log(this.order);
                 if (this.order.basket.length === 0 ||
                     !this.order.orderInfo.address1 ||
                     !this.order.orderInfo.dataCollection ||

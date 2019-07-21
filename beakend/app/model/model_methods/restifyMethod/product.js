@@ -44,6 +44,7 @@ module.exports.preUpdate = async (req,res,next, backendApp) => {
 
 module.exports.preSave = async (req, res, next, backendApp) => {
     req.percentage = await getSettings(req,backendApp).catch(e => {return res.notFound(e)});
+    console.log("Percentage",req.percentage)
     // try {
         if (req.body) {
             // let user = await checkUser(req, res, backendApp).catch(e => {return res.notFound(e)});
@@ -51,6 +52,7 @@ module.exports.preSave = async (req, res, next, backendApp) => {
                 req.body['createdBy'] = {itemId:req.user._id};
                 // console.log(req.body, user, req.user)
                 let product = await createProduct(req, backendApp).catch(e => {return res.notFound(e)});
+                console.log("product",product);
                 let basket = await checkAndInitBasket(req, backendApp, product).catch(e => {return res.notFound(e)});
                 await setBasketToProduct(product, backendApp, basket).catch(e => {return res.notFound(e)});
                 product.basketOwner = basket._id;
@@ -114,7 +116,9 @@ const createProduct = (req,backendApp) => {
                 if (e0) return rj(e0);
                 if (!r0) return rj("One of product is invalid!");
                 data.price = parsePrice(r0.price*req.percentage);
+                console.log(data)
                 Product.create(data,(e,r)=>{
+
                     if (e) return rj(e);
                     if (!r) return rj("One of product is invalid!");
                     if (r) return rs(r)
@@ -152,12 +156,10 @@ const getSettings = (req,backendApp) => {
                 if (e) return rj(e);
                 if (!r) return rs({percentage: 1});
                 if (r){
-                    if(r.percentage || (r.percentage == 0)){
-                        rs (r.percentage = r.percentage/100 + 1);
+                    if(r.percentage || (r.percentage === 0)){
+                        rs (parsePrice(r.percentage/100 + 1));
                     }else{
-                        r['percentage'] = 1;
-                        console.log(r)
-                        return rs(r)
+                        return rs(1)
                     }
                 }
             });
