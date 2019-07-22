@@ -103,6 +103,7 @@ import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import { PopupDirective } from './directive/popup.directive';
 import { ScrollUploadDirective} from './directive/scroll-update.directive';
+import { AdddCountryComponent } from './components/addd-country/addd-country.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -195,6 +196,7 @@ import { ScrollUploadDirective} from './directive/scroll-update.directive';
     FaqAdminComponent,
     PopupDirective,
     ScrollUploadDirective,
+    AdddCountryComponent
   ],
   imports: [
     BrowserModule,

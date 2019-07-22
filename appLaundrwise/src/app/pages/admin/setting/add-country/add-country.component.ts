@@ -41,6 +41,12 @@ export class AddCountryComponent implements OnInit {
     }).catch(e => {
       console.log(e);
     });
-      this.location = {country: '', city: []};
+    this.location = {country: '', city: []};
+  }
+  changeRemove(e) {
+    if (e) {
+      console.log(e)
+      // this.locations.splice(e.value, 1);
+    }
   }
 }
