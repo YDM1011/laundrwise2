@@ -26,10 +26,10 @@ export class CollaboratorsComponent implements OnInit {
         const query = JSON.stringify({
           superManager: this.user._id
         });
-        const populate = JSON.stringify({path: 'managers', skip: 0, limit: 0});
+        const populate = JSON.stringify({path: 'managers'});
         this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((clen: any) => {
-          if (clen[0] && clen[0].managers.length > 0) {
-            this.cleaner = clen[0];
+          this.cleaner = clen[0];
+          if (clen && clen[0].managers.length > 0) {
             this.initManager = Object.assign([], clen[0].managers);
           }
         });
@@ -40,10 +40,9 @@ export class CollaboratorsComponent implements OnInit {
   addCollaborators() {
     this.newColab.role = 'managerCleaner';
     delete this.newColab._id;
-    this.crud.post('cleaner', {manager: this.newColab}, this.cleaner._id, ['cleaner']).then((v:any) => {
+    this.crud.post('cleaner', {manager: this.newColab}, this.cleaner._id, false, true).then((v: any) => {
       this.newColab = new NewCollaboratorObj();
       this.initManager.push(v);
-
       this.newColabIfFunc();
     });
   }
@@ -51,6 +50,4 @@ export class CollaboratorsComponent implements OnInit {
   newColabIfFunc() {
     this.newColabIf = !this.newColabIf;
   }
-
-
 }

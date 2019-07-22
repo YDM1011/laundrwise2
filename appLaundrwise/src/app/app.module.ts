@@ -100,8 +100,9 @@ import { WaitingComponent } from './pages/profile/my-profile/waiting/waiting.com
 import { DoneComponent } from './pages/profile/my-profile/done/done.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
-import { ResetComponent } from './pages/admin/reset/reset.component';
 import {ScrollingModule} from "@angular/cdk/scrolling";
+import { PopupDirective } from './directive/popup.directive';
+import { ScrollUploadDirective} from './directive/scroll-update.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -192,7 +193,8 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
     DoneComponent,
     LoadingComponent,
     FaqAdminComponent,
-    ResetComponent,
+    PopupDirective,
+    ScrollUploadDirective,
   ],
   imports: [
     BrowserModule,

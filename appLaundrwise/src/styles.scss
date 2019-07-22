@@ -78,6 +78,9 @@ th.mat-header-cell{
   padding-left: 5px;
   line-height: 23px;
 }
+.cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper{
+  padding: 5px;
+}
 app-my-profile{
   width: 100%;
 }

@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Directive, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {CrudService} from "../../../../crud.service";
 import {AuthService} from "../../../../auth.service";
 import {WS} from "../../../../websocket/websocket.events";
@@ -7,21 +7,15 @@ import {WebsocketService} from "../../../../websocket";
 @Component({
   selector: 'app-all',
   templateUrl: './all.component.html',
-  styleUrls: ['./all.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./all.component.scss']
 })
-// @Directive({
-//   selector: '[appScrollUpload]'
-// })
-export class AllComponent implements OnInit, AfterViewInit {
+export class AllComponent implements OnInit {
   public notification$: any;
   public updateNotificationList: any;
   public user;
   public cleaner: any;
   public allOrdersSuperManager: any = [];
   public loading: boolean = false;
-
-
   public elem: ElementRef;
   public scroll;
   public triger: boolean = true;
@@ -34,15 +28,15 @@ export class AllComponent implements OnInit, AfterViewInit {
     this.elem = el;
   }
   ngOnInit() {
-    // this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
-    //
-    // this.notification$.subscribe(v => {
-    //   console.log(v);
-    // });
-
     this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
     this.notification$.subscribe(v => {
-      console.log(v);
+      const idBasket = JSON.parse(v).data.data;
+      const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+      this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate}`).then((newBasket: any) => {
+        const newArray = [];
+        newArray.push(newBasket[0]);
+        this.allOrdersSuperManager = newArray.concat(this.allOrdersSuperManager);
+      });
     });
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
@@ -65,28 +59,9 @@ export class AllComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-  ngAfterViewInit() {
-    const block = this.elem.nativeElement;
-
-    block.onscroll = e => {
-      if ((e.srcElement.scrollTop + (e.target.offsetHeight * 1.2) > e.target.scrollHeight) && this.triger) {
-        this.triger = false;
-        this.upload();
-      }
-    };
+  getOutput(value) {
+    if (value && value.length > 0) {
+      this.allOrdersSuperManager = this.allOrdersSuperManager.concat(value);
+    }
   }
-  upload() {
-    console.log('tima');
-    // let s = this;
-    // let token = this.scroll || s.scrollUpload;
-    // s.mailing.getNewMessage(s.folder, token).then((v:any)=>{
-    //   if(v){
-    //     this.triger = true;
-    //     this.scroll = v.nextPageToken
-    //   }
-    // })
-    // s.mailing.onMessage
-  }
-
 }

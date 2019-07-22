@@ -29,7 +29,7 @@ export class DoneComponent implements OnInit {
             if (cleaner[0]) {
               const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
               const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id, status: 5});
-              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&sort={"date": "-1"}`).then((basket: any) => {
+              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"date": "-1"}`).then((basket: any) => {
                 this.allOrdersSuperManager = basket;
                 this.loading = true;
               });
@@ -38,5 +38,10 @@ export class DoneComponent implements OnInit {
         }
       }
     });
+  }
+  getOutput(value) {
+    if (value && value.length > 0) {
+      this.allOrdersSuperManager = this.allOrdersSuperManager.concat(value);
+    }
   }
 }

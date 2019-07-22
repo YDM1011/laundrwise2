@@ -33,19 +33,23 @@ export class MyProfileComponent implements OnInit, OnChanges {
       private wsService: WebsocketService
   ) { }
   ngOnInit() {
+    this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+    this.notification$.subscribe(v => {
+      this.countOrders.all++;
+      this.countOrders.new++;
+    });
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
         this.user = v;
         if (this.user.role === 'client' || !this.user.role) {
           const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
           const query = JSON.stringify({'createdBy.itemId': this.user._id, cleanerOwner: { $exists: true }, status: {$ne: 0}});
-          this.crud.getNoCache(`basket?query=${query}&populate=${populate}&sort={"date": "-1"}`).then((v: any) => {
+          this.crud.getNoCache(`basket?query=${query}&populate=${populate}&skip=0&limit=8&sort={"date": "-1"}`).then((v: any) => {
             this.allOrdersUser = v;
             this.loading = true;
           });
         }
         if (this.user.role === 'superManagerCleaner') {
-          // this.router.navigate(['/profile/all']);
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((cleaner: any) => {
@@ -56,7 +60,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
         }
         if (this.user.role === 'managerCleaner') {
-          const populate = JSON.stringify({path: 'orders', populate: {path: 'products'}});
+        const populate = JSON.stringify({path: 'orders', populate: {path: 'products'}});
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
             this.allOrdersManager = log.orders;
             this.loading = true;
@@ -87,5 +91,14 @@ export class MyProfileComponent implements OnInit, OnChanges {
     this.crud.get(`basket/count?query={"cleanerOwner":"${id}", "status":"5"}&select=_id`).then((v: any) => {
       this.countOrders['done'] = v.count;
     });
+  }
+  getOutput(value) {
+    if (this.user.role === 'client') {
+      this.allOrdersUser = this.allOrdersUser.concat(value);
+
+    }
+    if (value && value.length > 0) {
+      this.allOrdersSuperManager = this.allOrdersSuperManager.concat(value);
+    }
   }
 }

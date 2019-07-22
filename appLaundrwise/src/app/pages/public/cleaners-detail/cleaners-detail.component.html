@@ -10,28 +10,43 @@
 <!--  </p>-->
 <!--</div>-->
 
-<div class="content" *ngIf="cleaner">
+<!--<div class="content" *ngIf="cleaner">-->
+<!--  <div class="content__element">-->
+<!--    <div class="content__element-box content__element-reverse">-->
+<!--      <div class="title" *ngIf="cleaner.name">-->
+<!--        {{cleaner.name}}-->
+<!--      </div>-->
+<!--      <div class="paragraph" *ngIf="cleaner.country">-->
+<!--        Country: {{cleaner.country}}-->
+<!--      </div>-->
+<!--      <div class="paragraph" *ngIf="cleaner.city">-->
+<!--        City: {{cleaner.city}}-->
+<!--      </div>-->
+<!--      <div class="paragraph" *ngIf="cleaner.address">-->
+<!--        Address: {{cleaner.address}}-->
+<!--      </div>-->
+<!--      <div class="paragraph" *ngIf="cleaner.des">-->
+<!--        {{cleaner.des}}-->
+<!--      </div>-->
+<!--      <app-img *ngIf="cleaner.images" [img]="cleaner.images"></app-img>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div class="content">
   <div class="content__element">
-    <div class="content__element-box content__element-reverse">
-      <div class="title" *ngIf="cleaner.name">
-        {{cleaner.name}}
+    <ng-container  *ngIf="cleaner">
+      <div class="content__element-box">
+        <div class="paragraph">
+          <app-img [img]="cleaner.images"></app-img>
+          {{cleaner.name}}
+        </div>
       </div>
-      <div class="paragraph" *ngIf="cleaner.country">
-        Country: {{cleaner.country}}
-      </div>
-      <div class="paragraph" *ngIf="cleaner.city">
-        City: {{cleaner.city}}
-      </div>
-      <div class="paragraph" *ngIf="cleaner.address">
-        Address: {{cleaner.address}}
-      </div>
-      <div class="paragraph" *ngIf="cleaner.des">
-        {{cleaner.des}}
-      </div>
-    </div>
-    <app-img *ngIf="cleaner.images" [img]="cleaner.images"></app-img>
+    </ng-container>
   </div>
 </div>
+
 
 <!--<div class="content">-->
 <!--  <p>-->

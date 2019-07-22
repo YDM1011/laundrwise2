@@ -62,7 +62,7 @@
                     </div>
                   </div>
                 <div class="total__price">
-                  {{obj.totalPrice}}$
+                  {{obj.totalPrice.toFixed(2)}}$
                 </div>
               </div>
               <div class="time">
@@ -113,7 +113,7 @@
       </mat-expansion-panel>
     </mat-accordion>
     
-    <div class="modal-assign" *ngIf="modal">
+    <div class="modal-assign wrapper" *ngIf="modal" appPopup>
         <div class="modal-block">
             <div class="main-block">
                 <h2>Assign order to manager</h2>
@@ -130,7 +130,7 @@
         </div>
         <div class="removeModal" (click)="openModal()"></div>
     </div>
-    <div class="modal-assign" *ngIf="modalSuperDelivery">
+    <div class="modal-assign wrapper" *ngIf="modalSuperDelivery" appPopup>
         <div class="modal-block">
             <div class="main-block">
                 <h2>Assign order to delivery</h2>

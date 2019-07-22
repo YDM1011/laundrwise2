@@ -9,12 +9,13 @@
     <!--    </p>-->
     <div class="content__element">
         <ng-container  *ngIf="post">
-            <app-img *ngIf="post.images.length > 0" [img]="post.images[0]"></app-img>
             <div class="content__element-box">
                 <!--            <div class="title">-->
                 <!--                Aliquam erat volutpat-->
                 <!--            </div>-->
                 <div class="paragraph" *ngIf="post.text">
+                    <app-img *ngIf="post.images.length > 0" [img]="post.images[0]"></app-img>
+    
                     {{post.text}}
                 </div>
             </div>

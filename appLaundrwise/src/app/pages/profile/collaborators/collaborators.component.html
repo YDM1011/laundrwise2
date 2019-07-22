@@ -15,12 +15,12 @@
             <div class="name">Add New Collaborators</div>
             <span class="cancel" (click)="newColabIfFunc()">Cancel</span>
           </div>
-          <form action="" (submit)="addCollaborators()" class="active">
+          <form (submit)="addCollaborators()" class="active">
             <label>
               <span class="title">
                   First Name
               </span>
-              <input type="text" name="lastName" [(ngModel)]="newColab.firstName">
+              <input type="text" name="firstName" [(ngModel)]="newColab.firstName">
             </label>
             <label>
               <span class="title">
@@ -33,15 +33,15 @@
               <span class="title">
                   Login
               </span>
-              <input type="text" name="email" [(ngModel)]="newColab.login">
+              <input type="text" name="login" [(ngModel)]="newColab.login">
             </label>
             <label>
               <span class="title">
                 Password
               </span>
-              <input type="text" name="mobile" [(ngModel)]="newColab.pass">
+              <input type="text" name="pass" [(ngModel)]="newColab.pass">
             </label>
-            <input type="submit" class="save" value="Create">
+            <button type="submit" class="save">Create</button>
           </form>
         </div>
 

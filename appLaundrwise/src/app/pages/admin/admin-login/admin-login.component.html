@@ -3,12 +3,11 @@
         <h3>Login</h3>
         <form (submit)="doAuth()">
             <input type="text" [(ngModel)]="adminAuth.login" placeholder="Login" name="log">
-            <input type="text" [(ngModel)]="adminAuth.pass" placeholder="Password" name="pass">
+            <input type="password" [(ngModel)]="adminAuth.pass" placeholder="Password" name="pass">
             <button type="submit">login</button>
         </form>
         <div class="login-box-btn">
-            <a [routerLink]="'/admin/reset'" class="create-admin">Reset password*</a>
-            <a [routerLink]="'/admin/create'" class="create-admin2">Create admin panel?</a>
+            <a [routerLink]="'/admin/create'" class="create-admin">Create admin panel?</a>
         </div>
     </div>
 </div>

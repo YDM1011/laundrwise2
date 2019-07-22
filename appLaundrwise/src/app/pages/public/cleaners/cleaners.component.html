@@ -13,7 +13,7 @@
     </ng-container>
     <ng-container *ngIf="allCleaners && allCleaners.length > 0">
       <div class="blog__container" data-jplist-group="blogs">
-          <a [routerLink]="'cleaner/'+item._id" class="blog__container-item" *ngFor="let item of allCleaners">
+          <a [routerLink]="'/cleaner/'+item._id" class="blog__container-item" *ngFor="let item of allCleaners">
               <div class="img">
                   <app-img [img]="item.images"></app-img>
               </div>

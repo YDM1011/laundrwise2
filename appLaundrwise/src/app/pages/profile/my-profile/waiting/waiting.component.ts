@@ -39,4 +39,9 @@ export class WaitingComponent implements OnInit {
       }
     });
   }
+  getOutput(value) {
+    if (value && value.length > 0) {
+      this.allOrdersSuperManager = this.allOrdersSuperManager.concat(value);
+    }
+  }
 }
