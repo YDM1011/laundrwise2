@@ -102,14 +102,15 @@ module.exports = (backendApp, socket = null, data = null) => {
 };
 
 const parseCookieHeader = (str) => {
+    console.log(str, "STR")
     let tokenName = findTokenName(str);
     let token = str.split(tokenName+'=')[1].split(';')[0];
     return {name:tokenName, token:token, model: tokenName == 'token' ? 'Client' : 'Admin'}
 };
 
 const findTokenName = (str) => {
-    if (str.search('adminToken') > -1) return 'adminToken';
-    if (str.search('token') > -1) return 'token';
+    if (str && (str.search('adminToken') > -1)) return 'adminToken';
+    if (str && (str.search('token') > -1)) return 'token';
     return null
 };
 
