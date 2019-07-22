@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-footer',
@@ -7,14 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 public date =  new Date().getFullYear();
-  constructor() { }
+public info: any;
+  constructor(
+      private auth: AuthService
+  ) { }
 
   ngOnInit() {
+    this.auth.onSettings.subscribe((v: any) => {
+      if (!v) return;
+      this.info = v;
+    });
   }
-  playAudio() {
-    const audio = new Audio();
-    audio.src = '../../../assets/audio/alert.mp3';
-    audio.load();
-    audio.play();
-  }
+
 }

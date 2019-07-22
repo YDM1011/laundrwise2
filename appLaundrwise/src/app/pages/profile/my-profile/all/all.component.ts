@@ -34,10 +34,15 @@ export class AllComponent implements OnInit, AfterViewInit {
     this.elem = el;
   }
   ngOnInit() {
+    // this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+    //
+    // this.notification$.subscribe(v => {
+    //   console.log(v);
+    // });
+
     this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
     this.notification$.subscribe(v => {
-      this.updateNotificationList(JSON.parse(v).data.data);
-      console.log(this.updateNotificationList);
+      console.log(v);
     });
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {

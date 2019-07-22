@@ -33,12 +33,6 @@ export class MyProfileComponent implements OnInit, OnChanges {
       private wsService: WebsocketService
   ) { }
   ngOnInit() {
-      this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
-
-      this.notification$.subscribe(v => {
-          console.log(v)
-      });
-
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
         this.user = v;

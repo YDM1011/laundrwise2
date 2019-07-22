@@ -57,6 +57,7 @@ module.exports = (backendApp, socket = null, data = null) => {
             const res = JSON.parse(data);
 
             const sendTo = (to, event, data) => {
+                console.log(to, event, data, wss[to]);
                 if (!to) {
                     wss[userData._id].forEach(ws=>{
                         ws.send(JSON.stringify({
@@ -67,7 +68,7 @@ module.exports = (backendApp, socket = null, data = null) => {
                     return
                 }
                 /** All user's requests and send response to 1 client of all requests */
-                console.log(to);
+
                 wss[to] ? wss[to].forEach(ws=>{
                     ws.send(JSON.stringify({
                         event: event,
@@ -150,6 +151,7 @@ const saveConnect = (userData, wss, ws) => {
         wss[userData._id] = [];
         wss[userData._id].push(ws);
     }
+    console.log(wss[userData._id], userData._id)
     // const Schema = backendApp.mongoose.model(model);
     // return new Promise((rs,rj)=> {
     //     Schema.findOneAndUpdate(query, {$push: {socket: ws}}, {new: true})
