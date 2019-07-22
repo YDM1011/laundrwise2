@@ -35,7 +35,7 @@ module.exports = (backendApp, socket = null, data = null) => {
                         event: event,
                         data: data
                     }));
-                }) : '';
+                }) : console.log("wss no connetc for ", to, wss[to]);
             };
             const send = (event, data) => {
                 if (res.to == 'admin'){
