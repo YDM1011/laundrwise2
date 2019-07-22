@@ -20,7 +20,7 @@ export class SelectCompanyComponent implements OnInit, OnChanges {
 
   ngOnInit() {
       if (this.allCleaner) {
-          this.company = this.allCleaner;
+          this.company = Object.assign([], this.allCleaner);
       }
   }
   ngOnChanges() {

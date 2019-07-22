@@ -20,7 +20,7 @@ export class InitOrderComponent implements OnInit, OnChanges {
         // subscribe for allCompany
         this.auth.onCleaners.subscribe((v: any) => {
             if (v && v.length > 0) {
-                this.allCompany = Object.assign({}, v) ;
+                this.allCompany = Object.assign([], v) ;
                 this.chooseCompany = Object.assign({}, this.allCompany[0]);
             } else {
                 this.step = 0;
