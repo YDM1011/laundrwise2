@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {ILocation} from "./location";
 import {CrudService} from "../../../../crud.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-country',
   templateUrl: './add-country.component.html',
   styleUrls: ['./add-country.component.scss']
 })
-export class AddCountryComponent implements OnInit {
+export class AddCountryComponent implements OnInit, OnChanges {
   public locations;
   public addCountryIf: boolean = false;
   public location: ILocation = {country: '', city: []};
@@ -23,12 +24,12 @@ export class AddCountryComponent implements OnInit {
       this.locations = v;
     });
   }
+  ngOnChanges() {}
   addCountry() {
     this.addCountryIf = !this.addCountryIf;
   }
 
   addCity() {
-    console.log(this.location);
     this.isAdd = false;
     this.location.city ? this.location.city : this.location.city = [];
     this.location.city.push(this.city);
@@ -39,14 +40,17 @@ export class AddCountryComponent implements OnInit {
       this.locations.push(v);
       this.addCountryIf = !this.addCountryIf;
     }).catch(e => {
-      console.log(e);
+      if (e) {
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Country already added '
+        });
+      }
     });
     this.location = {country: '', city: []};
   }
   changeRemove(e) {
-    if (e) {
-      console.log(e)
-      // this.locations.splice(e.value, 1);
-    }
+    this.locations.splice(e, 1);
   }
 }

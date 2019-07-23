@@ -84,7 +84,7 @@ export class CrudService {
             }).then((result) => {
                 if (result.value) {
                     this.http.delete(`${this.api}${api}/${id ? id : ''}`).subscribe(data => {
-                        resolve(data);
+                        resolve(data || true);
                         if (isUpdate && ogjAfterDel) {
                             isUpdate.map(property => {
                                 this.update(property, ogjAfterDel, 'delete');

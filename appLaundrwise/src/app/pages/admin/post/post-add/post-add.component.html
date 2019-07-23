@@ -3,7 +3,7 @@
         Add Post
     </div>
 </div>
-<form (submit)="addPost()" class="cleaner-form">
+<form class="cleaner-form">
     <label>
         <span>title</span>
         <input type="text" [(ngModel)]="post.title" name="title">
@@ -14,6 +14,5 @@
     </label>
     <app-upload (onFs)="fsData($event)" [multiple]="true"></app-upload>
     <br>
-
-    <button type="submit" class="send">ok</button>
+    <button (click)="addPost()" class="send">Add Post</button>
 </form>

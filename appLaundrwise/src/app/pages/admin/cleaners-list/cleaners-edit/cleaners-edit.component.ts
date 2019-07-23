@@ -32,7 +32,7 @@ export class CleanersEditComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.id = this.route.snapshot.paramMap.get('id');
 
-        console.log(this.cleaner);
+        // console.log(this.cleaner);
         this.crud.getNoCache('cleaner', this.id).then((v: any) => {
             this.initDataPost = v;
             // if (v.images) {
@@ -41,7 +41,7 @@ export class CleanersEditComponent implements OnInit, OnDestroy {
             //     this.remImg = false;
             // }
             this.cleaner = Object.assign({}, v);
-            console.log(this.cleaner)
+            // console.log(this.cleaner)
             this.loaded = true;
         });
     }
@@ -105,10 +105,9 @@ export class CleanersEditComponent implements OnInit, OnDestroy {
         // this.initDataProduct.images = data.file;
         // this.btnBlok(this.validate());
         this.formCheck();
-        console.log(this.cleaner)
+        // console.log(this.cleaner)
     }
     removeImg() {
-
         Swal.fire({
             title: 'Do you confirm the deletion?',
             type: 'warning',

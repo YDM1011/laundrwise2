@@ -26,6 +26,7 @@ export class ProductEditComponent implements OnInit {
     const query = JSON.stringify({_id: this.id});
 
     this.crud.get(`product?query=${query}`).then((v: any) => {
+      console.log(v)
       this.initDataProduct = v[0];
       this.product = Object.assign({}, v[0]);
     });

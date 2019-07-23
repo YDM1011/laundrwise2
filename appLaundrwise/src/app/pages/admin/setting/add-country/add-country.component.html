@@ -32,7 +32,7 @@
 </ng-container>
 <div class="list-countries">
     <ng-container  *ngFor="let loc of locations; let index = index;">
-        <app-addd-country [obj]="loc" [array]="location" [index]="index" (removeCurrent)="changeRemove($event)"></app-addd-country>
+        <app-addd-country [obj]="loc" [array]="location" [indexMain]="index" (removeCurrent)="changeRemove($event)"></app-addd-country>
     </ng-container>
 </div>
 

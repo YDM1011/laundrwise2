@@ -29,7 +29,7 @@ export class CategoryEditComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.displayedColumns = ['name', 'date'];
+        this.displayedColumns = ['name', 'date', 'del'];
         this.id = this.route.snapshot.paramMap.get('id');
         const populate = JSON.stringify({path: 'product', skip: 0, limit: 0});
         const query = JSON.stringify({_id: this.id});

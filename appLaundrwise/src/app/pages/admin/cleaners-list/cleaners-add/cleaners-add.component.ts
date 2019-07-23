@@ -13,6 +13,7 @@ export class CleanersAddComponent implements OnInit {
     public cityandcountry: any;
     public cleaner: Cleaner = new CleanerObj();
     public remImg: boolean = false;
+    public errorMessage: boolean = false;
     constructor(
         private router: Router,
         private crud: CrudService
@@ -22,13 +23,27 @@ export class CleanersAddComponent implements OnInit {
     }
 
     addPost() {
-        delete this.cleaner.date;
-        delete this.cleaner.superManager;
-        this.cleaner.city = this.cityandcountry.city;
-        this.cleaner.country = this.cityandcountry.country;
-        this.crud.post('cleaner', this.cleaner, null, ['cleaner']).then(v => {
-            this.router.navigate(['/admin/cleaners']);
-        });
+        if (this.cityandcountry && (this.cityandcountry.city || this.cityandcountry.country)) {
+            this.cleaner.city = this.cityandcountry.city;
+            this.cleaner.country = this.cityandcountry.country;
+        }
+        if (!this.cleaner.address || !this.cleaner.name || !this.cleaner.city || !this.cleaner.country || !this.cleaner.images) {
+            this.errorMessage = true;
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'All field required'
+            });
+        } else {
+            this.errorMessage = false;
+            delete this.cleaner.date;
+            delete this.cleaner.superManager;
+            this.cleaner.city = this.cityandcountry.city;
+            this.cleaner.country = this.cityandcountry.country;
+            this.crud.post('cleaner', this.cleaner, null, ['cleaner']).then(v => {
+                this.router.navigate(['/admin/cleaners']);
+            });
+        }
     }
 
     countryChange(e) {

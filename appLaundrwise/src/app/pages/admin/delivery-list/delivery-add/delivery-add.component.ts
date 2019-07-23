@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Cleaner, CleanerObj} from "../../cleaners-list/cleaner";
 import {Router} from "@angular/router";
 import {CrudService} from "../../../../crud.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-delivery-add',
@@ -11,6 +12,7 @@ import {CrudService} from "../../../../crud.service";
 export class DeliveryAddComponent implements OnInit {
     public delivery: Cleaner = new CleanerObj();
     public cityandcountry: any;
+    public errorMessage: boolean = false;
     constructor(
         private router: Router,
         private crud: CrudService
@@ -20,13 +22,29 @@ export class DeliveryAddComponent implements OnInit {
     }
 
     addPost() {
-        delete this.delivery.date;
-        delete this.delivery.superManager;
-        this.delivery.city = this.cityandcountry.city;
-        this.delivery.country = this.cityandcountry.country;
-        this.crud.post('delivery', this.delivery, null, ['delivery']).then(v => {
-            this.router.navigate(['/admin/delivery']);
-        });
+
+
+        if (this.cityandcountry && (this.cityandcountry.city || this.cityandcountry.country)) {
+            this.delivery.city = this.cityandcountry.city;
+            this.delivery.country = this.cityandcountry.country;
+        }
+        if (!this.delivery.address || !this.delivery.name || !this.delivery.city || !this.delivery.country) {
+            this.errorMessage = true;
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'All field required'
+            });
+        } else {
+            this.errorMessage = false;
+            delete this.delivery.date;
+            delete this.delivery.superManager;
+            this.delivery.city = this.cityandcountry.city;
+            this.delivery.country = this.cityandcountry.country;
+            this.crud.post('delivery', this.delivery, null, ['delivery']).then(v => {
+                this.router.navigate(['/admin/delivery']);
+            });
+        }
     }
     countryChange(e) {
         if (e) {
@@ -34,8 +52,8 @@ export class DeliveryAddComponent implements OnInit {
         }
     }
 
-    pullCategory(elems) {
-        this.delivery.category = this.crud.arrObjToArrId(elems);
-        console.log(this.crud.arrObjToArrId(elems));
-    }
+    // pullCategory(elems) {
+    //     this.delivery.category = this.crud.arrObjToArrId(elems);
+    //     console.log(this.crud.arrObjToArrId(elems));
+    // }
 }

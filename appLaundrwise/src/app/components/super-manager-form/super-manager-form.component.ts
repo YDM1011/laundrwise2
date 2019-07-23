@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {CrudService} from "../../crud.service";
 import {Manager, ManagerObj} from "./manager";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-super-manager-form',
@@ -20,14 +21,29 @@ export class SuperManagerFormComponent implements OnInit {
   }
 
   addPost() {
-    // console.log(this.data, this.manager);
-    let api = 'cleaner';
-    if (this.data.role) {
+    if (!this.manager.login || !this.manager.pass || !this.manager.firstName || !this.manager.lastName) {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'All field required'
+      });
+    } else {
+      let api = 'cleaner';
+      if (this.data.role) {
         this.manager.role = this.data.role;
         api = 'delivery';
+      }
+      this.crud.post(api, {manager: this.manager}, this.data._id).then((v : any) => {
+
+      }).catch(e => {
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'login already taken'
+        });
+      });
+      this.dialogRef.close();
     }
-    this.crud.post(api, {manager: this.manager}, this.data._id);
-    this.dialogRef.close();
   }
 
 }

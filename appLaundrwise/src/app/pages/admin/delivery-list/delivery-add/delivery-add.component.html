@@ -3,7 +3,7 @@
     Add Delivery
   </div>
 </div>
-<form (submit)="addPost()" class="cleaner-form">
+<form class="cleaner-form">
   <label>
     <span>Name</span>
     <input type="text" placeholder="Name" [(ngModel)]="delivery.name" name="title">
@@ -13,7 +13,7 @@
     <span>Address</span>
     <input type="text" placeholder="Address" [(ngModel)]="delivery.address" name="title">
   </label>
-  <button class="send" type="submit">Add Cleaners</button>
+  <button class="send" (click)="addPost()">Add Cleaners</button>
 </form>
 
 <!--<app-category-list [iframe]="true" (onCategory)="pullCategory($event)" ></app-category-list>-->

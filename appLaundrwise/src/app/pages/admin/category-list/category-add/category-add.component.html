@@ -3,12 +3,12 @@
     Add Category
   </div>
 </div>
-<form (submit)="addPost()" class="cleaner-form">
+<form class="cleaner-form">
   <label>
     <span>Name Category</span>
     <input type="text" [(ngModel)]="category.name" name="title">
   </label>
   <app-upload (onFs)="fsData($event)" [multiple]="false"></app-upload>
   <br>
-  <button class="send" type="submit">Add category</button>
+  <button class="send"(click)="addPost()" >Add category</button>
 </form>

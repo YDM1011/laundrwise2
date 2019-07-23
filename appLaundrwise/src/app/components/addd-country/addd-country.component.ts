@@ -9,8 +9,8 @@ import {CrudService} from "../../crud.service";
 export class AdddCountryComponent implements OnInit {
   @Input() obj;
   @Input() array;
-  @Input() index;
-  @Output() removeCurrent = new EventEmitter()
+  @Input() indexMain;
+  @Output() removeCurrent: EventEmitter<any> = new EventEmitter();
   public newCity = '';
   public edit: boolean = false;
   public addCity: boolean = false;
@@ -31,7 +31,9 @@ export class AdddCountryComponent implements OnInit {
   }
   deleteAll() {
     this.crud.delete(`location`, this.obj._id, null, false).then((v: any) => {
-      this.removeCurrent.emit(this.index);
+      if (v) {
+        this.removeCurrent.emit(this.indexMain);
+      }
     });
   }
   addCityB() {

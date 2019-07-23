@@ -3,7 +3,7 @@
     Add Cleaners
   </div>
 </div>
-<form (submit)="addPost()" class="cleaner-form">
+<form class="cleaner-form">
   <label>
     <span>Logo</span>
     <app-upload style="margin-bottom: 10px" (onFs)="fsData($event)" [multiple]="false"></app-upload>
@@ -17,7 +17,7 @@
     <span>Address</span>
     <input type="text" placeholder="Address" [(ngModel)]="cleaner.address" name="title">
   </label>
-  <button class="send" type="submit">Add Cleaners</button>
+  <button class="send" (click)="addPost($event)">Add Cleaners</button>
 </form>
 
 <!--<app-category-list (onCategory)="pullCategory($event)" ></app-category-list>-->

@@ -1,5 +1,5 @@
 <div *ngIf="faq">
-  <form (submit)="save($event)" class="cart-item">
+  <form class="cart-item">
     <div >
       <h3 class="title">Question</h3>
       <textarea class="text" name="question" [(ngModel)]="faq.question"></textarea>
@@ -8,8 +8,7 @@
       <h3 class="title">Answer</h3>
        <textarea class="text" name="answer" [(ngModel)]="faq.answer"></textarea>
     </div>
-    <div class="btn-wrap"><button type="submit">Save</button></div>
-
+    <div class="btn-wrap"><button (click)="save($event)">Save</button></div>
   </form>
 </div>
 <div *ngFor="let f of faqs; let index = index">
