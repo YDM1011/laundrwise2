@@ -3,7 +3,8 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header class="panel-headline">
           <mat-panel-title>
-            <div class="status" [innerHTML]="obj.status | status | safeHTML"></div>
+            <div *ngIf="role === 'managerCleaner' || role === 'superManagerCleaner' || role === 'client' || !role" class="status" [innerHTML]="obj.status | status | safeHTML"></div>
+            <div *ngIf="role === 'managerDelivery' || role === 'superManagerDelivery'" class="status" [innerHTML]="obj.status | statusDelivery | safeHTML"></div>
           </mat-panel-title>
           <mat-panel-description>
             <div class="empty"></div>
@@ -71,7 +72,6 @@
                 </div>
                 <div class="time__box">
                   <div class="time__element">
-    <!--                <div class="status active"></div>-->
                     <div class="date">
                       {{obj.dataCollection | date: 'EEEE, MMMM d'}}
                     </div>
@@ -85,7 +85,6 @@
                     </div>
                   </div>
                   <div class="time__element">
-    <!--                <div class="status waiting"></div>-->
                     <div class="date">
                       {{obj.dataDelivery | date: 'EEEE, MMMM d'}}
                     </div>
@@ -99,12 +98,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="buttons-box" *ngIf="role === 'managerCleaner' || role === 'superManagerCleaner'">
-                  <button class="accept" *ngIf="obj.status === 1 && role === 'superManagerCleaner'" (click)="openModal()">Assign</button>
+                <div class="buttons-box" *ngIf="role === 'managerCleaner' || role === 'superManagerCleaner' || role === 'superManagerDelivery'">
+                  <button class="accept" *ngIf="obj.status === 1 && role === 'superManagerCleaner' && !obj.managerDeliveryOwner" (click)="openModal()">Assign</button>
+                  <button class="accept" *ngIf="obj.status === 2 && role === 'superManagerDelivery' && !obj.managerDeliveryOwner" (click)="openModal()">Assign</button>
                   <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner'&& !obj.deliveryOwner" (click)="openModalSuperDelivery()">Choose Delivery</button>
-                  <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner' && obj.deliveryOwner">In progress</button>
-                  <button class="accept" *ngIf="obj.status === 3 && role === 'managerCleaner'">Done</button>
-                  <button class="close" *ngIf="role === 'superManagerCleaner'">Cancel</button>
+                  <button class="accept" *ngIf="obj.status === 2 && role === 'managerCleaner' && obj.deliveryOwner" (click)="inprogressStatus()">In progress</button>
+                  <button class="accept" *ngIf="obj.status === 3 && role === 'managerCleaner'" (click)="washedOrder()">Washed</button>
+                  <button class="accept" *ngIf="obj.status === 4 && role === 'managerCleaner'" (click)="doneOrder()">Done</button>
+                  <button class="close" *ngIf="role === 'superManagerCleaner'" (click)="cancelOrder()">Cancel</button>
                 </div>
               </div>
             </div>
@@ -136,7 +137,7 @@
                 <h2>Assign order to delivery</h2>
                 <div class="block">
                     <mat-radio-group class="buttons" aria-label="Select an option" [(ngModel)]="deliverySuperChoose" *ngIf="delivery.length > 0">
-                        <mat-radio-button class="buttons-item" *ngFor="let item of delivery" value="{{item._id}}">{{item.name}}</mat-radio-button>
+                        <mat-radio-button class="buttons-item" *ngFor="let item of delivery; let index = index;" value="{{index}}">{{item.name}}</mat-radio-button>
                     </mat-radio-group>
                     <div class="block-btn">
                         <button class="cancel" (click)="openModalSuperDelivery()">Close</button>

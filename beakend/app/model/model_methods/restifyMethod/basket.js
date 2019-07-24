@@ -42,7 +42,23 @@ module.exports.postUpdate = async (req, res, next, backendApp) => {
         let dataBasket = await updateBasketByCleaner(req, basket.cleanerOwner);
         res.ok(dataBasket);
     } else if (basket.status == 2 && basket.deliveryOwner){
-        next()
+        let delivery = await getDelivery(basket.deliveryOwner).catch(e=>{return rj(e)});
+        let valid = await validateDeliveri(req,res,delivery,backendApp).catch(e=>{return res.ok(basket)});
+        if (valid === 'mainAssign'){
+            return next();
+        }else{
+            let obj = {
+                delivery:basket.deliveryOwner,
+                $push:{orders:basket._id, ordersOpen:basket._id},
+                $inc: {ordersCount:1, ordersOpenCount:1},
+                updated: new Date(),
+            };
+            await ActionLogUpdate(req.body.managerDeliveryOwner, obj, backendApp, next);
+            if (!valid) return next();
+            let dataBasket = await updateBasketByCleaner(req, basket.deliveryOwner);
+            res.ok(dataBasket);
+        }
+
     } else {
         next()
     }
@@ -62,6 +78,18 @@ const getCleaner = async superManeger => {
     const Cleaner = backendApp.mongoose.model('Cleaner');
     return new Promise((rs,rj)=>{
         Cleaner.findOne({$or: [{superManager: superManeger},{_id: superManeger}]})
+            .exec((e,r)=>{
+                if (e) return rj(e);
+                if (!r) return rj('not found');
+                if (r) return rs(r);
+            })
+    })
+};
+
+const getDelivery = async superManeger => {
+    const Delivery = backendApp.mongoose.model('Delivery');
+    return new Promise((rs,rj)=>{
+        Delivery.findOne({$or: [{superManager: superManeger},{_id: superManeger}]})
             .exec((e,r)=>{
                 if (e) return rj(e);
                 if (!r) return rj('not found');
@@ -116,6 +144,40 @@ const validate = (req,res,cleaner,backendApp)=>{
         }
     })
 };
+
+const validateDeliveri = (req,res,cleaner,backendApp)=>{
+    return new Promise((rs,rj)=>{
+        const d = req.body;
+        if (d.managerDeliveryOwner) {
+            /** try find auto asign if settings cleaner's set do auto */
+            // res.notFound('Manager was not assigned!');
+            rs(false)
+        } else if (cleaner.autoAssign) {
+            backendApp.mongoose.model('ActionLog')
+                .findOne({cleaner:cleaner._id})
+                .select('ordersOpenCount _id owner')
+                .exec((e,r)=>{
+                    if (e) return rj(e);
+                    if (!r) return rj('not found');
+                    if (r) {
+                        searchLessDelivery(req,res,r,cleaner,backendApp,()=>{
+                            let loger;
+                            if (req.ActionLog && req.ActionLog.triger){
+                                loger = req.ActionLog.triger.owner;
+                            }else{
+                                loger = r.owner
+                            }
+                            req.body.managerDeliveryOwner = loger ;
+                            rs(true)
+                        })
+                    }
+                });
+            /** find clients/manager with low orders */
+        } else {
+            rs('mainAssign')
+        }
+    })
+};
 const ActionLogUpdate = (id, data, backendApp)=>{
     return new Promise((rs,rj)=>{
         backendApp.mongoose.model('ActionLog')
@@ -138,6 +200,21 @@ const searchLess = (req,res,log,cleaner,backendApp,next)=>{
                 req['ActionLog'] = {triger: r};
                 console.log("triger",req.ActionLog.triger);
                 searchLess(req,res,r,cleaner,backendApp,next)
+            }
+        });
+};
+
+const searchLessDelivery = (req,res,log,cleaner,backendApp,next)=>{
+    backendApp.mongoose.model('ActionLog')
+        .findOne({delivery:cleaner._id, ordersOpenCount: { $lt: log.ordersOpenCount } })
+        .select('ordersOpenCount _id owner')
+        .exec((e,r)=>{
+            if (e) return res.serverError(e);
+            if (!r) next();
+            if (r) {
+                req['ActionLog'] = {triger: r};
+                console.log("triger",req.ActionLog.triger);
+                searchLessDelivery(req,res,r,cleaner,backendApp,next)
             }
         });
 };

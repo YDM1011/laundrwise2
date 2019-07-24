@@ -11,6 +11,7 @@ export class DoneComponent implements OnInit {
   public user;
   public cleaner: any;
   public allOrdersSuperManager: any = [];
+  public allOrdersSuperDelivery: any = [];
   public loading: boolean = false;
   constructor(
       private crud: CrudService,
@@ -40,8 +41,11 @@ export class DoneComponent implements OnInit {
     });
   }
   getOutput(value) {
-    if (value && value.length > 0) {
+    if (this.user.role === 'superManagerCleaner' && (value && value.length > 0)) {
       this.allOrdersSuperManager = this.allOrdersSuperManager.concat(value);
+    }
+    if (this.user.role === 'superManagerDelivery' && (value && value.length > 0)) {
+      this.allOrdersSuperDelivery = this.allOrdersSuperDelivery.concat(value);
     }
   }
 }

@@ -104,6 +104,7 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
 import { PopupDirective } from './directive/popup.directive';
 import { ScrollUploadDirective} from './directive/scroll-update.directive';
 import { AdddCountryComponent } from './components/addd-country/addd-country.component';
+import { StatusDeliveryPipe } from './pipe/status-delivery.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -196,7 +197,8 @@ import { AdddCountryComponent } from './components/addd-country/addd-country.com
     FaqAdminComponent,
     PopupDirective,
     ScrollUploadDirective,
-    AdddCountryComponent
+    AdddCountryComponent,
+    StatusDeliveryPipe
   ],
   imports: [
     BrowserModule,

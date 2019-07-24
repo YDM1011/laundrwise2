@@ -15,7 +15,7 @@
             <div class="name">Add New Collaborators</div>
             <span class="cancel" (click)="newColabIfFunc()">Cancel</span>
           </div>
-          <form (submit)="addCollaborators()" class="active">
+          <form class="active">
             <label>
               <span class="title">
                   First Name
@@ -41,7 +41,7 @@
               </span>
               <input type="text" name="pass" [(ngModel)]="newColab.pass">
             </label>
-            <button type="submit" class="save">Create</button>
+            <button (click)="addCollaborators()" class="save">Create</button>
           </form>
         </div>
 

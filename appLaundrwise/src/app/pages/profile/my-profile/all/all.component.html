@@ -1,13 +1,25 @@
 <app-loading *ngIf="!loading"></app-loading>
-  
-<ng-container *ngIf="loading">
-    <cdk-virtual-scroll-viewport *ngIf="allOrdersSuperManager && allOrdersSuperManager.length>0" itemSize="50" class="virtual-orders" appScrollUpload [id]="cleaner._id" (output)="getOutput($event)">
-      <app-profile-order *cdkVirtualFor="let item of allOrdersSuperManager; let index = index" [obj]="item" [role]="user.role" [cleaner]="cleaner.managers" class="{{index}}"></app-profile-order>
-    </cdk-virtual-scroll-viewport>
-    <ng-container *ngIf="allOrdersSuperManager.length === 0">
-      <div class="non-orders">
-        Now you don't have orders
-      </div>
-    </ng-container>
-</ng-container>
-  
+  <ng-container *ngIf="user.role === 'superManagerDelivery'">
+      <ng-container *ngIf="loading">
+          <cdk-virtual-scroll-viewport *ngIf="allOrdersSuperDelivery && allOrdersSuperDelivery.length>0" itemSize="50" class="virtual-orders" appScrollUpload [type]="'all'" [id]="cleaner._id" [role]="user.role" (output)="getOutput($event)">
+              <app-profile-order *cdkVirtualFor="let item of allOrdersSuperDelivery; let index = index" [obj]="item" [role]="user.role" [cleaner]="cleaner.managers" class="{{index}}"></app-profile-order>
+          </cdk-virtual-scroll-viewport>
+          <ng-container *ngIf="allOrdersSuperDelivery.length === 0">
+              <div class="non-orders">
+                  Now you don't have orders
+              </div>
+          </ng-container>
+      </ng-container>
+  </ng-container>
+  <ng-container *ngIf="user.role === 'superManagerCleaner'">
+      <ng-container *ngIf="loading">
+          <cdk-virtual-scroll-viewport *ngIf="allOrdersSuperManager && allOrdersSuperManager.length>0" itemSize="50" class="virtual-orders" appScrollUpload [type]="'all'"[id]="cleaner._id" [role]="user.role"  (output)="getOutput($event)">
+              <app-profile-order *cdkVirtualFor="let item of allOrdersSuperManager; let index = index" [obj]="item" [role]="user.role" [cleaner]="cleaner.managers" class="{{index}}"></app-profile-order>
+          </cdk-virtual-scroll-viewport>
+          <ng-container *ngIf="allOrdersSuperManager.length === 0">
+              <div class="non-orders">
+                  Now you don't have orders
+              </div>
+          </ng-container>
+      </ng-container>
+  </ng-container>

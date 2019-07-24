@@ -27,17 +27,64 @@ export class ProfileOrderComponent implements OnInit {
   assigneToManager() {
     const obj = {
       status: 2,
-      managerCleanerOwner: this.managerChoose
+      managerDeliveryOwner: this.managerChoose
     };
+    if (this.role === 'superManagerDelivery') {
+      obj['status'] = 2;
+      obj['managerDeliveryOwner'] = this.managerChoose;
+    }
+    if (this.role === 'superManagerCleaner') {
+      obj['status'] = 2;
+      obj['managerCleanerOwner'] = this.managerChoose;
+    }
     this.crud.post('basket', obj, this.obj._id, false, false).then((v: any) => {
-      this.openModal();
-      this.obj = null;
+      if (v) {
+        this.obj['status'] = 2;
+        this.openModal();
+        if (this.role === 'superManagerDelivery') {
+          this.obj['managerDeliveryOwner'] = this.managerChoose;
+        }
+      }
     });
   }
   assigneToSuperDelivery() {
-    this.crud.post('basket', {deliveryOwner: this.deliverySuperChoose, status: 2}, this.obj._id, false, false).then((v: any) => {
-      this.wsService.send(WS.SEND.CONFIRM_ORDER, this.deliverySuperChoose,  { data: this.obj._id });
-      this.openModalSuperDelivery();
+    if(this.deliverySuperChoose) {
+      this.crud.post('basket', {deliveryOwner: this.delivery[this.deliverySuperChoose]._id, status: 2}, this.obj._id, false, false).then((v: any) => {
+        if (v) {
+          this.obj['deliveryOwner'] = this.delivery[this.deliverySuperChoose]._id;
+          this.obj['status'] = 2;
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.delivery[this.deliverySuperChoose].superManager,  { data: this.obj._id });
+          this.openModalSuperDelivery();
+        }
+      });
+    }
+  }
+  inprogressStatus() {
+    this.crud.post('basket', {status: 3}, this.obj._id, false, false).then((v: any) => {
+      if (v) {
+        this.obj['status'] = 3;
+      }
+    });
+  }
+  washedOrder() {
+    this.crud.post('basket', {status: 4}, this.obj._id, false, false).then((v: any) => {
+      if (v) {
+        this.obj['status'] = 4;
+      }
+    });
+  }
+  doneOrder() {
+    this.crud.post('basket', {status: 5}, this.obj._id, false, false).then((v: any) => {
+      if (v) {
+        this.obj['status'] = 5;
+      }
+    });
+  }
+  cancelOrder() {
+    this.crud.post('basket', {status: 6}, this.obj._id, false, false).then((v: any) => {
+      if (v) {
+        this.obj['status'] = 6;
+      }
     });
   }
   openModal() {
@@ -45,5 +92,7 @@ export class ProfileOrderComponent implements OnInit {
   }
   openModalSuperDelivery() {
     this.modalSuperDelivery = !this.modalSuperDelivery;
+    console.log(this.delivery)
+    console.log(this.deliverySuperChoose)
   }
 }

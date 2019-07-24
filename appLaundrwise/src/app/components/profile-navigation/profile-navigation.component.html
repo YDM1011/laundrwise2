@@ -18,7 +18,7 @@
   Collaborators
 </a>
 <a [routerLink]="'/profile/setting'" class="navigation-page__item" routerLinkActive="active"
-   *ngIf="user.role === 'superManagerCleaner'">
+   *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery'">
   Setting
 </a>
 <a [routerLink]="'/profile/write-to-admin'" class="writeadmin">

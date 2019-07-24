@@ -2,7 +2,7 @@
 <ng-container *ngIf="loading">
 
 <!--super manager-->
-    <div class="orders" *ngIf="allOrdersSuperManager && user.role === 'superManagerCleaner'">
+    <div class="orders" *ngIf="user.role === 'superManagerCleaner' || user.role === 'superManagerDelivery'">
         <h2>
             Orders
         </h2>
@@ -17,11 +17,11 @@
 <!-- end super manager-->
 
 <!--manager-->
-    <div class="orders" *ngIf="allOrdersManager && user.role === 'managerCleaner'">
+    <div class="orders" *ngIf="allOrdersManager && user.role === 'managerCleaner' || user.role === 'managerDelivery' ">
         <h2>
             Orders
         </h2>
-        <cdk-virtual-scroll-viewport *ngIf="allOrdersManager && allOrdersManager.length>0" itemSize="50" class="virtual-orders" appScrollUpload [id]="user.loger" [role]="user.role" (output)="getOutput($event)">
+        <cdk-virtual-scroll-viewport *ngIf="allOrdersManager && allOrdersManager.length>0" itemSize="50" class="virtual-orders" appScrollUpload [type]="'all'" [id]="user.loger" [role]="user.role" (output)="getOutput($event)">
             <app-profile-order *cdkVirtualFor="let item of allOrdersManager; let index = index" [obj]="item" [role]="user.role" [delivery]="allDelivery"></app-profile-order>
         </cdk-virtual-scroll-viewport>
     </div>
@@ -38,7 +38,7 @@
         <h2>
             All orders
         </h2>
-        <cdk-virtual-scroll-viewport *ngIf="allOrdersUser && allOrdersUser.length>0" itemSize="50" class="virtual-orders" appScrollUpload [id]="user._id" [role]="user.role" (output)="getOutput($event)">
+        <cdk-virtual-scroll-viewport *ngIf="allOrdersUser && allOrdersUser.length>0" itemSize="50" class="virtual-orders" appScrollUpload [type]="'all'" [id]="user._id" [role]="user.role" (output)="getOutput($event)">
             <app-profile-order *cdkVirtualFor="let item of allOrdersUser; let index = index" [obj]="item" [role]="user.role"></app-profile-order>
         </cdk-virtual-scroll-viewport>
     </div>

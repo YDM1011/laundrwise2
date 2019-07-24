@@ -16,6 +16,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
   public cleaner: any;
   public allOrdersUser: any = [];
   public allOrdersSuperManager: any = [];
+  public allOrdersSuperDelivery: any = [];
   public allOrdersManager: any = [];
   public managers: any = [];
   public allDelivery: any = [];
@@ -54,19 +55,36 @@ export class MyProfileComponent implements OnInit, OnChanges {
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((cleaner: any) => {
             this.cleaner = cleaner[0];
-            this.getCount(this.cleaner._id);
+            this.getCount(this.cleaner._id, 'cleanerOwner');
             this.getDelivery();
             this.loading = true;
           });
         }
-        if (this.user.role === 'managerCleaner') {
-        const populate = JSON.stringify({path: 'orders', populate: {path: 'products'}});
+        if (this.user.role === 'superManagerDelivery') {
+          const populate = JSON.stringify({path: 'managers'});
+          const query = JSON.stringify({'superManager': this.user._id});
+          this.crud.getNoCache(`delivery?query=${query}&populate=${populate}`).then((delivery: any) => {
+            this.cleaner = delivery[0];
+            this.getCount(this.cleaner._id, 'deliveryOwner');
+            this.loading = true;
+          });
+        }
+        if (this.user.role === 'managerCleaner' || this.user.role === 'managerDelivery') {
+        const populate = JSON.stringify({path: 'orders', populate: [{path: 'products', skip: 0, limit: 8, sort: {date: -1}}, {path: 'cleanerOwner', select: 'name'}]});
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
             this.allOrdersManager = log.orders;
             this.loading = true;
             this.getDelivery();
           });
         }
+        // if (this.user.role === 'managerCleaner' || this.user.role === 'managerDelivery') {
+        // const populate = JSON.stringify({path: 'orders', populate: {path: 'products'}});
+        //   this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
+        //     this.allOrdersManager = log.orders;
+        //     this.loading = true;
+        //     this.getDelivery();
+        //   });
+        // }
       }
     });
   }
@@ -77,27 +95,43 @@ export class MyProfileComponent implements OnInit, OnChanges {
       this.allDelivery = v;
     });
   }
-  getCount(id) {
-    this.crud.get(`basket/count?query={"cleanerOwner":"${id}"}&select=_id`).then((v: any) => {
+  getCount(id, who) {
+    this.crud.get(`basket/count?query={"${who}":"${id}"}&select=_id`).then((v: any) => {
       this.countOrders['all'] = v.count;
     });
-    this.crud.get(`basket/count?query={"cleanerOwner":"${id}", "status": "1"}&select=_id`).then((v: any) => {
-      this.countOrders['new'] = v.count;
-    });
-    const queryWaiting = JSON.stringify({'cleanerOwner': id, $or: [{status: 2}, {status: 3}, {status: 4}]});
-    this.crud.get(`basket/count?query=${queryWaiting}`).then((v: any) => {
-      this.countOrders['waiting'] = v.count;
-    });
-    this.crud.get(`basket/count?query={"cleanerOwner":"${id}", "status":"5"}&select=_id`).then((v: any) => {
+    if (this.user.role === 'superManagerCleaner') {
+      this.crud.get(`basket/count?query={"${who}":"${id}", "status": "1"}&select=_id`).then((v: any) => {
+        this.countOrders['new'] = v.count;
+      });
+    } else {
+      this.crud.get(`basket/count?query={"${who}":"${id}", "status": "2"}&select=_id`).then((v: any) => {
+        this.countOrders['new'] = v.count;
+      });
+    }
+    if (this.user.role === 'superManagerCleaner') {
+      const obj = {$or: [{status: 2}, {status: 3}, {status: 4}]};
+      obj[who] = id;
+      const queryWaiting = JSON.stringify(obj);
+      this.crud.get(`basket/count?query=${queryWaiting}`).then((v: any) => {
+        this.countOrders['waiting'] = v.count;
+      });
+    } else {
+      const obj = {$or: [{status: 3}, {status: 4}]};
+      obj[who] = id;
+      const queryWaiting = JSON.stringify(obj);
+      this.crud.get(`basket/count?query=${queryWaiting}`).then((v: any) => {
+        this.countOrders['waiting'] = v.count;
+      });
+    }
+    this.crud.get(`basket/count?query={"${who}":"${id}", "status":"5"}&select=_id`).then((v: any) => {
       this.countOrders['done'] = v.count;
     });
   }
   getOutput(value) {
     if (this.user.role === 'client') {
       this.allOrdersUser = this.allOrdersUser.concat(value);
-
     }
-    if (value && value.length > 0) {
+    if (this.user.role === 'superManagerCleaner') {
       this.allOrdersSuperManager = this.allOrdersSuperManager.concat(value);
     }
   }
