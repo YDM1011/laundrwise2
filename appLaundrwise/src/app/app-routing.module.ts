@@ -57,6 +57,7 @@ import {NewComponent} from "./pages/profile/my-profile/new/new.component";
 import {WaitingComponent} from "./pages/profile/my-profile/waiting/waiting.component";
 import {DoneComponent} from "./pages/profile/my-profile/done/done.component";
 import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
+import {DashboardProfileComponent} from "./pages/profile/dashboard-profile/dashboard-profile.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -92,7 +93,7 @@ const routes: Routes = [
       {path: 'payment', component: PaymentComponent},
       {path: 'bonuses', component: BonusComponent},
       {path: 'collaborators', component: CollaboratorsComponent},
-      {path: 'dashboard', component: DashboardComponent},
+      {path: 'dashboard', component: DashboardProfileComponent},
       {path: 'setting', component: StatisticComponent},
       {path: 'write-to-admin', component: WriteToAdminComponent},
       {path: '', redirectTo: 'profile', pathMatch: 'full'},

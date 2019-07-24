@@ -105,6 +105,8 @@ import { PopupDirective } from './directive/popup.directive';
 import { ScrollUploadDirective} from './directive/scroll-update.directive';
 import { AdddCountryComponent } from './components/addd-country/addd-country.component';
 import { StatusDeliveryPipe } from './pipe/status-delivery.pipe';
+import {ChartsModule} from "ng2-charts";
+import { MyBarChartComponent } from './components/my-bar-chart/my-bar-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -198,9 +200,11 @@ import { StatusDeliveryPipe } from './pipe/status-delivery.pipe';
     PopupDirective,
     ScrollUploadDirective,
     AdddCountryComponent,
-    StatusDeliveryPipe
+    StatusDeliveryPipe,
+    MyBarChartComponent,
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     ScrollingModule,
     AppRoutingModule,

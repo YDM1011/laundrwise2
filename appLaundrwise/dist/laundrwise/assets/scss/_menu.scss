@@ -51,10 +51,11 @@
 }
 .main-nav .cancel{
   position: absolute;
-  padding:15px 16px;
+  padding:15px 26px;
   color: #000;
   top: 0;
   right: 0;
+  cursor: pointer;
 }
 .main-nav .buttons{
   display: flex;

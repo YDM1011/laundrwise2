@@ -30,7 +30,7 @@ export class WaitingComponent implements OnInit {
             if (cleaner[0]) {
               const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
               const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id, $or: [{status: 2}, {status: 3}, {status: 4}]});
-              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&sort={"date": "-1"}`).then((basket: any) => {
+              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"date": "-1"}`).then((basket: any) => {
                 this.allOrdersSuperManager = basket;
                 this.loading = true;
               });
@@ -40,12 +40,12 @@ export class WaitingComponent implements OnInit {
         if (this.user.role === 'superManagerDelivery') {
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
-          this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((cleaner: any) => {
+          this.crud.getNoCache(`delivery?query=${query}&populate=${populate}`).then((cleaner: any) => {
             this.cleaner = cleaner[0];
             if (cleaner[0]) {
               const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}]);
-              const query1 = JSON.stringify({'deliveryOwner': this.cleaner._id, $or: [{status: 3}]});
-              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&sort={"date": "-1"}`).then((basket: any) => {
+              const query1 = JSON.stringify({'deliveryOwner': this.cleaner._id, $or: [{status: 3}, {status: 4}]});
+              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"date": "-1"}`).then((basket: any) => {
                 this.allOrdersSuperDelivery = basket;
                 this.loading = true;
               });

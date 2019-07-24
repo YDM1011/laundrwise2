@@ -163,5 +163,27 @@ export class ScrollUploadDirective implements AfterViewInit {
         }
       });
     }
+    if (this.role === 'superManagerDelivery' && this.type === 'waiting') {
+      const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
+      const query1 = JSON.stringify({'deliveryOwner': this.id, $or: [{status: 3}, {status: 4}]});
+      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+        if (basket && basket.length > 0) {
+          this.skip++;
+          this.triger = true;
+          this.output.emit(basket);
+        }
+      });
+    }
+    if (this.role === 'superManagerDelivery' && this.type === 'done') {
+      const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
+      const query1 = JSON.stringify({'deliveryOwner': this.id, status: 5});
+      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+        if (basket && basket.length > 0) {
+          this.skip++;
+          this.triger = true;
+          this.output.emit(basket);
+        }
+      });
+    }
   }
 }

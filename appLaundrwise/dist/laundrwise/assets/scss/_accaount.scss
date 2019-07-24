@@ -242,6 +242,7 @@
     font-weight: 300;
     font-size: 12px;
     line-height: 17px;
+    min-width: 65px;
   }
 }
 .date{
@@ -451,7 +452,7 @@
             align-items: center;
             button{
               border-radius: 25px;
-              padding: 8px 36px;
+              padding: 8px 10px;
               font-family: Montserrat-Medium,sans-serif;
               font-size: 16px;
               margin-bottom: 10px;
@@ -1114,7 +1115,7 @@
               margin-bottom: 10px;
             }
             input{
-              padding: 15px 30px;
+              padding: 15px;
               border: 1px solid #D9D9D9;
               border-radius: 36px;
             }
