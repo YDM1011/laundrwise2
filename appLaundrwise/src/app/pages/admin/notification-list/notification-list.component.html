@@ -1,7 +1,7 @@
 <h4>New</h4>
 <ng-container *ngIf="notifications">
   <p *ngFor="let notification of notifications">
-    {{notification.name}}
+    {{notification.name}} – {{notification.email}}
     <br>
     {{notification.mes}}
   </p>

@@ -25,7 +25,7 @@ const schem = new Schema({
             delete ret.token;
         }
     },
-    createRestApi: false,
+    createRestApi: true,
     strict: true,
 
 });

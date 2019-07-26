@@ -69,22 +69,28 @@ export class MyProfileComponent implements OnInit, OnChanges {
             this.loading = true;
           });
         }
-        if (this.user.role === 'managerCleaner' || this.user.role === 'managerDelivery') {
-        const populate = JSON.stringify({path: 'orders', populate: [{path: 'products', skip: 0, limit: 8, sort: {date: -1}}, {path: 'cleanerOwner', select: 'name'}]});
+        if (this.user.role === 'managerCleaner' && this.user.loger) {
+          const populate = JSON.stringify({path: 'orders', options: {skip: 0, limit: 8, sort: {date: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}]});
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
             this.allOrdersManager = log.orders;
-            this.loading = true;
-            this.getDelivery();
+            this.crud.getNoCache('cleaner/' + log.cleaner).then((v: any) => {
+              this.cleaner = v;
+              this.loading = true;
+              this.getDelivery();
+            });
           });
         }
-        // if (this.user.role === 'managerCleaner' || this.user.role === 'managerDelivery') {
-        // const populate = JSON.stringify({path: 'orders', populate: {path: 'products'}});
-        //   this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
-        //     this.allOrdersManager = log.orders;
-        //     this.loading = true;
-        //     this.getDelivery();
-        //   });
-        // }
+        if (this.user.role === 'managerDelivery' && this.user.loger) {
+          const populate = JSON.stringify({path: 'orders', options: {skip: 0, limit: 8, sort: {date: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}]});
+          this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
+            this.allOrdersManager = log.orders;
+            this.crud.getNoCache('delivery/' + log.delivery).then((v: any) => {
+              this.cleaner = v;
+              this.loading = true;
+              this.getDelivery();
+            });
+          });
+        }
       }
     });
   }
@@ -131,8 +137,9 @@ export class MyProfileComponent implements OnInit, OnChanges {
     if (this.user.role === 'client') {
       this.allOrdersUser = this.allOrdersUser.concat(value);
     }
-    if (this.user.role === 'superManagerCleaner') {
-      this.allOrdersSuperManager = this.allOrdersSuperManager.concat(value);
+    if (this.user.role === 'managerCleaner' || this.user.role === 'managerDelivery') {
+      this.allOrdersManager = this.allOrdersManager.concat(value.orders);
     }
+
   }
 }

@@ -22,7 +22,7 @@ export class AdminLoginComponent implements OnInit {
 
   doAuth() {
     this.crud.post('adminSignin', this.adminAuth, null, false, false).then((v: any) => {
-      if(v) {
+      if (v) {
           if (this.auth.isAuthAdmin()) {
               this.router.navigate(['/admin/dashboard']);
               return false;

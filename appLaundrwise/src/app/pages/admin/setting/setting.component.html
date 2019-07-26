@@ -11,8 +11,12 @@
   <mat-tab label="Application">
     <app-application-settings></app-application-settings>
   </mat-tab>
-  <mat-tab label="Third">
-
+  <mat-tab label="Password">
+  <div class="password-block">
+    <h3>Change Password</h3>
+    <input type="text" [(ngModel)]="password" name="pass" id="pass" placeholder="New password">
+    <button *ngIf="password" class="save" (click)="change()">Change</button>
+  </div>
   </mat-tab>
 </mat-tab-group>
 

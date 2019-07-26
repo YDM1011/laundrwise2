@@ -1,3 +1,15 @@
-<p>
-  dashboard works!
-</p>
+<app-loading *ngIf="!loading"></app-loading>
+
+<ng-container *ngIf="loading">
+  <div class="dashboard" *ngIf="array && array.length > 0">
+    <ng-container *ngFor="let item of array">
+      <h3>{{item.name}}</h3>
+      <canvas baseChart
+              [data]="item.result"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              id="canvas"
+      ></canvas>
+    </ng-container>
+  </div>
+</ng-container>

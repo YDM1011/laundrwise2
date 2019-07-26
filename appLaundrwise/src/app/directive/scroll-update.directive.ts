@@ -89,10 +89,10 @@ export class ScrollUploadDirective implements AfterViewInit {
         this.output.emit(basket);
       });
     }
-    if (this.role === 'managerCleaner' || this.role === 'managerDelivery') {
-      const populate = JSON.stringify({path: 'orders', populate: [{path: 'products', skip: this.skip * 8, limit: 8, sort: {date: -1}}, {path: 'cleanerOwner', select: 'name'}]});
-      this.crud.getNoCache(`actionLog/${this.id}?query={}&populate=${populate}`).then((basket: any) => {
-        this.skip++;
+    if (this.role === 'managerCleaner') {
+      const populate = JSON.stringify({path: 'orders', options: {skip: this.skip * 8, limit: 8, sort: {date: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}]});
+      this.crud.getNoCache(`actionLog/${this.id}?populate=${populate}`).then((basket: any) => {
+      this.skip++;
         this.triger = true;
         this.output.emit(basket);
       });

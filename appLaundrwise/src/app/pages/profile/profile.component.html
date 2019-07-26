@@ -1,6 +1,6 @@
 <div id="wrapper">
 <app-app-header></app-app-header>
-<div class="account-header">
+<div class="account-header" *ngIf="user">
     <div class="account-container">
         <div class="account-header__box">
             <div class="title">
@@ -12,6 +12,21 @@
                 </div>
                 <div class="name">
                     {{userName}}
+                </div>
+            </div>
+            <div class="money" *ngIf="user.role === 'superManagerCleaner'">
+                <div class="icon" (click)="show()">
+                </div>
+                <div class="text" (click)="show()" *ngIf="cleaner && cleaner.money">
+                    {{money}} $
+                </div>
+            </div>
+    
+            <div class="withdrow" [class.active]="showWithdrow">
+                <input type="number" [name]="withdrow" id="withdrow" [(ngModel)]="withdrow" placeholder="How many money do you want withdraw">
+                <div class="buttons">
+                    <span class="cancel" (click)="show()">Cancel</span>
+                    <span class="send" (click)="sendRequest()">Send request</span>
                 </div>
             </div>
         </div>

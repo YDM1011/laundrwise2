@@ -1,0 +1,23 @@
+.password-block{
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  input{
+    border-radius: 36px;
+    border: 1px solid #c0c0c0;
+    padding: 6px 10px;
+    width: 250px;
+    height: 40px;
+  }
+  .save{
+    width: max-content;
+    background: #13AAFF;
+    color: #fff;
+    font-family: Montserrat-Medium, sans-serif;
+    padding: 6px 26px;
+    margin: 10px auto;
+    border-radius: 36px;
+    border: none;
+    cursor: pointer;
+  }
+}

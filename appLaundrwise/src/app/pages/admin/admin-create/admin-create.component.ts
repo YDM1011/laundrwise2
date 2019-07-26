@@ -16,11 +16,6 @@ export class AdminCreateComponent implements OnInit {
     }
 
     doCreate() {
-            //api: api/adminSignin
-        this.crud.post('adminCreate', this.adminAuth)
-            .then((v:any)=>{
-
-            });
-        console.log(this.adminAuth);
+        this.crud.post('adminCreate', this.adminAuth).then((v: any) => {});
     }
 }

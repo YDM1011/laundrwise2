@@ -24,6 +24,7 @@ const schem = new Schema({
             ref: "Client"
         }},
     autoAssign: {type:Boolean, default: false},
+    money: {totalMoney:{Number, default: 0}},
     fs: String,
     inst: String,
     yt: String,

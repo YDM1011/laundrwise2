@@ -52,10 +52,10 @@ export class MyBarChartComponent implements OnInit {
             const query2 = JSON.stringify({'deliveryOwner': this.cleaner._id});
             this.crud.getNoCache(`basket/count?query=${query2}`).then((v: any) => {
               this.pieChartData.push(v.count);
-              const query5 = JSON.stringify({'deliveryOwner': this.cleaner._id, status: 1} );
+              const query5 = JSON.stringify({'deliveryOwner': this.cleaner._id, status: 2} );
               this.crud.getNoCache(`basket/count?query=${query5}`).then((v: any) => {
                 this.pieChartData.push(v.count);
-                const query4 = JSON.stringify({'deliveryOwner': this.cleaner._id, $or: [{status: 2}, {status: 3}, {status: 4}]} );
+                const query4 = JSON.stringify({'deliveryOwner': this.cleaner._id, $or: [ {status: 3}, {status: 4}]} );
                 this.crud.getNoCache(`basket/count?query=${query4}`).then((v: any) => {
                   this.pieChartData.push(v.count);
                   const query3 = JSON.stringify({'deliveryOwner': this.cleaner._id, status: 5} );
@@ -69,33 +69,41 @@ export class MyBarChartComponent implements OnInit {
           });
         }
         if (this.user.role === 'managerCleaner') {
-          // const query = JSON.stringify({'_id': this.user._id});
-          this.crud.getNoCache(`actionLog/${this.user.loger}`).then((v: any) => {
-            this.pieChartData.push(v.ordersCount);
-            this.loading = true;
-
-            // const populate = JSON.stringify({path: 'orders', select: { status: 5}});
-            // this.crud.getNoCache(`actionLog/${this.user.loger}?query={}&populate=${populate}`).then((v: any) => {
-            //   this.pieChartData.push(v.count);
-            // });
-
-            // const query2 = JSON.stringify({'deliveryOwner': this.cleaner._id});
-            // this.crud.getNoCache(`basket/count?query=${query2}`).then((v: any) => {
-            //   this.pieChartData.push(v.count);
-            //   const query5 = JSON.stringify({'deliveryOwner': this.cleaner._id, status: 1} );
-            //   this.crud.getNoCache(`basket/count?query=${query5}`).then((v: any) => {
-            //     this.pieChartData.push(v.count);
-            //     const query4 = JSON.stringify({'deliveryOwner': this.cleaner._id, $or: [{status: 2}, {status: 3}, {status: 4}]} );
-            //     this.crud.getNoCache(`basket/count?query=${query4}`).then((v: any) => {
-            //       this.pieChartData.push(v.count);
-            //       const query3 = JSON.stringify({'deliveryOwner': this.cleaner._id, status: 5} );
-            //       this.crud.getNoCache(`basket/count?query=${query3}`).then((v: any) => {
-            //         this.pieChartData.push(v.count);
-            //         this.loading = true;
-            //       });
-            //     });
-            //   });
-            // });
+          const query = JSON.stringify({'managerCleanerOwner': this.user._id});
+          this.crud.getNoCache(`basket/count?query=${query}`).then((v: any) => {
+            this.pieChartData.push(v.count);
+            const query1 = JSON.stringify({'managerCleanerOwner': this.user._id, status: 2});
+            this.crud.getNoCache(`basket/count?query=${query1}`).then((v: any) => {
+              this.pieChartData.push(v.count);
+              const query2 = JSON.stringify({'managerCleanerOwner': this.user._id, $or: [{status: 3}, {status: 4}]});
+              this.crud.getNoCache(`basket/count?query=${query2}`).then((v: any) => {
+                this.pieChartData.push(v.count);
+                const query3 = JSON.stringify({'managerCleanerOwner': this.user._id, status: 5});
+                this.crud.getNoCache(`basket/count?query=${query3}`).then((v: any) => {
+                  this.pieChartData.push(v.count);
+                  this.loading = true;
+                });
+              });
+            });
+          });
+        }
+        if (this.user.role === 'managerDelivery') {
+          const query = JSON.stringify({'managerDeliveryOwner': this.user._id});
+          this.crud.getNoCache(`basket/count?query=${query}`).then((v: any) => {
+            this.pieChartData.push(v.count);
+            const query1 = JSON.stringify({'managerDeliveryOwner': this.user._id, status: 2});
+            this.crud.getNoCache(`basket/count?query=${query1}`).then((v: any) => {
+              this.pieChartData.push(v.count);
+              const query2 = JSON.stringify({'managerDeliveryOwner': this.user._id, $or: [{status: 3}, {status: 4}]});
+              this.crud.getNoCache(`basket/count?query=${query2}`).then((v: any) => {
+                this.pieChartData.push(v.count);
+                const query3 = JSON.stringify({'managerDeliveryOwner': this.user._id, status: 5});
+                this.crud.getNoCache(`basket/count?query=${query3}`).then((v: any) => {
+                  this.pieChartData.push(v.count);
+                  this.loading = true;
+                });
+              });
+            });
           });
         }
       }

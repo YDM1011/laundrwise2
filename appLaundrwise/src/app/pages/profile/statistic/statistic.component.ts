@@ -23,10 +23,18 @@ export class StatisticComponent implements OnInit, OnChanges {
         const query = JSON.stringify({
           superManager: this.me._id
         });
-        this.crud.getNoCache('cleaner', '', `?query=${query}`).then(v => {
-          this.cleaner = Object.assign({}, v[0]);
-          this.autoAssign = this.cleaner.autoAssign;
-        });
+        if (this.me.role === 'superManagerCleaner') {
+          this.crud.getNoCache('cleaner', '', `?query=${query}`).then(v => {
+            this.cleaner = Object.assign({}, v[0]);
+            this.autoAssign = this.cleaner.autoAssign;
+          });
+        }
+        if (this.me.role === 'superManagerDelivery') {
+          this.crud.getNoCache('delivery', '', `?query=${query}`).then(v => {
+            this.cleaner = Object.assign({}, v[0]);
+            this.autoAssign = this.cleaner.autoAssign;
+          });
+        }
       }
     });
   }
@@ -37,9 +45,16 @@ export class StatisticComponent implements OnInit, OnChanges {
   }
 
   update() {
+    if (this.me.role === 'superManagerCleaner') {
       this.crud.post('cleaner', {autoAssign: this.autoAssign}, this.cleaner._id).then(v => {
-          this.cleaner = Object.assign({}, v);
+        this.cleaner = Object.assign({}, v);
       });
+    }
+    if (this.me.role === 'superManagerDelivery') {
+      this.crud.post('delivery', {autoAssign: this.autoAssign}, this.cleaner._id).then(v => {
+        this.cleaner = Object.assign({}, v);
+      });
+    }
   }
 
 }
