@@ -44,7 +44,6 @@ export class ProfileOrderComponent implements OnInit {
         if (this.role === 'superManagerDelivery') {
           this.obj['managerDeliveryOwner'] = this.managerChoose;
         }
-        console.log(v)
       }
     });
   }
@@ -75,12 +74,12 @@ export class ProfileOrderComponent implements OnInit {
     });
   }
   doneOrder() {
-    const money = this.cleaner.money.totalMoney + this.obj.totalPrice;
+    const money = this.cleaner.money + this.obj.totalPrice;
     this.crud.post('basket', {status: 5}, this.obj._id, false, false).then((v: any) => {
       if (v) {
         this.obj['status'] = 5;
-        this.crud.post('cleaner', {money: {totalMoney: money}}, this.cleaner._id, false, false).then((v: any) => {
-          this.cleaner.money['totalMoney'] = money;
+        this.crud.post('cleaner', {money: money}, this.cleaner._id, false, false).then((v: any) => {
+          this.cleaner.money = money;
         });
       }
     });

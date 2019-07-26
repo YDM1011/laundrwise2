@@ -38,8 +38,12 @@ export class ProfileComponent implements OnInit, OnChanges {
                     const query = JSON.stringify({superManager: this.user._id});
                     this.crud.getNoCache(`cleaner?query=${query}`).then((v: any) => {
                         this.cleaner = v[0];
-                        const cash = this.cleaner.money.totalMoney;
-                        this.money = cash - cash * this.setting.percentage / 100;
+                        if ( this.cleaner.money && this.cleaner.money) {
+                            const cash = this.cleaner.money;
+                            this.money = cash - cash * this.setting.percentage / 100;
+                        } else {
+                            this.money = 0;
+                        }
                     });
                 }
             }
@@ -62,14 +66,18 @@ export class ProfileComponent implements OnInit, OnChanges {
                 this.wsService.send(WS.SEND.NOTIFICATION, 'admin',  { data: obj.entity });
                 Swal.fire('Success', 'Message sended', 'success');
                 if (value) {
-                    const minusWithPercentage = this.withdrow + this.withdrow / 100 * this.setting.percentage;
-                    const minus = this.cleaner.money.totalMoney - minusWithPercentage;
-                    this.crud.post(`cleaner`, {money: {totalMoney: minus}}, this.cleaner._id, false, false).then((v: any) => {
-                        this.withdrow = 0;
-                        this.show();
-                        this.cleaner.money['totalMoney'] = this.money - this.withdrow;
-                        this.money = this.money - this.withdrow;
-                    });
+                    if (this.money < this.withdrow) {
+                        Swal.fire('Error', 'Error', 'error');
+                    } else {
+                        const minusWithPercentage = this.withdrow + this.withdrow / 100 * this.setting.percentage;
+                        const minus = this.cleaner.money - minusWithPercentage;
+                        this.crud.post(`cleaner`, {money: minus }, this.cleaner._id, false, false).then((v: any) => {
+                            this.withdrow = null;
+                            this.show();
+                            this.cleaner.money = this.money - this.withdrow;
+                            this.money = v.money - v.money * this.setting.percentage / 100;
+                        });
+                    }
                 }
             });
         }

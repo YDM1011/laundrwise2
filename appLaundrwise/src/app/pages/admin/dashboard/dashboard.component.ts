@@ -42,11 +42,10 @@ export class DashboardComponent implements OnInit {
           });
         });
         if (v.length === index + 1) {
-          console.log(this.array);
           this.loading = true;
         }
-      })
-    })
+      });
+    });
   }
 
 }

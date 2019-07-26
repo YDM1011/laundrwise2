@@ -34,7 +34,7 @@ export class SuperManagerFormComponent implements OnInit {
         api = 'delivery';
       }
       this.crud.post(api, {manager: this.manager}, this.data._id).then((v : any) => {
-
+        this.dialogRef.close();
       }).catch(e => {
         Swal.fire({
           type: 'error',

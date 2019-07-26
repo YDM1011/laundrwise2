@@ -8,6 +8,7 @@ export interface Cleaner {
     category: string[]
     date: string
     images: string
+    money: number
 }
 
 export class CleanerObj implements Cleaner {
@@ -20,6 +21,7 @@ export class CleanerObj implements Cleaner {
     public category = []
     public date: string = ''
     public images: string = ''
+    public money: number = 0
 
     constructor() {
         return {
@@ -31,7 +33,8 @@ export class CleanerObj implements Cleaner {
             product: this.product,
             category: this.category,
             date: this.date,
-            images: this.images
+            images: this.images,
+            money: this.money
         }
     }
 }

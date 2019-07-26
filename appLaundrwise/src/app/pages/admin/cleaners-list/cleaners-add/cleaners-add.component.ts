@@ -38,10 +38,13 @@ export class CleanersAddComponent implements OnInit {
             this.errorMessage = false;
             delete this.cleaner.date;
             delete this.cleaner.superManager;
+            this.cleaner.money = 0;
             this.cleaner.city = this.cityandcountry.city;
             this.cleaner.country = this.cityandcountry.country;
-            this.crud.post('cleaner', this.cleaner, null, ['cleaner']).then(v => {
+            this.crud.post('cleaner', this.cleaner, null, ['cleaner'], true).then(v => {
                 this.router.navigate(['/admin/cleaners']);
+                console.log(v)
+
             });
         }
     }

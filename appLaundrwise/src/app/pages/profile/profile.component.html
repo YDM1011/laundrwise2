@@ -18,7 +18,7 @@
                 <div class="icon" (click)="show()">
                 </div>
                 <div class="text" (click)="show()" *ngIf="cleaner && cleaner.money">
-                    {{money}} $
+                    {{money.toFixed(2)}} $
                 </div>
             </div>
     
