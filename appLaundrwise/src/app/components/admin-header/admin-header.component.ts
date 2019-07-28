@@ -11,12 +11,12 @@ import {WebsocketService} from "../../websocket";
 })
 export class AdminHeaderComponent implements OnInit, OnChanges {
   public notification$;
-  public notificationsNames:string[] = ['faq','cleaners','delivery','client'];
+  public notificationsNames: string[] = ['faq', 'cleaners', 'delivery', 'client'];
   public notifications: any = {
-      faq: {count:0, name:'FAQ'},
-      client: {count:0, name:'Client'},
-      delivery: {count:0, name:'Delivery'},
-      cleaners: {count:0, name:'Cleaners'},
+      faq: {count: 0, name: 'FAQ'},
+      client: {count: 0, name: 'Client'},
+      delivery: {count: 0, name: 'Delivery'},
+      cleaners: {count: 0, name: 'Cleaners'},
   };
   constructor(
       private router: Router,

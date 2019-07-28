@@ -43,8 +43,6 @@ export class CleanersAddComponent implements OnInit {
             this.cleaner.country = this.cityandcountry.country;
             this.crud.post('cleaner', this.cleaner, null, ['cleaner'], true).then(v => {
                 this.router.navigate(['/admin/cleaners']);
-                console.log(v)
-
             });
         }
     }

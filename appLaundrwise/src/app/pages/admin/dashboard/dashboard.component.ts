@@ -25,15 +25,17 @@ export class DashboardComponent implements OnInit {
         let obj = {
           name: item.name,
           result: [],
+          all: 0,
         };
         const query = JSON.stringify({cleanerOwner: item._id});
         this.crud.getNoCache(`basket/count?query=${query}`).then((v: any) => {
           obj.result.push(v.count);
+          obj['all'] = v.count;
           const query2 = JSON.stringify({cleanerOwner: item._id, status: 5});
           this.crud.getNoCache(`basket/count?query=${query2}`).then((v: any) => {
             obj.result.push(v.count);
             if (item && item.money) {
-              obj.result.push(item.money.totalMoney - item.money.totalMoney * this.settigns.percentage / 100) ;
+              obj.result.push(item.money - item.money * this.settigns.percentage / 100) ;
             } else {
               obj.result.push(0);
             }
@@ -47,5 +49,4 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
-
 }

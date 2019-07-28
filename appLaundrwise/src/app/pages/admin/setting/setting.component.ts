@@ -14,9 +14,6 @@ export class SettingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.crud.getNoCache('admin').then((v: any) => {
-    //   this.admin = v;
-    // });
   }
   change() {
     this.crud.post('adminChangePass', {pass: this.password}, '', false, true).then((v: any) => {

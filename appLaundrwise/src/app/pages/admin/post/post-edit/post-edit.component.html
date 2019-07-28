@@ -17,9 +17,9 @@
     <textarea name="text" [(ngModel)]="initDataPost.text"></textarea>
   </label>
 
-  <app-upload style="margin-bottom: 10px" *ngIf="initDataPost.images?.length === 0" (onFs)="fsData($event)" [multiple]="true"></app-upload>
+  <app-upload style="margin-bottom: 10px" *ngIf="initDataPost.images.length === 0" (onFs)="fsData($event)" [multiple]="true"></app-upload>
 
-  <ng-container  class="images" *ngIf="initDataPost.images?.length > 0">
+  <ng-container  class="images" *ngIf="initDataPost.images.length > 0">
     <app-img [img]="initDataPost.images[0]"></app-img>
     <button (click)="removeImg()" class="remove-img">remove img</button>
   </ng-container>

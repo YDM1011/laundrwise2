@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {CrudService} from "../../crud.service";
 import {Manager, ManagerObj} from "./manager";
@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 })
 export class SuperManagerFormComponent implements OnInit {
   public manager: Manager = new ManagerObj();
+  @Output() output: EventEmitter<any> = new EventEmitter();
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: any,
       private crud: CrudService,

@@ -23,9 +23,9 @@ export class DialogComponent  implements OnInit, OnChanges {
   ngOnInit() {
     this.uploadService.onMultiple.subscribe(v => {
       this.multiple = v;
-    })
+    });
   }
-  ngOnChanges(){
+  ngOnChanges() {
       // this.multiple = this.uploadService.multiple
   }
 

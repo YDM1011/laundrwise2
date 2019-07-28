@@ -3,7 +3,9 @@
         <h3 *ngIf="post">{{post.title}}</h3>
     </div>
 </div>
-<div class="content">
+<app-loading *ngIf="!loading"></app-loading>
+
+<div class="content" *ngIf="loading">
     <!--    <p>-->
     <!--        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
     <!--    </p>-->
@@ -23,7 +25,7 @@
     </div>
 </div>
 
-<section class="blog" id="blog" *ngIf="arrayPost && arrayPost.length > 0">
+<section class="blog" id="blog" *ngIf="loading && arrayPost && arrayPost.length > 0" >
     <h2>More interesting news</h2>
     <div class="blog__container">
         <ng-container *ngIf="arrayPost.length > 0">
@@ -32,7 +34,7 @@
     </div>
 </section>
 
-<app-is-app-download></app-is-app-download>
+<app-is-app-download *ngIf="loading"></app-is-app-download>
 
 
 <!--<div class="content">-->

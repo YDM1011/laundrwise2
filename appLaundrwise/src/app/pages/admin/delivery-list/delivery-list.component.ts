@@ -20,7 +20,7 @@ export class DeliveryListComponent implements OnInit {
 
     ngOnInit() {
         const query = JSON.stringify({path: 'superManager', skip: 0, limit: 0});
-        this.crud.get(`delivery?populate=${query}`).then((v: any) => {
+        this.crud.getNoCache(`delivery?populate=${query}`).then((v: any) => {
             this.delivery = v;
             this.dataSource = new MatTableDataSource(this.delivery);
         });

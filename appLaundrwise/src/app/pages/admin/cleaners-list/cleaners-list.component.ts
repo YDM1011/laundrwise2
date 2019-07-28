@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {MatDialog, MatTableDataSource} from "@angular/material";
 import {CrudService} from "../../../crud.service";
 import {Cleaner} from "./cleaner";
@@ -10,7 +10,7 @@ import {SuperManagerFormComponent} from "../../../components/super-manager-form/
   templateUrl: './cleaners-list.component.html',
   styleUrls: ['./cleaners-list.component.scss']
 })
-export class CleanersListComponent implements OnInit {
+export class CleanersListComponent implements OnInit, OnChanges {
     public dataSource = new MatTableDataSource();
     public displayedColumns: string[] = ['name', 'sm', 'category', 'date', 'edit', 'del'];
     public cleaner: Cleaner[];
@@ -18,7 +18,9 @@ export class CleanersListComponent implements OnInit {
         public dialog: MatDialog,
         private crud: CrudService
     ) { }
-
+    ngOnChanges() {
+        console.log('tima')
+    }
     ngOnInit() {
         const query = JSON.stringify({path: 'superManager', skip: 0, limit: 0});
         this.crud.getNoCache(`cleaner?populate=${query}`).then((v: any) => {

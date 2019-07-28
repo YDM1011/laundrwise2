@@ -26,7 +26,6 @@ export class PostEditComponent implements OnInit {
 
     this.crud.get('post', this.id).then((v: any) => {
       this.initDataPost = v;
-      console.log(this.initDataPost)
       this.post = Object.assign({}, v);
     });
   }
@@ -46,12 +45,10 @@ export class PostEditComponent implements OnInit {
     this.btnBlok(this.validate());
   }
   userSubmit() {
-    this.crud.post('post', this.post, this.id).then( ( v: any ) => {
+    this.crud.post('post', this.initDataPost, this.id).then( ( v: any ) => {
       this.initDataPost = v;
       this.post = Object.assign({}, v);
       this.router.navigate(['/admin/posts']);
-    }).catch(e => {
-
     });
   }
   removeImg() {
@@ -71,8 +68,6 @@ export class PostEditComponent implements OnInit {
         delete this.post.images[0];
         this.post.images = [];
         this.btnBlok(this.validate());
-        console.log(this.initDataPost);
-        console.log(this.post);
       }
     });
   }

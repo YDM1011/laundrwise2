@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.crud.get('post').then((v: any) => {
+    this.crud.getNoCache('post').then((v: any) => {
       this.post = v;
       this.dataSource = new MatTableDataSource(this.post);
     });

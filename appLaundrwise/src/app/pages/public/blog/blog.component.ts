@@ -11,6 +11,7 @@ export class BlogComponent implements OnInit {
   public arrayPost: any;
   public id;
   public post: any;
+  public loading: boolean = false;
   constructor(
       private route: ActivatedRoute,
       private crud: CrudService
@@ -22,11 +23,13 @@ export class BlogComponent implements OnInit {
       this.id = this.route.snapshot.paramMap.get('id');
       this.crud.getNoCache(`post/${this.id}`).then((v: any) => {
         this.post = Object.assign({}, v);
+        this.loading = true;
       });
     });
 
     this.crud.get('post?query={}&skip=0&limit=3&sort={"date":-1}', ).then((value: any) => {
       this.arrayPost = value;
+      this.loading = true;
     }).catch(e => {});
   }
 

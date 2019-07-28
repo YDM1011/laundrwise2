@@ -3,8 +3,9 @@
         <h3>Blogs</h3>
     </div>
 </div>
+<app-loading *ngIf="!loading"></app-loading>
 
-<section class="blog" id="blog">
+<section class="blog" id="blog" *ngIf="loading">
     <ng-container *ngIf="allBlogs.length === 0 || !allBlogs">
         <div class="blog__container">
             <p class="sorry">

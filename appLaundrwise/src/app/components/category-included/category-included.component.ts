@@ -17,7 +17,7 @@ export class CategoryIncludedComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
     let query = JSON.stringify({path: 'category', limit: 5, skip: 0});
     query = `?populate=${query}`;
     this.crud.getNoCache('cleaner', this.data._id, query).then((v: any) => {

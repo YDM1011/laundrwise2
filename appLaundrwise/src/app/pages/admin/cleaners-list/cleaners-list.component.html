@@ -31,7 +31,7 @@
   <!-- Title Column -->
   <ng-container matColumnDef="category">
     <th mat-header-cell *matHeaderCellDef> Categories </th>
-    <td mat-cell *matCellDef="let element"> <button (click)="showCategory(element)">category</button> </td>
+    <td mat-cell *matCellDef="let element"> <button (click)="showCategory(element)" class="category-btn">category</button> </td>
   </ng-container>
 
   <!-- Date Column -->
@@ -61,5 +61,5 @@
 </table>
 
 <ng-template #createManeger let-id="_id">
-  <button (click)="addManeger(id)">add</button>
+  <button class="add-btn" (click)="addManeger(id)">add</button>
 </ng-template>

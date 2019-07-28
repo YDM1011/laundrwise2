@@ -22,8 +22,6 @@ export class DeliveryAddComponent implements OnInit {
     }
 
     addPost() {
-
-
         if (this.cityandcountry && (this.cityandcountry.city || this.cityandcountry.country)) {
             this.delivery.city = this.cityandcountry.city;
             this.delivery.country = this.cityandcountry.country;
@@ -51,9 +49,4 @@ export class DeliveryAddComponent implements OnInit {
             this.cityandcountry = e;
         }
     }
-
-    // pullCategory(elems) {
-    //     this.delivery.category = this.crud.arrObjToArrId(elems);
-    //     console.log(this.crud.arrObjToArrId(elems));
-    // }
 }
