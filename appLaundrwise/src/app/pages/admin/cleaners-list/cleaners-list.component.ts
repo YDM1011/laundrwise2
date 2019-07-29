@@ -4,6 +4,7 @@ import {CrudService} from "../../../crud.service";
 import {Cleaner} from "./cleaner";
 import {CategoryIncludedComponent} from "../../../components/category-included/category-included.component";
 import {SuperManagerFormComponent} from "../../../components/super-manager-form/super-manager-form.component";
+import {AuthService} from "../../../auth.service";
 
 @Component({
   selector: 'app-cleaners-list',
@@ -14,18 +15,30 @@ export class CleanersListComponent implements OnInit, OnChanges {
     public dataSource = new MatTableDataSource();
     public displayedColumns: string[] = ['name', 'sm', 'category', 'date', 'edit', 'del'];
     public cleaner: Cleaner[];
+    public loading: boolean = false;
     constructor(
         public dialog: MatDialog,
+        public auth: AuthService,
         private crud: CrudService
     ) { }
     ngOnChanges() {
-        console.log('tima')
     }
     ngOnInit() {
         const query = JSON.stringify({path: 'superManager', skip: 0, limit: 0});
         this.crud.getNoCache(`cleaner?populate=${query}`).then((v: any) => {
             this.cleaner = v;
             this.dataSource = new MatTableDataSource(this.cleaner);
+            this.loading = true;
+        });
+
+        this.auth.onUpdateSuperManager.subscribe(( v: any ) => {
+            if (v) {
+                const query1 = JSON.stringify({path: 'superManager', skip: 0, limit: 0});
+                this.crud.getNoCache(`cleaner?populate=${query1}`).then((v: any) => {
+                    this.cleaner = v;
+                    this.dataSource = new MatTableDataSource(this.cleaner);
+                });
+            }
         });
     }
 
@@ -37,7 +50,7 @@ export class CleanersListComponent implements OnInit, OnChanges {
     }
 
     showCategory(elem) {
-        this.dialog.open(CategoryIncludedComponent, { width: '50%', height: '50%', data: elem});
+        this.dialog.open(CategoryIncludedComponent, { width: '360px', height: 'auto', data: elem});
     }
 
     addManeger(elem) {

@@ -96,3 +96,11 @@ app-init-layout{
 app-cleaners, app-blogs{
   margin: 0 0 auto;
 }
+.mat-expansion-panel-header{
+  position: relative;
+}
+
+
+.mat-tab-body-content{
+  padding: 0 3px;
+}

@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {CrudService} from "../../crud.service";
 import {Manager, ManagerObj} from "./manager";
 import Swal from "sweetalert2";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-super-manager-form',
@@ -15,6 +16,7 @@ export class SuperManagerFormComponent implements OnInit {
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: any,
       private crud: CrudService,
+      private auth: AuthService,
       public dialogRef: MatDialogRef<SuperManagerFormComponent>
   ) { }
 
@@ -34,8 +36,11 @@ export class SuperManagerFormComponent implements OnInit {
         this.manager.role = this.data.role;
         api = 'delivery';
       }
-      this.crud.post(api, {manager: this.manager}, this.data._id).then((v : any) => {
-        this.dialogRef.close();
+      this.crud.post(api, {manager: this.manager}, this.data._id).then((v: any) => {
+        if (v) {
+          this.auth.updateSuper(v);
+          this.dialogRef.close();
+        }
       }).catch(e => {
         Swal.fire({
           type: 'error',

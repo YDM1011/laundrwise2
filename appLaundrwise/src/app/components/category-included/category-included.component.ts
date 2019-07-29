@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
+import {MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource} from "@angular/material";
 import {CrudService} from "../../crud.service";
 import {Category} from "../../pages/admin/category-list/category";
 
@@ -10,6 +10,8 @@ import {Category} from "../../pages/admin/category-list/category";
 })
 export class CategoryIncludedComponent implements OnInit {
   public category: Category[] = [];
+  displayedColumns: string[] = ['title'];
+  public dataSource = new MatTableDataSource();
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: any,
       private crud: CrudService,
@@ -17,11 +19,11 @@ export class CategoryIncludedComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    // console.log(this.data);
     let query = JSON.stringify({path: 'category', limit: 5, skip: 0});
     query = `?populate=${query}`;
     this.crud.getNoCache('cleaner', this.data._id, query).then((v: any) => {
         this.category = this.category.concat(v.category);
+        this.dataSource = new MatTableDataSource(this.category);
     });
   }
   closeDialog() {

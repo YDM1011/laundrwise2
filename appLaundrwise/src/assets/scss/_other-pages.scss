@@ -60,6 +60,11 @@
       .paragraph{
         font-size: 14px;
         line-height: 23px;
+        img{
+          width: 100%;
+          height: 300px;
+          max-width: 400px;
+        }
         app-img{
           width: 100%;
           height: 300px;
@@ -216,7 +221,7 @@
         height: 300px;
       }
       &-box{
-        width: 100%;
+        width: 48%;
         padding: 0 10px 0 20px;
         .title{
           font-size: 38px;
@@ -276,7 +281,10 @@
       flex-direction: row;
       justify-content: space-between;
       padding:30px 0;
-      min-height: 500px;
+      min-height: 460px;
+      img{
+        height: 460px;
+      }
       &-box{
         .title{
           font-size: 42px;
@@ -284,7 +292,7 @@
         }
         .paragraph{
           app-img{
-            height: 380px;
+            height: 460px;
             width: 100%;
             img{
               height: 100%;
@@ -297,6 +305,12 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .headline{
+    margin-bottom: 40px;
+    margin-top: 90px;
+  }
+}
 
 //blogs container
 

@@ -1,73 +1,83 @@
 .buttons{
   display: flex;
   justify-content: flex-end;
+  position: relative;
+  z-index: 400123123!important;
+  right: 50px;
+  top: 0;
+  width: max-content;
+  margin: 0 0 0 auto;
   button{
-    margin: 0 5px;
-    &.edit{
-
+    &.add, &.delete{
+      color: #333;
+      background: #fff;
+      width: max-content;
+      padding: 6px 26px;
+      font-size: 14px;
+      margin: 5px 0;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .2s;
+      &:hover{
+        background: #e0e0e0;
+      }
     }
     &.delete{
+      background: red;
       color: #fff;
-      background: red;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
+      margin-left: 20px;
+      &:hover{
+        background: rgba(255, 0, 0, 0.86);
+      }
     }
   }
 }
-.mat-card{
-  margin: 0 5px 15px;
-  max-width: 400px;
-}
-.main-block{
+.block-chip{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  max-width: 400px;
-  width: 100%;
-  margin-bottom: 20px;
-}
-.save{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  button{
-    background: #13AAFF;
-    color: #fff;
-    padding: 4px 14px;
-    border-radius: 25px;
-    border: none;
-  }
-}
-.block{
-  .text{
-    position: relative;
-    font-size: 13px;
-    padding: 2px 10px;
-    background: #fff;
-    border-radius: 3px;
-    margin-bottom: 5px;
-    .remove{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      right: -6px;
-      top: -6px;
-      width: 12px;
-      height: 12px;
-      background: red;
-      padding: 0;
-      border-radius: 50%;
-      border: none;
-    }
+  .chip{
+    width: max-content;
   }
 }
 .add{
+  margin: 6px 0 0;
   input{
-    padding: 3px 10px;
+    padding: 6px 10px;
+    font-size: 14px;
     border-radius: 25px;
     margin: 5px 10px 5px 0;
     border:1px solid #c0c0c0;
   }
+  button {
+    color: #333;
+    background: #fff;
+    width: max-content;
+    padding: 6px 26px;
+    font-size: 14px;
+    margin: 5px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 26px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+    &:hover {
+      background: #e0e0e0;
+    }
+  }
+}
+
+.mat-expansion-panel-spacing{
+  margin: 0;
+}
+.mat-accordions{
+  position: relative;
+}
+.mat-expansion-panel{
+  margin-bottom: 25px;
+  margin-top: -45px;
+}
+.mat-expansion-panel-body{
+  margin-bottom: 25px;
 }

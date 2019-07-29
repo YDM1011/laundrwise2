@@ -1,52 +1,22 @@
-<!--<mat-accordion class="mat-accordions">-->
-<!--  <mat-expansion-panel *ngIf="obj">-->
-<!--    <mat-expansion-panel-header>-->
-<!--      <mat-panel-title>-->
-<!--        {{obj.country}}-->
-<!--      </mat-panel-title>-->
-<!--  <div class="buttons">-->
-<!--    <button class="edit" (click)="editChange($event)">Edit</button>-->
-<!--    <button class="delete" (click)="deleteAll(index)">Delete</button>-->
-<!--  </div>-->
-<!--    </mat-expansion-panel-header>-->
-<!--    <ng-container *ngFor="let item of obj.city; let index = index;">-->
-<!--      <div class="block">-->
-<!--        <span class="text">-->
-<!--          {{item}}-->
-<!--        </span>-->
-<!--        <button (click)="remove(index)" *ngIf="edit">x</button>-->
-<!--      </div>-->
-<!--    </ng-container>-->
-<!--  </mat-expansion-panel>-->
-<!--</mat-accordion>-->
-<ng-container *ngIf="obj">
-  <mat-card class="mat-card">
-    <div class="main-block">
-      {{obj.country}}
-      <div class="buttons">
-        <button class="add" (click)="addCityF()">Add</button>
-        <button class="edit" (click)="editChange()">Edit</button>
-        <button class="delete" (click)="deleteAll()">Delete</button>
-      </div>
-    </div>
-    <ng-container *ngFor="let item of obj.city; let index = index;">
-      <div class="block">
-        <button class="text">
-          {{item}}
-          <span class="remove" (click)="remove(index)" *ngIf="edit">
-            <svg version="1.1" width="6px" fill="#fff" height="6px" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 31.112 31.112" xml:space="preserve">
-              <polygon points="31.112,1.414 29.698,0 15.556,14.142 1.414,0 0,1.414 14.142,15.556 0,29.698 1.414,31.112 15.556,16.97 29.698,31.112 31.112,29.698 16.97,15.556 "/>
-            </svg>
-          </span>
-        </button>
-      </div>
-    </ng-container>
+<mat-accordion class="mat-accordions">
+  <div class="buttons">
+    <button class="add" (click)="addCityF()">Add City</button>
+    <button class="delete" (click)="deleteAll()">Delete</button>
+  </div>
+  <mat-expansion-panel *ngIf="obj" (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="panelOpenState">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{obj.country}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+      <mat-chip-list aria-label="city" class="block-chip">
+        <mat-chip class="chip" *ngFor="let item of obj.city; let index = index;">{{item}}
+          <mat-icon matChipRemove class="remove" (click)="remove(index)">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
     <div class="add" *ngIf="addCity">
       <input type="text" [(ngModel)]="newCity">
       <button (click)="addCityB()">Add city</button>
     </div>
-    <div class="save" *ngIf="saveBoolean">
-      <button class="save" (click)="save()">Save</button>
-    </div>
-  </mat-card>
-</ng-container>
+  </mat-expansion-panel>
+</mat-accordion>
