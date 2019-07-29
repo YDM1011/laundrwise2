@@ -105,7 +105,6 @@ export class SignupComponent implements OnInit {
           this.cookieService.set('userId', value.userId);
           this.auth.isAuth();
           this.router.navigate(['/']);
-          // this.router.navigate(['/signin']);
         },
         (error) => {
 

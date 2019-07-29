@@ -16,7 +16,7 @@ export class StatusPipe implements PipeTransform {
                 break;
             case 3: res = '<div class="status__lamp inprogress"></div><div class="status__title">In progress</div>';
                 break;
-            case 4: res = '<div class="status__lamp inprogress"></div><div class="status__title">Washed</div>';
+            case 4: res = '<div class="status__lamp washed"></div><div class="status__title">Washed</div>';
                 break;
             case 5: res = '<div class="status__lamp done"></div><div class="status__title">Done</div>';
                 break;
