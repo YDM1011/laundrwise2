@@ -22,10 +22,6 @@ export class AdddCountryComponent implements OnInit {
 
   ngOnInit() {
   }
-  // editChange() {
-  //   this.edit = !this.edit;
-  //   this.addCityF();
-  // }
   remove(index) {
     this.obj.city.splice(index, 1);
     this.crud.post(`location`, this.obj, this.obj._id, false, false).then((v: any) => {
@@ -54,10 +50,4 @@ export class AdddCountryComponent implements OnInit {
 
     }
   }
-  // save() {
-  //   this.crud.post(`location`, this.obj, this.obj._id).then((v: any) => {
-  //     this.saveBoolean = false;
-  //     this.editChange();
-  //   });
-  // }
 }

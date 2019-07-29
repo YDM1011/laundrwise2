@@ -14,7 +14,7 @@ export class AddCountryComponent implements OnInit, OnChanges {
   public location: ILocation = {country: '', city: []};
   public isAdd:boolean = false;
   public city:string = '';
-
+  public loading: boolean = false;
   constructor(
       private crud: CrudService,
   ) { }
@@ -22,6 +22,7 @@ export class AddCountryComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.crud.getNoCache('location').then((v: any) => {
       this.locations = v;
+      this.loading = true;
     });
   }
   ngOnChanges() {}

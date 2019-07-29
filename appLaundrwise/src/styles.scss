@@ -100,9 +100,7 @@ app-cleaners, app-blogs{
   position: relative;
 }
 
-.mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing{
 
-  .buttons{
-    top: 32px;
-  }
+.mat-tab-body-content{
+  padding: 0 3px;
 }

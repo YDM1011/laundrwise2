@@ -18,9 +18,10 @@
         </ul>
         <button class="send" *ngIf="location.country" type="submit">save</button>
     </form>
-
 </ng-container>
-<div class="list-countries">
+<app-loading *ngIf="!loading"></app-loading>
+
+<div class="list-countries" *ngIf="loading">
     <ng-container  *ngFor="let loc of locations; let index = index;">
         <app-addd-country [obj]="loc" [array]="location" [indexMain]="index" (removeCurrent)="changeRemove($event)"></app-addd-country>
     </ng-container>
