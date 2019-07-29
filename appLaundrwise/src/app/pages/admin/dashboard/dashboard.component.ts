@@ -54,13 +54,6 @@ export class DashboardComponent implements OnInit {
           const query1 = JSON.stringify({cleanerOwner: item._id, status: 1});
           this.crud.getNoCache(`basket/count?query=${query1}`).then((v: any) => {
             obj.data.push(v.count);
-            // obj.datasets.push();
-            // if (item && item.money) {
-            //   obj.result.push(item.money - item.money * this.settigns.percentage / 100) ;
-            // } else {
-            //   obj.result.push(0);
-            // }
-            // this.array.push(obj);
             const query2= JSON.stringify({cleanerOwner: item._id, status: 2});
             this.crud.getNoCache(`basket/count?query=${query2}`).then((v: any) => {
                 obj.data.push(v.count);
@@ -83,13 +76,7 @@ export class DashboardComponent implements OnInit {
             });
           });
         });
-        // if (v.length === index + 1) {
-        //   this.loading = true;
-        // }
       });
-        // if (v.length === index + 1) {
-            //   this.loading = true;
-            // }
     });
   }
 }

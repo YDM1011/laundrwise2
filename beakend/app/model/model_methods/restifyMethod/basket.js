@@ -5,13 +5,13 @@ module.exports.preRead = async (req,res,next, backendApp) => {
 module.exports.preUpdate = async (req,res,next, backendApp) => {
     // try {
         switch (parseInt(req.body.status)){
-            case 0: return next();
-            case 1: return next();
-            case 2: return next();
-            case 3: return next();
-            case 4: return next();
-            case 5: return next();
-            case 6: return next();
+            case 0: req.body.updatedAt = new Date(); return next();
+            case 1: req.body.updatedAt = new Date(); return next();
+            case 2: req.body.updatedAt = new Date(); return next();
+            case 3: req.body.updatedAt = new Date(); return next();
+            case 4: req.body.updatedAt = new Date(); return next();
+            case 5: req.body.updatedAt = new Date(); return next();
+            case 6: req.body.updatedAt = new Date(); return next();
             // case 2:
             //     let superManeger = await checkRole(req, backendApp).catch(e=>{return res.notFound(e)});
             //     if (superManeger && (superManeger.role == req.body.role)) return res.badRequest();
@@ -59,6 +59,10 @@ module.exports.postUpdate = async (req, res, next, backendApp) => {
             res.ok(dataBasket);
         }
 
+    } else if (basket.status == 5){
+        let cleaner = await getCleaner(basket.cleanerOwner).catch(e=>{return rj(e)});
+        let cleanerUpdated = await setMoneyToCleaner(req, basket, cleaner).catch(e=>res.notFound(e));
+        res.ok(cleanerUpdated)
     } else {
         next()
     }
@@ -109,6 +113,42 @@ const updateBasketByCleaner = async (req,cleaner) => {
                 if (r) return rs(r);
             })
     })
+};
+const setMoneyToCleaner = async (req,basket, cleaner) => {
+    let percentage = await getSettings(req,backendApp).catch(e => {return res.notFound(e)});
+    const Basket = backendApp.mongoose.model('Cleaner');
+    return new Promise((rs,rj)=>{
+        Basket.findOneAndUpdate({_id: cleaner._id},
+            {$inc: {money:parsePrice(basket.totalPrice/percentage)}},
+            {new:true})
+            .exec((e,r)=>{
+                if (e) return rj(e);
+                if (!r) return rj('not found');
+                if (r) return rs(r);
+            })
+    })
+};
+const getSettings = (req,backendApp) => {
+    const Setting = backendApp.mongoose.model('Setting');
+    return new Promise((rs,rj)=>{
+        Setting.findOne({})
+            .exec((e,r)=>{
+                if (e) return rj(e);
+                if (!r) return rs({percentage: 1});
+                if (r){
+                    if(r.percentage || (r.percentage === 0)){
+                        rs (parsePrice(r.percentage/100) + 1);
+                    }else{
+                        return rs(1)
+                    }
+                }
+            });
+    })
+};
+const parsePrice = price => {
+    price = String(price);
+    price =parseFloat(price.split('.')[1] ?  parseInt(price)+'.'+price.split('.')[1].slice(0,2) : price);
+    return price
 };
 const validate = (req,res,cleaner,backendApp)=>{
     return new Promise((rs,rj)=>{

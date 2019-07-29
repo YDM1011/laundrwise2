@@ -43,7 +43,6 @@ schema.post('save', (doc,next)=>{
 });
 
 schema.post('find', (doc,next)=>{
-    console.log("URAAAAAAAAAAAAAAA", doc)
     const Setting = backendApp.mongoose.model('Setting');
     Setting.findOne({})
         .exec((e,r)=>{

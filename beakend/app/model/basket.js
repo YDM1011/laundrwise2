@@ -44,6 +44,7 @@ const schema = new Schema({
     cityCode: String,
     country: String,
     mobile: String,
+    updatedAt: {type: Date, default: new Date()},
     date: {type: Date, default: new Date()}
 },{
     toJSON: {
