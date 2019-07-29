@@ -1,10 +1,12 @@
 .buttons{
   display: flex;
   justify-content: flex-end;
-  position: absolute;
+  position: relative;
   z-index: 400123123!important;
   right: 50px;
-  top: 24px;
+  top: 0;
+  width: max-content;
+  margin: 0 0 0 auto;
   button{
     &.add, &.delete{
       color: #333;
@@ -69,4 +71,13 @@
 .mat-expansion-panel-spacing{
   margin: 0;
 }
-
+.mat-accordions{
+  position: relative;
+}
+.mat-expansion-panel{
+  margin-bottom: 25px;
+  margin-top: -45px;
+}
+.mat-expansion-panel-body{
+  margin-bottom: 25px;
+}
