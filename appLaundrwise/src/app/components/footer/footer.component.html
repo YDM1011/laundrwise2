@@ -23,7 +23,7 @@
     </div>
     <div class="footer-container__right">
       <form class="email-sub" (submit)="subscribe()">
-        <input type="email" [(ngModel)]="email" name="email" id="email" placeholder="Email address">
+        <input type="email" autocomplete="off" [(ngModel)]="email" name="email" id="email" placeholder="Email address">
         <button type="submit" class="btn">Subscribe</button>
       </form>
       <div class="buttons" *ngIf="info">

@@ -1,10 +1,34 @@
-@media (max-width: 1900px) {
+//@media (max-width: 1900px) {
+//  #canvas{
+//    min-width: 550px!important;
+//  }
+//}
+//@media (max-width: 768px) {
+//  #canvas{
+//    min-width: 320px!important;
+//  }
+//}
+#canvas{
+  width: 100%;
+  min-width: 320px;
+}
+@media (min-width: 360px) {
   #canvas{
-    min-width: 550px!important;
+    width: 100%;
+    min-width: 360px;
   }
 }
-@media (max-width: 768px) {
+
+@media (min-width: 568px) {
   #canvas{
-    min-width: 320px!important;
+    width: 100%;
+    min-width: 560px;
+  }
+}
+
+@media (min-width: 768px) {
+  #canvas{
+    width: 100%;
+    min-width: 630px;
   }
 }

@@ -49,27 +49,25 @@ export class DashboardComponent implements OnInit {
         };
         const query = JSON.stringify({cleanerOwner: item._id});
         this.crud.getNoCache(`basket/count?query=${query}`).then((v: any) => {
-        //   obj.result.push(v.count);
           obj['all'] = v.count;
           const query1 = JSON.stringify({cleanerOwner: item._id, status: 1});
           this.crud.getNoCache(`basket/count?query=${query1}`).then((v: any) => {
             obj.data.push(v.count);
-            const query2= JSON.stringify({cleanerOwner: item._id, status: 2});
+            const query2 = JSON.stringify({cleanerOwner: item._id, status: 2});
             this.crud.getNoCache(`basket/count?query=${query2}`).then((v: any) => {
                 obj.data.push(v.count);
                 // obj.datasets.push({data:v.count});
-                const query3= JSON.stringify({cleanerOwner: item._id, status: 3});
+                const query3 = JSON.stringify({cleanerOwner: item._id, status: 3});
                 this.crud.getNoCache(`basket/count?query=${query3}`).then((v: any) => {
                     obj.data.push(v.count);
-                    const query4= JSON.stringify({cleanerOwner: item._id, status: 4});
+                    const query4 = JSON.stringify({cleanerOwner: item._id, status: 4});
                     this.crud.getNoCache(`basket/count?query=${query4}`).then((v: any) => {
                         obj.data.push(v.count);
-                        const query5= JSON.stringify({cleanerOwner: item._id, status: 5});
+                        const query5 = JSON.stringify({cleanerOwner: item._id, status: 5});
                         this.crud.getNoCache(`basket/count?query=${query5}`).then((v: any) => {
                             obj.data.push(v.count);
                             obj.loaded = true;
                             this.array.push(obj);
-                            // this.loading = true;
                         });
                     });
                 });
