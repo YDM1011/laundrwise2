@@ -1,21 +1,36 @@
-<app-loading *ngIf="!loading"></app-loading>
 
-<ng-container *ngIf="loading">
-  <div class="dashboard" *ngIf="array && array.length > 0">
+
+
+  <div class="dashboard">
     
     <ng-container *ngFor="let item of array">
-      <h3>{{item.name}}</h3>
-      <ng-container *ngIf="item.all === 0">
-        Now company don't have statistic
-      </ng-container>
-      <ng-container *ngIf="item.all > 0">
-        <canvas baseChart
-                [data]="item.result"
-                [labels]="pieChartLabels"
-                [chartType]="pieChartType"
-                id="canvas"
-        ></canvas>
+      <app-loading *ngIf="!item.loaded"></app-loading>
+      <ng-container *ngIf="item.loaded">
+        <h3>{{item.name}}</h3>
+        <ng-container *ngIf="item.all === 0">
+          Now company don't have statistic
+        </ng-container>
+        <ng-container *ngIf="item.all !== 0 && item.datasets">
+          <canvas baseChart
+                  [data]="item.data"
+                  [options]="{
+                      responsive: true,
+                      maintainAspectRatio: true,
+                      animation: {
+                          duration: 1000
+                      },
+                      hover: {
+                          animationDuration: 1000
+                      },
+                      responsiveAnimationDuration: 0
+                  }"
+                  [datasets]="item.datasets"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  id="canvas"
+          ></canvas>
+        </ng-container>
       </ng-container>
     </ng-container>
   </div>
-</ng-container>
+

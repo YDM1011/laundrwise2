@@ -10,7 +10,7 @@ import {AuthService} from "../../auth.service";
 export class MyBarChartComponent implements OnInit {
   public user: any;
   public cleaner: any;
-  public pieChartLabels = ['New', 'In Progress', 'Waiting', 'Washed', 'Done', ];
+  public pieChartLabels = ['New', 'Confirm', 'In Progress', 'Washed', 'Done', ];
   public pieChartData = [];
   public pieChartType = 'pie';
   public loading: boolean = false;
