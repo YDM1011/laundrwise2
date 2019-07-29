@@ -22,9 +22,9 @@
       </div>
     </div>
     <div class="footer-container__right">
-      <form class="email-sub">
-        <input type="email" placeholder="Email adress">
-        <div class="btn">Subscribe</div>
+      <form class="email-sub" (submit)="subscribe()">
+        <input type="email" [(ngModel)]="email" name="email" id="email" placeholder="Email address">
+        <button type="submit" class="btn">Subscribe</button>
       </form>
       <div class="buttons" *ngIf="info">
         <a href="{{info.fb}}" class="buttons__item" *ngIf="info.fb">

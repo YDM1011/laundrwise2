@@ -616,12 +616,16 @@ footer{
         .btn{
           background: $main-blue;
           color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content:center;
           position: absolute;
-          right: 0;
-          top: 0;
-          height: 100%;
+          right: -1px;
+          top: -1px;
+          height:calc(100% + 2px);
           border-radius: 36px;
-          padding: 8px ;
+          padding: 8px;
+          cursor: pointer;
         }
       }
       .buttons{
@@ -809,18 +813,6 @@ footer{
             padding: 8px 20px;
             background: #333;
             color: #fff;
-          }
-          .btn{
-            background: $main-blue;
-            color: #fff;
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 100%;
-            border-radius: 36px;
-            padding: 8px;
-            cursor: pointer;
-            line-height: 14px;
           }
         }
         .buttons{
