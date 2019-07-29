@@ -27,6 +27,9 @@ export class AuthService {
   private settings = new BehaviorSubject<any>(null);
   public onSettings = this.settings.asObservable();
 
+  private updateSuperManager = new BehaviorSubject<any>(false);
+  public onUpdateSuperManager = this.updateSuperManager.asObservable();
+
   constructor(private cookieService: CookieService) { }
   isAuth() {
     if (this.cookieService.get('userId')) {
@@ -43,6 +46,9 @@ export class AuthService {
     }
   }
 
+  updateSuper(data) {
+    this.updateSuperManager.next(data);
+  }
   totalUpdate(data) {
     this.updateTotalPrice.next(data);
   }

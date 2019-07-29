@@ -96,3 +96,13 @@ app-init-layout{
 app-cleaners, app-blogs{
   margin: 0 0 auto;
 }
+.mat-expansion-panel-header{
+  position: relative;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing{
+
+  .buttons{
+    top: 32px;
+  }
+}

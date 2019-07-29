@@ -16,16 +16,6 @@
         <ul>
             <li *ngFor="let city of location.city">{{city}}</li>
         </ul>
-<!--        <button type="button" class="send" *ngIf="location.country" (click)="isAdd = true" >Create city</button>-->
-<!--        -->
-<!--        <form *ngIf="isAdd" (submit)="addCity()" class="cleaner-form">-->
-<!--            <label>-->
-<!--                <span>City</span>-->
-<!--                <input type="text" placeholder="City" [(ngModel)]="city" name="city">-->
-<!--            </label>-->
-<!--            <button class="send" *ngIf="city" type="submit">Add city</button>-->
-<!--        </form>-->
-<!--        -->
         <button class="send" *ngIf="location.country" type="submit">save</button>
     </form>
 

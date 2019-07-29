@@ -7,7 +7,9 @@
     add new
   </a>
 </div>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<app-loading *ngIf="!loading"></app-loading>
+
+<table mat-table [dataSource]="dataSource" *ngIf="loading" class="mat-elevation-z8">
   <!-- Title Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
