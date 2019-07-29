@@ -15,11 +15,6 @@ export class NewOrdersStepTwoComponent implements OnInit, OnChanges {
   public basketArray = [];
   public instruction: string;
   public minDate = new Date();
-
-  // var a = 1000*60*60*24
-    // new Date(new Date().getTime()+a)
-  // @Output() onOrder = new EventEmitter()
-
   public collectionTime1: string;
   public collectionTime2: string;
   public dataCollection: any = this.minDate;

@@ -23,7 +23,7 @@
             </div>
     
             <div class="withdrow" [class.active]="showWithdrow">
-                <input type="number" [name]="withdrow" id="withdrow" [(ngModel)]="withdrow" placeholder="How many money do you want withdraw">
+                <input type="number" name="withdrow" id="withdrow" [(ngModel)]="withdrow" placeholder="How many money do you want withdraw">
                 <div class="buttons">
                     <span class="cancel" (click)="show()">Cancel</span>
                     <span class="send" (click)="sendRequest()">Send request</span>
