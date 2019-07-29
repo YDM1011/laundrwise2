@@ -109,7 +109,8 @@ export class MyProfileComponent implements OnInit, OnChanges {
       this.crud.get(`basket/count?query={"${who}":"${id}", "status": "1"}&select=_id`).then((v: any) => {
         this.countOrders['new'] = v.count;
       });
-    } else {
+    }
+    if (this.user.role === 'superManagerDelivery') {
       this.crud.get(`basket/count?query={"${who}":"${id}", "status": "2"}&select=_id`).then((v: any) => {
         this.countOrders['new'] = v.count;
       });
@@ -121,7 +122,8 @@ export class MyProfileComponent implements OnInit, OnChanges {
       this.crud.get(`basket/count?query=${queryWaiting}`).then((v: any) => {
         this.countOrders['waiting'] = v.count;
       });
-    } else {
+    }
+    if (this.user.role === 'superManagerDelivery') {
       const obj = {$or: [{status: 3}, {status: 4}]};
       obj[who] = id;
       const queryWaiting = JSON.stringify(obj);
