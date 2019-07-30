@@ -6,6 +6,10 @@ const schem = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Client"
         }},
+    cleanerId: {
+        type: Schema.Types.ObjectId,
+        ref: "Cleaner"
+    },
     entity: String,
     isNotRead: {type: Boolean, default: true},
     date: {type: Date, default: new Date()}
