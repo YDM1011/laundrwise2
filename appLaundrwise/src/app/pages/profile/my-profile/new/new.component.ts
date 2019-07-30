@@ -30,11 +30,15 @@ export class NewComponent implements OnInit, OnChanges {
         if (this.user.role === 'superManagerCleaner') {
           this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
           this.notification$.subscribe( v => {
-            const Basket = JSON.parse(v).data.data;
             this.auth.setUpdateCount('');
-            const newArray = [];
-            newArray.push(Basket);
-            this.allOrdersSuperManager = newArray.concat(this.allOrdersSuperManager);
+            const Basket = JSON.parse(v).data.data;
+            const idBasket = typeof Basket === 'object' ? Basket._id : Basket;
+            const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}]);
+            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate}`).then((newBasket: any) => {
+              const newArray = [];
+              newArray.push(newBasket[0]);
+              this.allOrdersSuperManager = newArray.concat(this.allOrdersSuperManager);
+            });
           });
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
