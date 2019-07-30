@@ -38,9 +38,8 @@ export class ProfileComponent implements OnInit, OnChanges {
                     const query = JSON.stringify({superManager: this.user._id});
                     this.crud.getNoCache(`cleaner?query=${query}`).then((v: any) => {
                         this.cleaner = v[0];
-                        if ( this.cleaner.money && this.cleaner.money) {
-                            const cash = this.cleaner.money;
-                            this.money = cash - cash * this.setting.percentage / 100;
+                        if ( this.cleaner.money) {
+                            this.money = this.cleaner.money;
                         } else {
                             this.money = 0;
                         }
@@ -57,9 +56,12 @@ export class ProfileComponent implements OnInit, OnChanges {
             name: this.user.firstName + this.user.lastName,
             mes: 'I want withdraw money ' + this.withdrow + '$',
             email: this.cleaner.name,
-            entity: 'cleaners'
+            entity: 'cleaners',
+            type: 'money',
+            money: this.withdrow,
+            cleanerId: this.cleaner._id
         };
-        if (!obj.mes) {
+        if (!this.withdrow || this.money - this.withdrow < 0) {
             return Swal.fire('Something broken', '', 'error');
         } else {
             this.crud.post('adminNotification', obj, null, false, false).then((value) => {
@@ -69,14 +71,7 @@ export class ProfileComponent implements OnInit, OnChanges {
                     if (this.money < this.withdrow) {
                         Swal.fire('Error', 'Error', 'error');
                     } else {
-                        const minusWithPercentage = this.withdrow + this.withdrow / 100 * this.setting.percentage;
-                        const minus = this.cleaner.money - minusWithPercentage;
-                        this.crud.post(`cleaner`, {money: minus }, this.cleaner._id, false, false).then((v: any) => {
-                            this.withdrow = null;
-                            this.show();
-                            this.cleaner.money = this.money - this.withdrow;
-                            this.money = v.money - v.money * this.setting.percentage / 100;
-                        });
+                        this.show();
                     }
                 }
             });

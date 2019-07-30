@@ -1,8 +1,12 @@
-<h4>New</h4>
+<h3>Notification {{id | uppercase}}</h3>
 <ng-container *ngIf="notifications">
-  <p *ngFor="let notification of notifications">
-    {{notification.name}} – {{notification.email}}
-    <br>
-    {{notification.mes}}
-  </p>
+  <div class="notification" *ngFor="let notification of notifications">
+    {{notification.name}} – {{notification.date | date: 'dd:MM:y'}} – {{notification.email}}
+    <div class="mes">
+      {{notification.mes}}
+    </div>
+    <div class="btns">
+      <button class="send" *ngIf="notification.type" (click)="confirmWithdrow(notification)">{{notification.type === 'money' ? 'Confirm Withdrow' : 'Confirmed'}}</button>
+    </div>
+  </div>
 </ng-container>

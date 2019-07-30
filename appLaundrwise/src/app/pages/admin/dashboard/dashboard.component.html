@@ -1,8 +1,4 @@
-
-
-
-  <div class="dashboard">
-    
+<div class="dashboard">
     <ng-container *ngFor="let item of array">
       <app-loading *ngIf="!item.loaded"></app-loading>
       <ng-container *ngIf="item.loaded">

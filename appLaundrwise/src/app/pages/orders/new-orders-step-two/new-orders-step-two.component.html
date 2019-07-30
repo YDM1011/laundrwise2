@@ -11,7 +11,7 @@
                     <form action="">
                         <label>
                             <span>City</span>
-                            <input type="text" name="cityCode" [(ngModel)]="me.city" (keyup)="auth.bascketOrder(order)" disabled>
+                            <input type="text" style="pointer-events: none" name="cityCode" [(ngModel)]="me.city" (keyup)="auth.bascketOrder(order)">
                         </label>
                         <label>
                             <span>Address 1</span>

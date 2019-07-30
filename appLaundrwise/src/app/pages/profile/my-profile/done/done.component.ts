@@ -46,7 +46,7 @@ export class DoneComponent implements OnInit {
               const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}]);
               const query1 = JSON.stringify({'deliveryOwner': this.cleaner._id, status: 5});
               this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"date": "-1"}`).then((basket: any) => {
-                this.allOrdersSuperManager = basket;
+                this.allOrdersSuperDelivery = basket;
                 this.loading = true;
               });
             }

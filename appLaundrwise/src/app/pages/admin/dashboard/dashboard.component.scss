@@ -1,11 +1,21 @@
-
-@media (max-width: 1900px) {
-  canvas{
-    max-width: 450px!important;
+@media (min-width: 360px) {
+  #canvas{
+    width: 100%;
+    min-width: 360px;
   }
 }
-@media (max-width: 768px) {
-  canvas{
-    max-width: 320px!important;
+
+@media (min-width: 568px) {
+  #canvas{
+    width: 100%;
+    min-width: 560px;
+  }
+}
+
+@media (min-width: 768px) {
+  #canvas{
+    width: 100%;
+    min-width: 630px;
+    max-width: 630px;
   }
 }

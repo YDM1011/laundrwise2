@@ -1,9 +1,27 @@
 <app-loading *ngIf="!loading"></app-loading>
 
 <div *ngIf="loading">
+<!--  <canvas baseChart-->
+<!--          -->
+<!--          [data]="pieChartData"-->
+<!--          [labels]="pieChartLabels"-->
+<!--          [chartType]="pieChartType"-->
+<!--          id="canvas"-->
+<!--  ></canvas>-->
   <canvas baseChart
-          
-          [data]="pieChartData"
+          [data]="obj.data"
+          [options]="{
+                      responsive: true,
+                      maintainAspectRatio: true,
+                      animation: {
+                          duration: 1000
+                      },
+                      hover: {
+                          animationDuration: 1000
+                      },
+                      responsiveAnimationDuration: 0
+                  }"
+          [datasets]="obj.datasets"
           [labels]="pieChartLabels"
           [chartType]="pieChartType"
           id="canvas"

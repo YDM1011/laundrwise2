@@ -11,9 +11,9 @@ import {WebsocketService} from "../../../websocket";
 })
 export class NotificationListComponent implements OnInit, OnChanges {
 
-  public id:any;
-  public notifications:any;
-  public notification$:any;
+  public id: any;
+  public notifications: any;
+  public notification$: any;
 
   constructor(
       private router: Router,
@@ -39,13 +39,23 @@ export class NotificationListComponent implements OnInit, OnChanges {
       this.getNotificationList(this.id);
   }
   getNotificationList(entity) {
-    let query = JSON.stringify({
-        isNotRead: true,
-        entity: entity
-    });
+    const query = JSON.stringify({isNotRead: true, entity: entity });
     this.crud.getNoCache('adminNotification', '', `?query=${query}`).then((v: any) => {
         this.notifications = v;
+        this.notifications.reverse();
     });
+  }
+    confirmWithdrow(obj) {
+      if (obj.type === 'money') {
+          this.crud.post('withdrawMoney', {id: obj._id, money: obj.money}).then((v: any) => {
+              if (v) {
+                  obj['type'] = 'noMoney';
+                  this.crud.post('adminNotification', {obj}, obj._id, false, true).then((v: any) => {});
+              }
+          });
+      } else {
+          return;
+      }
     }
 
     playAudio() {
