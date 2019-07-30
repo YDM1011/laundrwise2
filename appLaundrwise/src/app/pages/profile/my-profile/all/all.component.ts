@@ -36,7 +36,7 @@ export class AllComponent implements OnInit {
           this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
           this.notification$.subscribe(v => {
             const idBasket = JSON.parse(v).data.data;
-            const populate3 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}]);
+            const populate3 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
             this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate3}`).then((newBasket: any) => {
               const newArray = [];
               newArray.push(newBasket[0]);

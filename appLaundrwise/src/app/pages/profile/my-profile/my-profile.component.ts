@@ -79,6 +79,16 @@ export class MyProfileComponent implements OnInit, OnChanges {
               this.getDelivery();
             });
           });
+          this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+          this.notification$.subscribe(v => {
+            const idBasket = JSON.parse(v).data.data;
+            const populate3 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate3}`).then((newBasket: any) => {
+              const newArray = [];
+              newArray.push(newBasket[0]);
+              this.allOrdersManager = newArray.concat(this.allOrdersManager);
+            });
+          });
         }
         if (this.user.role === 'managerDelivery' && this.user.loger) {
           const populate = JSON.stringify({path: 'orders', options: {skip: 0, limit: 8, sort: {date: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}]});
@@ -88,6 +98,17 @@ export class MyProfileComponent implements OnInit, OnChanges {
               this.cleaner = v;
               this.loading = true;
               this.getDelivery();
+            });
+          });
+
+          this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+          this.notification$.subscribe(v => {
+            const idBasket = JSON.parse(v).data.data;
+            const populate3 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate3}`).then((newBasket: any) => {
+              const newArray = [];
+              newArray.push(newBasket[0]);
+              this.allOrdersManager = newArray.concat(this.allOrdersManager);
             });
           });
         }

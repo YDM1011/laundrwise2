@@ -32,23 +32,29 @@ export class ProfileOrderComponent implements OnInit {
     if (this.role === 'superManagerDelivery') {
       obj['status'] = 2;
       obj['managerDeliveryOwner'] = this.managerChoose;
+      this.crud.post('basket', obj, this.obj._id, false, false).then((v: any) => {
+        if (v) {
+          this.obj['status'] = 2;
+          this.obj['managerDeliveryOwner'] = this.managerChoose;
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.managerChoose, { data: this.obj._id });
+          this.openModal();
+        }
+      });
     }
     if (this.role === 'superManagerCleaner') {
       obj['status'] = 2;
       obj['managerCleanerOwner'] = this.managerChoose;
-    }
-    this.crud.post('basket', obj, this.obj._id, false, false).then((v: any) => {
-      if (v) {
-        this.obj['status'] = 2;
-        this.openModal();
-        if (this.role === 'superManagerDelivery') {
-          this.obj['managerDeliveryOwner'] = this.managerChoose;
+      this.crud.post('basket', obj, this.obj._id, false, false).then((v: any) => {
+        if (v) {
+          this.obj['status'] = 2;
+          this.openModal();
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.managerChoose, { data: this.obj._id });
         }
-      }
-    });
+      });
+    }
   }
   assigneToSuperDelivery() {
-    if(this.deliverySuperChoose) {
+    if (this.deliverySuperChoose) {
       this.crud.post('basket', {deliveryOwner: this.delivery[this.deliverySuperChoose]._id, status: 2}, this.obj._id, false, false).then((v: any) => {
         if (v) {
           this.obj['deliveryOwner'] = this.delivery[this.deliverySuperChoose]._id;
