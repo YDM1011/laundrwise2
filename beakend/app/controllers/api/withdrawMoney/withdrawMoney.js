@@ -4,16 +4,17 @@ module.exports = (backendApp, router) => {
     const cleaner = backendApp.mongoose.model('Cleaner');
     router.post('/withdrawMoney/:id', [backendApp.middlewares.isAdmin], async (req, res, next) => {
         let dataWithdraw = await getDataNotification(req, adminNotification).catch(e => {return res.notFound(e)});
-        if (!dataWithdraw && dataWithdraw.amount && dataWithdraw.cleanerId) return res.badRequest();
-        let dataCleaner = await getDataCleaner(dataWithdraw, cleaner).catch(e => {return res.notFound(e)});
-        if (checkAmount(dataCleaner, dataWithdraw)) {
-            cleaner.findOneAndUpdate({_id: dataCleaner._id}, {$inc:{money:(dataWithdraw.amount*-1)}})
-                .exec((e,r)=>{
-                    if(e) return res.serverError(e);
-                    if(!r) return res.notFound('Not found!');
-                    if(r) return res.ok(r);
-                })
-        }
+        if (dataWithdraw && dataWithdraw.amount && dataWithdraw.cleanerId){
+            let dataCleaner = await getDataCleaner(dataWithdraw, cleaner).catch(e => {return res.notFound(e)});
+            if (checkAmount(dataCleaner, dataWithdraw)) {
+                cleaner.findOneAndUpdate({_id: dataCleaner._id}, {$inc:{money:(dataWithdraw.amount*-1)}})
+                    .exec((e,r)=>{
+                        if(e) return res.serverError(e);
+                        if(!r) return res.notFound('Not found!');
+                        if(r) return res.ok(r);
+                    })
+            }
+        } else { return res.badRequest() }
     });
 };
 
