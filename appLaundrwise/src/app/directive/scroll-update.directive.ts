@@ -81,16 +81,16 @@ export class ScrollUploadDirective implements AfterViewInit {
   upload() {
     if (this.count <= this.skip * 8) return;
     if (this.role === 'client') {
-      const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+      const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}, {path: 'deliveryOwner', select: 'name superManager'}]);
       const query = JSON.stringify({'createdBy.itemId': this.id, cleanerOwner: { $exists: true }, status: {$ne: 0}});
-      this.crud.getNoCache(`basket?query=${query}&populate=${populate}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+      this.crud.getNoCache(`basket?query=${query}&populate=${populate}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
         this.skip++;
         this.triger = true;
         this.output.emit(basket);
       });
     }
     if (this.role === 'managerCleaner') {
-      const populate = JSON.stringify({path: 'orders', options: {skip: this.skip * 8, limit: 8, sort: {date: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}]});
+      const populate = JSON.stringify({path: 'orders', options: {skip: this.skip * 8, limit: 8, sort: {updatedAt: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}, {path: 'deliveryOwner', select: 'name superManager'}]});
       this.crud.getNoCache(`actionLog/${this.id}?populate=${populate}`).then((basket: any) => {
       this.skip++;
         this.triger = true;
@@ -98,9 +98,9 @@ export class ScrollUploadDirective implements AfterViewInit {
       });
     }
     if (this.role === 'superManagerCleaner' && this.type === 'all') {
-    const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+    const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}, {path: 'deliveryOwner', select: 'name superManager'}]);
     const query1 = JSON.stringify({'cleanerOwner': this.id, status: {$ne: 0}});
-    this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+    this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
       if (basket && basket.length > 0) {
         this.skip++;
         this.triger = true;
@@ -109,9 +109,9 @@ export class ScrollUploadDirective implements AfterViewInit {
     });
     }
     if (this.role === 'superManagerCleaner' && this.type === 'new') {
-    const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+    const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}, {path: 'deliveryOwner', select: 'name superManager'}]);
     const query1 = JSON.stringify({'cleanerOwner': this.id, status: 1});
-    this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+    this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
         if (basket && basket.length > 0) {
           this.skip++;
           this.triger = true;
@@ -120,9 +120,9 @@ export class ScrollUploadDirective implements AfterViewInit {
       });
     }
     if (this.role === 'superManagerCleaner' && this.type === 'waiting') {
-    const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+    const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}, {path: 'deliveryOwner', select: 'name superManager'}]);
     const query1 = JSON.stringify({'cleanerOwner': this.id, $or: [{status: 2}, {status: 3}, {status: 4}]});
-    this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+    this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
       if (basket && basket.length > 0) {
         this.skip++;
         this.triger = true;
@@ -131,9 +131,9 @@ export class ScrollUploadDirective implements AfterViewInit {
     });
     }
     if (this.role === 'superManagerCleaner' && this.type === 'done') {
-    const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+    const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}, {path: 'deliveryOwner', select: 'name superManager'}]);
     const query1 = JSON.stringify({'cleanerOwner': this.id, status: 5});
-    this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+    this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
       if (basket && basket.length > 0) {
         this.skip++;
         this.triger = true;
@@ -144,7 +144,7 @@ export class ScrollUploadDirective implements AfterViewInit {
     if (this.role === 'superManagerDelivery' && this.type === 'all') {
       const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
       const query1 = JSON.stringify({'deliveryOwner': this.id, status: {$ne: 0}});
-      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
         if (basket && basket.length > 0) {
           this.skip++;
           this.triger = true;
@@ -155,7 +155,7 @@ export class ScrollUploadDirective implements AfterViewInit {
     if (this.role === 'superManagerDelivery' && this.type === 'new') {
       const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
       const query1 = JSON.stringify({'deliveryOwner': this.id, status: 2});
-      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
         if (basket && basket.length > 0) {
           this.skip++;
           this.triger = true;
@@ -166,7 +166,7 @@ export class ScrollUploadDirective implements AfterViewInit {
     if (this.role === 'superManagerDelivery' && this.type === 'waiting') {
       const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
       const query1 = JSON.stringify({'deliveryOwner': this.id, $or: [{status: 3}, {status: 4}]});
-      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
         if (basket && basket.length > 0) {
           this.skip++;
           this.triger = true;
@@ -175,10 +175,9 @@ export class ScrollUploadDirective implements AfterViewInit {
       });
     }
     if (this.role === 'superManagerDelivery' && this.type === 'done') {
-      console.log('1')
       const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
       const query1 = JSON.stringify({'deliveryOwner': this.id, status: 5});
-      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+      this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=${this.skip * 8}&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
         if (basket && basket.length > 0) {
           this.skip++;
           this.triger = true;

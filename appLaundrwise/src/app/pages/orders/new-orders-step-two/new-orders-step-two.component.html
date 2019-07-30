@@ -103,7 +103,7 @@
                                             <app-img [img]="prod.images"></app-img>
                                             <div class="count">{{prod.count}}x</div>
                                             <div class="title">{{prod.name}}</div>
-                                            <div class="price">{{prod.price * prod.count}}$</div>
+                                            <div class="price">{{(prod.price * prod.count).toFixed(2) }}$</div>
                                             <img src="../assets/images/cancel.svg" (click)="removeProd(prod._id, index)" class="cancel" alt="">
                                         </div>
                                     </ng-container>

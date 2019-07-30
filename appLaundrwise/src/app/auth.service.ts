@@ -30,6 +30,9 @@ export class AuthService {
   private updateSuperManager = new BehaviorSubject<any>(false);
   public onUpdateSuperManager = this.updateSuperManager.asObservable();
 
+  private updateCount = new BehaviorSubject<any>(false);
+  public onUpdateCount = this.updateCount.asObservable();
+
   constructor(private cookieService: CookieService) { }
   isAuth() {
     if (this.cookieService.get('userId')) {
@@ -46,6 +49,9 @@ export class AuthService {
     }
   }
 
+  setUpdateCount(data) {
+    this.updateCount.next(data);
+  }
   updateSuper(data) {
     this.updateSuperManager.next(data);
   }

@@ -31,20 +31,15 @@ export class FooterComponent implements OnInit {
         text: 'Fill field email to subscribe for out news'
       });
     } else {
-        this.crud.post('subscriber', {email:this.email}).then(v=>{
+        this.crud.post('subscriber', {email:this.email}).then(v => {
             Swal.fire({
                 type: 'success',
                 title: 'Subscribed',
                 text: ''
             });
           this.subscribed = true;
-        })
+        });
         this.email = '';
-      // this.crud.post('subscribe', this.email, null, false, true).then((v: any) => {
-      //   if (v) {
-      //     this.email = '';
-      //   }
-      // });
     }
   }
 }

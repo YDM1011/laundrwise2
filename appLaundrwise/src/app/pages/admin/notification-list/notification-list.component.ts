@@ -40,17 +40,16 @@ export class NotificationListComponent implements OnInit, OnChanges {
   }
   getNotificationList(entity) {
     const query = JSON.stringify({isNotRead: true, entity: entity });
-    this.crud.getNoCache('adminNotification', '', `?query=${query}`).then((v: any) => {
+    this.crud.getNoCache('adminNotification', '', `?query=${query}&sort={"date": "-1"}`).then((v: any) => {
         this.notifications = v;
-        this.notifications.reverse();
     });
   }
     confirmWithdrow(obj) {
       if (obj.type === 'money') {
-          this.crud.post('withdrawMoney', {id: obj._id, money: obj.money}).then((v: any) => {
+          this.crud.post(`withdrawMoney/${obj._id}`, {}).then((v: any) => {
               if (v) {
                   obj['type'] = 'noMoney';
-                  this.crud.post('adminNotification', {obj}, obj._id, false, true).then((v: any) => {});
+                  this.crud.post('adminNotification', obj, obj._id, false, true).then((v: any) => {});
               }
           });
       } else {

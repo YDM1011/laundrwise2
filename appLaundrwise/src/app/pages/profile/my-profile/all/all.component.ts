@@ -34,23 +34,31 @@ export class AllComponent implements OnInit {
         this.user = v;
         if (this.user.role === 'superManagerDelivery') {
           this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
-          this.notification$.subscribe(v => {
-            const idBasket = JSON.parse(v).data.data;
-            const populate3 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
-            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate3}`).then((newBasket: any) => {
-              const newArray = [];
-              newArray.push(newBasket[0]);
-              this.allOrdersSuperDelivery = newArray.concat(this.allOrdersSuperDelivery);
-            });
+          this.notification$.subscribe( v => {
+            const Basket = JSON.parse(v).data.data;
+            const idBasket = typeof Basket === 'object' ? Basket._id : Basket;
+            const index = this.crud.find('_id', Basket._id, this.allOrdersSuperDelivery);
+            this.auth.setUpdateCount('');
+            if (typeof index === 'number') {
+              this.allOrdersSuperDelivery[index] = Basket;
+              this.allOrdersSuperDelivery = Object.assign([], this.allOrdersSuperDelivery);
+            } else {
+              const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}]);
+              this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate}`).then((newBasket: any) => {
+                const newArray = [];
+                newArray.push(newBasket[0]);
+                this.allOrdersSuperDelivery = newArray.concat(this.allOrdersSuperDelivery);
+              });
+            }
           });
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`delivery?query=${query}&populate=${populate}`).then((cleaner: any) => {
             this.cleaner = cleaner[0];
             if (cleaner[0]) {
-              const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name'}]);
+              const populate1 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}, {path: 'cleanerOwner', select: 'name superManager'}]);
               const query1 = JSON.stringify({'deliveryOwner': this.cleaner._id, status: {$ne: 0}});
-              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
                 this.allOrdersSuperDelivery = basket;
                 this.loading = true;
               });
@@ -59,23 +67,31 @@ export class AllComponent implements OnInit {
         }
         if (this.user.role === 'superManagerCleaner') {
           this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
-          this.notification$.subscribe(v => {
-            const idBasket = JSON.parse(v).data.data;
-            const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
-            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate}`).then((newBasket: any) => {
-              const newArray = [];
-              newArray.push(newBasket[0]);
-              this.allOrdersSuperManager = newArray.concat(this.allOrdersSuperManager);
-            });
+          this.notification$.subscribe( v => {
+            const Basket = JSON.parse(v).data.data;
+            const idBasket = typeof Basket === 'object' ? Basket._id : Basket;
+            const index = this.crud.find('_id', Basket._id, this.allOrdersSuperManager);
+            this.auth.setUpdateCount('');
+            if (typeof index === 'number') {
+              this.allOrdersSuperManager[index] = Basket;
+              this.allOrdersSuperManager = Object.assign([], this.allOrdersSuperManager);
+            } else {
+              const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}, {path: 'deliveryOwner', select: 'name superManager'}]);
+              this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate}`).then((newBasket: any) => {
+                const newArray = [];
+                newArray.push(newBasket[0]);
+                this.allOrdersSuperManager = newArray.concat(this.allOrdersSuperManager);
+              });
+            }
           });
           const populate2 = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`cleaner?query=${query}&populate=${populate2}`).then((cleaner: any) => {
             this.cleaner = cleaner[0];
             if (cleaner[0]) {
-              const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+              const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}, {path: 'deliveryOwner', select: 'name superManager'}]);
               const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id, status: {$ne: 0}});
-              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"date": "-1"}`).then((basket: any) => {
+              this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"updatedAt": "-1"}`).then((basket: any) => {
                 this.allOrdersSuperManager = basket;
                 this.loading = true;
               });

@@ -5,6 +5,7 @@ import {CrudService} from '../../../crud.service';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthService} from '../../../auth.service';
+import Swal from "sweetalert2";
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -100,15 +101,14 @@ export class SignupComponent implements OnInit {
     };
 
     this.api.post(apiUrl, signup).then((value: any) => {
-          console.log(value);
-          this.cookieService.set('token', value.token);
-          this.cookieService.set('userId', value.userId);
-          this.auth.isAuth();
-          this.router.navigate(['/']);
-        },
-        (error) => {
-
-        }).catch(error => {});
+      if (value) {
+        this.api.post('subscriber', {email: value.email}).then(v => {});
+      }
+      this.cookieService.set('token', value.token);
+      this.cookieService.set('userId', value.userId);
+      this.auth.isAuth();
+      this.router.navigate(['/']);
+    });
   }
 
 }

@@ -34,11 +34,6 @@ export class MyProfileComponent implements OnInit, OnChanges {
       private wsService: WebsocketService
   ) { }
   ngOnInit() {
-    this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
-    this.notification$.subscribe(v => {
-      this.countOrders.all++;
-      this.countOrders.new++;
-    });
     this.auth.onUpDate.subscribe(( v: any ) => {
       if (v) {
         this.user = v;
@@ -49,8 +44,22 @@ export class MyProfileComponent implements OnInit, OnChanges {
             this.allOrdersUser = v;
             this.loading = true;
           });
+          this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
+          this.notification$.subscribe(v => {
+            const newBasket = JSON.parse(v).data.data;
+            const index = this.crud.find('_id', newBasket._id, this.allOrdersUser);
+            if (typeof index === 'number') {
+              this.allOrdersUser[index] = newBasket;
+              this.allOrdersUser = Object.assign([], this.allOrdersUser);
+            }
+          });
         }
         if (this.user.role === 'superManagerCleaner') {
+          this.auth.onUpdateCount.subscribe((v: any) => {
+            if (this.cleaner) {
+              this.getCount(this.cleaner._id, 'cleanerOwner');
+            }
+          });
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((cleaner: any) => {
@@ -61,6 +70,11 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
         }
         if (this.user.role === 'superManagerDelivery') {
+          this.auth.onUpdateCount.subscribe((v: any) => {
+            if (this.cleaner) {
+              this.getCount(this.cleaner._id, 'deliveryOwner');
+            }
+          });
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`delivery?query=${query}&populate=${populate}`).then((delivery: any) => {
@@ -70,7 +84,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
         }
         if (this.user.role === 'managerCleaner' && this.user.loger) {
-          const populate = JSON.stringify({path: 'orders', options: {skip: 0, limit: 8, sort: {date: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}]});
+          const populate = JSON.stringify({path: 'orders', options: {skip: 0, limit: 8, sort: {updatedAt: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name superManager'}, {path: 'deliveryOwner', select: 'name superManager'}]});
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
             this.allOrdersManager = log.orders;
             this.crud.getNoCache('cleaner/' + log.cleaner).then((v: any) => {
@@ -81,17 +95,20 @@ export class MyProfileComponent implements OnInit, OnChanges {
           });
           this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
           this.notification$.subscribe(v => {
-            const idBasket = JSON.parse(v).data.data;
-            const populate3 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
-            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate3}`).then((newBasket: any) => {
+            const basket = JSON.parse(v).data.data;
+            const index = this.crud.find('_id', basket._id, this.allOrdersManager);
+            if (typeof index === 'number') {
+              this.allOrdersManager[index] = basket;
+              this.allOrdersManager = Object.assign([], this.allOrdersManager);
+            } else {
               const newArray = [];
-              newArray.push(newBasket[0]);
+              newArray.push(basket);
               this.allOrdersManager = newArray.concat(this.allOrdersManager);
-            });
+            }
           });
         }
         if (this.user.role === 'managerDelivery' && this.user.loger) {
-          const populate = JSON.stringify({path: 'orders', options: {skip: 0, limit: 8, sort: {date: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}]});
+          const populate = JSON.stringify({path: 'orders', options: {skip: 0, limit: 8, sort: {date: -1}}, populate: [{path: 'products'}, {path: 'cleanerOwner', select: 'name'}, {path: 'deliveryOwner', select: 'name superManager'}]});
           this.crud.getNoCache(`actionLog/${this.user.loger}?populate=${populate}`).then((log: any) => {
             this.allOrdersManager = log.orders;
             this.crud.getNoCache('delivery/' + log.delivery).then((v: any) => {
@@ -100,16 +117,18 @@ export class MyProfileComponent implements OnInit, OnChanges {
               this.getDelivery();
             });
           });
-
           this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
           this.notification$.subscribe(v => {
-            const idBasket = JSON.parse(v).data.data;
-            const populate3 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
-            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate3}`).then((newBasket: any) => {
+            const basket = JSON.parse(v).data.data;
+            const index = this.crud.find('_id', basket._id, this.allOrdersManager);
+            if (typeof index === 'number') {
+              this.allOrdersManager[index] = basket;
+              this.allOrdersManager = Object.assign([], this.allOrdersManager);
+            } else {
               const newArray = [];
-              newArray.push(newBasket[0]);
+              newArray.push(basket);
               this.allOrdersManager = newArray.concat(this.allOrdersManager);
-            });
+            }
           });
         }
       }
@@ -118,21 +137,21 @@ export class MyProfileComponent implements OnInit, OnChanges {
   ngOnChanges() {
   }
   getDelivery() {
-    this.crud.get('delivery').then((v: any) => {
+    this.crud.getNoCache('delivery').then((v: any) => {
       this.allDelivery = v;
     });
   }
   getCount(id, who) {
-    this.crud.get(`basket/count?query={"${who}":"${id}"}&select=_id`).then((v: any) => {
+    this.crud.getNoCache(`basket/count?query={"${who}":"${id}"}&select=_id`).then((v: any) => {
       this.countOrders['all'] = v.count;
     });
     if (this.user.role === 'superManagerCleaner') {
-      this.crud.get(`basket/count?query={"${who}":"${id}", "status": "1"}&select=_id`).then((v: any) => {
+      this.crud.getNoCache(`basket/count?query={"${who}":"${id}", "status": "1"}&select=_id`).then((v: any) => {
         this.countOrders['new'] = v.count;
       });
     }
     if (this.user.role === 'superManagerDelivery') {
-      this.crud.get(`basket/count?query={"${who}":"${id}", "status": "2"}&select=_id`).then((v: any) => {
+      this.crud.getNoCache(`basket/count?query={"${who}":"${id}", "status": "2"}&select=_id`).then((v: any) => {
         this.countOrders['new'] = v.count;
       });
     }
@@ -140,7 +159,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
       const obj = {$or: [{status: 2}, {status: 3}, {status: 4}]};
       obj[who] = id;
       const queryWaiting = JSON.stringify(obj);
-      this.crud.get(`basket/count?query=${queryWaiting}`).then((v: any) => {
+      this.crud.getNoCache(`basket/count?query=${queryWaiting}`).then((v: any) => {
         this.countOrders['waiting'] = v.count;
       });
     }
@@ -148,11 +167,11 @@ export class MyProfileComponent implements OnInit, OnChanges {
       const obj = {$or: [{status: 3}, {status: 4}]};
       obj[who] = id;
       const queryWaiting = JSON.stringify(obj);
-      this.crud.get(`basket/count?query=${queryWaiting}`).then((v: any) => {
+      this.crud.getNoCache(`basket/count?query=${queryWaiting}`).then((v: any) => {
         this.countOrders['waiting'] = v.count;
       });
     }
-    this.crud.get(`basket/count?query={"${who}":"${id}", "status":"5"}&select=_id`).then((v: any) => {
+    this.crud.getNoCache(`basket/count?query={"${who}":"${id}", "status":"5"}&select=_id`).then((v: any) => {
       this.countOrders['done'] = v.count;
     });
   }

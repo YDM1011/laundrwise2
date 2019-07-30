@@ -1,12 +1,19 @@
 <h3>Notification {{id | uppercase}}</h3>
 <ng-container *ngIf="notifications">
   <div class="notification" *ngFor="let notification of notifications">
-    {{notification.name}} – {{notification.date | date: 'dd:MM:y'}} – {{notification.email}}
+    <div class="header-notification">
+      {{notification.name}} – {{notification.date | date: 'dd:MM:y'}} – {{notification.email}}
+      <mat-chip-list *ngIf="notification.type === 'noMoney'">
+        <mat-chip class="chip money">
+          Confirmed
+        </mat-chip>
+      </mat-chip-list>
+    </div>
     <div class="mes">
       {{notification.mes}}
     </div>
     <div class="btns">
-      <button class="send" *ngIf="notification.type" (click)="confirmWithdrow(notification)">{{notification.type === 'money' ? 'Confirm Withdrow' : 'Confirmed'}}</button>
+      <button class="send" *ngIf="notification.type === 'money' && notification.amount" (click)="confirmWithdrow(notification)">Confirm Withdrow</button>
     </div>
   </div>
 </ng-container>

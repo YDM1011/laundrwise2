@@ -7,6 +7,13 @@
   .mes{
     margin: 15px 10px;
   }
+  .header-notification{
+    display: flex;
+    align-items: center;
+    .mat-chip-list{
+      margin: 0 0 0 auto;
+    }
+  }
   .btns{
     display: flex;
     align-items: center;
@@ -28,4 +35,9 @@
       }
     }
   }
+}
+
+.money{
+  background: rgba(0, 128, 0, 0.88);
+  color: #fff;
 }

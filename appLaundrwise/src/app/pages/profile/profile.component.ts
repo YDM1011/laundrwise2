@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit, OnChanges {
             email: this.cleaner.name,
             entity: 'cleaners',
             type: 'money',
-            money: this.withdrow,
+            amount: this.withdrow,
             cleanerId: this.cleaner._id
         };
         if (!this.withdrow || this.money - this.withdrow < 0) {

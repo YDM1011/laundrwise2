@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CrudService} from "../../crud.service";
 import {WS} from "../../websocket/websocket.events";
 import {WebsocketService} from "../../websocket";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-profile-order',
@@ -19,8 +20,9 @@ export class ProfileOrderComponent implements OnInit {
   public modalSuperDelivery: boolean =  false;
   constructor(
       private crud: CrudService,
-      private wsService: WebsocketService
-  ) { }
+      private wsService: WebsocketService,
+      private auth: AuthService
+  ) {}
 
   ngOnInit() {
   }
@@ -36,7 +38,7 @@ export class ProfileOrderComponent implements OnInit {
         if (v) {
           this.obj['status'] = 2;
           this.obj['managerDeliveryOwner'] = this.managerChoose;
-          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.managerChoose, { data: this.obj._id });
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.managerChoose, { data: this.obj });
           this.openModal();
         }
       });
@@ -46,9 +48,11 @@ export class ProfileOrderComponent implements OnInit {
       obj['managerCleanerOwner'] = this.managerChoose;
       this.crud.post('basket', obj, this.obj._id, false, false).then((v: any) => {
         if (v) {
+          this.auth.setUpdateCount('');
           this.obj['status'] = 2;
           this.openModal();
-          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.managerChoose, { data: this.obj._id });
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.managerChoose, { data: this.obj });
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.createdBy.itemId, { data: this.obj });
         }
       });
     }
@@ -59,7 +63,7 @@ export class ProfileOrderComponent implements OnInit {
         if (v) {
           this.obj['deliveryOwner'] = this.delivery[this.deliverySuperChoose]._id;
           this.obj['status'] = 2;
-          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.delivery[this.deliverySuperChoose].superManager,  { data: this.obj._id });
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.delivery[this.deliverySuperChoose].superManager,  { data: this.obj });
           this.openModalSuperDelivery();
         }
       });
@@ -69,6 +73,10 @@ export class ProfileOrderComponent implements OnInit {
     this.crud.post('basket', {status: 3}, this.obj._id, false, false).then((v: any) => {
       if (v) {
         this.obj['status'] = 3;
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.createdBy.itemId, { data: this.obj });
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.cleanerOwner.superManager, { data: this.obj });
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.managerDeliveryOwner, { data: this.obj });
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.deliveryOwner.superManager, { data: this.obj });
       }
     });
   }
@@ -76,6 +84,12 @@ export class ProfileOrderComponent implements OnInit {
     this.crud.post('basket', {status: 4}, this.obj._id, false, false).then((v: any) => {
       if (v) {
         this.obj['status'] = 4;
+        if (this.obj.managerDeliveryOwner) {
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.managerDeliveryOwner, { data: this.obj });
+        }
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.createdBy.itemId, { data: this.obj });
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.cleanerOwner.superManager, { data: this.obj });
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.deliveryOwner.superManager, { data: this.obj });
       }
     });
   }
@@ -83,6 +97,10 @@ export class ProfileOrderComponent implements OnInit {
     this.crud.post('basket', {status: 5}, this.obj._id, false, false).then((v: any) => {
       if (v) {
         this.obj['status'] = 5;
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.createdBy.itemId, { data: this.obj });
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.cleanerOwner.superManager, { data: this.obj });
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.managerDeliveryOwner, { data: this.obj });
+        this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.deliveryOwner.superManager, { data: this.obj });
       }
     });
   }
@@ -90,6 +108,18 @@ export class ProfileOrderComponent implements OnInit {
     this.crud.post('basket', {status: 6}, this.obj._id, false, false).then((v: any) => {
       if (v) {
         this.obj['status'] = 6;
+        if (this.obj.createdBy.itemId) {
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.createdBy.itemId, { data: this.obj });
+        }
+        if (this.obj.managerCleanerOwner) {
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.managerCleanerOwner, { data: this.obj });
+        }
+        if (this.obj.managerDeliveryOwner) {
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.managerDeliveryOwner, { data: this.obj });
+        }
+        if (this.obj.deliveryOwner && this.obj.deliveryOwner.superManager) {
+          this.wsService.send(WS.SEND.CONFIRM_ORDER, this.obj.deliveryOwner.superManager, { data: this.obj });
+        }
       }
     });
   }

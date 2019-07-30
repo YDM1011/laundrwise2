@@ -11,6 +11,7 @@ const schem = new Schema({
         ref: "Cleaner"
     },
     entity: String,
+    amount: Number,
     isNotRead: {type: Boolean, default: true},
     date: {type: Date, default: new Date()}
 },{

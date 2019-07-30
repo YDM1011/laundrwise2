@@ -29,21 +29,19 @@ export class NewComponent implements OnInit, OnChanges {
         this.user = v;
         if (this.user.role === 'superManagerCleaner') {
           this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
-          this.notification$.subscribe(v => {
-            const idBasket = JSON.parse(v).data.data;
-            const populate = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
-            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate}`).then((newBasket: any) => {
-              const newArray = [];
-              newArray.push(newBasket[0]);
-              this.allOrdersSuperManager = newArray.concat(this.allOrdersSuperManager);
-            });
+          this.notification$.subscribe( v => {
+            const Basket = JSON.parse(v).data.data;
+            this.auth.setUpdateCount('');
+            const newArray = [];
+            newArray.push(Basket);
+            this.allOrdersSuperManager = newArray.concat(this.allOrdersSuperManager);
           });
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});
           this.crud.getNoCache(`cleaner?query=${query}&populate=${populate}`).then((cleaner: any) => {
             this.cleaner = cleaner[0];
             if (cleaner[0]) {
-              const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}]);
+              const populate1 = JSON.stringify([{path: 'cleanerOwner', select: 'name superManager'}, {path: 'products'}, {path: 'deliveryOwner', select: 'name superManager'}]);
               const query1 = JSON.stringify({'cleanerOwner': this.cleaner._id, status: 1});
               this.crud.getNoCache(`basket?query=${query1}&populate=${populate1}&skip=0&limit=8&sort={"date": "-1"}`).then((basket: any) => {
                 this.allOrdersSuperManager = basket;
@@ -55,13 +53,11 @@ export class NewComponent implements OnInit, OnChanges {
         if (this.user.role === 'superManagerDelivery') {
           this.notification$ = this.wsService.on(WS.ON.ON_CONFIRM_ORDER);
           this.notification$.subscribe(v => {
+            this.auth.setUpdateCount('');
             const idBasket = JSON.parse(v).data.data;
-            const populate3 = JSON.stringify([{path: 'deliveryOwner', select: 'name superManager'}, {path: 'products'}]);
-            this.crud.getNoCache(`basket?query={"_id":"${idBasket}"}&populate=${populate3}`).then((newBasket: any) => {
-              const newArray = [];
-              newArray.push(newBasket[0]);
-              this.allOrdersSuperDelivery = newArray.concat(this.allOrdersSuperDelivery);
-            });
+            const newArray = [];
+            newArray.push(idBasket);
+            this.allOrdersSuperDelivery = newArray.concat(this.allOrdersSuperDelivery);
           });
           const populate = JSON.stringify({path: 'managers'});
           const query = JSON.stringify({'superManager': this.user._id});

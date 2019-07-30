@@ -31,5 +31,6 @@ const sender = (tr, data, obj, template)=>{
         if (err) {
             return console.log(err);
         }
+
     });
 };

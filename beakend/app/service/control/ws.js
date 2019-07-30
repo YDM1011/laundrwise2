@@ -61,12 +61,13 @@ module.exports = (backendApp, socket = null, data = null) => {
             const sendTo = (to, event, data) => {
                 console.log(to, event, data, wss[to]);
                 if (!to) {
-                    wss[userData._id].forEach(ws=>{
-                        ws.send(JSON.stringify({
-                            event: event,
-                            data: "ok!!"
-                        }));
-                    });
+                    // console.log(userData)
+                    // wss[userData._id].forEach(ws=>{
+                    //     ws.send(JSON.stringify({
+                    //         event: event,
+                    //         data: "ok!!"
+                    //     }));
+                    // });
                     return
                 }
                 /** All user's requests and send response to 1 client of all requests */

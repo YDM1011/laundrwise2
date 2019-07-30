@@ -30,6 +30,12 @@ export class SuperManagerFormComponent implements OnInit {
         title: 'Oops...',
         text: 'All field required'
       });
+    } else if (!this.manager.login.match('^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z]{2,4})+$')) {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Email not correct'
+      });
     } else {
       let api = 'cleaner';
       if (this.data.role) {

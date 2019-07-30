@@ -4,6 +4,7 @@ module.exports.preRead = async (req,res,next, backendApp) => {
 
 module.exports.preUpdate = async (req,res,next, backendApp) => {
     // try {
+    delete req.body.createdBy;
         switch (parseInt(req.body.status)){
             case 0: req.body.updatedAt = new Date(); return next();
             case 1: req.body.updatedAt = new Date(); return next();
