@@ -58,6 +58,7 @@ import {WaitingComponent} from "./pages/profile/my-profile/waiting/waiting.compo
 import {DoneComponent} from "./pages/profile/my-profile/done/done.component";
 import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
 import {DashboardProfileComponent} from "./pages/profile/dashboard-profile/dashboard-profile.component";
+import {SubscriberComponent} from "./pages/admin/subscriber/subscriber.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -116,6 +117,7 @@ const routes: Routes = [
         {path: 'delivery-add', component: DeliveryAddComponent, canActivate: [AdminLoginedGuard]},
         {path: 'delivery-edit/:id', component: DeliveryEditComponent, canActivate: [AdminLoginedGuard]},
         {path: 'setting', component: SettingComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'subscriber', component: SubscriberComponent, canActivate: [AdminLoginedGuard]},
         {path: 'setting/add-country', component: AddCountryComponent, canActivate: [AdminLoginedGuard]},
         {path: 'notification/:id', component: NotificationListComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},

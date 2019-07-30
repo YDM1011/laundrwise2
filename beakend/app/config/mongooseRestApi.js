@@ -22,8 +22,8 @@ module.exports = function (backendApp) {
                 // for access rights control
                 // preMiddleware: backendApp.middlewares.isLoggedIn,
                 preRead: schemaPreRead,
-                preCreate: [backendApp.middlewares.isLoggedIn, schemaPreSave],
-                preUpdate: [backendApp.middlewares.isLoggedIn, schemaPreUpdate],
+                preCreate: [mapLogined, schemaPreSave],
+                preUpdate: [mapLogined, schemaPreUpdate],
                 postUpdate: schemaPostUpdate,
                 preDelete: [backendApp.middlewares.isLoggedIn, schemaPreDel],
                 // preCustomLink: backendApp.middlewares.isLoggedIn
@@ -98,6 +98,7 @@ module.exports = function (backendApp) {
     };
 
     function schemaPostUpdate (req, res, next) {
+
         let schem = restFunction[String(req.erm.model.modelName.toLowerCase())];
         console.log("Schema", schem, req.erm.model.modelName);
         if (schem) {
@@ -110,6 +111,18 @@ module.exports = function (backendApp) {
             next()
         }
     };
+
+    function mapLogined (req, res, next) {
+        const models = ['Subscriber', 'adminNotification'];
+        for (let i = 0; i < models.length; i++){
+            if(req.erm.model.modelName == models[i]){
+                return next()
+            }
+        }
+
+        return backendApp.middlewares.isLoggedIn(req, res, next)
+
+    }
 };
 
 const parseFileName = str =>{

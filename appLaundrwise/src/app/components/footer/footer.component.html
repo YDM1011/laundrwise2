@@ -5,8 +5,8 @@
       <a [routerLink]="'/'">
         <img class="logo" src="../assets/images/logo-white.svg" alt="logo">
       </a>
-      <div class="description" *ngIf="info && info.des">
-       {{info.des}}
+      <div class="description" *ngIf="info && info.footerDes">
+       {{info.footerDes}}
       </div>
     </div>
     <div class="footer-container__center">
@@ -66,6 +66,6 @@
 
 <div class="copyright">
   <div class="copyright-box">
-    Copyright &copy; {{date}}
+    Copyright &copy; {{date}}. <a href="https://piligrim.pro" style="color: #333;">Created by Piligrim</a>
   </div>
 </div>

@@ -11,9 +11,11 @@ module.exports = (backendApp, socket = null, data = null) => {
 
     wss.on('connection', async (ws, req) => {
         let tokenData = parseCookieHeader(req.headers.cookie);
-        let userData = await checkToken(backendApp, tokenData).catch(e=>{console.error(e)});
-        console.log("connected",userData)
-        saveConnect(userData, wss, ws);
+        if (tokenData){
+            let userData = await checkToken(backendApp, tokenData).catch(e=>{console.error(e)});
+            saveConnect(userData, wss, ws);
+        }
+
 
         backendApp.events.callWS.on('event',(event)=>{
             const data = JSON.parse(event);
@@ -104,6 +106,7 @@ module.exports = (backendApp, socket = null, data = null) => {
 
 const parseCookieHeader = (str) => {
     console.log(str, "STR")
+    if (!str) return;
     let tokenName = findTokenName(str);
     let token = str.split(tokenName+'=')[1].split(';')[0];
     return {name:tokenName, token:token, model: tokenName == 'token' ? 'Client' : 'Admin'}

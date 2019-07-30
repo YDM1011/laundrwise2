@@ -107,6 +107,7 @@ import { AdddCountryComponent } from './components/addd-country/addd-country.com
 import { StatusDeliveryPipe } from './pipe/status-delivery.pipe';
 import {ChartsModule} from "ng2-charts";
 import { MyBarChartComponent } from './components/my-bar-chart/my-bar-chart.component';
+import { SubscriberComponent } from './pages/admin/subscriber/subscriber.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -202,6 +203,7 @@ import { MyBarChartComponent } from './components/my-bar-chart/my-bar-chart.comp
     AdddCountryComponent,
     StatusDeliveryPipe,
     MyBarChartComponent,
+    SubscriberComponent,
   ],
   imports: [
     ChartsModule,
