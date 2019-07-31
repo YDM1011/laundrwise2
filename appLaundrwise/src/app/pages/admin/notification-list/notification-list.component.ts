@@ -31,7 +31,6 @@ export class NotificationListComponent implements OnInit, OnChanges {
       this.notification$.subscribe(v => {
           if(JSON.parse(v).data.data === this.id)
           this.getNotificationList(JSON.parse(v).data.data);
-          this.playAudio();
       });
   }
   ngOnChanges() {

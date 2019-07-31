@@ -30,6 +30,7 @@ export class AdminHeaderComponent implements OnInit, OnChanges {
 
       this.notification$.subscribe(v => {
           this.updateNotificationList(JSON.parse(v).data.data);
+          this.playAudio();
       });
 
       this.notificationsNames.forEach(entity => {
@@ -52,5 +53,11 @@ export class AdminHeaderComponent implements OnInit, OnChanges {
       this.crud.getNoCache('adminNotification', 'count', `?query=${query}`).then((v: any) => {
           this.notifications[entity].count = v.count;
       });
+    }
+    playAudio() {
+        const audio = new Audio();
+        audio.src = '../../../assets/audio/alert.mp3';
+        audio.load();
+        audio.play();
     }
 }
