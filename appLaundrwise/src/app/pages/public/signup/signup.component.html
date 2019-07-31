@@ -30,7 +30,7 @@
     </mat-form-field>
     <mat-form-field class="signup-input" appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Email" [formControl]="emailFormControl"
+      <input matInput placeholder="Email" autocomplete="off" [formControl]="emailFormControl"
              [errorStateMatcher]="matcher2">
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Please enter a valid email address
@@ -40,25 +40,7 @@
       </mat-error>
     </mat-form-field>
     <app-select-location (data)="countryChange($event)" [signup]="true"></app-select-location>
-
-<!--    <mat-form-field class="signup-input" appearance="outline">-->
-<!--      <mat-label>Country</mat-label>-->
-<!--      <input matInput placeholder="Country" [formControl]="countryFormControl"-->
-<!--             [errorStateMatcher]="matcher2">-->
-<!--      <mat-error *ngIf="countryFormControl.hasError('required')">-->
-<!--         Country is <strong>required</strong>-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
-
-<!--    <mat-form-field class="signup-input" appearance="outline">-->
-<!--      <mat-label>City</mat-label>-->
-<!--      <input matInput placeholder="City" [formControl]="cityFormControl"-->
-<!--             [errorStateMatcher]="matcher2">-->
-<!--      <mat-error *ngIf="cityFormControl.hasError('required')">-->
-<!--        City is <strong>required</strong>-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
-
+    
     <mat-form-field class="signup-input" appearance="outline">
       <mat-label>Address1</mat-label>
       <input matInput placeholder="Address1" [formControl]="addressFormControl"
