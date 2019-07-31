@@ -18,7 +18,11 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
     const dialogRef = this.dialog.open(LoginpopupComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate(['/']);
+      if (this.router.url === '/signup') {
+        this.router.navigate(['/signup']);
+      } else {
+        this.router.navigate(['/']);
+      }
     });
   }
 
