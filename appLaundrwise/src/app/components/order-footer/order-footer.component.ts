@@ -65,6 +65,7 @@ export class OrderFooterComponent implements OnInit, OnChanges {
         this.order.basket.map(it => {
             basket.push(it._id);
             ObjBasket[it._id] = it;
+            ObjBasket['instruction'] = it.instruction;
         });
         const basketGroup = {
             baskets: basket
@@ -78,7 +79,6 @@ export class OrderFooterComponent implements OnInit, OnChanges {
             deliveryTime1: this.order.orderInfo.deliveryTime1,
             deliveryTime2: this.order.orderInfo.deliveryTime2,
             deliveryInstruction: this.order.orderInfo.deliveryInstruciton,
-            instruction: this.order.orderInfo.instruction,
             address1: this.order.orderInfo.address1,
             address2: this.order.orderInfo.address2,
             firstName: this.order.orderInfo.firstName,
@@ -88,8 +88,10 @@ export class OrderFooterComponent implements OnInit, OnChanges {
             country: this.order.orderInfo.country,
             mobile: this.order.orderInfo.mobile,
         };
+        console.log(objBasket);
         this.crud.post('basketGroup', basketGroup, null, false, false).then((v: any) => {
             this.order.basket.forEach(bskt => {
+                objBasket['instruction'] = bskt.instruction;
                 this.crud.post('basket', objBasket, bskt._id, false, false).then((update: any) => {
                     if (update) {
                         this.wsService.send(WS.SEND.CONFIRM_ORDER, bskt.cleanerOwner.superManager,  { data: bskt._id });

@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
       v.forEach((item, index) => {
         let obj = {
           name: item.name,
+          money: item.money,
           data: [],
           datasets: [{
               backgroundColor: ['#04DE41', '#13AAFF','#FF9A37','#FFC700','#C4C4C4'],

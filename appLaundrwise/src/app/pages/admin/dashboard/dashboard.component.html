@@ -2,9 +2,14 @@
     <ng-container *ngFor="let item of array">
       <app-loading *ngIf="!item.loaded"></app-loading>
       <ng-container *ngIf="item.loaded">
-        <h3>{{item.name}}</h3>
+      <h3>{{item.name}}</h3>
+        <div class="balance">
+          Account balance: {{item.money ? item.money.toFixed(2) : '0' }} $
+        </div>
         <ng-container *ngIf="item.all === 0">
-          Now company don't have statistic
+          <span class="no-statistic">
+              Now company don't have statistic
+          </span>
         </ng-container>
         <ng-container *ngIf="item.all !== 0 && item.datasets">
           <canvas baseChart

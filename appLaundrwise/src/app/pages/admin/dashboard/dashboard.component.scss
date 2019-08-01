@@ -2,6 +2,7 @@
   #canvas{
     width: 100%;
     min-width: 360px;
+    margin: 0 auto;
   }
 }
 
@@ -9,6 +10,7 @@
   #canvas{
     width: 100%;
     min-width: 560px;
+    margin: 0 auto;
   }
 }
 
@@ -17,5 +19,26 @@
     width: 100%;
     min-width: 630px;
     max-width: 630px;
+    margin: 0 auto;
   }
+}
+#canvas{
+  margin-bottom: 65px;
+}
+h3{
+  font-family: Montserrat-Medium, sans-serif;
+  font-size: 24px;
+  text-align: center;
+}
+.balance{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-statistic{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

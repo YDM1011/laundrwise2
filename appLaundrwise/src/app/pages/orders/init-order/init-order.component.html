@@ -1,11 +1,11 @@
 <div class="order-class">
     <app-app-header></app-app-header>
     <!--<router-outlet></router-outlet>-->
-    <ng-container *ngIf="step==0">
-        <app-new-orders-step-sero (sendChooseCompany)="getChooseCompany($event)"
-                                  (sendAllCompany)="getAllCompany($event)"
-                                  (stepOutput)="step = $event"></app-new-orders-step-sero>
-    </ng-container>
+<!--    <ng-container *ngIf="step==0">-->
+<!--        <app-new-orders-step-sero (sendChooseCompany)="getChooseCompany($event)"-->
+<!--                                  (sendAllCompany)="getAllCompany($event)"-->
+<!--                                  (stepOutput)="step = $event"></app-new-orders-step-sero>-->
+<!--    </ng-container>-->
     <ng-container *ngIf="step == 1 && chooseCompany && allCompany">
         <app-new-orders-step-one [chooseCompany]="chooseCompany" [allCompany]="allCompany"
                                  (outputArray)="outputArray($event)">
