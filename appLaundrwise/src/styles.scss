@@ -104,3 +104,12 @@ app-cleaners, app-blogs{
 .mat-tab-body-content{
   padding: 0 3px;
 }
+
+.empty-alert{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  height: calc(100vh - 200px);
+  color: #999;
+}

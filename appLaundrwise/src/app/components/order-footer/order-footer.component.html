@@ -5,7 +5,7 @@
     </div>
     <div class="buttons">
       <div class="basket">
-        <span (click)="decrementStep()">Back</span>
+        <span (click)="decrementStep()" *ngIf="step>1">Back</span>
         <ng-container *ngIf="order && step==2 && isValidOrder; else next">
           <a (click)="doConfirm()">{{btns[step]}}</a>
         </ng-container>

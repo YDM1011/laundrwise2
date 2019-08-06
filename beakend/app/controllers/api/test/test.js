@@ -1,11 +1,16 @@
 const fs = require('fs');
 module.exports = function (backendApp, router) {
 
-    router.get('/', [], async function (req, res, next) {
-        let data = JSON.stringify(JSON.stringify({event: 'form-notification', to:'admin', data:{data:"faq"}}));
-        console.log(data)
-        backendApp.events.callWS.emit('event',data)
-        res.ok("ok")
+    router.get('/test', [], async function (req, res, next) {
+        backendApp.service.email({
+            to: "ydm101194@gmail.com",
+            subject: 'Restore password',
+            temp: 'forgot',
+            tempObj: {
+                newPass: "123"
+            }
+        }, backendApp);
+
     });
 };
 const convertation = b64string =>{

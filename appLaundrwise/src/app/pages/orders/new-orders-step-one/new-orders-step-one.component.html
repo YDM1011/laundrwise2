@@ -1,7 +1,7 @@
 <div class="order-list">
     <div class="order-list-container">
         <div class="order-list__box">
-            <ng-container *ngIf="chooseCompany">
+            <ng-container *ngIf="chooseCompany && chooseCompany.category && chooseCompany.category.length>0">
                 <ng-container *ngFor="let item of chooseCompany.category">
                     <button (click)="changeCategory(item.name)"
                        class="order-list__box-item" [class.active]="dataParams.type === item.name">
@@ -32,3 +32,6 @@
         [params]="dataParams">
 </app-init-order-type>
 
+<!--<ng-template #empty>-->
+    <!--<h3>We don't work in your country or city</h3>-->
+<!--</ng-template>-->

@@ -1,16 +1,20 @@
 <div class="order">
   <div class="order-container">
     <div class="order__box">
-      <!--{{order | json}}-->
-      <!--{{order.length}}-->
-      <ng-container *ngFor="let item of order">
-        <app-order-item class="order__box-item" [obj]="item"
-                        (onDelete)="orderItemRemove($event, item)"
-                        (onDeleteProd)="orderItemRemoveProd($event, item)"
-                        (onAdd)="orderItemAdd($event, item)"
-                        (onUpdate)="orderItemUpdate($event, item)"
-        ></app-order-item>
+      <ng-container *ngIf="order && order.length>0; else empty">
+        <ng-container *ngFor="let item of order">
+          <app-order-item class="order__box-item" [obj]="item"
+                          (onDelete)="orderItemRemove($event, item)"
+                          (onDeleteProd)="orderItemRemoveProd($event, item)"
+                          (onAdd)="orderItemAdd($event, item)"
+                          (onUpdate)="orderItemUpdate($event, item)"
+          ></app-order-item>
+        </ng-container>
       </ng-container>
-    </div>
+      </div>
   </div>
 </div>
+
+<ng-template #empty>
+  <h3>We don't work in your country or city</h3>
+</ng-template>

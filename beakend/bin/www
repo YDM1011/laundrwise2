@@ -3,23 +3,23 @@
 /**
  * Module dependencies.
  */
-const cluster = require('cluster');
-const os = require('os');
-if (cluster.isMaster) {
-  const cpusCount = os.cpus().length;
-  console.log(cpusCount);
-  for (let i=0; i<cpusCount; i++) {
-    const work = cluster.fork();
-    console.log(work.process.pid)
-  }
-  cluster.on('exit', worker => {
-      console.log('New: '+worker.process.pid);
-      let work = cluster.fork();
-      console.log('New: '+work.process.pid);
-  })
-}
-
-if (cluster.isWorker) {
+// const cluster = require('cluster');
+// const os = require('os');
+// if (cluster.isMaster) {
+//   const cpusCount = os.cpus().length;
+//   console.log(cpusCount);
+//   for (let i=0; i<cpusCount; i++) {
+//     const work = cluster.fork();
+//     console.log(work.process.pid)
+//   }
+//   cluster.on('exit', worker => {
+//       console.log('New: '+worker.process.pid);
+//       let work = cluster.fork();
+//       console.log('New: '+work.process.pid);
+//   })
+// }
+//
+// if (cluster.isWorker) {
     var app = require('../app');
     var debug = require('debug')('escord:server');
     var http = require('http');
@@ -104,5 +104,5 @@ if (cluster.isWorker) {
             : 'port ' + addr.port;
         debug('Listening on ' + bind);
     }
-}
+// }
 
