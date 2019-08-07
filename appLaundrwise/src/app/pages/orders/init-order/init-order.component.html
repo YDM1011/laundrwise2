@@ -6,7 +6,10 @@
 <!--                                  (sendAllCompany)="getAllCompany($event)"-->
 <!--                                  (stepOutput)="step = $event"></app-new-orders-step-sero>-->
 <!--    </ng-container>-->
-    <ng-container *ngIf="step == 1 && chooseCompany && allCompany; else empty">
+    <ng-container *ngIf="step == 1 && (!chooseCompany || !allCompany)">
+        <h3 class="empty-alert">We don't work in your country or city</h3>
+    </ng-container>
+    <ng-container *ngIf="step == 1 && chooseCompany && allCompany">
         <app-new-orders-step-one [chooseCompany]="chooseCompany" [allCompany]="allCompany"
                                  (outputArray)="outputArray($event)">
         </app-new-orders-step-one>
@@ -21,10 +24,7 @@
     <!--<ng-container *ngIf="step==-->
     <app-order-footer *ngIf="step > 0 && step < 3"
                       [(step)]="step"
+                      [hidden]="step == 1 && (!chooseCompany || !allCompany)"
                       class="totalprice">
     </app-order-footer>
 </div>
-
-<ng-template #empty>
-    <h3 class="empty-alert">We don't work in your country or city</h3>
-</ng-template>

@@ -12,6 +12,7 @@ import {WebsocketService} from "../../websocket";
 export class OrderFooterComponent implements OnInit, OnChanges {
     public mainTotalPrice: number;
     @Input() step;
+    @Input() hidden;
     @Output() stepChange = new EventEmitter();
     public order: any = null;
     public isValidOrder: boolean = false;
