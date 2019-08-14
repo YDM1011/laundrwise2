@@ -59,6 +59,7 @@ import {DoneComponent} from "./pages/profile/my-profile/done/done.component";
 import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
 import {DashboardProfileComponent} from "./pages/profile/dashboard-profile/dashboard-profile.component";
 import {SubscriberComponent} from "./pages/admin/subscriber/subscriber.component";
+import {ClientsComponent} from "./pages/admin/clients/clients.component";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
@@ -120,6 +121,7 @@ const routes: Routes = [
         {path: 'subscriber', component: SubscriberComponent, canActivate: [AdminLoginedGuard]},
         {path: 'setting/add-country', component: AddCountryComponent, canActivate: [AdminLoginedGuard]},
         {path: 'notification/:id', component: NotificationListComponent, canActivate: [AdminLoginedGuard]},
+        {path: 'clients', component: ClientsComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},

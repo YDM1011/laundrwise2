@@ -1,14 +1,12 @@
 <app-loading *ngIf="!loaded"></app-loading>
 <ng-container *ngIf="loaded">
   <ng-container *ngIf="subscriber.length > 0; else empty">
-    <div class="sub-title">Email subscriber's <span class="labl"> {{subscriber.length}}</span></div>
+    <div class="sub-title">Clients of Launderwise <span class="labl"> {{subscriber.length}}</span></div>
     <div *ngFor="let sub of subscriber">
       <p class="sub-item">
-        <ng-container *ngIf="sub.firstName || sub.lastName">
-          <span  class="name">{{sub.firstName}} {{sub.lastName}}</span> <br>
-        </ng-container>
+        <span class="name">{{sub.firstName}} {{sub.lastName}}</span> <br>
         <span class="sub-info">{{sub.email}}</span>
-        <span class="label">{{sub.date | date: 'dd.MM.yyyy'}}</span>
+        <span class="label">{{sub.data | date: 'dd.MM.yyyy'}}</span>
       </p>
     </div>
   </ng-container>
