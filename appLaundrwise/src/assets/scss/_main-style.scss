@@ -1036,3 +1036,11 @@ footer{
     }
   }
 }
+
+@media (max-width: 545px) {
+  .blog__container{
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}

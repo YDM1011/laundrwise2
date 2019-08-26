@@ -6,7 +6,7 @@
             <div class="description">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </div>
-            <a [routerLink]="'signup'" class="header-sign">
+            <a [routerLink]="'signup'" class="header-sign" *ngIf="!islogin">
                 Sign up free
             </a>
         </div>

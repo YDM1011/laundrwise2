@@ -60,13 +60,13 @@ import {FaqAdminComponent} from "./pages/admin/faq/faqAdmin.component";
 import {DashboardProfileComponent} from "./pages/profile/dashboard-profile/dashboard-profile.component";
 import {SubscriberComponent} from "./pages/admin/subscriber/subscriber.component";
 import {ClientsComponent} from "./pages/admin/clients/clients.component";
+import {IsLogoutGuard} from "./is-logout.guard";
 
 const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
         {path: '', component: IndexComponent, children: [
             {path: 'signin', component: SigninComponent}
             ]},
-        {path: 'signup', component: SignupComponent},
         {path: 'about-us', component: AboutUsComponent},
         {path: 'how-it-works', component: HowItWorksComponent},
         {path: 'blogs', component: BlogsComponent},
@@ -124,6 +124,7 @@ const routes: Routes = [
         {path: 'clients', component: ClientsComponent, canActivate: [AdminLoginedGuard]},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]},
+    {path: 'signup', component: SignupComponent, canActivate: [IsLogoutGuard]},
     {path: 'admin/login', component: AdminLoginComponent, canActivate: [AdminLogoutGuard]},
     {path: 'admin/create', component: AdminCreateComponent, canActivate: [AdminLogoutGuard]},
     {path: '**', component: NotFoundComponent}

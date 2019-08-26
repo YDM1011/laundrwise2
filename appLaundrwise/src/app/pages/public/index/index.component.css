@@ -1,3 +1,7 @@
 cdk-virtual-scroll-viewport {
     height: 100vh;
 }
+
+::ng-deep .app-blog-post{
+    margin: 0 auto;
+}

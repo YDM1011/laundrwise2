@@ -24,6 +24,9 @@ export class AppHeaderComponent implements OnInit {
 
   ngOnInit() {
       this.auth.onUpDate.subscribe(( v: any ) => {
+          if (!v) {
+              this.islogin = false;
+          }
           if (v) {
               this.islogin = this.auth.isAuth();
               this.me = v;
@@ -56,17 +59,13 @@ export class AppHeaderComponent implements OnInit {
   }
   logout() {
     this.crud.logout('logout', {}).then((value: any) => {
-        this.auth.setUser(null);
         this.router.navigate(['/']);
         if ( this.isopen ) {
             this.isopen = !this.isopen;
         } else {
             return;
         }
-    },
-    (error) => {
-    }).catch(error => {});
+    });
+    this.auth.setUser(null);
   }
-
-
 }
