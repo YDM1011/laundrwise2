@@ -1,5 +1,6 @@
 # Node build artifacts
 .idea
+static
 npm-debug.log
 node_modules
 yarn.lock
