@@ -6,24 +6,22 @@
 <app-loading *ngIf="!loading"></app-loading>
 
 <div class="content" *ngIf="loading">
-    <!--    <p>-->
-    <!--        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
-    <!--    </p>-->
     <div class="content__element">
         <ng-container  *ngIf="post">
-            <div class="content__element-box">
-                <!--            <div class="title">-->
-                <!--                Aliquam erat volutpat-->
-                <!--            </div>-->
+            <div class="content__element-box-blog">
                 <div class="paragraph" *ngIf="post.text">
                     <app-img *ngIf="post.images.length > 0" [img]="post.images[0]"></app-img>
-                    {{post.text}}
+                    <div class="title">
+                        {{post.title}}
+                    </div>
+                    <div class="description">
+                        {{post.text}}
+                    </div>
                 </div>
             </div>
         </ng-container>
     </div>
 </div>
-
 <section class="blog" id="blog" *ngIf="loading && arrayPost && arrayPost.length > 0" >
     <h2>More interesting news</h2>
     <div class="blog__container">

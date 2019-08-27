@@ -11,6 +11,9 @@ import {AuthService} from "../../../auth.service";
 export class ContactsComponent implements OnInit {
   public arrayPost: Post[] = [];
   public cleanerData;
+  title = 'Laundrwise';
+  lat = 2.039092;
+  lng = 45.342027;
   constructor(
       private crud: CrudService,
       private auth: AuthService
@@ -18,6 +21,7 @@ export class ContactsComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.auth.onSettings.subscribe((v: any) => {
         if (!v) return;
         this.cleanerData = v;

@@ -18,10 +18,12 @@ html{
   top: 0!important;
 }
 body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: #fff;
   font-size: 14px;
   scroll-behavior: smooth;
-
   width: 100%!important;
   margin: 0;
   overflow: hidden!important;

@@ -1,0 +1,21 @@
+.content__element-box-blog .paragraph .title{
+    font-family: Montserrat-Bold,sans-serif;
+    font-size: 30px;
+    line-height: 37px;
+    margin: 5px 0;
+}
+@media (min-width: 768px) {
+    .content__element-box-blog{
+        width: 100%;
+    }
+    .content__element-box-blog .paragraph app-img{
+        width: 48%;
+        float: left;
+        margin: 0 20px 0;
+        max-width: 360px;
+    }
+    .content__element-box-blog .paragraph .title{
+        font-size: 38px;
+        line-height: 50px;
+    }
+}

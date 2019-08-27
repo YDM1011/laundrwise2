@@ -109,6 +109,7 @@ import {ChartsModule} from "ng2-charts";
 import { MyBarChartComponent } from './components/my-bar-chart/my-bar-chart.component';
 import { SubscriberComponent } from './pages/admin/subscriber/subscriber.component';
 import { ClientsComponent } from './pages/admin/clients/clients.component';
+import {AgmCoreModule} from "@agm/core";
 @NgModule({
   declarations: [
     AppComponent,
@@ -219,6 +220,9 @@ import { ClientsComponent } from './pages/admin/clients/clients.component';
     FormsModule,
     NgxMaterialTimepickerModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCti-KQc4DqL0rBEfFfpe6yaCt-Oqj2Tbg'
+    }),
     WebsocketModule.config({
         url: environment.ws
     })

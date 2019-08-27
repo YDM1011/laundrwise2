@@ -45,9 +45,14 @@
   &__element{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding:10px 0;
     height: auto;
+    overflow-x: hidden;
+    img{
+      margin: 0 auto;
+      max-width: 320px;
+    }
     &-box{
       width: 100%;
       padding: 10px 0;
@@ -57,6 +62,7 @@
         line-height: 37px;
         margin: 5px 0;
       }
+
       .paragraph{
         font-size: 14px;
         line-height: 23px;
@@ -65,6 +71,7 @@
           height: 300px;
           max-width: 400px;
           object-fit: contain;
+
         }
         app-img{
           width: 100%;
@@ -81,6 +88,7 @@
   }
   .content__element-reverse{
     flex-direction: column-reverse;
+
   }
   .video{
     position: relative;
@@ -218,11 +226,13 @@
       min-height: 350px;
       img{
         width:48%;
-        margin-left: 0;
+        margin: 0 0 15px;
         height: 300px;
+        float: left;
+        max-width: 100%;
       }
       &-box{
-        width: 100%;
+        width: 50%;
         padding: 0 10px 0 20px;
         .title{
           font-size: 38px;
@@ -246,6 +256,13 @@
     }
     .content__element-reverse{
       flex-direction: row-reverse;
+      img{
+        width:48%;
+        margin: 0 0 15px;
+        height: 300px;
+        float: right;
+        max-width: 100%;
+      }
       .content__element-box{
         padding: 0 20px 0 0;
       }
@@ -302,6 +319,12 @@
           }
         }
       }
+    }
+  }
+  .content__element-reverse{
+    min-height: 460px;
+    img{
+      height: 460px!important;
     }
   }
 }
