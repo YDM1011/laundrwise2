@@ -67,6 +67,10 @@ export class AuthService {
     this.localStorage.setItem('userId', id);
     this.localStorage.setItem('token', token);
   }
+  setLogoutUser(){
+    this.localStorage.removeItem('userId');
+    this.localStorage.removeItem('token');
+  }
   setStep(data) {
     this.step.next(data);
   }
