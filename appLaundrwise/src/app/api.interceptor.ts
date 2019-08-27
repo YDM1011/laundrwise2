@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
+    public localStorage = localStorage ;
     constructor(
         private cookie: CookieService,
     ) { }
@@ -16,7 +17,8 @@ export class ApiInterceptor implements HttpInterceptor {
         // modify request
         request = request.clone({
             setHeaders: {
-                Authorization: 'Bearer ' + this.cookie.get('adminToken')
+                Authorization: 'Bearer ' + (this.localStorage.getItem('adminToken') ||
+                    this.localStorage.getItem('token'))
             },
             withCredentials: true
         });

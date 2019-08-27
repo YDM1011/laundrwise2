@@ -33,16 +33,18 @@ export class AuthService {
   private updateCount = new BehaviorSubject<any>(false);
   public onUpdateCount = this.updateCount.asObservable();
 
+  public localStorage = localStorage ;
+
   constructor(private cookieService: CookieService) { }
   isAuth() {
-    if (this.cookieService.get('userId')) {
+    if (this.cookieService.get('userId') || this.localStorage.getItem('userId')) {
       return true;
     } else {
       return false;
     }
   }
   isAuthAdmin() {
-    if (this.cookieService.get('adminId')) {
+    if (this.cookieService.get('adminId') || this.localStorage.getItem('adminId')) {
       return true;
     } else {
       return false;
@@ -60,6 +62,10 @@ export class AuthService {
   }
   setUser(data) {
     this.updat.next(data);
+  }
+  setAuthUser(id, token) {
+    this.localStorage.setItem('userId', id);
+    this.localStorage.setItem('token', token);
   }
   setStep(data) {
     this.step.next(data);
