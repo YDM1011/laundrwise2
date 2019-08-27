@@ -1,0 +1,19 @@
+@import "variable";
+@import "fonts";
+@import "animation";
+@import "menu";
+
+*{
+  box-sizing: border-box;
+  outline: none;
+}
+input, textarea{
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+@import "main-style";
+@import "other-pages";
+@import "order";
+@import "accaount";
+@import "admin";

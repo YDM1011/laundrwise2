@@ -1,0 +1,191 @@
+.post-header{
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 2px solid #13AAFF;
+  //max-width: 700px;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  .title{
+    color: #000;
+    font-family: Montserrat-Regular, sans-serif;
+    font-weight:700;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+  }
+}
+
+.addnew{
+  display: inline-flex;
+  align-items: center;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #000;
+  img{
+    margin-right: 5px;
+  }
+}
+
+.cleaner-form{
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  label{
+    display: flex;
+    flex-direction: column;
+    span{
+      font-weight: 200;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    input, textarea{
+      font-family: Montserrat-Regular, sans-serif;
+      font-weight: 500;
+      line-height: 17px;
+      padding: 10px 16px;
+      margin: 0 0 20px;
+      border: 1px solid #D9D9D9;
+      border-radius: 36px;
+    }
+    textarea{
+      height: 100px;
+      resize: none;
+    }
+  }
+  .send{
+    color: #fff!important;
+    background: #13AAFF;
+    width: max-content;
+    padding: 6px 26px;
+    font-size: 14px;
+    margin: 5px 0;
+    border: 1px solid #13AAFF;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+    &:hover{
+      background: #179CE7;
+      border: 1px solid #179CE7;
+    }
+  }
+
+}
+
+//table
+
+table{
+  width: 100%;
+  max-width: 900px;
+}
+.table-header{
+  display: inline-flex;
+  align-items: center;
+}
+mat-cell{
+  display:flex !important;
+  justify-content:center!important;
+
+}
+mat-header-cell {
+  display:flex!important;;
+  justify-content:center!important;
+}
+th.mat-header-cell{
+  text-align: center;
+}
+
+td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type{
+  text-align: center;
+}
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
+  text-align: center;
+}
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell{
+  text-align: center;
+}
+
+
+//end table
+
+
+//buttons
+
+.simple-blue{
+  color: #fff!important;
+  background: #13AAFF;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid #13AAFF;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  &:hover{
+    background: #179CE7;
+    border: 1px solid #179CE7;
+  }
+  .active{
+    background: #cce730;
+    border: 1px solid #cce730;
+  }
+}
+
+.mat-cell .edit-link{
+  color: #fff!important;
+  background: #13AAFF;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid #13AAFF;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  &:hover{
+    background: #179CE7;
+    border: 1px solid #179CE7;
+  }
+}
+.mat-cell .delete-link{
+  color: #fff;
+  background: red;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .3s;
+  &:hover{
+    background: rgba(255, 10, 5, 0.78);
+    border: 1px solid rgba(255, 10, 5, 0.78);
+  }
+}
+
+.remove-img{
+  color: #fff;
+  background: red;
+  width: max-content;
+  padding: 6px 26px;
+  font-size: 14px;
+  margin: 5px 0;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .3s;
+  &:hover{
+    background: rgba(255, 10, 5, 0.78);
+    border: 1px solid rgba(255, 10, 5, 0.78);
+  }
+}
+
+//buttons end
