@@ -5,26 +5,31 @@ a{
   text-decoration: none;
 }
 @import "assets/scss/styles.scss";
-//app-root{
-//  overflow-x: hidden;
-//  width: 100%;
-//}
+
 *{
   box-sizing: border-box;
+}
+html{
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  min-height: 100vh;
+  overflow-x: hidden;
+  top: 0!important;
 }
 body{
   background: #fff;
   font-size: 14px;
-  font-family: Montserrat-Regular, sans-serif;
-  //min-height: 100vh;
   scroll-behavior: smooth;
 
-  width: 100%;
+  width: 100%!important;
   margin: 0;
   overflow: hidden!important;
   overflow-y: auto!important;
-  position: relative;
-  height: 100%;
+  position: relative!important;
+  height: 100%!important;
+  min-height: 100vh!important;
+  font-family: Montserrat-Regular, sans-serif;
 }
 .mat-form-field-appearance-legacy .mat-form-field-underline{
   height: 0!important;

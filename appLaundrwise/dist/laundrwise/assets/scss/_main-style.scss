@@ -192,7 +192,7 @@
         text-decoration: none;
         border-radius: 60px;
         border: 2px solid #13AAFF;
-        width: 100px;
+        width: 110px;
         text-align: center;
         padding: 8px 5px;
         margin-left: 15px;
@@ -1034,5 +1034,13 @@ footer{
         }
       }
     }
+  }
+}
+
+@media (max-width: 545px) {
+  .blog__container{
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 }

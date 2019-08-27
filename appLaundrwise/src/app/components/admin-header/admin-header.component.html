@@ -4,7 +4,7 @@
   </div>
   <div class="header-info">
     <div class="notification" [matMenuTriggerFor]="menu">
-      <img src="../assets/images/bell.svg" alt="">
+      <img src="./assets/images/bell.svg" alt="">
       <span class="notification-circle"></span>
       <mat-menu #menu="matMenu" xPosition="before">
         <ng-container *ngFor="let notification of notificationsNames">
@@ -20,7 +20,7 @@
       Admin
     </div>
     <div class="logout" (click)="logout()">
-      <img src="../assets/images/logout.svg" alt="">
+      <img src="./assets/images/logout.svg" alt="">
     </div>
   </div>
 </div>
