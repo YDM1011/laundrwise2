@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MatTableDataSource} from "@angular/material";
 import {CrudService} from "../../crud.service";
 import {NewCollaborator, NewCollaboratorObj} from "../../pages/profile/collaborators/newCollaborator";
 
@@ -26,7 +25,6 @@ export class CollaboratorsItemComponent implements OnInit {
   }
   editManager() {
     this.manadgerEdit = !this.manadgerEdit;
-
   }
 
   validate() {
@@ -52,7 +50,6 @@ export class CollaboratorsItemComponent implements OnInit {
       this.editManager();
       if (v) {
         this.obj = this.collaborator;
-
       }
     });
   }
