@@ -7,7 +7,7 @@ module.exports = {
         name: 'Laundrwise'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost:27017',
+    db: 'mongodb://127.0.0.1:27017',
     jwtSecret: process.env.JWTSECRET || "secret",
     email: {
         host: "smtp.mail.yahoo.com",

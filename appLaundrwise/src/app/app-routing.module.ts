@@ -66,7 +66,7 @@ const routes: Routes = [
     {path: '', component: InitLayoutComponent, children: [
         {path: '', component: IndexComponent, children: [
             {path: 'signin', component: SigninComponent}
-            ]},
+        ]},
         {path: 'about-us', component: AboutUsComponent},
         {path: 'how-it-works', component: HowItWorksComponent},
         {path: 'blogs', component: BlogsComponent},
